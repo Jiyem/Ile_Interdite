@@ -39,7 +39,7 @@ public class VueGrille extends Observable{
         labelTitre.setForeground(Color.BLACK);
         labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 1.5)));
         panelHaut.add(labelTitre) ;
-        panelHaut.add(labelTitre, BorderLayout.NORTH);
+        
         
         JPanel labelMorp = new JPanel(new GridLayout(3,3));
         mainPanel.add(labelMorp, BorderLayout.WEST);
