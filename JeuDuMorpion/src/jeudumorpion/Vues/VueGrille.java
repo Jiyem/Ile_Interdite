@@ -10,7 +10,6 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.HashMap;
 import javax.swing.*;
-import jeudumorpion.ICase;
 
 /**
  *

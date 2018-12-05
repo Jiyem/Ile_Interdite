@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jeudumorpion;
+package jeudumorpion.modele;
 
 /**
  *
  * @author chapellr
  */
-public enum Signe {
+public enum EtatCase {
+    NON_COCHEE,
     X,
     O;
 }

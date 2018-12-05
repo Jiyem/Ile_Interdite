@@ -5,6 +5,8 @@
  */
 package jeudumorpion;
 
+import jeudumorpion.modele.Case;
+import jeudumorpion.modele.Joueur;
 import jeudumorpion.Vues.VueGrille;
 import java.util.Observable;
 import java.util.Observer;
