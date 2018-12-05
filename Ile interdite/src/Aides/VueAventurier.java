@@ -1,6 +1,6 @@
-package ile.interdite;
+package Aides;
 
-import ile.interdite.Utils.Pion;
+import Aides.Utils.Pion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;

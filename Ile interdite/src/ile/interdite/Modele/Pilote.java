@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ile.interdite;
+package ile.interdite.Modele;
 
 /**
  *
- * @author domestit
+ * @author rose
  */
-public class Aventurier {
+public class Pilote {
     
 }
