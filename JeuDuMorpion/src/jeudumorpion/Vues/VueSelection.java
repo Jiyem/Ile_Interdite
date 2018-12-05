@@ -38,12 +38,12 @@ public class VueSelection {
         window.add(mainPanel);
         
         //Positionnement titre
-        mainPanel.add(new JLabel(), BorderLayout.NORTH);
+        //mainPanel.add(new JLabel(), BorderLayout.NORTH);
         JLabel labelTitre = new JLabel("Jeu du morpion") ;
         labelTitre.setForeground(Color.BLACK);
         labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 1.5)));
         mainPanel.add(labelTitre, BorderLayout.NORTH);
-        mainPanel.add(new JLabel(), BorderLayout.NORTH);
+        //mainPanel.add(new JLabel(), BorderLayout.NORTH);
         
         //création zone menu
         JPanel menu= new JPanel(new BorderLayout());
@@ -54,16 +54,19 @@ public class VueSelection {
         btnNewPartie = new JButton("Nouvelle Partie");
         btnTableauS = new JButton("Tableau des Scores");
         for(int x =0; x<15;x++){
-            if (x==2){
+            if (x==1){
                 menuHaut.add(btnNewPartie);
             }
-            else if(x==8){
+            else if(x==7){
                 menuHaut.add(btnTableauS);                
             }
             else {
-                menuHaut.add(new JLabel());
+                menuHaut.add(new JLabel(""));
             }
         }
         
+    }
+    public void afficher() {
+        this.window.setVisible(true);
     }
 }
