@@ -5,9 +5,6 @@
  */
 package jeudumorpion.Vues;
 
-import jeudumorpion.modele.EtatCase;
-import jeudumorpion.modele.EtatCase;
-
 /**
  *
  * @author chapellr
