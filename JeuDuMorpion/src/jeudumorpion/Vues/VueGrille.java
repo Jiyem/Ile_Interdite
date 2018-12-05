@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jeudumorpion;
+package jeudumorpion.Vues;
 
 
 import java.awt.*;
 import java.util.Observable;
 import java.util.HashMap;
 import javax.swing.*;
+import jeudumorpion.ICase;
 
 /**
  *
