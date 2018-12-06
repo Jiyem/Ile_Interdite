@@ -42,8 +42,8 @@ public class Grille {
                 } else {
                     nb = nb + 1;
                     this.tuile[x][y] = new Tuile(nb, tuilesDispo.get(0));
-                    this.tuilesUtilisé.add(tuilesDispo.get(nb));
-                    this.tuilesDispo.remove(tuilesDispo.get(nb));
+                    this.tuilesUtilisé.add(tuilesDispo.get(0));
+                    this.tuilesDispo.remove(tuilesDispo.get(0));
 
                 }
             }
@@ -57,8 +57,8 @@ public class Grille {
 
     public void remetTuileDispo(){
     for (int i=0;i<24;i++){
-        this.tuilesDispo.add(tuilesUtilisé.get(i));
-        this.tuilesUtilisé.remove(tuilesUtilisé.get(i));
+        this.tuilesDispo.add(tuilesUtilisé.get(0));
+        this.tuilesUtilisé.remove(tuilesUtilisé.get(0));
         
     }
     
