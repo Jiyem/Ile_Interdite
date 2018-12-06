@@ -70,6 +70,18 @@ public class VueGrille extends Observable{
                         label.setBorder(BorderFactory.createMatteBorder(0, 0, borderWidth, borderWidth, Color.BLACK));
                     }
                 }
+                else if (row == rows -1){
+                    if (col == 0){
+                        label.setBorder(BorderFactory.createMatteBorder(0,0, 0,borderWidth,Color.BLACK));
+                    }
+                    else if (col == cols -1){
+                        label.setBorder(BorderFactory.createMatteBorder(0,0, 0,0,Color.BLACK));
+                    }
+                    else {
+                        label.setBorder(BorderFactory.createMatteBorder(0,0, 0,borderWidth,Color.BLACK));
+                    }
+                        
+                    }
                 else {
                     if (col == 0) {
                         // Left-hand edge, draw all sides except top
@@ -78,9 +90,7 @@ public class VueGrille extends Observable{
                     else if (col == cols-1){
                         label.setBorder(BorderFactory.createMatteBorder(0,0, borderWidth, 0,Color.BLACK));
                     }
-                    else if (row == rows -1){
-                        label.setBorder(BorderFactory.createMatteBorder(0,0, 0, borderWidth,Color.BLACK));
-                    }
+                    
                     else {
                         // Neither top edge nor left edge, skip both top and left lines
                         label.setBorder(BorderFactory.createMatteBorder(0, 0, borderWidth, borderWidth, Color.BLACK));
