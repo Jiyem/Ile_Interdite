@@ -38,7 +38,7 @@ public class Grille {
                 } 
                 else {
                 nb = nb+1;    
-                this.tuile[x][y] =new Tuile(nb,tuilesDispo.get(nb));
+                this.tuile[x][y] =new Tuile(nb,tuilesDispo.get(0));
                 this.tuilesUtilisé.add(tuilesDispo.get(nb));
                 this.tuilesDispo.remove(tuilesDispo.get(nb));
                 
