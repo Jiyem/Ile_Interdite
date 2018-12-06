@@ -13,9 +13,11 @@ public abstract class Aventurier {
     //attributs
     private Tuile position;
     private final Couleur couleur;
+    private String pseudo;
     //constructeurs
-    Aventurier(Tuile position){
+    Aventurier(Tuile position,String pseudo){
         this.setPosition(position);
+        this.setPseudo(pseudo);
         this.couleur = null;
     }
     //méthodes
@@ -32,6 +34,20 @@ public abstract class Aventurier {
      */
     public void setPosition(Tuile position) {
         this.position = position;
+    }
+
+    /**
+     * @return the pseudo
+     */
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    /**
+     * @param pseudo the pseudo to set
+     */
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
     
     
