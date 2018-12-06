@@ -46,5 +46,10 @@ public class Grille {
             }
         
     }
+ 
+    }
+    public void Shuffle(){
+        this.tuilesDispo.Shuffle
+        
     }
 }
