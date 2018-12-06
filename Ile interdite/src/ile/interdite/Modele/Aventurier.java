@@ -9,6 +9,21 @@ package ile.interdite.Modele;
  *
  * @author domestit
  */
-public class Aventurier {
+public abstract class Aventurier {
+    //attributs
+    private Tuile position;
+    //constructeurs
+    Aventurier(Tuile pos){
+        this.position=pos;
+    }
+    //méthodes
+    public abstract boolean déplacementPossible(Grille grille);
+    
+    public abstract boolean assèchementPossible(Tuile tuile);
+    
+    public Tuile getPosition(){
+        return position;
+    }
+    
     
 }
