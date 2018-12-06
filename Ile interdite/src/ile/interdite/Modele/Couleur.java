@@ -10,5 +10,10 @@ package ile.interdite.Modele;
  * @author rose
  */
 public enum Couleur {
-    
+    ROUGE,
+    BLANC,
+    BLEU,
+    JAUNE,
+    VERT,
+    NOIR;
 }
