@@ -12,17 +12,26 @@ package ile.interdite.Modele;
 public abstract class Aventurier {
     //attributs
     private Tuile position;
+    private final Couleur couleur;
     //constructeurs
-    Aventurier(Tuile pos){
-        this.position=pos;
+    Aventurier(Tuile position){
+        this.setPosition(position);
+        this.couleur = null;
     }
     //méthodes
-    public abstract boolean déplacementPossible(Grille grille);
+    public abstract int[][] déplacementPossible(Grille grille);
     
-    public abstract boolean assèchementPossible(Tuile tuile);
+    public abstract int[][] assèchementPossible(Grille grille);
     
     public Tuile getPosition(){
         return position;
+    }
+
+    /**
+     * @param position the position to set
+     */
+    public void setPosition(Tuile position) {
+        this.position = position;
     }
     
     
