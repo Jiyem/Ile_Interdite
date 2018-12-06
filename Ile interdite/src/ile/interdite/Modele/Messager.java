@@ -12,10 +12,12 @@ package ile.interdite.Modele;
 public class Messager extends Aventurier{
     private Tuile position;
     private final Couleur couleur;
+    private final String pseudo;
     
-    public Messager(Tuile tuile){
-        this.setPosition(tuile);
+    public Messager(Tuile position,String pseudo){
+        this.setPosition(position);
         this.couleur = Couleur.BLANC;
+        this.pseudo = pseudo;
     }
 
     @Override
