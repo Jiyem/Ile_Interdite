@@ -11,12 +11,16 @@ package ile.interdite.Modele;
  */
 public class Navigateur extends Aventurier{
     private final Couleur couleur;
-    
+    private final Tuile position = new Tuile(1,"La Porte d'Or");
     public Navigateur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.ROUGE;
+        this.couleur = Couleur.JAUNE;
     }
-    
+    public Navigateur(String pseudo){
+        super(pseudo);
+        this.couleur = Couleur.JAUNE;
+        
+    }
 
 
     @Override

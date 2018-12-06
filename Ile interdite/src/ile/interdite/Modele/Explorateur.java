@@ -12,10 +12,17 @@ package ile.interdite.Modele;
 public class Explorateur extends Aventurier{
     
     private final Couleur couleur;
+    private final Tuile position = new Tuile(1, "La Porte de Cuivre");
     
     public Explorateur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.ROUGE;
+        this.couleur = Couleur.VERT;
+
+    }
+    
+    public Explorateur(String pseudo){
+        super(pseudo);
+        this.couleur = Couleur.VERT;
 
     }
 

@@ -15,8 +15,12 @@ public abstract class Aventurier {
     private final Couleur couleur;
     private final String pseudo;
     //constructeurs
-    Aventurier(Tuile position,String pseudo){
+    public Aventurier(Tuile position,String pseudo){
         this.setPosition(position);
+        this.pseudo = pseudo;
+        this.couleur = null;
+    }
+    public Aventurier(String pseudo){
         this.pseudo = pseudo;
         this.couleur = null;
     }

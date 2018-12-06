@@ -11,12 +11,16 @@ package ile.interdite.Modele;
  */
 public class Pilote extends Aventurier{
     private final Couleur couleur;
+    private final Tuile position = new Tuile(1,"Heliport");
     
     public Pilote(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.ROUGE;
+        this.couleur = Couleur.BLEU;
     }
-    
+    public Pilote(String pseudo){
+        super(pseudo);
+        this.couleur = Couleur.BLEU;
+    }
 
 
     @Override

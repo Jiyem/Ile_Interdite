@@ -11,12 +11,18 @@ package ile.interdite.Modele;
  */
 public class Plongeur extends Aventurier{
     private final Couleur couleur;
+    private final Tuile position = new Tuile(1, "La Porte de Fer");
     
     public Plongeur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.ROUGE;
+        this.couleur = Couleur.NOIR;
     }
 
+    public Plongeur(String pseudo){
+        super(pseudo);
+        this.couleur = Couleur.NOIR;
+
+    }
     @Override
     public int[][] déplacementPossible(Grille grille) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

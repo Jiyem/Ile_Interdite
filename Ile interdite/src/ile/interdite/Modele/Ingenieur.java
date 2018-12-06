@@ -11,7 +11,7 @@ package ile.interdite.Modele;
  */
 public class Ingenieur extends Aventurier{
     private final Couleur couleur;
-
+    private final Tuile position = new Tuile(1, "La Porte De Bronze");
     
     public Ingenieur(Tuile position,String pseudo){
         super(position,pseudo);
@@ -19,6 +19,10 @@ public class Ingenieur extends Aventurier{
 
     }
     
+    public Ingenieur(String pseudo){
+        super(pseudo);
+        this.couleur = Couleur.ROUGE;
+    }
 
 
     @Override

@@ -11,12 +11,18 @@ package ile.interdite.Modele;
  */
 public class Messager extends Aventurier{
     private final Couleur couleur;
+    private final Tuile position = new Tuile(1, "La Porte d'Argent");
     
     public Messager(Tuile position,String pseudo){
         super(position,pseudo);
         this.couleur = Couleur.BLANC;
     }
 
+    public Messager(String pseudo){
+        super(pseudo);
+        this.couleur = Couleur.BLANC;
+    }
+    
     @Override
     public int[][] déplacementPossible(Grille grille) {
         throw new UnsupportedOperationException("Not supported yet.");
