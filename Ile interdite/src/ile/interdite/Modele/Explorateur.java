@@ -11,14 +11,12 @@ package ile.interdite.Modele;
  */
 public class Explorateur extends Aventurier{
     
-    private Tuile position;
     private final Couleur couleur;
-    private final String pseudo;
     
     public Explorateur(Tuile position,String pseudo){
-        this.setPosition(position);
+        super(position,pseudo);
         this.couleur = Couleur.ROUGE;
-        this.pseudo = pseudo;
+
     }
 
     @Override
@@ -29,6 +27,11 @@ public class Explorateur extends Aventurier{
     @Override
     public int[][] assèchementPossible(Grille grille) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getRôle() {
+        return "Explorateur";
     }
     
     

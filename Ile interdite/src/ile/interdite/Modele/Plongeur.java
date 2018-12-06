@@ -10,14 +10,11 @@ package ile.interdite.Modele;
  * @author rose
  */
 public class Plongeur extends Aventurier{
-    private Tuile position;
     private final Couleur couleur;
-    private final String pseudo;
     
     public Plongeur(Tuile position,String pseudo){
-        this.setPosition(position);
+        super(position,pseudo);
         this.couleur = Couleur.ROUGE;
-        this.pseudo = pseudo;
     }
 
     @Override
@@ -28,5 +25,10 @@ public class Plongeur extends Aventurier{
     @Override
     public int[][] assèchementPossible(Grille grille) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getRôle() {
+        return "Plongeur";
     }
 }

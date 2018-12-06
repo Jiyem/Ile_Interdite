@@ -25,6 +25,8 @@ public abstract class Aventurier {
     
     public abstract int[][] assèchementPossible(Grille grille);
     
+    public abstract String getRôle();
+    
     public Tuile getPosition(){
         return position;
     }

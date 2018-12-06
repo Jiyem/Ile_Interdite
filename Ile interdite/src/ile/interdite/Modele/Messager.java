@@ -10,24 +10,27 @@ package ile.interdite.Modele;
  * @author rose
  */
 public class Messager extends Aventurier{
-    private Tuile position;
     private final Couleur couleur;
-    private final String pseudo;
     
     public Messager(Tuile position,String pseudo){
-        this.setPosition(position);
+        super(position,pseudo);
         this.couleur = Couleur.BLANC;
-        this.pseudo = pseudo;
     }
 
     @Override
     public int[][] déplacementPossible(Grille grille) {
-        return grille.getTuilesAdjacentesHorizontalesVerticales(position);
+        throw new UnsupportedOperationException("Not supported yet.");
+//        return grille.getTuilesAdjacentesHorizontalesVerticales(position);
     }
 
     @Override
     public int[][] assèchementPossible(Grille grille) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getRôle() {
+        return "Messager";
     }
 
 }
