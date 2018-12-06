@@ -10,7 +10,7 @@ package ile.interdite.Modele;
  * @author rose
  */
 public class Messager extends Aventurier{
-    private Tuile tuile;
+    private Tuile position;
     private final Couleur couleur;
     
     public Messager(Tuile tuile){
@@ -20,7 +20,7 @@ public class Messager extends Aventurier{
 
     @Override
     public int[][] déplacementPossible(Grille grille) {
-        return grille.getTuilesAdjacentesHorizontalesVerticales(tuile);
+        return grille.getTuilesAdjacentesHorizontalesVerticales(position);
     }
 
     @Override

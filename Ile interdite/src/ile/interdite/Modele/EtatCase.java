@@ -10,5 +10,7 @@ package ile.interdite.Modele;
  * @author rose
  */
 public enum EtatCase {
-
+    IMMERGEE,
+    INNONDEE,
+    NORMAL;
 }
