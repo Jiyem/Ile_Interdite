@@ -29,13 +29,15 @@ public class Grille {
     }
     public Grille(ArrayList tuiles){
         this.initialiseArray();
+        int nb =0;
         for (int x=0;  x< 5; x++  ){
             for(int y=0; y<5; y++){
-                int nb = x*y;
+                
                 if ((x==0 && y==0) ||(x==0 && y==1)||(x==0 && y==4)||(x==0 && y==5)||(x==1 && y==0)||(x==1 && y==5)||(x==4 && y==0)||(x==4 && y==5)||(x==5 && y==0)||(x==5 && y==1)||(x==5 && y==4)||(x==5 && y==5) ){
                     
                 } 
-                else {                
+                else {
+                nb = nb+1;    
                 this.tuile[x][y] =new Tuile(nb,tuilesDispo.get(nb));
                 this.tuilesUtilisé.add(tuilesDispo.get(nb));
                 this.tuilesDispo.remove(tuilesDispo.get(nb));
