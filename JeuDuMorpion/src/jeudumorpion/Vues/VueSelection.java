@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -25,12 +26,14 @@ public class VueSelection {
     private final JFrame window;
     private final JButton btnNewPartie;
     private final JButton btnTableauS;
+    private final JButton btnTuto;
+    private final JButton btnCréation;
 
     public VueSelection(){
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
-        window.setSize(600, 600);
+        window.setSize(550, 350);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width / 2 - window.getSize().width / 2, dim.height / 2 - window.getSize().height / 2);
         
@@ -39,7 +42,8 @@ public class VueSelection {
         JPanel panelHaut = new JPanel();
         mainPanel.add(panelHaut, BorderLayout.NORTH);
         
-        //Positionnement titre       
+        //Positionnement titre   
+//        Rajouter un espace en haut
         JLabel labelTitre = new JLabel("Jeu du morpion") ;
         labelTitre.setForeground(Color.BLACK);
         labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.0)));
@@ -65,10 +69,23 @@ public class VueSelection {
                 menuHaut.add(new JLabel(""));
             }
         }
-        
-        JPanel menuBas = new JPanel(new GridLayout(3,6));
-        menu.add(menuBas,BorderLayout.SOUTH);
-        
+        //menuBas tuto création
+        JPanel menuBas = new JPanel(new GridLayout(6,5));
+        menu.add(menuBas,BorderLayout.CENTER);
+        btnCréation = new JButton("Création"); 
+        btnTuto = new JButton("Tutoriel");
+        for(int i=0;i<30;i++){
+            if(i==6){
+                menuBas.add(btnTuto);
+            }
+            else if(i==8){
+                menuBas.add(btnCréation);
+            }
+            else {
+                menuBas.add(new JLabel(""));   
+            }
+        }
+
     }
     public void afficher() {
         this.window.setVisible(true);
