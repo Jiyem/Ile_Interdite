@@ -11,8 +11,8 @@ package ile.interdite.Modele;
  */
 public abstract class Aventurier {
     //attributs
-    private Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau
-    private final Couleur couleur;
+    private Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau || Faire les setter
+    private final Couleur couleur; // Faire setter
     private final String pseudo;
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
