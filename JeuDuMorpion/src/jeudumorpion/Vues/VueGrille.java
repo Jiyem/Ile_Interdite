@@ -67,6 +67,7 @@ public class VueGrille extends Observable{
                     if (col == 0) {
                         // Top left corner, draw all sides
                         label.setBorder(BorderFactory.createMatteBorder(0, 0, borderWidth, borderWidth, Color.BLACK));
+                        
                     }
                     else if (col == cols-1){
                         label.setBorder(BorderFactory.createMatteBorder(0, 0, borderWidth, 0, Color.BLACK));
