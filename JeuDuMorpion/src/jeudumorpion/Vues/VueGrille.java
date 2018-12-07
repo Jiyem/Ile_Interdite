@@ -34,29 +34,35 @@ public class VueGrille extends Observable{
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
-        JPanel panelHaut = new JPanel() ;
+        JPanel panelHaut = new JPanel(new BorderLayout()) ;
         mainPanel.add(panelHaut, BorderLayout.NORTH);
         
-        
-        JLabel labelTitre = new JLabel("Jeu du morpion") ;
+        panelHaut.add(new JLabel("            "), BorderLayout.SOUTH );
+        panelHaut.add(new JLabel("            "), BorderLayout.NORTH);
+        JLabel labelTitre = new JLabel("Jeu du morpion - Tournoi", JLabel.CENTER) ;
         labelTitre.setForeground(Color.BLACK);
-        labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 1.5)));
-        panelHaut.add(labelTitre) ;
+        labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.5)));
+        panelHaut.add(labelTitre, BorderLayout.CENTER) ;
         
+        JPanel marges = new JPanel(new BorderLayout());
         
-        GridLayout morp = new GridLayout(rows,cols);
-        JPanel labelMorp = new JPanel(morp);
+        mainPanel.add(marges, BorderLayout.WEST);
         
-        mainPanel.add(labelMorp, BorderLayout.WEST);
+        JPanel panelMorp = new JPanel( new GridLayout(rows,cols));
+        marges.add(new JLabel("        "), BorderLayout.NORTH );
+        marges.add(new JLabel("        "), BorderLayout.WEST );
+        marges.add(new JLabel("        "), BorderLayout.SOUTH );
+        marges.add(new JLabel("        "), BorderLayout.EAST );
+        marges.add(panelMorp, BorderLayout.CENTER);
         
         
         
         //Bordure du morpion
-        labelMorp.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        panelMorp.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 final JLabel label = new JLabel("");
-                label.setPreferredSize(new Dimension(200,150));
+                label.setPreferredSize(new Dimension(150,100));
                 if (row == 0) {
                     if (col == 0) {
                         // Top left corner, draw all sides
@@ -96,7 +102,7 @@ public class VueGrille extends Observable{
                         label.setBorder(BorderFactory.createMatteBorder(0, 0, borderWidth, borderWidth, Color.BLACK));
                     }
                 }
-                labelMorp.add(label);
+                panelMorp.add(label);
                 
                 
                 
