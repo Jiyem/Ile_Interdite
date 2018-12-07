@@ -98,6 +98,7 @@ public class VueGrille extends Observable{
                 }
                 labelMorp.add(label);
                 
+                
     }
 }
 
