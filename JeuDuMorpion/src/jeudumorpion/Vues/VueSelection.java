@@ -27,7 +27,7 @@ public class VueSelection {
     private final JButton btnTableauS;
 
     public VueSelection(){
-        window = new JFrame();
+        window = new JFrame("Morpion");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
         window.setSize(600, 600);

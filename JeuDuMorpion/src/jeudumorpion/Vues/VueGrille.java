@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.HashMap;
 import javax.swing.*;
+import java.awt.color.*;
 
 /**
  *
@@ -24,12 +25,12 @@ public class VueGrille extends Observable{
     
     public VueGrille(){
         //Création de la fenêtre + séparation en différent layout
-        window = new JFrame();
+        window = new JFrame("Morpion");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-      
+        
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         JPanel panelHaut = new JPanel(new BorderLayout()) ;
@@ -116,6 +117,14 @@ public class VueGrille extends Observable{
         JLabel tab = new JLabel("Tableau des victoires", JLabel.CENTER);
         panelDroite.add(tab, BorderLayout.NORTH);
         
+        
+        
+        Color fond = new Color(81, 38, 6, 100);
+        mainPanel.setBackground(fond);
+        panelMorp.setBackground(fond);
+        JColorChooser a = new JColorChooser(Color.yellow);
+        panelDroite.add(a);
+        //81, 38, 6, 140
     }
 
     public void afficher() {
