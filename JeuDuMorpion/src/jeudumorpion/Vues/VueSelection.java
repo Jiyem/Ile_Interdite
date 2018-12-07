@@ -38,13 +38,13 @@ public class VueSelection {
         window.add(mainPanel);
         JPanel panelHaut = new JPanel();
         mainPanel.add(panelHaut, BorderLayout.NORTH);
-        //Positionnement titre
-        //mainPanel.add(new JLabel(), BorderLayout.NORTH);
+        
+        //Positionnement titre       
         JLabel labelTitre = new JLabel("Jeu du morpion") ;
         labelTitre.setForeground(Color.BLACK);
         labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.0)));
         panelHaut.add(labelTitre);
-        //mainPanel.add(new JLabel(), BorderLayout.NORTH);
+        
         
         //création zone menu
         JPanel menu= new JPanel(new BorderLayout());
@@ -66,7 +66,7 @@ public class VueSelection {
             }
         }
         
-        JPanel menuBas = new JPanel(new GridLayout(,));
+        JPanel menuBas = new JPanel(new GridLayout(3,6));
         menu.add(menuBas,BorderLayout.SOUTH);
         
     }
