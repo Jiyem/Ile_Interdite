@@ -43,7 +43,7 @@ public class VueSelection {
         mainPanel.add(panelHaut, BorderLayout.NORTH);
         
         //Positionnement titre   
-//        Rajouter un espace en haut
+//        Rajouter un espace en haut faire un grid layout 2lignes
         JLabel labelTitre = new JLabel("Jeu du morpion") ;
         labelTitre.setForeground(Color.BLACK);
         labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.0)));
