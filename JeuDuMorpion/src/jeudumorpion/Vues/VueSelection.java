@@ -74,7 +74,7 @@ public class VueSelection {
         menu.add(menuBas,BorderLayout.CENTER);
         btnCréation = new JButton("Création"); 
         btnTuto = new JButton("Tutoriel");
-        for(int i=0;i<30;i++){
+        for(int i=0;i<30;i++){ // modification possible en mettant au sud donc surement moins de ligne dans le gridLayout
             if(i==6){
                 menuBas.add(btnTuto);
             }
