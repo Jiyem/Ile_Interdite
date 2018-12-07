@@ -66,6 +66,9 @@ public class VueSelection {
             }
         }
         
+        JPanel menuBas = new JPanel(new GridLayout(,));
+        menu.add(menuBas,BorderLayout.SOUTH);
+        
     }
     public void afficher() {
         this.window.setVisible(true);
