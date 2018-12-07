@@ -53,7 +53,7 @@ public class VueSelection {
         //création zone menu
         JPanel menu= new JPanel(new BorderLayout());
         mainPanel.add(menu,BorderLayout.CENTER);
-        //menuHaut parti
+        //menuHaut parti Laisser au milieu
         JPanel menuHaut = new JPanel(new GridLayout(5,3));
         menu.add(menuHaut,BorderLayout.NORTH);
         btnNewPartie = new JButton("Nouvelle Partie");
@@ -69,7 +69,7 @@ public class VueSelection {
                 menuHaut.add(new JLabel(""));
             }
         }
-        //menuBas tuto création
+        //menuBas tuto création Mettre au Sud
         JPanel menuBas = new JPanel(new GridLayout(6,5));
         menu.add(menuBas,BorderLayout.CENTER);
         btnCréation = new JButton("Création"); 
