@@ -36,13 +36,14 @@ public class VueSelection {
         
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel);
-        
+        JPanel panelHaut = new JPanel();
+        mainPanel.add(panelHaut, BorderLayout.NORTH);
         //Positionnement titre
         //mainPanel.add(new JLabel(), BorderLayout.NORTH);
         JLabel labelTitre = new JLabel("Jeu du morpion") ;
         labelTitre.setForeground(Color.BLACK);
-        labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 1.5)));
-        mainPanel.add(labelTitre, BorderLayout.NORTH);
+        labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.0)));
+        panelHaut.add(labelTitre);
         //mainPanel.add(new JLabel(), BorderLayout.NORTH);
         
         //création zone menu
@@ -54,10 +55,10 @@ public class VueSelection {
         btnNewPartie = new JButton("Nouvelle Partie");
         btnTableauS = new JButton("Tableau des Scores");
         for(int x =0; x<15;x++){
-            if (x==1){
+            if (x==4){
                 menuHaut.add(btnNewPartie);
             }
-            else if(x==7){
+            else if(x==10){
                 menuHaut.add(btnTableauS);                
             }
             else {
