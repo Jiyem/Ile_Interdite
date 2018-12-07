@@ -23,20 +23,19 @@ public class VueGrille extends Observable{
     private final int cols = 3;
     
     public VueGrille(){
-        
+        //Création de la fenêtre + séparation en différent layout
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
         window.setSize(1000, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-                
+      
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
-        
         JPanel panelHaut = new JPanel(new BorderLayout()) ;
         mainPanel.add(panelHaut, BorderLayout.NORTH);
         
+        //Marge autour du titre + titre
         panelHaut.add(new JLabel("            "), BorderLayout.SOUTH );
         panelHaut.add(new JLabel("            "), BorderLayout.NORTH);
         JLabel labelTitre = new JLabel("Jeu du morpion - Tournoi", JLabel.CENTER) ;
@@ -44,10 +43,10 @@ public class VueGrille extends Observable{
         labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.5)));
         panelHaut.add(labelTitre, BorderLayout.CENTER) ;
         
+        
+        //Marge autour des cases du morpion
         JPanel marges = new JPanel(new BorderLayout());
-        
         mainPanel.add(marges, BorderLayout.WEST);
-        
         JPanel panelMorp = new JPanel( new GridLayout(rows,cols));
         marges.add(new JLabel("        "), BorderLayout.NORTH );
         marges.add(new JLabel("        "), BorderLayout.WEST );
@@ -57,7 +56,7 @@ public class VueGrille extends Observable{
         
         
         
-        //Bordure du morpion
+        //Cases du morpion
         panelMorp.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -109,11 +108,13 @@ public class VueGrille extends Observable{
     }
 }
 
+        // Faire l'est de la vue: Tableau des victoires
 
-        // Remplir les cases
+        JPanel panelDroite = new JPanel(new BorderLayout());
+        mainPanel.add(panelDroite, BorderLayout.CENTER);
         
-        //Puis faire l'est
-        
+        JLabel tab = new JLabel("Tableau des victoires", JLabel.CENTER);
+        panelDroite.add(tab, BorderLayout.NORTH);
         
     }
 
