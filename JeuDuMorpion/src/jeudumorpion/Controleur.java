@@ -11,6 +11,7 @@ import jeudumorpion.Vues.VueGrille;
 import java.util.Observable;
 import java.util.Observer;
 import jeudumorpion.Vues.VueSelection;
+import jeudumorpion.Vues.VueSpecification;
 
 /**
  *
@@ -21,12 +22,15 @@ public class Controleur implements Observer{
    private Joueur joueurs;
    private VueGrille vueGrille;
    private VueSelection vueSelection;
+   private VueSpecification vueSpe;
    
    public Controleur(){
        vueGrille=new VueGrille();
-       vueGrille.afficher();
+       //vueGrille.afficher();
        vueSelection=new VueSelection();
-       vueSelection.afficher();
+       //vueSelection.afficher();
+       vueSpe = new VueSpecification();
+       vueSpe.afficher();
    }
     @Override
     public void update(Observable arg0, Object arg1) {
