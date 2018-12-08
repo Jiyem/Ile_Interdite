@@ -70,4 +70,5 @@ public class VueSelection {
     public void afficher() {
         this.window.setVisible(true);
     }
+    
 }

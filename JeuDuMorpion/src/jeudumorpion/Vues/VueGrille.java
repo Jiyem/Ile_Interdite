@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.HashMap;
 import javax.swing.*;
 import java.awt.color.*;
+import jeudumorpion.modele.Joueur;
 
 /**
  *
@@ -22,6 +23,8 @@ public class VueGrille extends Observable{
     private final int borderWidth = 1;
     private final int rows = 3;
     private final int cols = 3;
+    private Joueur a;
+    private Joueur b;
     
     public VueGrille(){
         //Création de la fenêtre + séparation en différent layout
@@ -30,7 +33,7 @@ public class VueGrille extends Observable{
         window.setSize(1000, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        
+        Color fond = new Color(64, 38, 6, 50);
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         JPanel panelHaut = new JPanel(new BorderLayout()) ;
@@ -39,20 +42,23 @@ public class VueGrille extends Observable{
         //Marge autour du titre + titre
         panelHaut.add(new JLabel("            "), BorderLayout.SOUTH );
         panelHaut.add(new JLabel("            "), BorderLayout.NORTH);
+        panelHaut.setBackground(fond);
         JLabel labelTitre = new JLabel("Jeu du morpion - Tournoi", JLabel.CENTER) ;
         labelTitre.setForeground(Color.BLACK);
-        labelTitre.setFont(new Font(labelTitre.getFont().getName(), labelTitre.getFont().getStyle(), (int) (labelTitre.getFont().getSize() * 2.5)));
+        labelTitre.setFont(new Font("Princetown LET", Font.PLAIN, (int) (labelTitre.getFont().getSize() * 2.5)));
         panelHaut.add(labelTitre, BorderLayout.CENTER) ;
         
         
         //Marge autour des cases du morpion
         JPanel marges = new JPanel(new BorderLayout());
+        
         mainPanel.add(marges, BorderLayout.WEST);
         JPanel panelMorp = new JPanel( new GridLayout(rows,cols));
-        marges.add(new JLabel("        "), BorderLayout.NORTH );
+        marges.add(new JLabel("        "), BorderLayout.NORTH);
         marges.add(new JLabel("        "), BorderLayout.WEST );
         marges.add(new JLabel("        "), BorderLayout.SOUTH );
         marges.add(new JLabel("        "), BorderLayout.EAST );
+        marges.setBackground(fond);
         marges.add(panelMorp, BorderLayout.CENTER);
         
         
@@ -104,7 +110,7 @@ public class VueGrille extends Observable{
                     }
                 }
                 panelMorp.add(label);
-                
+
                 
                 
     }
@@ -115,16 +121,18 @@ public class VueGrille extends Observable{
         JPanel panelDroite = new JPanel(new BorderLayout());
         mainPanel.add(panelDroite, BorderLayout.CENTER);
         
+        JPanel indicationJoueur = new JPanel(new BorderLayout());
+        panelDroite.add(indicationJoueur, BorderLayout.NORTH);
+        JLabel affrontement = new JLabel(a.getPseudo() + " contre joueur " + b.getPseudo());
+        
+                
         JLabel tab = new JLabel("Tableau des victoires", JLabel.CENTER);
-        panelDroite.add(tab, BorderLayout.NORTH);
-        
-        
-        
-        Color fond = new Color(81, 38, 6, 100);
-        mainPanel.setBackground(fond);
+        panelDroite.add(tab, BorderLayout.CENTER);
+        panelDroite.setBackground(fond);
         panelMorp.setBackground(fond);
-        JColorChooser a = new JColorChooser(Color.yellow);
-        panelDroite.add(a);
+
+      
+        //0, 23, 116, 169
         //81, 38, 6, 140
     }
 

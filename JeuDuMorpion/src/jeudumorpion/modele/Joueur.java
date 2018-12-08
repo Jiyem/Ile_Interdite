@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Joueur {
     private ArrayList<Case> casesCochée = new ArrayList<>();
     private Signe signe;
+    private String pseudo;
     
     public Joueur(){
         this.casesCochée = null;
@@ -43,6 +44,13 @@ public class Joueur {
     public void setSigne(Signe signe) {
 
         this.signe = signe;
+    }
+
+    /**
+     * @return the pseudo
+     */
+    public String getPseudo() {
+        return pseudo;
     }
     
     
