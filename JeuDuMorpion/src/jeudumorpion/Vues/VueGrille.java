@@ -123,7 +123,9 @@ public class VueGrille extends Observable{
         
         JPanel indicationJoueur = new JPanel(new BorderLayout());
         panelDroite.add(indicationJoueur, BorderLayout.NORTH);
-        JLabel affrontement = new JLabel(a.getPseudo() + " contre joueur " + b.getPseudo());
+        
+        //JLabel affrontement = new JLabel(a.getPseudo() + " contre joueur " + b.getPseudo());
+        //indicationJoueur.add(affrontement);
         
                 
         JLabel tab = new JLabel("Tableau des victoires", JLabel.CENTER);
