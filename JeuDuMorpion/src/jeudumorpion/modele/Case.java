@@ -12,6 +12,7 @@ import jeudumorpion.modele.Joueur;
  * @author chapellr
  */
 public class Case {
+
     private int numCase;
     private Joueur joueurAyantCoché;
     
@@ -44,5 +45,11 @@ public class Case {
      */
     public void setJoueurAyantCoché(Joueur joueurAyantCoché) {
         this.joueurAyantCoché = joueurAyantCoché;
+    }
+    /**
+     * @param numCase the numCase to set
+     */
+    public void setNumCase(int numCase) {
+        this.numCase = numCase;
     }
 }
