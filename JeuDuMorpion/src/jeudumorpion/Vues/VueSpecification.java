@@ -10,8 +10,11 @@ import java.util.Observable;
 import java.util.HashMap;
 import javax.swing.*;
 import java.awt.color.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JComponent;
-
+import javax.imageio.ImageIO;
 /**
  *
  * @author rose
@@ -29,7 +32,7 @@ public class VueSpecification {
         private JRadioButton seven;
         private JRadioButton eight;
         
-        public VueSpecification(){
+        public VueSpecification() throws IOException{
         //Création de la fenêtre + séparation en différent layout
         window = new JFrame("Morpion");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -101,20 +104,31 @@ public class VueSpecification {
         // n'arrive a a ajouter l'image
         JPanel selectNbJoueurs = new JPanel(new GridLayout(4,4));
         panelBas.add(selectNbJoueurs, BorderLayout.CENTER);
-        ImageIcon img = new ImageIcon("/home/rose/NetBeansProjects/Morp/Morpion/JeuDuMorpion/src/jeudumorpion/Vues/imagesJoueurs/double.png");
+ 
+        BufferedImage image = ImageIO.read(new File("/home/rose/NetBeansProjects/Morp/Morpion/JeuDuMorpion/src/jeudumorpion/Vues/imagesJoueurs/double.png"));
+        JLabel img = new JLabel(new ImageIcon(image));
+
         
-        
-        for(int x =0; x<16;x++){
-            if (x==1){
-                selectNbJoueurs.add(new JLabel(img));
-            }
-            
-            else {
-                panelHaut.add(new JLabel(""));
-            }
-        }
-        
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(two);
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(five);
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(three);
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(six);
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(four);
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(seven);
+        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(new JLabel(""));        
+        selectNbJoueurs.add(eight);
+        selectNbJoueurs.add(new JLabel(""));
+
 }
+        
+
     public void afficher() {
         this.window.setVisible(true);
     }
