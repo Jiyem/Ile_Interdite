@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package ile.interdite.Modele;
+import Aides.Utils;
+import Aides.Utils.EtatTuile;
 import java.util.ArrayList;
 /**
  *
@@ -25,8 +27,21 @@ public class Messager extends Aventurier{
     
     @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille) {
-        throw new UnsupportedOperationException("Not supported yet.");
-//        return grille.getTuilesAdjacentesHorizontalesVerticales(position);
+        ArrayList<Tuile> tuilepossibles = new ArrayList();
+        Tuile[][] tuiles = grille.getTuile();
+        if(tuiles[position.getX()+1][position.getY()] != null || tuiles[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+            tuilepossibles.add(tuiles[position.getX()+1][position.getY()]); //Donne la position d'une case à droite
+        }
+        if(tuiles[position.getX()-1][position.getY()] != null || tuiles[position.getX()-1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+        tuilepossibles.add(tuiles[position.getX()-1][position.getY()]); //Donne la position d'une case à gauche
+        }; 
+        if(tuiles[position.getX()][position.getY()+1] != null || tuiles[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
+            tuilepossibles.add(tuiles[position.getX()][position.getY()+1]);//Donne la position d'une case a dessus
+        } 
+        if(tuiles[position.getX()][position.getY()-1] != null || tuiles[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
+            tuilepossibles.add(tuiles[position.getX()][position.getY()-1]); //Donne la position une case plus basse
+        } 
+        return tuilepossibles;
     }
 
     @Override
