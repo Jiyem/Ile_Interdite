@@ -24,7 +24,7 @@ public class Messager extends Aventurier{
     }
     
     @Override
-    public int[][] déplacementPossible(Grille grille) {
+    public ArrayList<Tuile> déplacementPossible(Grille grille) {
         throw new UnsupportedOperationException("Not supported yet.");
 //        return grille.getTuilesAdjacentesHorizontalesVerticales(position);
     }

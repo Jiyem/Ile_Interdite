@@ -26,9 +26,9 @@ public abstract class Aventurier {
         this.couleur = null;
     }
     //méthodes
-    public abstract int[][] déplacementPossible(Grille grille);
+    public abstract ArrayList<Tuile> déplacementPossible(Grille grille);
     
-    public abstract Arraylist<Tuile> assèchementPossible(Grille grille);
+    public abstract ArrayList<Tuile> assèchementPossible(Grille grille);
     
     public abstract String getRôle();
     
