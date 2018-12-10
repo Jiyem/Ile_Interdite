@@ -41,5 +41,8 @@ public class ListeTuiles {
         
      
     }
+    public String getListe(int i){
+        return this.nom[i];
+    }
     
 }

@@ -24,7 +24,7 @@ public class Grille {
 
     public void initialiseArray() {
         for (int i = 0; i < 24; i++) {
-            this.tuilesDispo.add(i, liste.toString());
+            this.tuilesDispo.add(i, liste.getListe(i));
         }
 
     }
