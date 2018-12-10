@@ -29,24 +29,63 @@ public class Plongeur extends Aventurier{
     public ArrayList<Tuile> déplacementPossible(Grille grille){
         ArrayList<Tuile> tuilepossibles = new ArrayList();
         Tuile[][] tuiles = grille.getTuile();
-        tuilepossibles.add(tuiles[position.getX()][position.getY()+1]); //Donne la position 1 case plus haute
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()+1]); //Donne la position une case plus haute et à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()+1]);//Donne la position une case plus haute et à gauche
         
-        tuilepossibles.add(tuiles[position.getX()][position.getY()-1]); //Donne la position une case plus basse
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()-1]); //Donne la position une case plus basse et à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()-1]); //Donne la position une case plus basse et à gauche
-        
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()]); //Donne la position d'une case à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()]); //Donne la position d'une case à gauche
+        int i= 0;
+        while(tuiles[position.getX()+i][position.getY()] != null && tuiles[position.getX()+i][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+            tuilepossibles.add(tuiles[position.getX()+i][position.getY()]);
+            i = i+1;
+            int j= 0;
+            while(tuiles[position.getX()+i][position.getY()+j] != null && tuiles[position.getX()+i][position.getY()+j].getEtatCase() == EtatCase.IMMERGEE){
+                tuilepossibles.add(tuiles[position.getX()+j][position.getY()]);
+                j = j+1;
+            }
+            int u = 1;
+            while(tuiles[position.getX()+i][position.getY()-u] != null && tuiles[position.getX()+i][position.getY()-u].getEtatCase() == EtatCase.IMMERGEE){
+            tuilepossibles.add(tuiles[position.getX()][position.getY()+u]); //Verification de s'il peut nager plus loin que prévu
+            u = u+1;
+        }
+        }
+        int a = 0;
+        while(tuiles[position.getX()-a][position.getY()] != null && tuiles[position.getX()+a][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+            tuilepossibles.add(tuiles[position.getX()-a][position.getY()]);
+            i = i+1;
+            int j= 0;
+            while(tuiles[position.getX()-a][position.getY()+j] != null && tuiles[position.getX()+i][position.getY()+j].getEtatCase() == EtatCase.IMMERGEE){
+                tuilepossibles.add(tuiles[position.getX()+j][position.getY()]);
+                j = j+1;
+            }
+            int u = 1;
+            while(tuiles[position.getX()+i][position.getY()-u] != null && tuiles[position.getX()+i][position.getY()-u].getEtatCase() == EtatCase.IMMERGEE ){
+            tuilepossibles.add(tuiles[position.getX()][position.getY()+u]); //Verification de s'il peut nager plus loin que prévu
+            u = u+1;
+        }
+        }
         
         return tuilepossibles;
         }    
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Tuile> assechPossible = new ArrayList<>();
+        if(position.getX()!=5){
+            if(grille.getTuile()[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        if(position.getX()!=0){
+             if(grille.getTuile()[position.getX()-1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        if(position.getY()!=5){
+             if(grille.getTuile()[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        if(position.getY()!=0){
+             if(grille.getTuile()[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        return assechPossible;
     }
+
 
     @Override
     public String getRôle() {
