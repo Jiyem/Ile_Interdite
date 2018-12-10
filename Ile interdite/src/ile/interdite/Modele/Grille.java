@@ -89,7 +89,7 @@ public class Grille {
  
         lDeplacementDispo = this.getTuilehorizontaleEtVerticale(position);
         
-        if(tuile[position.getX()+1][position.getY()+1] != null || tuile[position.getX()+1][position.getY()+1].getEtatCase() != EtatCase.IMMERGEE){
+        if(tuile[position.getX()+1][position.getY()+1] != null || tuile[position.getX()+1][position.getY()+1].getEtatCase() != EtatCase.IMMERGEE ){
             lDeplacementDispo.add(tuile[position.getX()+1][position.getY()+1]); //Donne la position une case plus basse a droite
         }
         if(tuile[position.getX()+1][position.getY()-1] != null || tuile[position.getX()+1][position.getY()-1].getEtatCase() != EtatCase.IMMERGEE){
