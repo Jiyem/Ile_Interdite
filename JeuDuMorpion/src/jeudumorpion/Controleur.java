@@ -20,7 +20,7 @@ import jeudumorpion.modele.Grille;
  * @author chapellr
  */
 public class Controleur implements Observer{
-   private Grille grille = new Grille();
+   //private Grille grille = new Grille();
    private Joueur joueurs;
    private VueGrille vueGrille;
    private VueSelection vueSelection;

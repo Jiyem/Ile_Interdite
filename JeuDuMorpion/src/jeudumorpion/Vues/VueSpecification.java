@@ -13,7 +13,6 @@ import java.awt.color.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.swing.JComponent;
-import javax.imageio.ImageIO;
 /**
  *
  * @author rose
@@ -30,6 +29,7 @@ public class VueSpecification {
         private JRadioButton six;
         private JRadioButton seven;
         private JRadioButton eight;
+        private ImagesInscription deux;
         
         public VueSpecification(){
         //Création de la fenêtre + séparation en différent layout
@@ -102,12 +102,16 @@ public class VueSpecification {
         
         // n'arrive a a ajouter l'image
         JPanel selectNbJoueurs = new JPanel(new GridLayout(4,4));
+        selectNbJoueurs.setOpaque(false);
         panelBas.add(selectNbJoueurs, BorderLayout.CENTER);
- 
+        String imgFolder = System.getProperty("user.dir") + "/src/imagesJoueurs/" ;
         
+        deux = new ImagesInscription(imgFolder + "double.png", 10, 10, 10, 10);
+        JPanel contientdeux = new JPanel();
+        contientdeux.add(deux);
 
         
-        selectNbJoueurs.add(new JLabel(""));
+        selectNbJoueurs.add(contientdeux);
         selectNbJoueurs.add(two);
         selectNbJoueurs.add(new JLabel(""));
         selectNbJoueurs.add(five);
