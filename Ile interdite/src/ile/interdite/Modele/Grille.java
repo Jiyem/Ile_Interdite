@@ -50,9 +50,6 @@ public class Grille {
 
     }
 
-    
-    
-
     public void remetTuileDispo(){
     for (int i=0;i<24;i++){
         this.tuilesDispo.add(tuilesUtilisé.get(0));
@@ -68,4 +65,91 @@ public class Grille {
     public Tuile[][] getTuile(){
         return this.tuile;
     }
+    
+    public ArrayList<Tuile> getTuilehorizontaleEtVerticale(Tuile position){
+        ArrayList<Tuile> lDeplacementDispo = new ArrayList<>();
+        //Si la tuile existe ( != null) et que son état n'est pas IMMERGEE on l'ajoute aux possibilitées
+        if(tuile[position.getX()+1][position.getY()] != null || tuile[position.getX()+1][position.getY()].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()+1][position.getY()]); //Donne la position de la case à droite
+        }
+        if(tuile[position.getX()-1][position.getY()] != null || tuile[position.getX()-1][position.getY()].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()-1][position.getY()]); //Donne la position de la case à gauche
+        } 
+        if(tuile[position.getX()][position.getY()+1] != null || tuile[position.getX()][position.getY()+1].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()][position.getY()+1]);//Donne la position de la case au dessus
+        } 
+        if(tuile[position.getX()][position.getY()-1] != null || tuile[position.getX()][position.getY()-1].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()][position.getY()-1]); //Donne la position de la case en bas
+        } 
+        return lDeplacementDispo;
+    }
+    
+    public ArrayList<Tuile> getTuilehorizontaleEtVerticaleEtDiagonal(Tuile position){
+        ArrayList<Tuile> lDeplacementDispo = new ArrayList<>();
+ 
+        lDeplacementDispo = this.getTuilehorizontaleEtVerticale(position);
+        
+        if(tuile[position.getX()+1][position.getY()+1] != null || tuile[position.getX()+1][position.getY()+1].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()+1][position.getY()+1]); //Donne la position une case plus basse a droite
+        }
+        if(tuile[position.getX()+1][position.getY()-1] != null || tuile[position.getX()+1][position.getY()-1].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()+1][position.getY()-1]); //Donne la position une case plus basse a gauche
+        } 
+        if(tuile[position.getX()-1][position.getY()+1] != null || tuile[position.getX()-1][position.getY()+1].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()-1][position.getY()+1]); //Donne la position une case plus haute a droite
+        }
+        if(tuile[position.getX()-1][position.getY()-1] != null || tuile[position.getX()-1][position.getY()-1].getEtatCase() != EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()-1][position.getY()-1]); //Donne la position une case plus haute a gauche
+        } 
+        return lDeplacementDispo;
+    }
+    public ArrayList<Tuile> getTuileAdjacenteImmergées(Tuile position){
+        ArrayList<Tuile> lDeplacementDispo = new ArrayList<>();
+        lDeplacementDispo = this.getTuilehorizontaleEtVerticale(position);
+
+        if(tuile[position.getX()+1][position.getY()] != null || tuile[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()+1][position.getY()]); //Donne la position de la case à droite IMMERGEE
+        }
+        if(tuile[position.getX()-1][position.getY()] != null || tuile[position.getX()-1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()-1][position.getY()]); //Donne la position de la case à IMMERGEE
+        } 
+        if(tuile[position.getX()][position.getY()+1] != null || tuile[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()][position.getY()+1]);//Donne la position de la case au IMMERGEE
+        } 
+        if(tuile[position.getX()][position.getY()-1] != null || tuile[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
+            lDeplacementDispo.add(tuile[position.getX()][position.getY()-1]); //Donne la position de la case en IMMERGEE
+        } 
+        return lDeplacementDispo;
+    }
+    
+    public ArrayList<Tuile> getTuileDeplacementPlongeur(Tuile position){
+        ArrayList<Tuile> lDeplacementDispo = new ArrayList<>();
+        ArrayList<Tuile> lDeplacementCaseAdjacente = new ArrayList<>();
+
+        lDeplacementDispo =  this.getTuileAdjacenteImmergées(position);
+        
+        for(int i= 0;i < lDeplacementDispo.size();i++){
+            lDeplacementCaseAdjacente = this.getTuileAdjacenteImmergées(lDeplacementDispo.get(i));
+            for(int y = 0; y < lDeplacementCaseAdjacente.size();i++){
+                lDeplacementDispo.add(lDeplacementCaseAdjacente.get(y));
+            }
+        }
+        return lDeplacementDispo;
+            
+        }
+    public ArrayList<Tuile> déplacementPossiblePilote(Grille grille){
+        ArrayList<Tuile> tuilepossibles = new ArrayList();
+        Tuile[][] tuiles = grille.getTuile();
+        for (int y = 0; y < 6; y++) {
+            for (int x = 0; x < 6; x++) {
+                if(tuiles[x][y]!=null && tuiles[x][y].getEtatCase()!= EtatCase.IMMERGEE){
+                    tuilepossibles.add(tuiles[x][y]);
+                }
+            }
+            
+        }
+        return tuilepossibles;
+    }
+            
+    
 }

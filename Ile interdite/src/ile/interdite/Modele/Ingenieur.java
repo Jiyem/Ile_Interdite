@@ -29,14 +29,7 @@ public class Ingenieur extends Aventurier{
 
        @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille){
-        ArrayList<Tuile> tuilepossibles = new ArrayList();
-        Tuile[][] tuiles = grille.getTuile();
-        tuilepossibles.add(tuiles[position.getX()][position.getY()+1]); //Donne la position 1 case plus haute
-        tuilepossibles.add(tuiles[position.getX()][position.getY()-1]); //Donne la position une case plus basse
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()]); //Donne la position d'une case à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()]); //Donne la position d'une case à gauche
-        
-        return tuilepossibles;
+        return grille.getTuilehorizontaleEtVerticale(position);
         }    
     
 

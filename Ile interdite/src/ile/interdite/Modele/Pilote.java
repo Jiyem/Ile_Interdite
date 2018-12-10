@@ -25,20 +25,13 @@ public class Pilote extends Aventurier{
     }
 
 
-       @Override
+    @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille){
-        ArrayList<Tuile> tuilepossibles = new ArrayList();
-        Tuile[][] tuiles = grille.getTuile();
-        for (int y = 0; y < 6; y++) {
-            for (int x = 0; x < 6; x++) {
-                if(tuiles[x][y]!=null && tuiles[x][y].getEtatCase()!= EtatCase.IMMERGEE){
-                    tuilepossibles.add(tuiles[x][y]);
-                }
-            }
+        return grille.déplacementPossiblePilote(grille);
+        
         }
         
-        return tuilepossibles;
-        }    
+            
     
 
     @Override

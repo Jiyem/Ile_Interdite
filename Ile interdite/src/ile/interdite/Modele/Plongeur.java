@@ -27,41 +27,7 @@ public class Plongeur extends Aventurier{
     }
         @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille){
-        ArrayList<Tuile> tuilepossibles = new ArrayList();
-        Tuile[][] tuiles = grille.getTuile();
-        
-        int i= 0;
-        while(tuiles[position.getX()+i][position.getY()] != null && tuiles[position.getX()+i][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-            tuilepossibles.add(tuiles[position.getX()+i][position.getY()]);
-            i = i+1;
-            int j= 0;
-            while(tuiles[position.getX()+i][position.getY()+j] != null && tuiles[position.getX()+i][position.getY()+j].getEtatCase() == EtatCase.IMMERGEE){
-                tuilepossibles.add(tuiles[position.getX()+j][position.getY()]);
-                j = j+1;
-            }
-            int u = 1;
-            while(tuiles[position.getX()+i][position.getY()-u] != null && tuiles[position.getX()+i][position.getY()-u].getEtatCase() == EtatCase.IMMERGEE){
-            tuilepossibles.add(tuiles[position.getX()][position.getY()+u]); //Verification de s'il peut nager plus loin que prévu
-            u = u+1;
-        }
-        }
-        int a = 0;
-        while(tuiles[position.getX()-a][position.getY()] != null && tuiles[position.getX()+a][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-            tuilepossibles.add(tuiles[position.getX()-a][position.getY()]);
-            i = i+1;
-            int j= 0;
-            while(tuiles[position.getX()-a][position.getY()+j] != null && tuiles[position.getX()+i][position.getY()+j].getEtatCase() == EtatCase.IMMERGEE){
-                tuilepossibles.add(tuiles[position.getX()+j][position.getY()]);
-                j = j+1;
-            }
-            int u = 1;
-            while(tuiles[position.getX()+i][position.getY()-u] != null && tuiles[position.getX()+i][position.getY()-u].getEtatCase() == EtatCase.IMMERGEE ){
-            tuilepossibles.add(tuiles[position.getX()][position.getY()+u]); //Verification de s'il peut nager plus loin que prévu
-            u = u+1;
-        }
-        }
-        
-        return tuilepossibles;
+        return grille.getTuileDeplacementPlongeur(position);
         }    
 
     @Override

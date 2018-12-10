@@ -27,7 +27,7 @@ public class Navigateur extends Aventurier{
 
     @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           return grille.getTuilehorizontaleEtVerticale(position);
     }
 
     @Override
