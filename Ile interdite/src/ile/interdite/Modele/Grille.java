@@ -20,9 +20,7 @@ public class Grille {
     private ArrayList<String> tuilesDispo = new ArrayList();
     private ListeTuiles liste;
 
-    public Grille() {
 
-    }
 
     public void initialiseArray() {
         for (int i = 0; i < 24; i++) {
@@ -31,7 +29,7 @@ public class Grille {
 
     }
 
-    public Grille(ArrayList tuiles) {
+    public Grille() {
         this.initialiseArray();
         int nb = 0;
         for (int x = 0; x < 5; x++) {
