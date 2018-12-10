@@ -32,7 +32,8 @@ public class Controleur implements Observer {
     private VueInscription inscri = new VueInscription();
     //Création d'une tuile par défaut pour placer les aventuriers lors de leurs instanciation un peu plus bas.
     //Lucas lpb 
-    private Tuile defaut = new Tuile(0,"défaut");
+//    private Tuile defaut = new Tuile(0,"défaut");
+    private Grille grille;
     public Controleur(){
         joueurs=new ArrayList<>();
         inscri.addObserver(this);
@@ -71,25 +72,25 @@ public class Controleur implements Observer {
                             }
                             //Attribution du rôle au nom de joueur -> Instanciation des aventuriers
                             if(l.get(aléa1) == 0){
-                                Aventurier joueur = new Explorateur(defaut,s.get(nb));
+                                Aventurier joueur = new Explorateur(s.get(nb));
                                 //Ajout de l'aventurier dans la liste des aventuriers.
                                 joueurs.add(joueur);
                             } else if(l.get(aléa1) == 1){
-                                Aventurier joueur = new Ingenieur(defaut,s.get(nb));
+                                Aventurier joueur = new Ingenieur(s.get(nb));
                                 joueurs.add(joueur);
                             } else if(l.get(aléa1) == 2){
-                                Aventurier joueur = new Messager(defaut,s.get(nb));
+                                Aventurier joueur = new Messager(s.get(nb));
                                 joueurs.add(joueur);
                             } else if(l.get(aléa1) == 3){
-                                Aventurier joueur = new Navigateur(defaut,s.get(nb));
+                                Aventurier joueur = new Navigateur(s.get(nb));
                                 joueurs.add(joueur);
                                 
                             } else if(l.get(aléa1) == 4){
-                                Aventurier joueur = new Pilote(defaut,s.get(nb));
+                                Aventurier joueur = new Pilote(s.get(nb));
                                 joueurs.add(joueur);
                                 
                             } else if(l.get(aléa1) == 5){
-                                Aventurier joueur = new Plongeur(defaut,s.get(nb));
+                                Aventurier joueur = new Plongeur(s.get(nb));
                                 joueurs.add(joueur);
                                 
                             }
@@ -100,6 +101,14 @@ public class Controleur implements Observer {
                         for(int i = 0; i < joueurs.size();i++){
                             System.out.println("Le joueur "+joueurs.get(i).getPseudo()+" est un "+joueurs.get(i).getRôle());
                         }
+                        
+                        //Initialisation de la grille.
+                        grille = new Grille();
+                        // à supprimer
+                        System.out.println("La grille est initialisée");
+                        
+                        
+                        
                     }
                     // Si l'utilisateur à demander plus de 4 joueurs ou moins de 2 joueurs.
                     else{
