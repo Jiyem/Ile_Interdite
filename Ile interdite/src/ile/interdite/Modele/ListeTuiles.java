@@ -12,37 +12,38 @@ import java.util.ArrayList;
  * @author mirasl
  */
 public class ListeTuiles {
-    private final String[] nom = {"Le Pont des Abimes",
-    "La Porte de Bronze",
-    "La Caverne des Ombres",
-    "La Porte de Fer", 
-    "La Porte d’Or", 
-    "Les Falaises de l’Oubli",
-    "Le Palais de Corail",
-    "La Porte d’Argent", 
-    "Les Dunes de l’Illusion",
-    "Heliport", 
-    "La Porte de Cuivre",
-    "Le Jardin des Hurlements",
-    "La Foret Pourpre",
-    "Le Lagon Perdu",
-    "Le Marais Brumeux",
-    "Observatoire",
-    "Le Rocher Fantome",
-    "La Caverne du Brasier",
-    "Le Temple du Soleil",
-    "Le Temple de La Lune",
-    "Le Palais des Marees",
-    "Le Val du Crepuscule",
-    "La Tour du Guet",
-    "Le Jardin des Murmures"};
+    private ArrayList nom = new ArrayList<String>();
     
     public ListeTuiles(){
+    this.nom.add("Le Pont des Abimes");
+    this.nom.add("La Porte de Bronze");
+    this.nom.add("La Caverne des Ombres");
+    this.nom.add("La Porte de Fer");
+    this.nom.add("La Porte d’Or");
+    this.nom.add("Les Falaises de l’Oubli");
+    this.nom.add("Le Palais de Corail");
+    this.nom.add("La Porte d’Argent");
+    this.nom.add("Les Dunes de l’Illusion");
+    this.nom.add("Heliport");
+    this.nom.add("La Porte de Cuivre");
+    this.nom.add("Le Jardin des Hurlements");
+    this.nom.add("La Foret Pourpre");
+    this.nom.add("Le Lagon Perdu");
+    this.nom.add("Le Marais Brumeux");
+    this.nom.add("Observatoire");
+    this.nom.add("Le Rocher Fantome");
+    this.nom.add("La Caverne du Brasier");
+    this.nom.add("Le Temple du Soleil");
+    this.nom.add("Le Temple de La Lune");
+    this.nom.add("Le Palais des Marees");
+    this.nom.add("Le Val du Crepuscule");
+    this.nom.add("La Tour du Guet");
+    this.nom.add("Le Jardin des Murmures");
         
      
     }
-    public String getListe(int i){
-        return this.nom[i];
+    public String get(int i){
+        return (String) this.nom.get(i);
     }
     
 }
