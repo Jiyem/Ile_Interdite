@@ -106,7 +106,7 @@ public class Controleur implements Observer {
                         }
                         
                         //Initialisation de la grille.
-//                        grille = new Grille();
+                        grille = new Grille();
                         // à supprimer
                         System.out.println("La grille est initialisée");
                         

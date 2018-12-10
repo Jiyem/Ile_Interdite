@@ -32,8 +32,8 @@ public class Grille {
     public Grille() {
         this.initialiseArray();
         int nb = 0;
-        for (int x = 0; x < 5; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 6; y++) {
 
                 if ((x == 0 && y == 0) || (x == 0 && y == 1) || (x == 0 && y == 4) || (x == 0 && y == 5) || (x == 1 && y == 0) || (x == 1 && y == 5) || (x == 4 && y == 0) || (x == 4 && y == 5) || (x == 5 && y == 0) || (x == 5 && y == 1) || (x == 5 && y == 4) || (x == 5 && y == 5)) {
 
