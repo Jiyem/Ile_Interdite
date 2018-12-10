@@ -18,6 +18,7 @@ import ile.interdite.Vue.ActionsType;
 import ile.interdite.Vue.MessageInscription;
 import ile.interdite.Vue.VueInscription;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -30,6 +31,7 @@ import java.util.Scanner;
 public class Controleur implements Observer {
     private ArrayList<Aventurier>joueurs;
     private VueInscription inscri = new VueInscription();
+    HashMap<Aventurier, Tuile> depart = new HashMap<>();
     //Création d'une tuile par défaut pour placer les aventuriers lors de leurs instanciation un peu plus bas.
     //Lucas lpb 
 //    private Tuile defaut = new Tuile(0,"défaut");
@@ -39,6 +41,9 @@ public class Controleur implements Observer {
         inscri.addObserver(this);
         inscri.afficher();
         
+    }
+    private void CréationDép(){
+        this.depart.put(key, value)
     }
 
     @Override

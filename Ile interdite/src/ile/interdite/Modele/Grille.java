@@ -32,14 +32,14 @@ public class Grille {
     public Grille() {
         this.initialiseArray();
         int nb = 0;
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 6; y++) {
+        for (int y = 0; y < 6; y++) {
+            for (int x = 0; x < 6; x++) {
 
-                if ((x == 0 && y == 0) || (x == 0 && y == 1) || (x == 0 && y == 4) || (x == 0 && y == 5) || (x == 1 && y == 0) || (x == 1 && y == 5) || (x == 4 && y == 0) || (x == 4 && y == 5) || (x == 5 && y == 0) || (x == 5 && y == 1) || (x == 5 && y == 4) || (x == 5 && y == 5)) {
+                if ((y == 0 && x == 0) || (y == 0 && x == 1) || (y == 0 && x == 4) || (y == 0 && x == 5) || (y == 1 && x == 0) || (y == 1 && x == 5) || (y == 4 && x == 0) || (y == 4 && x == 5) || (y == 5 && x == 0) || (y == 5 && x == 1) || (y == 5 && x == 4) || (y == 5 && x == 5)) {
 
                 } else {
                     nb = nb + 1;
-                    this.tuile[x][y] = new Tuile(nb, tuilesDispo.get(0),x,y);
+                    this.tuile[y][x] = new Tuile(nb, tuilesDispo.get(0),y,x);
                     this.tuilesUtilisé.add(tuilesDispo.get(0));
                     this.tuilesDispo.remove(tuilesDispo.get(0));
 
