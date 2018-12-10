@@ -13,13 +13,14 @@ import java.util.Observable;
 import java.util.Observer;
 import jeudumorpion.Vues.VueSelection;
 import jeudumorpion.Vues.VueSpecification;
+import jeudumorpion.modele.Grille;
 
 /**
  *
  * @author chapellr
  */
 public class Controleur implements Observer{
-   private Case cases;
+   private Grille grille = new Grille();
    private Joueur joueurs;
    private VueGrille vueGrille;
    private VueSelection vueSelection;
