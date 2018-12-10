@@ -17,12 +17,12 @@ public class Plongeur extends Aventurier{
     
     public Plongeur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.NOIR;
+        this.couleur = Couleur.VIOLET;
     }
 
     public Plongeur(String pseudo){
         super(pseudo);
-        this.couleur = Couleur.NOIR;
+        this.couleur = Couleur.VIOLET;
 
     }
         @Override

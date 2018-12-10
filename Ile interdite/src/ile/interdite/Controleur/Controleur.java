@@ -6,6 +6,7 @@
 package ile.interdite.Controleur;
 
 import ile.interdite.Modele.Aventurier;
+import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Explorateur;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Ingenieur;
@@ -31,7 +32,7 @@ import java.util.Scanner;
 public class Controleur implements Observer {
     private ArrayList<Aventurier>joueurs;
     private VueInscription inscri = new VueInscription();
-    HashMap<Aventurier, Tuile> depart = new HashMap<>();
+    HashMap<Couleur, String> depart = new HashMap<>();
     //Création d'une tuile par défaut pour placer les aventuriers lors de leurs instanciation un peu plus bas.
     //Lucas lpb 
 //    private Tuile defaut = new Tuile(0,"défaut");
@@ -42,8 +43,13 @@ public class Controleur implements Observer {
         inscri.afficher();
         
     }
-    private void CréationDép(){
-        this.depart.put(key, value)
+    private void PositionDépart(){
+        this.depart.put(Couleur.BLEU,"Heliport");
+        this.depart.put(Couleur.JAUNE,"La Porte d'Or");
+        this.depart.put(Couleur.ORANGE,"La Porte d’Argent");
+        this.depart.put(Couleur.ROUGE,"La Porte De Bronze");
+        this.depart.put(Couleur.VERT,"La Porte de Cuivre");
+        this.depart.put(Couleur.VIOLET,"La Porte de Fer");
     }
 
     @Override

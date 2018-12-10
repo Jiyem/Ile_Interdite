@@ -17,12 +17,12 @@ public class Messager extends Aventurier{
     
     public Messager(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.BLANC;
+        this.couleur = Couleur.ORANGE;
     }
 
     public Messager(String pseudo){
         super(pseudo);
-        this.couleur = Couleur.BLANC;
+        this.couleur = Couleur.ORANGE;
     }
     
     @Override

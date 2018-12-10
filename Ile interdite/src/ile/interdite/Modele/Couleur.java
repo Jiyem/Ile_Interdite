@@ -11,9 +11,9 @@ package ile.interdite.Modele;
  */
 public enum Couleur {
     ROUGE,
-    BLANC,
+    ORANGE,
     BLEU,
     JAUNE,
     VERT,
-    NOIR;
+    VIOLET;
 }
