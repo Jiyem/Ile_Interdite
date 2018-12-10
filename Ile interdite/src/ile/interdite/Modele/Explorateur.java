@@ -33,16 +33,18 @@ public class Explorateur extends Aventurier{
     public ArrayList<Tuile> déplacementPossible(Grille grille){
         ArrayList<Tuile> tuilepossibles = new ArrayList();
         Tuile[][] tuiles = grille.getTuile();
-        tuilepossibles.add(tuiles[position.getX()][position.getY()+1]); //Donne la position 1 case plus haute
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()+1]); //Donne la position une case plus haute et à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()+1]);//Donne la position une case plus haute et à gauche
         
-        tuilepossibles.add(tuiles[position.getX()][position.getY()-1]); //Donne la position une case plus basse
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()-1]); //Donne la position une case plus basse et à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()-1]); //Donne la position une case plus basse et à gauche
+        if(tuiles[position.getX()][position.getY()+1] != null){tuilepossibles.add(tuiles[position.getX()][position.getY()+1]);}
+        if(tuiles[position.getX()+1][position.getY()+1] != null){tuilepossibles.add(tuiles[position.getX()+1][position.getY()+1]);}
+        if(tuiles[position.getX()+1][position.getY()+1] != null){tuilepossibles.add(tuiles[position.getX()+1][position.getY()+1]);} //Donne la position une case plus haute et à droite
+        if(tuiles[position.getX()-1][position.getY()+1] != null){tuilepossibles.add(tuiles[position.getX()-1][position.getY()+1]);}//Donne la position une case plus haute et à gauche
         
-        tuilepossibles.add(tuiles[position.getX()+1][position.getY()]); //Donne la position d'une case à droite
-        tuilepossibles.add(tuiles[position.getX()-1][position.getY()]); //Donne la position d'une case à gauche
+        if(tuiles[position.getX()][position.getY()-1] != null){tuilepossibles.add(tuiles[position.getX()][position.getY()-1]);} //Donne la position une case plus basse
+        if(tuiles[position.getX()+1][position.getY()-1] != null){tuilepossibles.add(tuiles[position.getX()+1][position.getY()-1]);} //Donne la position une case plus basse et à droite
+        if(tuiles[position.getX()-1][position.getY()-1] !=null){tuilepossibles.add(tuiles[position.getX()-1][position.getY()-1]);} //Donne la position une case plus basse et à gauche
+        
+        if(tuiles[position.getX()+1][position.getY()] !=null){tuilepossibles.add(tuiles[position.getX()+1][position.getY()]);} //Donne la position d'une case à droite
+        if(tuiles[position.getX()-1][position.getY()] != null){tuilepossibles.add(tuiles[position.getX()-1][position.getY()]);}; //Donne la position d'une case à gauche
         
         return tuilepossibles;
         }    
