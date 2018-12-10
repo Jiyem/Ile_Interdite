@@ -13,12 +13,15 @@ public class Tuile {
     private int numTuile;
     private String nomTuile;
     private EtatCase etatCase;
+    private int X,Y;
     
     
-    public Tuile(int numTuile,String nomTuile){
+    public Tuile(int numTuile,String nomTuile,int X, int Y){
         this.setNumTuile(numTuile);
         this.setNomTuile(nomTuile);
         this.etatCase = EtatCase.NORMAL;
+        this.X=X;
+        this.Y=Y;
     }
 
     /**
