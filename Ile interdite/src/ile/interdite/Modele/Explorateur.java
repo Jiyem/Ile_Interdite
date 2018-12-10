@@ -55,19 +55,19 @@ public class Explorateur extends Aventurier{
         ArrayList<Tuile> assechPossible = new ArrayList<>();
         if(position.getX()!=5){
             if(grille.getTuile()[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);  //case en dessous de l'aventurier
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);  //case à droite de l'aventurier
         }}
         if(position.getX()!=0){
              if(grille.getTuile()[position.getX()-1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()]);  //case au dessus de l'aventurier
+                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()]);  //case à gauche de l'aventurier
         }}
         if(position.getY()!=5){
              if(grille.getTuile()[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()][position.getY()+1]);  //case à droite de l'aventurier
+                assechPossible.add(grille.getTuile()[position.getX()][position.getY()+1]);  //case en dessous de l'aventurier
         }}
         if( position.getY()!=0){
              if(grille.getTuile()[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()][position.getY()-1]);  //case à gauche de l'aventurier
+                assechPossible.add(grille.getTuile()[position.getX()][position.getY()-1]);  //case au dessus de l'aventurier
         }}
         if(position.getX()!=5 && position.getY()!=5){
             if(grille.getTuile()[position.getX()+1][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
@@ -75,15 +75,15 @@ public class Explorateur extends Aventurier{
         }}
         if(position.getX()!=5 && position.getY()!=0){
             if(grille.getTuile()[position.getX()+1][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()-1]);  //case en diagonale bas-gauche
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()-1]);  //case en diagonale haut-droite
         }}
         if(position.getX()!=0 && position.getY()!=5){
             if(grille.getTuile()[position.getX()-1][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()+1]);  //case en diagonale haut-droite
+                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()+1]);  //case en diagonale bas-gauche
         }}
         if(position.getX()!=0 && position.getY()!=0){
             if(grille.getTuile()[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()-1]);  //case en diagonale haut-gauche
+                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()-1]);  //case en diagonale bas-droite
         }}
         return assechPossible;
     }
