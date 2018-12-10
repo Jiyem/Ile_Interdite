@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Navigateur extends Aventurier{
     private final Couleur couleur;
-    private final Tuile position = new Tuile(1,"La Porte d'Or",1,1);
+    private Tuile position ;
     public Navigateur(Tuile position,String pseudo){
         super(position,pseudo);
         this.couleur = Couleur.JAUNE;
