@@ -44,7 +44,7 @@ public class Messager extends Aventurier{
              if(grille.getTuile()[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
                 assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
         }}
-        if(position.getY()!=0){
+        if( position.getY()!=0){
              if(grille.getTuile()[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
                 assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
         }}
