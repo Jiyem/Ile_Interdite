@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.awt.color.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import javax.swing.JComponent;
 import javax.imageio.ImageIO;
 /**
@@ -32,7 +31,7 @@ public class VueSpecification {
         private JRadioButton seven;
         private JRadioButton eight;
         
-        public VueSpecification() throws IOException{
+        public VueSpecification(){
         //Création de la fenêtre + séparation en différent layout
         window = new JFrame("Morpion");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -105,8 +104,7 @@ public class VueSpecification {
         JPanel selectNbJoueurs = new JPanel(new GridLayout(4,4));
         panelBas.add(selectNbJoueurs, BorderLayout.CENTER);
  
-        BufferedImage image = ImageIO.read(new File("/home/rose/NetBeansProjects/Morp/Morpion/JeuDuMorpion/src/jeudumorpion/Vues/imagesJoueurs/double.png"));
-        JLabel img = new JLabel(new ImageIcon(image));
+        
 
         
         selectNbJoueurs.add(new JLabel(""));

@@ -5,7 +5,7 @@
  */
 package jeudumorpion;
 
-import java.io.IOException;
+
 import jeudumorpion.modele.Case;
 import jeudumorpion.modele.Joueur;
 import jeudumorpion.Vues.VueGrille;
@@ -26,7 +26,7 @@ public class Controleur implements Observer{
    private VueSelection vueSelection;
    private VueSpecification vueSpe;
    
-   public Controleur() throws IOException{
+   public Controleur(){
        vueGrille=new VueGrille();
        //vueGrille.afficher();
        vueSelection=new VueSelection();
