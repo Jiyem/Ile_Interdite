@@ -18,7 +18,7 @@ public class Grille {
     private final Tuile tuile[][] = new Tuile[6][6];
     private ArrayList<String> tuilesUtilisé = new ArrayList();
     private ArrayList<String> tuilesDispo = new ArrayList();
-    private ListeTuiles liste;
+    private ListeTuiles liste = new ListeTuiles();
 
 
 
