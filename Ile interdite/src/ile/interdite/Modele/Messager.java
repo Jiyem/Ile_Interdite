@@ -11,9 +11,9 @@ import java.util.ArrayList;
  */
 public class Messager extends Aventurier{
     private final Couleur couleur;
-    private final Tuile position = new Tuile(1, "La Porte d'Argent",3,8);
+    private final Tuile position;
     
-    public Messager(Tuile position,String pseudo){
+    public Messager(Tuile position,String pseudo{
         super(position,pseudo);
         this.couleur = Couleur.BLANC;
     }
