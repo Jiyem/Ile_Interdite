@@ -12,11 +12,13 @@ package ile.interdite.Modele;
 public class Tuile {
     private int numTuile;
     private String nomTuile;
+    private EtatCase etatCase;
     
     
     public Tuile(int numTuile,String nomTuile){
         this.setNumTuile(numTuile);
         this.setNomTuile(nomTuile);
+        this.etatCase = EtatCase.NORMAL;
     }
 
     /**
