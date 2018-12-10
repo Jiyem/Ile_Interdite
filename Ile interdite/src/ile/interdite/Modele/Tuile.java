@@ -51,5 +51,26 @@ public class Tuile {
     public void setNomTuile(String nomTuile) {
         this.nomTuile = nomTuile;
     }
+
+    /**
+     * @return the X
+     */
+    public int getX() {
+        return X;
+    }
+
+    /**
+     * @return the Y
+     */
+    public int getY() {
+        return Y;
+    }
+
+    /**
+     * @return the etatCase
+     */
+    public EtatCase getEtatCase() {
+        return etatCase;
+    }
     
 }

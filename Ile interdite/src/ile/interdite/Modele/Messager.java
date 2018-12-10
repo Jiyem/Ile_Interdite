@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package ile.interdite.Modele;
-
+import java.util.ArrayList;
 /**
  *
  * @author rose
  */
 public class Messager extends Aventurier{
     private final Couleur couleur;
-    private final Tuile position = new Tuile(1, "La Porte d'Argent");
+    private final Tuile position = new Tuile(1, "La Porte d'Argent",3,8);
     
     public Messager(Tuile position,String pseudo){
         super(position,pseudo);
@@ -30,8 +30,25 @@ public class Messager extends Aventurier{
     }
 
     @Override
-    public int[][] assèchementPossible(Grille grille) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Tuile> assèchementPossible(Grille grille) {
+        ArrayList<Tuile> assechPossible = new ArrayList<>();
+        if(position.getX()!=5){
+            if(grille.getTuile()[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        if(position.getX()!=0){
+             if(grille.getTuile()[position.getX()-1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        if(position.getY()!=5){
+             if(grille.getTuile()[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        if(position.getY()!=0){
+             if(grille.getTuile()[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
+                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
+        }}
+        return assechPossible;
     }
 
     @Override

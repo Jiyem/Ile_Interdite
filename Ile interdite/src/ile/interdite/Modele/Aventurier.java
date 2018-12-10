@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ile.interdite.Modele;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,7 +28,7 @@ public abstract class Aventurier {
     //méthodes
     public abstract int[][] déplacementPossible(Grille grille);
     
-    public abstract int[][] assèchementPossible(Grille grille);
+    public abstract Arraylist<Tuile> assèchementPossible(Grille grille);
     
     public abstract String getRôle();
     

@@ -39,7 +39,7 @@ public class Grille {
 
                 } else {
                     nb = nb + 1;
-                    this.tuile[x][y] = new Tuile(nb, tuilesDispo.get(0));
+                    this.tuile[x][y] = new Tuile(nb, tuilesDispo.get(0),x,y);
                     this.tuilesUtilisé.add(tuilesDispo.get(0));
                     this.tuilesDispo.remove(tuilesDispo.get(0));
 
@@ -63,5 +63,9 @@ public class Grille {
     }
     public void melange() {
         Collections.shuffle(tuilesDispo);
+    }
+    
+    public Tuile[][] getTuile(){
+        return this.tuile;
     }
 }
