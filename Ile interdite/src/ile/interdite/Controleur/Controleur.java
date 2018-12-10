@@ -52,7 +52,7 @@ public class Controleur implements Observer {
                 MessageInscription message = (MessageInscription) arg1 ;
                 //Si l'utilisateur clic sur validé
                 if (message.getAction() == ActionsType.VALIDE) {
-                    System.out.println("L'utilisateur a validé");
+                    System.out.println("L'utilisateur a validé");                 
                     //Si le nombre de joueur est bien compris entre 2 et 4 (inclu)
                     if (message.getNbJoueurs() > 1 && message.getNbJoueurs() < 5) {
                         Random r = new Random();
@@ -94,6 +94,9 @@ public class Controleur implements Observer {
                                 joueurs.add(joueur);
                                 
                             }
+                            //Suppression de l'aventurier dans la liste des rôles dispo.
+                            l.remove(aléa1);
+                            
                             nb = nb +1;
                             
                         }
@@ -103,7 +106,7 @@ public class Controleur implements Observer {
                         }
                         
                         //Initialisation de la grille.
-                        grille = new Grille();
+//                        grille = new Grille();
                         // à supprimer
                         System.out.println("La grille est initialisée");
                         
@@ -111,9 +114,14 @@ public class Controleur implements Observer {
                         
                     }
                     // Si l'utilisateur à demander plus de 4 joueurs ou moins de 2 joueurs.
-                    else{
-                        System.out.println("L'utilisateur à saisi une mauvaise valeur pour le nombre de joueurs");
+                    else if (message.getNbJoueurs() == 0){
+                        inscri.erreurNbJoueurs0();
                     }
+                    //Si l'utilisateur entre le joueur 3 sans le joueur 4
+                    else{
+                        inscri.erreurNbJoueurs();
+                    }
+         
                 }
             }
         }

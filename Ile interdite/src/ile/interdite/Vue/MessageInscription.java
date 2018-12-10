@@ -14,16 +14,33 @@ public class MessageInscription {
     private String pseudo2;
     private String pseudo3;
     private String pseudo4;
-    private String nbJoueurs;
+//    private String nbJoueurs;
     private ActionsType action;
     
-    MessageInscription(ActionsType action,String nbJoueurs,String pseudo1,String pseudo2,String pseudo3,String pseudo4){
+    MessageInscription(ActionsType action,String pseudo1,String pseudo2,String pseudo3,String pseudo4){
         this.action = action;
-        this.nbJoueurs = nbJoueurs;
+//        this.nbJoueurs = nbJoueurs;
         this.pseudo1 = pseudo1;
         this.pseudo2 = pseudo2;
         this.pseudo3 = pseudo3;
         this.pseudo4 = pseudo4;
+    }
+    
+    public int getNbJoueurs(){
+        int nbJoueurs = 0;
+        if(!pseudo1.equals("") && !pseudo2.equals("")){
+            nbJoueurs = 2;
+            if(!pseudo3.equals("")){
+                nbJoueurs = nbJoueurs +1;
+            }
+            if(!pseudo4.equals("") && !pseudo3.equals("")){
+                nbJoueurs = nbJoueurs +1;
+            }
+            else if(!pseudo4.equals("") && pseudo3.equals("")){
+                return -1;
+            }
+        }
+        return nbJoueurs;
     }
 
     /**
@@ -85,17 +102,17 @@ public class MessageInscription {
     /**
      * @return the nbJoueurs
      */
-    public int getNbJoueurs() {
-        int i = Integer.parseInt(nbJoueurs);
-        return i;
-    }
-
-    /**
-     * @param nbJoueurs the nbJoueurs to set
-     */
-    public void setNbJoueurs(String nbJoueurs) {
-        this.nbJoueurs = nbJoueurs;
-    }
+//    public int getNbJoueurs() {
+//        int i = Integer.parseInt(nbJoueurs);
+//        return i;
+//    }
+//
+//    /**
+//     * @param nbJoueurs the nbJoueurs to set
+//     */
+//    public void setNbJoueurs(String nbJoueurs) {
+//        this.nbJoueurs = nbJoueurs;
+//    }
 
     /**
      * @return the action

@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -38,7 +39,7 @@ import javax.swing.JTextField;
  */
 public class VueInscription extends Observable {
     private final JFrame window ;
-    private final JTextField nombreJoueurs;
+//    private final JTextField nombreJoueurs;
     private final JTextField pseudo1;
     private final JTextField pseudo2;
     private final JTextField pseudo3;
@@ -47,6 +48,8 @@ public class VueInscription extends Observable {
 //    private final JRadioButton radioFemme;
     private final JButton btnValider ;
     private final JButton btnAnnuler ;
+    private JLabel erreur = new JLabel("");
+//    private String erreurNbJoueurs = "";
 //    private String nom;
 //    private String prenom;
 //    private Genres genre;
@@ -62,19 +65,24 @@ public class VueInscription extends Observable {
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
-        window.setSize(300, 200);
+        window.setSize(500, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
         
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
-        JPanel contentPanel = new JPanel (new GridLayout(5, 2));
+        JPanel topPanel = new JPanel();
+        mainPanel.add(topPanel,BorderLayout.NORTH);
+        topPanel.add(erreur);
+        
+        JPanel contentPanel = new JPanel (new GridLayout(4, 2));
         mainPanel.add(contentPanel, BorderLayout.CENTER);
         
-        contentPanel.add(new JLabel("Combien de joueurs? (2 à 4)"));
-        nombreJoueurs = new JTextField();
-        contentPanel.add(nombreJoueurs);
+//        contentPanel.add(new JLabel("Combien de joueurs? (2 à 4)"));
+//        nombreJoueurs = new JTextField();
+//        contentPanel.add(nombreJoueurs);
+////        contentPanel.add(new JLabel(erreurNbJoueurs));
         
         contentPanel.add(new JLabel("Pseudo du joueur 1 :"));
         pseudo1 = new JTextField();
@@ -117,7 +125,7 @@ public class VueInscription extends Observable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setChanged();
-                notifyObservers(new MessageInscription(ActionsType.VALIDE,nombreJoueurs.getText(),pseudo1.getText(),pseudo2.getText(),pseudo3.getText(),pseudo4.getText()));
+                notifyObservers(new MessageInscription(ActionsType.VALIDE,pseudo1.getText(),pseudo2.getText(),pseudo3.getText(),pseudo4.getText()));
                 clearChanged();
             }
         });
@@ -143,6 +151,15 @@ public class VueInscription extends Observable {
 
     void close() {
         this.window.dispose();
+    }
+    
+    public void erreurNbJoueurs0(){
+        this.erreur.setText("Il faut au minimum le joueur 1 et le joueur 2");
+        this.erreur.setForeground(Color.red);
+    }
+    public void erreurNbJoueurs(){
+        this.erreur.setText("Vous ne pouvez pas séléctionner de joueur 4 sans joueur 3.");
+        this.erreur.setForeground(Color.red);
     }
 
 }
