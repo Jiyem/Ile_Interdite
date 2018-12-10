@@ -55,7 +55,7 @@ public class Plongeur extends Aventurier{
                 j = j+1;
             }
             int u = 1;
-            while(tuiles[position.getX()+i][position.getY()-u] != null && tuiles[position.getX()+i][position.getY()-u].getEtatCase() == EtatCase.IMMERGEE){
+            while(tuiles[position.getX()+i][position.getY()-u] != null && tuiles[position.getX()+i][position.getY()-u].getEtatCase() == EtatCase.IMMERGEE ){
             tuilepossibles.add(tuiles[position.getX()][position.getY()+u]); //Verification de s'il peut nager plus loin que prévu
             u = u+1;
         }
