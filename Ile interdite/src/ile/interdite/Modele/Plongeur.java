@@ -30,24 +30,7 @@ public class Plongeur extends Aventurier{
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        ArrayList<Tuile> assechPossible = new ArrayList<>();
-        if(position.getX()!=5){
-            if(grille.getTuile()[position.getX()+1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
-        }}
-        if(position.getX()!=0){
-             if(grille.getTuile()[position.getX()-1][position.getY()].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
-        }}
-        if(position.getY()!=5){
-             if(grille.getTuile()[position.getX()][position.getY()+1].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
-        }}
-        if(position.getY()!=0){
-             if(grille.getTuile()[position.getX()][position.getY()-1].getEtatCase() == EtatCase.IMMERGEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]);
-        }}
-        return assechPossible;
+        return grille.assèchementPossible(position);
     }
 
 

@@ -30,24 +30,7 @@ public class Messager extends Aventurier{
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        ArrayList<Tuile> assechPossible = new ArrayList<>();
-        if(position.getX()!=5){
-            if(grille.getTuile()[position.getX()+1][position.getY()].getEtatCase() == EtatCase.INNONDEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()]); //case à droite de l'aventurier
-        }}
-        if(position.getX()!=0){
-             if(grille.getTuile()[position.getX()-1][position.getY()].getEtatCase() == EtatCase.INNONDEE){
-                assechPossible.add(grille.getTuile()[position.getX()-1][position.getY()]); //case à gauche de l'aventurier
-        }}
-        if(position.getY()!=5){
-             if(grille.getTuile()[position.getX()][position.getY()+1].getEtatCase() == EtatCase.INNONDEE){
-                assechPossible.add(grille.getTuile()[position.getX()][position.getY()+1]); //case en bas de l'aventurier
-        }}
-        if( position.getY()!=0){
-             if(grille.getTuile()[position.getX()][position.getY()-1].getEtatCase() == EtatCase.INNONDEE){
-                assechPossible.add(grille.getTuile()[position.getX()+1][position.getY()-1]); //case en haut de l'aventurier
-        }}
-        return assechPossible;
+        return grille.assèchementPossible(position);
     }
 
     @Override

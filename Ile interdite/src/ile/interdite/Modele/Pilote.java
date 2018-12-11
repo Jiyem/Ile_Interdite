@@ -29,13 +29,10 @@ public class Pilote extends Aventurier{
         return grille.déplacementPossiblePilote(grille);
         
         }
-        
-            
-    
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return grille.assèchementPossible(position);
     }
 
     @Override
