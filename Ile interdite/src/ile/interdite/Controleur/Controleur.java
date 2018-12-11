@@ -15,6 +15,7 @@ import ile.interdite.Modele.Navigateur;
 import ile.interdite.Modele.Pilote;
 import ile.interdite.Modele.Plongeur;
 import ile.interdite.Modele.Tuile;
+import ile.interdite.Modele.EtatCase;
 import ile.interdite.Vue.ActionsType;
 import ile.interdite.Vue.MessageInscription;
 import ile.interdite.Vue.VueInscription;
@@ -196,6 +197,12 @@ public class Controleur implements Observer {
                 }
             }
         }
+    public void deplacement(Aventurier a,Tuile t){
+        a.setPosition(t);
+    }
+    public void assechement(Tuile t){
+        t.setEtatCase(EtatCase.NORMAL);
+    }
 }
     
 

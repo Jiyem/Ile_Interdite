@@ -72,5 +72,12 @@ public class Tuile {
     public EtatCase getEtatCase() {
         return etatCase;
     }
+
+    /**
+     * @param etatCase the etatCase to set
+     */
+    public void setEtatCase(EtatCase etatCase) {
+        this.etatCase = etatCase;
+    }
     
 }
