@@ -137,7 +137,7 @@ public class Grille {
             }
         }
         for(int i= 0;i < lCaseImmergeeDispoDeplacement.size();i++){
-            lDeplacementCaseAdjacente = this.getTuilehorizontaleEtVerticale(lCaseImmergeeDispoDeplacement.get(i));
+            lDeplacementCaseAdjacente = this.getTuilehorizontaleEtVerticale( lCaseImmergeeDispoDeplacement.get(i));
             for(int y =0;y < lDeplacementDispo.size();i++){
                 lDeplacementDispo.add(lDeplacementCaseAdjacente.get(y));
             }
