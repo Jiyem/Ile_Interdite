@@ -12,18 +12,16 @@ import java.util.ArrayList;
  * @author rose
  */
 public class Messager extends Aventurier{
-    private final Couleur couleur;
-    private final Tuile position = null;
+
     
     public Messager(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.ORANGE;
+        this.setCouleur(Couleur.ORANGE);
     }
 
     public Messager(String pseudo){
         super(pseudo);
-        this.couleur = Couleur.ORANGE;
-    }
+        this.setCouleur(Couleur.ORANGE);    }
     
     @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille) {

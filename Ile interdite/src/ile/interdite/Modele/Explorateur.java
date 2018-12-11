@@ -11,21 +11,18 @@ import java.util.ArrayList;
  *
  * @author rose
  */
-public class Explorateur extends Aventurier{
-    
-    private final Couleur couleur;
-    private Tuile position = new Tuile(1,"La Porte de Cuivre",1,1);
-    private String pseudo;
+public class Explorateur extends Aventurier{   
+ 
     
     public Explorateur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.VERT;
+        this.setCouleur(Couleur.VERT);
 
     }
     
     public Explorateur(String pseudo){
         super(pseudo);
-        this.couleur = Couleur.VERT;
+        this.setCouleur(Couleur.VERT);
 
     }
 

@@ -12,17 +12,15 @@ import java.util.ArrayList;
  * @author rose
  */
 public class Plongeur extends Aventurier{
-    private final Couleur couleur;
-    private final Tuile position = new Tuile(1, "La Porte de Fer",1,1);
     
     public Plongeur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.VIOLET;
+        this.setCouleur(Couleur.VIOLET);
     }
 
     public Plongeur(String pseudo){
         super(pseudo);
-        this.couleur = Couleur.VIOLET;
+        this.setCouleur(Couleur.VIOLET);
 
     }
         @Override

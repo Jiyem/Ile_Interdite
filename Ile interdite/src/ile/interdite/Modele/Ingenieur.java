@@ -12,18 +12,17 @@ import java.util.ArrayList;
  * @author rose
  */
 public class Ingenieur extends Aventurier{
-    private final Couleur couleur;
-    private final Tuile position = new Tuile(1, "La Porte De Bronze",1,1);
+
     
     public Ingenieur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.couleur = Couleur.ROUGE;
+        this.setCouleur(Couleur.ROUGE);
 
     }
     
     public Ingenieur(String pseudo){
         super(pseudo);
-        this.couleur = Couleur.ROUGE;
+        this.setCouleur(Couleur.ROUGE);
     }
 
 

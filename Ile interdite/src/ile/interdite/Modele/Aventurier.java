@@ -11,19 +11,40 @@ import java.util.ArrayList;
  * @author domestit
  */
 public abstract class Aventurier {
+
+    /**
+     * @return the couleur
+     */
+    public Couleur getCouleur() {
+        return couleur;
+    }
+
+    /**
+     * @param couleur the couleur to set
+     */
+    public void setCouleur(Couleur couleur) {
+        this.couleur = couleur;
+    }
+
+    /**
+     * @param pseudo the pseudo to set
+     */
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
     //attributs
-    private Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau || Faire les setter
-    private final Couleur couleur; // Faire setter
-    private final String pseudo;
+    protected Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau || Faire les setter
+    protected Couleur couleur; // Faire setter
+    protected String pseudo;
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
         this.setPosition(position);
-        this.pseudo = pseudo;
-        this.couleur = null;
+        this.setPseudo(pseudo);
+        this.setCouleur(null);
     }
     public Aventurier(String pseudo){
-        this.pseudo = pseudo;
-        this.couleur = null;
+        this.setPseudo(pseudo);
+        this.setCouleur(null);
     }
     //méthodes
     public abstract ArrayList<Tuile> déplacementPossible(Grille grille);
