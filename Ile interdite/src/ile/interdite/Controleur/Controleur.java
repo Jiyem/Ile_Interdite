@@ -5,6 +5,7 @@
  */
 package ile.interdite.Controleur;
 
+import Aides.Utils;
 import ile.interdite.Modele.Aventurier;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Explorateur;
@@ -17,7 +18,9 @@ import ile.interdite.Modele.Plongeur;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Vue.ActionsType;
+import ile.interdite.Vue.MessageAventurier;
 import ile.interdite.Vue.MessageInscription;
+import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +36,7 @@ import java.util.Scanner;
 public class Controleur implements Observer {
     private ArrayList<Aventurier>joueurs;
     private VueInscription inscri = new VueInscription();
+    private VueAventurier vueAventurier;
     HashMap<Couleur, String> depart = new HashMap<>();
     //Création d'une tuile par défaut pour placer les aventuriers lors de leurs instanciation un peu plus bas.
     //Lucas lpb 
@@ -195,6 +199,34 @@ public class Controleur implements Observer {
                     }
          
                 }
+            //Tour de jeu:
+            int numTour = 1;
+            Aventurier joueurCourant = joueurs.get(0);
+            
+            //Tour n°1 :
+            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
+            vueAventurier.addObserver(this);
+            vueAventurier.afficher();
+            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+            
+            if(arg1 instanceof MessageAventurier){
+                MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
+                if(messageAventurier.getAction()==ActionsType.DEPLACER){
+                    //faire le déplacement
+                }
+                else if(messageAventurier.getAction()==ActionsType.ASSECHER){
+                    //faire l'assecheemnt
+                }
+                else if(messageAventurier.getAction()==ActionsType.AUTREACTION){
+                    //faire autre action
+                }
+                else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
+                    //faire la fin du tour.
+                }
+            }
+            
+            
+            
             }
         }
     public void deplacement(Aventurier a,Tuile t){

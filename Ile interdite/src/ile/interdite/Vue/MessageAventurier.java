@@ -9,11 +9,15 @@ package ile.interdite.Vue;
  *
  * @author anandanj
  */
-public enum ActionsType {
-    VALIDE,
-    ASSECHER,
-    DEPLACER,
-    PASSERTOUR,
-    AUTREACTION,
-    ANNULE
+public class MessageAventurier {
+    private ActionsType action;
+    
+    public MessageAventurier(ActionsType action){
+        this.action = action;
+    }
+    
+    public ActionsType getAction(){
+        return this.action;
+    }
+    
 }
