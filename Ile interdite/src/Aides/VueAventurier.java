@@ -68,8 +68,7 @@ public class VueAventurier  {
         this.panelBoutons = new JPanel(new GridLayout(2,2));
         this.panelBoutons.setOpaque(false);
         mainPanel.add(this.panelBoutons, BorderLayout.SOUTH);
-
-        this.btnBouger = new JButton("Bouger") ;
+        this.btnBouger = new JButton("Bouger");
         this.btnAssecher = new JButton( "Assecher");
         this.btnAutreAction = new JButton("AutreAction") ;
         this.btnTerminerTour = new JButton("Terminer Tour") ;
