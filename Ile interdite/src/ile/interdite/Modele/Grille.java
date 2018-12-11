@@ -133,7 +133,9 @@ public class Grille {
         for(int i=0;i < lCaseImmergeeDispoDeplacement.size();i++){ //Tant qu'il existe des cases immergées 
             lDeplacementCaseAdjacente = this.getTuileAdjacenteImmergéesOuInnondee(lCaseImmergeeDispoDeplacement.get(i)); //On regarde la case immergées de la 
             for(int y = 0; y < lDeplacementCaseAdjacente.size();y++){
-                lCaseImmergeeDispoDeplacement.add(lDeplacementCaseAdjacente.get(y));
+                if(!lCaseImmergeeDispoDeplacement.contains(lDeplacementCaseAdjacente.get(y))){ //Permet d'eviter les boucles infinies
+                   lCaseImmergeeDispoDeplacement.add(lDeplacementCaseAdjacente.get(y));
+                }
             }
         }
         for(int i= 0;i < lCaseImmergeeDispoDeplacement.size();i++){
