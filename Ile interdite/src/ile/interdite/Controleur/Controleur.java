@@ -48,14 +48,6 @@ public class Controleur implements Observer {
         inscri.afficher();
         
     }
-    private void PositionDépart(){
-        this.depart.put(Couleur.BLEU,"Heliport");
-        this.depart.put(Couleur.JAUNE,"La Porte d'Or");
-        this.depart.put(Couleur.ORANGE,"La Porte d’Argent");
-        this.depart.put(Couleur.ROUGE,"La Porte De Bronze");
-        this.depart.put(Couleur.VERT,"La Porte de Cuivre");
-        this.depart.put(Couleur.VIOLET,"La Porte de Fer");
-    }
 
     @Override
     public void update(Observable arg0, Object arg1) {
@@ -207,24 +199,35 @@ public class Controleur implements Observer {
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
             vueAventurier.addObserver(this);
             vueAventurier.afficher();
-            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
-            
-            if(arg1 instanceof MessageAventurier){
-                MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
-                if(messageAventurier.getAction()==ActionsType.DEPLACER){
-                    //faire le déplacement
+            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
+            for(int x=0;x<joueurs.size();x++){
+                int nombreAction=3;
+//                if (x==joueurs.size()-1){
+//                    x=0;
+//                } 
+                if(nombreAction==0){    //Faire en sorte que l'on change de joueur
+                            
                 }
-                else if(messageAventurier.getAction()==ActionsType.ASSECHER){
-                    //faire l'assecheemnt
-                }
-                else if(messageAventurier.getAction()==ActionsType.AUTREACTION){
-                    //faire autre action
-                }
-                else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
-                    //faire la fin du tour.
+                if(arg1 instanceof MessageAventurier){
+                    MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
+                    if(messageAventurier.getAction()==ActionsType.DEPLACER){
+                        //faire le déplacement
+                        nombreAction=nombreAction-1;
+
+                    }
+                    else if(messageAventurier.getAction()==ActionsType.ASSECHER){
+                        //faire l'assecheemnt
+                        nombreAction=nombreAction-1;
+                    }
+                    else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
+                        //faire autre action
+                    }
+                    else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
+                        //faire la fin du tour.
+                        nombreAction=0;
+                    }
                 }
             }
-            
             
             
             }
