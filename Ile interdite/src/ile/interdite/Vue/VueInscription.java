@@ -85,19 +85,19 @@ public class VueInscription extends Observable {
 ////        contentPanel.add(new JLabel(erreurNbJoueurs));
         
         contentPanel.add(new JLabel("Pseudo du joueur 1 :"));
-        pseudo1 = new JTextField();
+        pseudo1 = new JTextField("joueur 1");
         contentPanel.add(pseudo1);
 
         contentPanel.add(new JLabel("Pseudo du joueur 2 :"));
-        pseudo2 = new JTextField();
+        pseudo2 = new JTextField("joueur 2");
         contentPanel.add(pseudo2);
     
         contentPanel.add(new JLabel("Pseudo du joueur 3 :"));
-        pseudo3 = new JTextField();
+        pseudo3 = new JTextField("joueur 3");
         contentPanel.add(pseudo3);
         
         contentPanel.add(new JLabel("Pseudo du joueur 4 :"));
-        pseudo4 = new JTextField();
+        pseudo4 = new JTextField("joueur 4");
         contentPanel.add(pseudo4);
 //        
 //        contentPanel.add(new JLabel("Age : "));

@@ -80,6 +80,7 @@ public class Controleur implements Observer {
                         //mise de la grille dans la liste tuiles
                         Tuile[][] tuiles = grille.getTuile();
                         
+                        
                         //0 = Explorateur, 1= Ingénieur, 2= Messager, 3=Navigateur, 4= Pilote, 5=Plongeur
                         while(nb<message.getNbJoueurs()){
                             //Tirage d'un nombre aléatoire entre 0 et 5 (inclu)
@@ -107,7 +108,7 @@ public class Controleur implements Observer {
                                 Aventurier joueur = new Ingenieur(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
-                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte De Bronze")){
+                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Bronze")){
                                             joueur.setPosition(tuiles[y][x]);
                                             System.out.println("La position du ingénieur est initialisé");
                                         }
@@ -131,7 +132,7 @@ public class Controleur implements Observer {
                                 Aventurier joueur = new Navigateur(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
-                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte d'Or")){
+                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte d’Or")){
                                             joueur.setPosition(tuiles[y][x]);
                                             System.out.println("La position du navigateur est initialisé");
                                         }
@@ -153,7 +154,7 @@ public class Controleur implements Observer {
                                 }
                                 joueurs.add(joueur);
                             //initialisation des plongeurs
-                            } else if(l.get(aléa1) == 5){
+                            } else if( l.get(aléa1) == 5){
                                 Aventurier joueur = new Plongeur(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
