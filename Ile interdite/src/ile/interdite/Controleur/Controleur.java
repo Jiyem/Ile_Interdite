@@ -192,31 +192,33 @@ public class Controleur implements Observer {
          
                 }
             //Tour de jeu:
-            int numTour = 1;
-            Aventurier joueurCourant = joueurs.get(0);
+//            int numTour = 1;
             
-            //Tour n°1 :
-            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
-            vueAventurier.addObserver(this);
-            vueAventurier.afficher();
-            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
-            for(int x=0;x<joueurs.size();x++){
+            for(int x=0;x<joueurs.size();x++){ //ne devrais pas être dans le update je pense...
+                Aventurier joueurCourant = joueurs.get(x);
+                
+                //Tour n°1 :
+                vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
+                vueAventurier.addObserver(this);
+                vueAventurier.afficher();
+                vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
                 int nombreAction=3;
-//                if (x==joueurs.size()-1){
-//                    x=0;
-//                } 
-                if(nombreAction==0){    //Faire en sorte que l'on change de joueur
+                while(nombreAction!=0){
+                    
+                    //Faire en sorte que l'on change de joueur
                             
-                }
+                 
                 if(arg1 instanceof MessageAventurier){
                     MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
                     if(messageAventurier.getAction()==ActionsType.DEPLACER){
                         //faire le déplacement
+                        joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
                         nombreAction=nombreAction-1;
 
                     }
                     else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                         //faire l'assecheemnt
+                        joueurCourant.assèchementPossible(grille);
                         nombreAction=nombreAction-1;
                     }
                     else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
@@ -227,11 +229,17 @@ public class Controleur implements Observer {
                         nombreAction=0;
                     }
                 }
+                vueAventurier.fermer(); //un close serait mieux
+                if (x==joueurs.size()-1){ //remet le joueur 1
+                    x=0;
+                }
+                }
+            }
+            }
             }
             
             
-            }
-        }
+        
     public void deplacement(Aventurier a,Tuile t){
         a.setPosition(t);
     }
