@@ -28,11 +28,11 @@ public class Controleur implements Observer{
    
    public Controleur(){
        vueGrille=new VueGrille();
-       //vueGrille.afficher();
+       vueGrille.afficher();
        vueSelection=new VueSelection();
        //vueSelection.afficher();
        vueSpe = new VueSpecification();
-       vueSpe.afficher();
+       //vueSpe.afficher();
    }
     @Override
     public void update(Observable arg0, Object arg1) {
