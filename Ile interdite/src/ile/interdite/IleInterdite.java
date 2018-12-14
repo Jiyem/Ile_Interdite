@@ -5,6 +5,8 @@
  */
 package ile.interdite;
 
+import ile.interdite.Controleur.Controleur;
+
 /**
  *
  * @author anandanj
@@ -16,6 +18,7 @@ public class IleInterdite {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Controleur c = new Controleur();
     }
     
 }

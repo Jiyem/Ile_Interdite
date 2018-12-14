@@ -28,6 +28,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
+import java.lang.Integer;
+import java.util.Collection;
 
 /**
  *
@@ -42,6 +44,8 @@ public class Controleur implements Observer {
     //Lucas lpb 
 //    private Tuile defaut = new Tuile(0,"défaut");
     private Grille grille;
+    private int nombreAction = 3;
+    private int y=0;
     public Controleur(){
         joueurs=new ArrayList<>();
         inscri.addObserver(this);
@@ -66,42 +70,54 @@ public class Controleur implements Observer {
                         Random r = new Random();
                         ArrayList<String> s = new ArrayList<>();
                         s.add(message.getPseudo1());s.add(message.getPseudo2());s.add(message.getPseudo3());s.add(message.getPseudo4());
-                        ArrayList<Integer> l = new ArrayList<>();
-                        l.add(0);l.add(1);l.add(2);l.add(3);l.add(4);l.add(5);
+                        ArrayList<String> l = new ArrayList<>();
+                        l.add("Explorateur");l.add("Ingenieur");l.add("Messager");l.add("Navigateur");l.add("Pilote");l.add("Plongeur");
+                        
+                        
                         int nb = 0;
-                        int aléa1;
+                        int aléa1 = 10;
                                                 
 
                         //Initialisation de la grille.
                         grille = new Grille();
                         //mise de la grille dans la liste tuiles
                         Tuile[][] tuiles = grille.getTuile();
-                        
-                        
+
                         //0 = Explorateur, 1= Ingénieur, 2= Messager, 3=Navigateur, 4= Pilote, 5=Plongeur
                         while(nb<message.getNbJoueurs()){
                             //Tirage d'un nombre aléatoire entre 0 et 5 (inclu)
-                            aléa1 = 0 + r.nextInt(5-0);
+                            aléa1 = r.nextInt(l.size()-0);
                             //Vérifié que la valeur est toujours présente dans la liste des rôles dispo, sinon refaire un tirage.
                             while(aléa1 > l.size()){
-                                aléa1 = 0 + r.nextInt(5-0);
+                                aléa1 = r.nextInt(l.size()-0);
                             }
                             //Attribution du rôle au nom de joueur -> Instanciation des aventuriers
                             //intialisation des explorateurs
-                            if(l.get(aléa1) == 0){
+//                            if(l.get(aléa1) == 0){ 
+//                                Aventurier joueur = new Explorateur(s.get(nb));
+//                                //Ajout de l'aventurier dans la liste des aventuriers.
+//                                for (int y = 0; y < 6; y++) {
+//                                    for (int x = 0; x < 6; x++) {
+//                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Cuivre")){
+//                                            joueur.setPosition(tuiles[y][x]);
+//                                            System.out.println("La position du explorateur est initialisé");
+//                                        }
+//                                    }
+//                                }
+                            if(l.get(aléa1) == "Explorateur"){
                                 Aventurier joueur = new Explorateur(s.get(nb));
-                                //Ajout de l'aventurier dans la liste des aventuriers.
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
                                         if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Cuivre")){
                                             joueur.setPosition(tuiles[y][x]);
-                                            System.out.println("La position du explorateur est initialisé");
+                                            System.out.println("La position de l'explorateur est initialisée");
                                         }
                                     }
                                 }
                                 joueurs.add(joueur);
+                                l.remove("Explorateur");
                             //intialisation des inénieurs
-                            } else if(l.get(aléa1) == 1){
+                            } else if(l.get(aléa1) == "Ingenieur"){
                                 Aventurier joueur = new Ingenieur(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
@@ -112,8 +128,9 @@ public class Controleur implements Observer {
                                     }      
                                 }
                                 joueurs.add(joueur);
+                                l.remove("Ingenieur");
                             //initalisation des messagers    
-                            } else if(l.get(aléa1) == 2){
+                            } else if(l.get(aléa1) == "Messager"){
                                 Aventurier joueur = new Messager(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
@@ -124,8 +141,9 @@ public class Controleur implements Observer {
                                     }
                                 }
                                 joueurs.add(joueur);
+                                l.remove("Messager");
                             //initialisation des navigateurs
-                            } else if(l.get(aléa1) == 3){
+                            } else if(l.get(aléa1) == "Navigateur"){
                                 Aventurier joueur = new Navigateur(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
@@ -136,10 +154,10 @@ public class Controleur implements Observer {
                                     }
                                 }
                                 joueurs.add(joueur);
-                                
+                                l.remove("Navigateur");
                                 
                             //initialisation des pilotes
-                            } else if(l.get(aléa1) == 4){
+                            } else if(l.get(aléa1) == "Pilote"){
                                 Aventurier joueur = new Pilote(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
@@ -149,9 +167,11 @@ public class Controleur implements Observer {
                                         }
                                     }
                                 }
+                                l.remove("Pilote");
                                 joueurs.add(joueur);
+                                
                             //initialisation des plongeurs
-                            } else if( l.get(aléa1) == 5){
+                            } else if( l.get(aléa1) == "Plongeur"){
                                 Aventurier joueur = new Plongeur(s.get(nb));
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
@@ -161,11 +181,12 @@ public class Controleur implements Observer {
                                         }
                                     }
                                 }
+                                l.remove("Plongeur");
                                 joueurs.add(joueur);
                                 
                             }
                             //Suppression de l'aventurier dans la liste des rôles dispo.
-                            l.remove(aléa1);
+                            
                             
                             nb = nb +1;
                             
@@ -177,8 +198,16 @@ public class Controleur implements Observer {
                         
                         // à supprimer
                         System.out.println("La grille est initialisée");
-                        
-                        
+                        int y= 0;
+                        Aventurier joueurCourant = joueurs.get(y);
+                
+                    //Tour n°1 : 
+                    vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
+                    vueAventurier.addObserver(this);
+                    vueAventurier.afficher();
+                    vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
+                    
+
                         
                     }
                     // Si l'utilisateur à demander plus de 4 joueurs ou moins de 2 joueurs.
@@ -193,28 +222,23 @@ public class Controleur implements Observer {
                 }
             //Tour de jeu:
 //            int numTour = 1;
-            
-            for(int x=0;x<joueurs.size();x++){ //ne devrais pas être dans le update je pense...
-                Aventurier joueurCourant = joueurs.get(x);
+            }
+         //   for(int x=0;x<joueurs.size();x++){ //ne devrais pas être dans le update je pense...
+                Aventurier joueurCourant = joueurs.get(y);
                 
-                //Tour n°1 :
-                vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
-                vueAventurier.addObserver(this);
-                vueAventurier.afficher();
-                vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
-                int nombreAction=3;
-                while(nombreAction!=0){
-                    
-                    //Faire en sorte que l'on change de joueur
-                            
-                 
+//                //Tour n°1 : 
+
+                
                 if(arg1 instanceof MessageAventurier){
                     MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
                     if(messageAventurier.getAction()==ActionsType.DEPLACER){
                         //faire le déplacement
-                        joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+                        ArrayList<Tuile> deplacementPossible = new ArrayList();
+                        deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+                        for (int i =0; i < deplacementPossible.size();i++){
+                           System.out.println(deplacementPossible.get(i).getNomTuile());
+                        }
                         nombreAction=nombreAction-1;
-
                     }
                     else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                         //faire l'assecheemnt
@@ -223,20 +247,33 @@ public class Controleur implements Observer {
                     }
                     else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
                         //faire autre action
+                        nombreAction=nombreAction-1;
                     }
                     else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
                         //faire la fin du tour.
                         nombreAction=0;
                     }
+                    //Verification de fin de tour et changement tour
+                    if(nombreAction == 0){
+                            y=y+1;
+                            System.out.print(y);
+                            if(y == 4){
+                               y = 0;
+                            }
+                            vueAventurier.fermer();
+                            joueurCourant = joueurs.get(y);
+                            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
+                            vueAventurier.addObserver(this);
+                            vueAventurier.afficher();
+                            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
+                            nombreAction=3;
+                            System.out.println("Changement de joueur");
+                        }
                 }
-                vueAventurier.fermer(); //un close serait mieux
-                if (x==joueurs.size()-1){ //remet le joueur 1
-                    x=0;
-                }
-                }
-            }
-            }
-            }
+                
+            
+            
+    }
             
             
         
