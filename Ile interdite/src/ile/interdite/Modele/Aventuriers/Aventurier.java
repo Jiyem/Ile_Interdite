@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ile.interdite.Modele;
+package ile.interdite.Modele.Aventuriers;
+import ile.interdite.Modele.Couleur;
+import ile.interdite.Modele.Grille;
+import ile.interdite.Modele.Tuile;
 import java.util.ArrayList;
 
 /**

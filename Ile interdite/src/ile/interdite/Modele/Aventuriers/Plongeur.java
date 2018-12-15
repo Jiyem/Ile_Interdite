@@ -3,34 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ile.interdite.Modele;
+package ile.interdite.Modele.Aventuriers;
 
+import ile.interdite.Modele.Couleur;
+import ile.interdite.Modele.Grille;
+import ile.interdite.Modele.Tuile;
 import java.util.ArrayList;
 
 /**
  *
  * @author rose
  */
-public class Explorateur extends Aventurier{   
- 
+public class Plongeur extends Aventurier{
     
-    public Explorateur(Tuile position,String pseudo){
+    public Plongeur(Tuile position,String pseudo){
         super(position,pseudo);
-        this.setCouleur(Couleur.VERT);
-
+        this.setCouleur(Couleur.VIOLET);
     }
-    
-    public Explorateur(String pseudo){
+
+    public Plongeur(String pseudo){
         super(pseudo);
-        this.setCouleur(Couleur.VERT);
+        this.setCouleur(Couleur.VIOLET);
 
     }
-
-    @Override
+        @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille){
-        return grille.getTuilehorizontaleEtVerticaleEtDiagonal(position);
+        return grille.getTuileDeplacementPlongeur(position);
         }    
-    
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
@@ -40,8 +39,6 @@ public class Explorateur extends Aventurier{
 
     @Override
     public String getRôle() {
-        return "Explorateur";
+        return "Plongeur";
     }
-    
-    
 }

@@ -3,30 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ile.interdite.Modele;
-
+package ile.interdite.Modele.Aventuriers;
+import Aides.Utils;
+import Aides.Utils.EtatTuile;
+import ile.interdite.Modele.Couleur;
+import ile.interdite.Modele.Grille;
+import ile.interdite.Modele.Tuile;
 import java.util.ArrayList;
-
 /**
  *
  * @author rose
  */
-public class Navigateur extends Aventurier{
+public class Messager extends Aventurier{
+
     
-    public Navigateur(Tuile position,String pseudo){
+    public Messager(Tuile position,String pseudo){
         super(position,pseudo);
-        this.setCouleur(Couleur.JAUNE);
+        this.setCouleur(Couleur.ORANGE);
     }
-    public Navigateur(String pseudo){
+
+    public Messager(String pseudo){
         super(pseudo);
-        this.setCouleur(Couleur.JAUNE);
-        
-    }
-
-
+        this.setCouleur(Couleur.ORANGE);    }
+    
     @Override
     public ArrayList<Tuile> déplacementPossible(Grille grille) {
-           return grille.getTuilehorizontaleEtVerticale(position);
+        return grille.getTuilehorizontaleEtVerticale(position);
     }
 
     @Override
@@ -36,6 +38,7 @@ public class Navigateur extends Aventurier{
 
     @Override
     public String getRôle() {
-        return "Navigateur";
+        return "Messager";
     }
+
 }

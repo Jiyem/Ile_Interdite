@@ -6,15 +6,15 @@
 package ile.interdite.Controleur;
 
 import Aides.Utils;
-import ile.interdite.Modele.Aventurier;
+import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Couleur;
-import ile.interdite.Modele.Explorateur;
+import ile.interdite.Modele.Aventuriers.Explorateur;
 import ile.interdite.Modele.Grille;
-import ile.interdite.Modele.Ingenieur;
-import ile.interdite.Modele.Messager;
-import ile.interdite.Modele.Navigateur;
-import ile.interdite.Modele.Pilote;
-import ile.interdite.Modele.Plongeur;
+import ile.interdite.Modele.Aventuriers.Ingenieur;
+import ile.interdite.Modele.Aventuriers.Messager;
+import ile.interdite.Modele.Aventuriers.Navigateur;
+import ile.interdite.Modele.Aventuriers.Pilote;
+import ile.interdite.Modele.Aventuriers.Plongeur;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Vue.ActionsType;
@@ -206,7 +206,7 @@ public class Controleur implements Observer {
                     vueAventurier.addObserver(this);
                     vueAventurier.afficher();
                     vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
-                    
+                    inscri.close();
 
                         
                     }

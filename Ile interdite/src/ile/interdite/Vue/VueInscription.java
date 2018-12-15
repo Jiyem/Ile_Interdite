@@ -149,7 +149,7 @@ public class VueInscription extends Observable {
         this.window.setVisible(true);
     }
 
-    void close() {
+    public void close() {
         this.window.dispose();
     }
     
