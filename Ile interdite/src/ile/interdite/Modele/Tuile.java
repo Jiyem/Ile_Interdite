@@ -23,6 +23,7 @@ public class Tuile {
         this.X=X;
         this.Y=Y;
     }
+    
 
     /**
      * @return the numTuile

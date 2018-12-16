@@ -5,7 +5,6 @@
  */
 package ile.interdite.Controleur;
 
-import Aides.Utils;
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Aventuriers.Explorateur;
@@ -28,8 +27,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
-import java.lang.Integer;
-import java.util.Collection;
+
 
 /**
  *
@@ -46,6 +44,7 @@ public class Controleur implements Observer {
     private Grille grille;
     private int nombreAction = 3;
     private int y=0;
+    
     public Controleur(){
         joueurs=new ArrayList<>();
         inscri.addObserver(this);
@@ -233,11 +232,8 @@ public class Controleur implements Observer {
                     MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
                     if(messageAventurier.getAction()==ActionsType.DEPLACER){
                         //faire le déplacement
-                        ArrayList<Tuile> deplacementPossible = new ArrayList();
-                        deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
-                        for (int i =0; i < deplacementPossible.size();i++){
-                           System.out.println(deplacementPossible.get(i).getNomTuile());
-                        }
+                        joueurCourant.ouAller(grille);
+                        vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
                         nombreAction=nombreAction-1;
                     }
                     else if(messageAventurier.getAction()==ActionsType.ASSECHER){
@@ -247,7 +243,8 @@ public class Controleur implements Observer {
                     }
                     else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
                         //faire autre action
-                        nombreAction=nombreAction-1;
+                        System.out.println("Vous n'avez pas encore accès aux actions speciales.");
+                        //nombreAction=nombreAction-1; à ajouter plus tard
                     }
                     else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
                         //faire la fin du tour.
@@ -269,6 +266,7 @@ public class Controleur implements Observer {
                             nombreAction=3;
                             System.out.println("Changement de joueur");
                         }
+                    
                 }
                 
             
@@ -276,13 +274,5 @@ public class Controleur implements Observer {
     }
             
             
-        
-    public void deplacement(Aventurier a,Tuile t){
-        a.setPosition(t);
-    }
-    public void assechement(Tuile t){
-        t.setEtatCase(EtatCase.NORMAL);
-    }
-}
-    
 
+}

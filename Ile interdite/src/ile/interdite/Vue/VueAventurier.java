@@ -30,7 +30,7 @@ public class VueAventurier extends Observable  {
     private final JButton btnAutreAction;
     private final JButton btnTerminerTour;
     private JTextField position;
-   
+
    
    
     
