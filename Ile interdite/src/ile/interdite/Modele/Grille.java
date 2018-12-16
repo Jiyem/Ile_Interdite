@@ -16,7 +16,6 @@ public class Grille {
 
     //chercher quel type de colection pour les 36 tuiles de la grille
     private final Tuile tuile[][] = new Tuile[6][6];
-    private ArrayList<String> tuilesUtilisé = new ArrayList();
     private ArrayList<String> tuilesDispo = new ArrayList();
     private ListeTuiles liste = new ListeTuiles();
 
@@ -39,9 +38,8 @@ public class Grille {
 
                 } else {
                     nb = nb + 1;
-                    this.tuile[y][x] = new Tuile(nb, tuilesDispo.get(0),y,x);
-                    this.tuilesUtilisé.add(tuilesDispo.get(0));
-                    this.tuilesDispo.remove(tuilesDispo.get(0));
+                    this.tuile[y][x] = new Tuile(nb, tuilesDispo.get(nb-1),y,x);
+
 
                 }
             }
@@ -50,14 +48,6 @@ public class Grille {
 
     }
 
-    public void remetTuileDispo(){
-    for (int i=0;i<24;i++){
-        this.tuilesDispo.add(tuilesUtilisé.get(0));
-        this.tuilesUtilisé.remove(tuilesUtilisé.get(0));
-        
-    }
-    
-    }
     public void melange() {
         Collections.shuffle(tuilesDispo);
     }
