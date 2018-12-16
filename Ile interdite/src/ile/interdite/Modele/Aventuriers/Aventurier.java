@@ -96,7 +96,29 @@ public abstract class Aventurier {
         for(int j =0; j < deplacementPossible.size();j++){
                     if (numeroTuile.equals(Integer.toString(j))) {
                     this.deplacement(deplacementPossible.get(j));
-                    System.out.println("Vous serez déplacé sur la tuile : " + deplacementPossible.get(j).getNomTuile());
+                    System.out.println("Vous venez d'être déplacé sur la tuile : " + deplacementPossible.get(j).getNomTuile());
+                    }
+
+
+
+        }
+
+}
+    public void ouAssecher(Grille grille){
+    ArrayList<Tuile> asschmntPossible = new ArrayList();
+    asschmntPossible = this.assèchementPossible(grille);// faire en sorte que l'on calcule ses assechement possible puis qu'on l'affiche sur la grille/consonle
+    for (int k =0; k < asschmntPossible.size(); k++){
+        System.out.println(k + " : " + asschmntPossible.get(k).getNomTuile());
+    }
+    System.out.println("Entrez le numéro de la tuile que vous souhaitez assècher");
+    Scanner scanner = new Scanner(System.in);
+    String numeroTuile = scanner.nextLine();
+
+
+        for(int j =0; j < asschmntPossible.size();j++){
+                    if (numeroTuile.equals(Integer.toString(j))) {
+                    this.assechement(asschmntPossible.get(j));
+                    System.out.println("Vous avez asséché la tuile : " + asschmntPossible.get(j).getNomTuile());
                     }
 
 

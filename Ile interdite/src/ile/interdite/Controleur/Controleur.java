@@ -238,7 +238,7 @@ public class Controleur implements Observer {
                     }
                     else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                         //faire l'assecheemnt
-                        joueurCourant.assèchementPossible(grille);
+                        joueurCourant.ouAssecher(grille);
                         nombreAction=nombreAction-1;
                     }
                     else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
