@@ -262,8 +262,10 @@ public class Controleur implements Observer {
 
                             
                         }
-                        System.out.println("Vous n'avez pas encore accès aux actions speciales.");
+                            else {    
+                        System.out.println("Vous n'avez pas encore accès aux actions speciales.");}
                         //nombreAction=nombreAction-1; à ajouter plus tard
+                    }
                     }
                     else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
                         //faire la fin du tour.
@@ -295,4 +297,4 @@ public class Controleur implements Observer {
             
 
 }
-}
+
