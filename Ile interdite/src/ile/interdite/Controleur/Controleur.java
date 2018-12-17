@@ -232,9 +232,11 @@ public class Controleur implements Observer {
                     MessageAventurier messageAventurier = (MessageAventurier) arg1 ;
                     if(messageAventurier.getAction()==ActionsType.DEPLACER){
                         //faire le déplacement
-                        joueurCourant.ouAller(grille);
-                        vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
-                        nombreAction=nombreAction-1;
+                        if(joueurCourant.ouAller(grille)==true){
+                            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+                            nombreAction=nombreAction-1;
+                        };
+                        
                     }
                     else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                         //faire l'assecheemnt
