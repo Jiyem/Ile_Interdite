@@ -41,7 +41,5 @@ public class Navigateur extends Aventurier{
     public String getRôle() {
         return "Navigateur";
     }
-        @Override
-    public void setHelico(boolean helico){
-    }
+
 }

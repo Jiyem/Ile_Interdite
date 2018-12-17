@@ -57,7 +57,7 @@ public abstract class Aventurier {
     public abstract ArrayList<Tuile> assèchementPossible(Grille grille);
     
     public abstract String getRôle();
-    public abstract void setHelico(boolean helico);
+
     
     public Tuile getPosition(){
         return position;

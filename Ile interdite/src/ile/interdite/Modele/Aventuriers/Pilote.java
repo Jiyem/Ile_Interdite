@@ -49,11 +49,6 @@ public class Pilote extends Aventurier{
         return "Pilote";
     }
 
-    /**
-     * @param helico the helico to set
-     */
-    @Override
-    public void setHelico(boolean helico) {
-        this.helico = helico;
-    }
+
+   
 }

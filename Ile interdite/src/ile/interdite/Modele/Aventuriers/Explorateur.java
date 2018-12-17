@@ -45,8 +45,6 @@ public class Explorateur extends Aventurier{
     public String getRôle() {
         return "Explorateur";
     }
-        @Override
-    public void setHelico(boolean helico){
-    }
+
     
 }

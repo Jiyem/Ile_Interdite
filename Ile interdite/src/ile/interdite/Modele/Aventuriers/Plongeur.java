@@ -41,7 +41,5 @@ public class Plongeur extends Aventurier{
     public String getRôle() {
         return "Plongeur";
     }
-        @Override
-    public void setHelico(boolean helico){
-    }
+
 }
