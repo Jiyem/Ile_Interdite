@@ -39,7 +39,7 @@ public abstract class Aventurier {
     }
     //attributs
     protected Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau || Faire les setter
-    protected Couleur couleur; // Faire setter
+    private Couleur couleur; // Faire setter
     protected String pseudo;
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
@@ -136,6 +136,8 @@ public abstract class Aventurier {
         }return true;}
 
 }
- 
+    public boolean ouAllerSpe(Grille grille){
+        return false;
+    }
 
 }

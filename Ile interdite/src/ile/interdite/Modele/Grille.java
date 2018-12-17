@@ -5,6 +5,7 @@
  */
 package ile.interdite.Modele;
 
+import ile.interdite.Modele.Aventuriers.Pilote;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -164,7 +165,7 @@ public class Grille {
         return lDeplacementDispo;  
     }
     
-    public ArrayList<Tuile> déplacementPossiblePilote(Grille grille){
+    public ArrayList<Tuile> déplacementPossiblePilote(Grille grille, Pilote pilote){
         ArrayList<Tuile> tuilepossibles = new ArrayList();
         Tuile[][] tuiles = grille.getTuile();
         for (int y = 0; y < 6; y++) {
@@ -175,6 +176,7 @@ public class Grille {
             }
             
         }
+        pilote.setActionSpe(0);
         return tuilepossibles;
     }
     public ArrayList<Tuile> assèchementPossible(Tuile position){

@@ -255,6 +255,13 @@ public class Controleur implements Observer {
                     }
                     else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
                         //faire autre action
+                        if(joueurCourant.getCouleur().equals(Couleur.BLEU)){ // modifier pour pouvoir utiliser son pouvoir qu'une fois
+                            if(joueurCourant.ouAllerSpe(grille)==true){
+                            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+                            nombreAction=nombreAction-1;
+
+                            
+                        }
                         System.out.println("Vous n'avez pas encore accès aux actions speciales.");
                         //nombreAction=nombreAction-1; à ajouter plus tard
                     }
@@ -287,4 +294,5 @@ public class Controleur implements Observer {
             
             
 
+}
 }
