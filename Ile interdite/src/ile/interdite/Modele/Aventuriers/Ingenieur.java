@@ -37,7 +37,7 @@ public class Ingenieur extends Aventurier{
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        return grille.assèchementPossibleIngenieur(position);
+        return grille.assèchementPossible(position);
     }
 
     @Override

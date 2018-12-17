@@ -37,7 +37,7 @@ public class Explorateur extends Aventurier{
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        return grille.assèchementPossible(position);
+        return grille.assèchementPossibleExplorateur(position);
     }
 
 

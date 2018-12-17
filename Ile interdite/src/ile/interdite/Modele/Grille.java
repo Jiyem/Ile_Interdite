@@ -45,6 +45,7 @@ public class Grille {
             }
 
         }
+        this.setInnondationGrille();
 
     }
 
@@ -194,7 +195,7 @@ public class Grille {
         return assechPossible;
     }
     
-    public ArrayList<Tuile> assèchementPossibleIngenieur(Tuile position){
+    public ArrayList<Tuile> assèchementPossibleExplorateur(Tuile position){
         ArrayList<Tuile> assechPossible = new ArrayList<>();
         if(position.getX()!=5){
             if(tuile[position.getX()+1][position.getY()].getEtatCase() == EtatCase.INNONDEE){
@@ -231,4 +232,15 @@ public class Grille {
         return assechPossible;
     
 }
+    public void setInnondationGrille(){
+        tuile[0][3].setEtatCase(EtatCase.INNONDEE);
+        tuile[2][2].setEtatCase(EtatCase.IMMERGEE);
+        tuile[3][1].setEtatCase(EtatCase.INNONDEE);
+        tuile[3][2].setEtatCase(EtatCase.IMMERGEE);
+        tuile[3][3].setEtatCase(EtatCase.INNONDEE);
+        tuile[3][4].setEtatCase(EtatCase.IMMERGEE);
+        tuile[3][5].setEtatCase(EtatCase.INNONDEE);
+        tuile[4][2].setEtatCase(EtatCase.IMMERGEE);
+        tuile[5][3].setEtatCase(EtatCase.INNONDEE);
+    }
 }
