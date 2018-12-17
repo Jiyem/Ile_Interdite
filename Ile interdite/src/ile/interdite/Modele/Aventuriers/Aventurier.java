@@ -104,9 +104,13 @@ public abstract class Aventurier {
         }
 
 }
-    public void ouAssecher(Grille grille){
+    public boolean ouAssecher(Grille grille){
     ArrayList<Tuile> asschmntPossible = new ArrayList();
     asschmntPossible = this.assèchementPossible(grille);// faire en sorte que l'on calcule ses assechement possible puis qu'on l'affiche sur la grille/consonle
+    if(asschmntPossible.size()==0){
+        System.out.println("Il n'y a aucune tuile que vous puissiez assècher");
+        return false;
+    }else{
     for (int k =0; k < asschmntPossible.size(); k++){
         System.out.println(k + " : " + asschmntPossible.get(k).getNomTuile());
     }
@@ -123,7 +127,7 @@ public abstract class Aventurier {
 
 
 
-        }
+        }return true;}
 
 }
     
