@@ -268,6 +268,7 @@ public class Controleur implements Observer {
                             vueAventurier.afficher();
                             vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
                             nombreAction=3;
+                            if(joueurCourant.getRôle()=="Pilote"){joueurCourant.setHelico(true);}
                             System.out.println("Changement de joueur");
                         }
                     

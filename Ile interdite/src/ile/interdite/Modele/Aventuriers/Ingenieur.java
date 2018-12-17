@@ -44,4 +44,7 @@ public class Ingenieur extends Aventurier{
     public String getRôle() {
         return "Ingenieur";
     }
+        @Override
+    public void setHelico(boolean helico){
+    }
 }

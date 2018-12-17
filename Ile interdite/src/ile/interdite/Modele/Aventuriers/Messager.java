@@ -40,5 +40,8 @@ public class Messager extends Aventurier{
     public String getRôle() {
         return "Messager";
     }
+        @Override
+    public void setHelico(boolean helico){
+    }
 
 }
