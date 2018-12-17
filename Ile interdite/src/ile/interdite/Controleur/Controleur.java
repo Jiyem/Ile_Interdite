@@ -243,6 +243,14 @@ public class Controleur implements Observer {
                         if(joueurCourant.ouAssecher(grille)==true){
                             nombreAction=nombreAction-1;
                         };
+                        if(joueurCourant.getRôle()=="Ingenieur" && joueurCourant.assèchementPossible(grille).size()!=0){
+                            Scanner sc=new Scanner(System.in);
+                            System.out.println("Voulez-vous effectuer un deuxième assèchement ? (o/n)");
+                            if(sc.nextLine().equals("o")){
+                                joueurCourant.ouAssecher(grille);
+                                
+                            }
+                        }
                         
                     }
                     else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
