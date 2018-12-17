@@ -82,9 +82,13 @@ public abstract class Aventurier {
         t.setEtatCase(EtatCase.NORMAL);
     }
     
-    public void ouAller(Grille grille){
+    public boolean ouAller(Grille grille){
     ArrayList<Tuile> deplacementPossible = new ArrayList();
     deplacementPossible = this.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+    if(deplacementPossible.size()==0){
+        System.out.println("Il n'y a aucune tuile sur laquelle se déplacer");
+        return false;
+    }else{
     for (int i =0; i < deplacementPossible.size();i++){
         System.out.println(i + " : " + deplacementPossible.get(i).getNomTuile());
     }
@@ -102,6 +106,7 @@ public abstract class Aventurier {
 
 
         }
+    return true;}
 
 }
     public boolean ouAssecher(Grille grille){
