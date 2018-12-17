@@ -148,7 +148,7 @@ public class Grille {
             
             lDeplacementCaseAdjacenteInnondeeImmergee = this.getTuilehorizontaleEtVerticale(lCaseImmergeeDispoDeplacement.get(i)); //On regarde la case immergées de la 
             for(int y = 0; y < lDeplacementCaseAdjacenteInnondeeImmergee.size();y++){
-                if(lDeplacementDispo.contains(lDeplacementCaseAdjacenteInnondeeImmergee.get(y)) == false){ //Permet d'eviter les boucles infinies
+                if(lDeplacementDispo.contains(lDeplacementCaseAdjacenteInnondeeImmergee.get(y)) == false && lDeplacementCaseAdjacenteInnondeeImmergee.get(y) != position){ //Permet d'eviter les boucles infinies
                    lDeplacementDispo.add(lDeplacementCaseAdjacenteInnondeeImmergee.get(y));
                 }
             }
