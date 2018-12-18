@@ -41,7 +41,7 @@ public class Pilote extends Aventurier{
        return grille.assèchementPossible(position);
     }
     private ArrayList<Tuile> déplacementSpecial(Grille grille) {
-        return grille.déplacementPossiblePilote(grille, this);
+        return grille.déplacementPossiblePilote(this);
     }
 
     @Override

@@ -165,9 +165,9 @@ public class Grille {
         return lDeplacementDispo;  
     }
     
-    public ArrayList<Tuile> déplacementPossiblePilote(Grille grille, Pilote pilote){
+    public ArrayList<Tuile> déplacementPossiblePilote(Pilote pilote){
         ArrayList<Tuile> tuilepossibles = new ArrayList();
-        Tuile[][] tuiles = grille.getTuile();
+        Tuile[][] tuiles = this.getTuile();
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
                 if(tuiles[x][y]!=null && tuiles[x][y].getEtatCase()!= EtatCase.IMMERGEE){
