@@ -1,4 +1,4 @@
-package util;
+package aide.util;
 
 import java.io.Serializable;
 

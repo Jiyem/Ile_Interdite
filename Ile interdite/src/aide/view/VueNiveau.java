@@ -1,4 +1,4 @@
-package view;
+package aide.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
-import util.Parameters;
+import aide.util.Parameters;
  
 public class VueNiveau {
     

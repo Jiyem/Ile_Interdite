@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Aides;
+package aide;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author Eric
  */
 public class Utils {
+    static Object Tresor;
  
     public static enum EtatTuile {
         ASSECHEE("Asséchée"), 
@@ -97,5 +98,11 @@ public class Utils {
      */
     public static void afficherInformation(String message) {
         JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.OK_OPTION);
+    }
+
+    static class Commandes {
+
+        public Commandes() {
+        }
     }
 }

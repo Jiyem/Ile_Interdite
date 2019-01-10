@@ -1,6 +1,6 @@
-package model.aventuriers;
+package aide.model;
 
-import model.ObjetIdentifie;
+import aide.model.ObjetIdentifie;
 
 /**
  *

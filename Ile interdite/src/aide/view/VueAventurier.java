@@ -1,4 +1,4 @@
-package view;
+package aide.view;
 
 import java.util.Observable;
  

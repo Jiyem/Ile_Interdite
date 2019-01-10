@@ -1,6 +1,6 @@
 package ile.interdite.Vue;
 
-import Aides.Utils.Pion;
+import aide.Utils.Pion;
 import ile.interdite.Modele.Couleur;
 import java.awt.BorderLayout;
 import java.awt.Color;

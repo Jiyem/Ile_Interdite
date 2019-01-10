@@ -5,8 +5,7 @@
  */
 package test;
 
-import Aides.Utils;
-import Aides.VueAventurier;
+import aide.Utils;
 import ile.interdite.Controleur.Controleur;
 import ile.interdite.Vue.VueInscription;
 

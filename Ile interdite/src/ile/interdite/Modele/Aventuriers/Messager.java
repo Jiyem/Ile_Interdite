@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package ile.interdite.Modele.Aventuriers;
-import Aides.Utils;
-import Aides.Utils.EtatTuile;
+import aide.Utils;
+import aide.Utils.EtatTuile;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;

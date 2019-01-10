@@ -1,4 +1,4 @@
-package view;
+package aide.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import util.Parameters;
-import util.Utils;
+import aide.util.Parameters;
+import aide.util.Utils;
 
 /**
  *
