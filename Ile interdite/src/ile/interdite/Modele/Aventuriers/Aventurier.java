@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ile.interdite.Modele.Aventuriers;
+import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Grille;
@@ -16,7 +17,7 @@ import java.util.Scanner;
  * @author domestit
  */
 public abstract class Aventurier {
-
+    
     /**
      * @return the couleur
      */
@@ -41,6 +42,7 @@ public abstract class Aventurier {
     protected Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau || Faire les setter
     private Couleur couleur; // Faire setter
     protected String pseudo;
+    private ArrayList<CarteTirage> cartes = new ArrayList<>();
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
         this.setPosition(position);
@@ -51,7 +53,16 @@ public abstract class Aventurier {
         this.setPseudo(pseudo);
         this.setCouleur(null);
     }
-    //méthodes
+    //méthode
+    
+    public void ajouterCartes(CarteTirage carte){
+        if(cartes.size() < 9){
+            cartes.add(carte);   
+        }else{
+            System.out.println("Erreur joueur a 9 cartes");
+        }
+    }
+    
     public abstract ArrayList<Tuile> déplacementPossible(Grille grille);
     
     public abstract ArrayList<Tuile> assèchementPossible(Grille grille);
