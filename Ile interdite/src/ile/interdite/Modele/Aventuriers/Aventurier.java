@@ -139,5 +139,6 @@ public abstract class Aventurier {
     public boolean ouAllerSpe(Grille grille){
         return false;
     }
+    
 
 }
