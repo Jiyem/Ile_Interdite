@@ -42,6 +42,7 @@ public class VueAventurier extends Observable  {
         window.setTitle(nomJoueur);
         mainPanel = new JPanel(new BorderLayout());
         this.window.add(mainPanel);
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
         mainPanel.setBackground(new Color(230, 230, 230));
         mainPanel.setBorder(BorderFactory.createLineBorder(couleur, 2)) ;
