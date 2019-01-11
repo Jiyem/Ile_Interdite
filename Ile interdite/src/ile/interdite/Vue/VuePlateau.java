@@ -62,8 +62,7 @@ public class VuePlateau {
                     nb = nb + 1;
                     JButton tuile = new JButton(g.getTuile()[y][x].getNomTuile());
                     tuile.setBackground(new Color(130, 239, 255)); //BleuCYAN
-//                    tuile.setBackground(new Color(255, 255, 100));//Orange
-//                    tuile.setBackground(new Color(100,100,100));
+
                     tuile.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 //                    tuile.setForeground(Color.GREEN);
 //                    tuile.setContentAreaFilled(false);
@@ -84,5 +83,9 @@ public class VuePlateau {
     public void fermer(){
         this.window.setVisible(false);
     }
+    /*autre couleur 
+    innondé     tuile.setBackground(new Color(255, 255, 100));//Orange
+    coulé       tuile.setBackground(new Color(100,100,100));//gris
+    */
  
 }
