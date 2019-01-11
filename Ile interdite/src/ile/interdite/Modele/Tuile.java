@@ -14,6 +14,7 @@ public class Tuile {
     private String nomTuile;
     private EtatCase etatCase;
     private int X,Y;
+    private Tresor tresor;
     
     
     public Tuile(int numTuile,String nomTuile,int X, int Y){
@@ -25,6 +26,18 @@ public class Tuile {
     }
     
 
+    public void setTresor(Tresor tresor){
+        this.tresor = tresor;
+    }
+    
+    public boolean possèdeTresor(){
+        return tresor != null;
+    }
+    
+    public Tresor getTresor(){
+        return this.tresor;
+    }
+    
     /**
      * @return the numTuile
      */

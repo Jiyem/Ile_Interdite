@@ -41,14 +41,25 @@ public class Grille {
                 } else {
                     nb = nb + 1;
                     this.tuile[y][x] = new Tuile(nb, tuilesDispo.get(nb-1),y,x);
-
-
+                    this.setTresor(y, x);
                 }
             }
 
         }
         this.setInnondationGrille();
 
+    }
+    
+    public void setTresor(int y, int x){
+        if(tuile[y][x].getNomTuile() == "Le Temple du Soleil" || tuile[y][x].getNomTuile() == "Le Temple de La Lune"){
+            this.tuile[y][x].setTresor(Tresor.PIERRE);
+        } else if(tuile[y][x].getNomTuile() == "Le Jardin des Murmures" || tuile[y][x].getNomTuile() == "Le Jardin des Hurlements"){
+            tuile[y][x].setTresor(Tresor.ZEPHYR);        
+        } else if(tuile[y][x].getNomTuile() == "La Caverne des Ombres" || tuile[y][x].getNomTuile() == "La Caverne du Brasier"){
+            tuile[y][x].setTresor(Tresor.CRISTAL);
+        } else if(tuile[y][x].getNomTuile() == "Le Palais des Marees" || tuile[y][x].getNomTuile() == "Le Palais de Corail"){
+            tuile[y][x].setTresor(Tresor.CALICE);
+        }
     }
 
     public void melange() {
