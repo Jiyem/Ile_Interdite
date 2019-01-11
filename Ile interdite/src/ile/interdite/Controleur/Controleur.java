@@ -20,6 +20,7 @@ import ile.interdite.Vue.MessageAventurier;
 import ile.interdite.Vue.MessageInscription;
 import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
+import ile.interdite.Vue.VuePlateau;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -45,6 +46,8 @@ public class Controleur implements Observer {
     private MessageAventurier messageAventurier;
     private Aventurier joueurCourant;
     
+    private VuePlateau plateau;
+    
     public Controleur(){
         joueurs=new ArrayList<>();
         inscri.addObserver(this);
@@ -66,6 +69,13 @@ public class Controleur implements Observer {
                     if (message.getNbJoueurs() > 1 && message.getNbJoueurs() < 5) {
                         //Initialisation de la grille.
                         this.initialisationGrille();
+                        
+                        
+                        /**************************très moche*****************************/          
+                        plateau = new VuePlateau(grille);
+                        plateau.afficher();
+                        
+                        
                         //mise de la grille dans la liste tuiles
                         tuiles = grille.getTuile(); 
                         //Initialisation des joueurs
