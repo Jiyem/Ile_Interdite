@@ -50,6 +50,10 @@ public class Grille {
 
     }
     
+    public Tuile[][] getTuiles(){
+        return tuile;
+    }
+    
     public void setTresor(int y, int x){
         if(tuile[y][x].getNomTuile() == "Le Temple du Soleil" || tuile[y][x].getNomTuile() == "Le Temple de La Lune"){
             this.tuile[y][x].setTresor(Tresor.PIERRE);
