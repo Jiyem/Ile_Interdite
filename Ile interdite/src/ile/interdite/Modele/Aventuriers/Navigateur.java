@@ -25,18 +25,8 @@ public class Navigateur extends Aventurier{
         this.setCouleur(Couleur.JAUNE);
         
     }
-
-
-    @Override
-    public ArrayList<Tuile> déplacementPossible(Grille grille) {
-           return grille.getTuilehorizontaleEtVerticale(position);
-    }
-
-    @Override
-    public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        return grille.assèchementPossible(position);
-    }
-
+    //Comme les deplacements et les assechements du navigateur sont basiques pas besoin de redefinir les fonctions
+    
     @Override
     public String getRôle() {
         return "Navigateur";

@@ -30,12 +30,13 @@ public class Plongeur extends Aventurier{
     public ArrayList<Tuile> déplacementPossible(Grille grille){
         return grille.getTuileDeplacementPlongeur(position);
         }    
-
+    
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
         return grille.assèchementPossible(position);
     }
-
+    
+    //Comme les assechements du plongeur sont basiques pas besoin de redefinir les fonctions
 
     @Override
     public String getRôle() {

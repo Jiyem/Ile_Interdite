@@ -26,15 +26,7 @@ public class Messager extends Aventurier{
         super(pseudo);
         this.setCouleur(Couleur.ORANGE);    }
     
-    @Override
-    public ArrayList<Tuile> déplacementPossible(Grille grille) {
-        return grille.getTuilehorizontaleEtVerticale(position);
-    }
-
-    @Override
-    public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        return grille.assèchementPossible(position);
-    }
+    //Comme les deplacements et les assechements du messager sont basique pas besoin de redefinir les fonctions
 
     @Override
     public String getRôle() {

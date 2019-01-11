@@ -30,20 +30,12 @@ public class Pilote extends Aventurier{
     }
 
 
-    @Override
-    public ArrayList<Tuile> déplacementPossible(Grille grille){
-        return grille.getTuilehorizontaleEtVerticale(position);
-    }
-    
-
-    @Override
-    public ArrayList<Tuile> assèchementPossible(Grille grille) {
-       return grille.assèchementPossible(position);
-    }
     private ArrayList<Tuile> déplacementSpecial(Grille grille) {
+        //Redefinition totale de la fonction pour le deplcaement possible du plongeur
         return grille.déplacementPossiblePilote(this);
     }
-
+    
+    //Comme les assechements du pilote sont basiques pas besoin de redefinir les fonctions
     @Override
     public String getRôle() {
         return "Pilote";

@@ -28,18 +28,6 @@ public class Ingenieur extends Aventurier{
         this.setCouleur(Couleur.ROUGE);
     }
 
-
-       @Override
-    public ArrayList<Tuile> déplacementPossible(Grille grille){
-        return grille.getTuilehorizontaleEtVerticale(position);
-        }    
-    
-
-    @Override
-    public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        return grille.assèchementPossible(position);
-    }
-
     @Override
     public String getRôle() {
         return "Ingenieur";

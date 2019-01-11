@@ -63,9 +63,13 @@ public abstract class Aventurier {
         }
     }
     
-    public abstract ArrayList<Tuile> déplacementPossible(Grille grille);
+    public ArrayList<Tuile> déplacementPossible(Grille grille){
+        return grille.getTuilehorizontaleEtVerticale(position); 
+    }
     
-    public abstract ArrayList<Tuile> assèchementPossible(Grille grille);
+    public ArrayList<Tuile> assèchementPossible(Grille grille){
+         return grille.assèchementPossible(position);
+    }
     
     public abstract String getRôle();
 

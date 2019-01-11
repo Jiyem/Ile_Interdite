@@ -30,14 +30,40 @@ public class Explorateur extends Aventurier{
     }
 
     @Override
-    public ArrayList<Tuile> déplacementPossible(Grille grille){
-        return grille.getTuilehorizontaleEtVerticaleEtDiagonal(position);
+    public ArrayList<Tuile> déplacementPossible(Grille grille){ 
+        //Redefinition du deplacement 
+        ArrayList<Tuile> horizontalEtVetical =  super.déplacementPossible(grille);
+        ArrayList<Tuile> diagonal =  grille.getTuileDeplacementDiagonale(position);
+        ArrayList<Tuile> deplacementTotal = new ArrayList<Tuile> ();
+        
+        for(int i=0;i<diagonal.size();i++ ){
+            deplacementTotal.add(diagonal.get(i));
+        }
+        for(int i=0;i<horizontalEtVetical.size();i++ ){
+            deplacementTotal.add(horizontalEtVetical.get(i));
+        }
+        
+        return deplacementTotal;
+        
         }    
     
 
     @Override
     public ArrayList<Tuile> assèchementPossible(Grille grille) {
-        return grille.assèchementPossibleExplorateur(position);
+        //Redefinition de l'assechement
+        ArrayList<Tuile> horizontalEtVetical =  super.assèchementPossible(grille);
+        ArrayList<Tuile> diagonal =  grille.assèchementPossibleDiagonale(position);
+        ArrayList<Tuile> assechementTotale = new ArrayList<Tuile> ();
+        
+        for(int i=0;i<diagonal.size();i++ ){
+            assechementTotale.add(diagonal.get(i));
+        }
+        for(int i=0;i<horizontalEtVetical.size();i++ ){
+            assechementTotale.add(horizontalEtVetical.get(i));
+        }
+        
+        return assechementTotale;
+
     }
 
 
