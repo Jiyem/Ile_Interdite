@@ -31,6 +31,7 @@ public class Grille {
 
     public Grille() {
         this.initialiseArray();
+        this.melange();
         int nb = 0;
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
