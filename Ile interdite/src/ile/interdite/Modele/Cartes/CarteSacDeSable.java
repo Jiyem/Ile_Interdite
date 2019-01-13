@@ -10,5 +10,7 @@ package ile.interdite.Modele.Cartes;
  * @author anandanj
  */
 public class CarteSacDeSable extends CarteTirage {
-    
+    public CarteSacDeSable(){
+        super(TypeCarte.SacDeSable);
+    }
 }

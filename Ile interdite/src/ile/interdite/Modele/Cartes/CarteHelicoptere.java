@@ -10,5 +10,7 @@ package ile.interdite.Modele.Cartes;
  * @author anandanj
  */
 public class CarteHelicoptere extends CarteTirage{
-    
+    public CarteHelicoptere(){
+        super(TypeCarte.Helicoptere);
+    }
 }

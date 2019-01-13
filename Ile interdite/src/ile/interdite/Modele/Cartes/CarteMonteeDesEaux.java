@@ -10,5 +10,7 @@ package ile.interdite.Modele.Cartes;
  * @author anandanj
  */
 public class CarteMonteeDesEaux extends CarteTirage{
-    
+    public CarteMonteeDesEaux(){
+        super(TypeCarte.MonteeDesEaux);
+    }
 }

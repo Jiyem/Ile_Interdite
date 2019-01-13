@@ -7,10 +7,11 @@ package ile.interdite.Modele.Cartes;
 
 /**
  *
- * @author anandanj
+ * @author Jiyem
  */
-public class CarteTresor extends CarteTirage {
-    public CarteTresor(){
-        super(TypeCarte.Tresor);
-    }
+public enum TypeCarte {
+    Tresor,
+    SacDeSable,
+    MonteeDesEaux,
+    Helicoptere;
 }
