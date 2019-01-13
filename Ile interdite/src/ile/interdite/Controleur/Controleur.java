@@ -14,6 +14,7 @@ import ile.interdite.Modele.Aventuriers.Messager;
 import ile.interdite.Modele.Aventuriers.Navigateur;
 import ile.interdite.Modele.Aventuriers.Pilote;
 import ile.interdite.Modele.Aventuriers.Plongeur;
+import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Vue.ActionsType;
 import ile.interdite.Vue.MessageAventurier;
@@ -129,11 +130,11 @@ public class Controleur implements Observer {
                         this.passerTour();
                     }
                     //Verification de fin de tour et changement tour
-                    this.changementTour();          
+                    this.changementTour();  
                 }
                 
-            
-            
+                
+                  
     }
     
     //Les méthodes utilisés pour le contrôleur :
@@ -312,6 +313,20 @@ public class Controleur implements Observer {
             System.out.println("Changement de joueur");
             }
     }
-            
+
+    public void verifPartiePerdu(){
+        if(grille.verifHelioportEstIlCoulé() == true){
+            //Faudra fermer les vues de jeu ici et peut etre ouvrir une vue de partie perdue
+        }
+        for(int i =0; i < joueurs.size();i++){ //On regarde sur tous les joueurs s'il peuvent se deplacer
+            if(joueurs.get(i).getPosition().getEtatCase() == EtatCase.IMMERGEE){
+                if(joueurs.get(i).déplacementPossible(grille).isEmpty()){
+                    //Faudra fermer les vues de jeu ici et peut etre ouvrir une vue de partie perdue
+                }
+            }
+        }
+        
+    }
+    
 }
 

@@ -251,4 +251,20 @@ public class Grille {
         tuile[4][2].setEtatCase(EtatCase.IMMERGEE);
         tuile[5][3].setEtatCase(EtatCase.INNONDEE);
     }
+    
+        
+    public boolean verifHelioportEstIlCoulé(){
+        boolean c = false;
+        for(int i =0;i<6;i++ ){
+            for(int y =0;i<6;y++ ){
+                if(tuile[i][y] != null){
+                    if(tuile[i][y].getNomTuile() == "Heliport" && tuile[i][y].getEtatCase() == EtatCase.IMMERGEE){
+                        System.out.println(i + y);
+                        c = true;
+                    }
+                }
+            }
+        }
+        return c;
+    }
 }
