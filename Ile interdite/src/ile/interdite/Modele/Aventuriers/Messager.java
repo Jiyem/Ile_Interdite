@@ -6,6 +6,8 @@
 package ile.interdite.Modele.Aventuriers;
 import aide.Utils;
 import aide.Utils.EtatTuile;
+import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.Cartes.TypeCarte;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;
@@ -31,6 +33,22 @@ public class Messager extends Aventurier{
     @Override
     public String getRôle() {
         return "Messager";
+    }
+    
+    @Override
+     public void donnerCarte(Aventurier a, CarteTirage carte){
+        if(carte.getType() == TypeCarte.Tresor){
+         if(a.getCartes().size() < 10) {
+                a.ajouterCartes(carte);
+                this.enleverCarte(carte);
+            }
+            else{
+                System.out.print("Le joueur à qui vous voulez donner cette carte en possède trop");
+            }
+     }
+        else{
+            System.out.println("La carte que vous souhaitez donner n'est pas une carte trésor");
+        }
     }
 
 

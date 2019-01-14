@@ -5,6 +5,7 @@
  */
 package ile.interdite.Modele.Aventuriers;
 import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.Cartes.TypeCarte;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Grille;
@@ -38,6 +39,15 @@ public abstract class Aventurier {
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
+    
+        /**
+     * @return the cartes
+     */
+    public ArrayList<CarteTirage> getCartes() {
+        return cartes;
+    }
+    
+    
     //attributs
     protected Tuile position; // Il faudra faire un equal entre String pour la trouver sur le plateau || Faire les setter
     private Couleur couleur; // Faire setter
@@ -56,11 +66,20 @@ public abstract class Aventurier {
     //méthode
     
     public void ajouterCartes(CarteTirage carte){
-        if(cartes.size() < 9){
-            cartes.add(carte);   
+        if(getCartes().size() < 9){
+            getCartes().add(carte);   
         }else{
             System.out.println("Erreur joueur a 9 cartes");
         }
+    }
+    
+        public void enleverCarte(CarteTirage carte){
+            for(int i =0; i < this.getCartes().size(); i++){
+                if (this.getCartes().get(i) == carte){
+                    this.getCartes().remove(this.getCartes().get(i));
+                    System.out.println("La carte à bien été supprimée");
+                }
+            }
     }
     
     public ArrayList<Tuile> déplacementPossible(Grille grille){
@@ -96,6 +115,28 @@ public abstract class Aventurier {
     }
     public void assechement(Tuile t){
         t.setEtatCase(EtatCase.NORMAL);
+    }
+    
+    public void donnerCarte(Aventurier a, CarteTirage carte){
+        if(carte.getType() == TypeCarte.Tresor){
+            if (this.getPosition() == a.getPosition()){
+                if(a.getCartes().size() < 10) {
+                    a.ajouterCartes(carte);
+                    this.enleverCarte(carte);
+                }
+                else{
+                    System.out.print("Le joueur à qui vous voulez donner cette carte en possède trop");
+                }
+            }
+            else{
+                System.out.print("Vous n'êtes pas sur la même case vous ne pouvez donc pas échanger de carte avec cet Aventurier");
+            }   
+        }
+        else{
+            System.out.println("La carte que vous souhaitez donner n'est pas une carte trésor");
+        }
+        
+
     }
     
     public boolean ouAller(Grille grille){
@@ -154,6 +195,8 @@ public abstract class Aventurier {
     public boolean ouAllerSpe(Grille grille){
         return false;
     }
+
+
     
 
 }

@@ -22,6 +22,7 @@ import ile.interdite.Vue.MessageInscription;
 import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
+import ile.interdite.Modele.Cartes.PaquetInnondation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -48,6 +49,7 @@ public class Controleur implements Observer {
     private Aventurier joueurCourant;
     
     private VuePlateau plateau;
+    private PaquetInnondation paquetInnondation = new PaquetInnondation();
     
     public Controleur(){
         joueurs=new ArrayList<>();
