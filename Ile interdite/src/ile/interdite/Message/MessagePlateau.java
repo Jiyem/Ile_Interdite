@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ile.interdite.Vue;
+package ile.interdite.Message;
+
+import ile.interdite.Message.Message;
 
 /**
  *
@@ -12,11 +14,13 @@ package ile.interdite.Vue;
 public class MessagePlateau extends Message{
     private int x;
     private int y;
+    private int numBouton;
     
-    public MessagePlateau(ActionsType action, int y, int x){
+    public MessagePlateau(ActionsType action, int y, int x, int num){
         super(action);
         setX(x);
         setY(y);
+        setNumBouton(num);
     }
 
     /**
@@ -45,6 +49,20 @@ public class MessagePlateau extends Message{
      */
     public void setY(int y) {
         this.y = y;
+    }
+
+    /**
+     * @return the numBouton
+     */
+    public int getNumBouton() {
+        return numBouton;
+    }
+
+    /**
+     * @param numBouton the numBouton to set
+     */
+    public void setNumBouton(int numBouton) {
+        this.numBouton = numBouton;
     }
     
 }

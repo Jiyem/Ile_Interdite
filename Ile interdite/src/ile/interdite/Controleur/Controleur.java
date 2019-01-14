@@ -5,6 +5,7 @@
  */
 package ile.interdite.Controleur;
 
+
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Aventuriers.Explorateur;
@@ -21,9 +22,9 @@ import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Cartes.CarteTresor;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Tuile;
-import ile.interdite.Vue.ActionsType;
-import ile.interdite.Vue.MessageAventurier;
-import ile.interdite.Vue.MessageInscription;
+import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.MessageAventurier;
+import ile.interdite.Message.MessageInscription;
 import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;

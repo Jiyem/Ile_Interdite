@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ile.interdite.Vue;
+package ile.interdite.Message;
+
+import ile.interdite.Message.Message;
 
 /**
  *
@@ -17,7 +19,7 @@ public class MessageInscription extends Message {
 //    private String nbJoueurs;
 
     
-    MessageInscription(ActionsType action,String pseudo1,String pseudo2,String pseudo3,String pseudo4){
+    public MessageInscription(ActionsType action,String pseudo1,String pseudo2,String pseudo3,String pseudo4){
         super(action);
 //        this.nbJoueurs = nbJoueurs;
         this.pseudo1 = pseudo1;

@@ -5,6 +5,8 @@
  */
 package ile.interdite.Vue;
 
+import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
@@ -31,7 +33,7 @@ public class VuePlateau extends Observable{
         private Color etat_normal = new Color(179, 229, 255);
         private Color etat_innodé = new Color(255, 255, 100);
         private Color etat_immergé = new Color(100,100,100);
-    
+    private ArrayList<JButton> btnTuile = new ArrayList<>();
     
     public VuePlateau(Grille g){
         window = new JFrame();
@@ -78,13 +80,13 @@ public class VuePlateau extends Observable{
 //                    tuile.setContentAreaFilled(false);
 //                    tuile.setBorderPainted(false);
 //                    tuile.setFocusPainted(false);
-
+                    btnTuile.add(tuile);
                     tuiles.add(tuile);
                         tuile.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
                             setChanged();
-                            notifyObservers(new MessagePlateau(ActionsType.SELECTION_CASE,col,row));
+                            notifyObservers(new MessagePlateau(ActionsType.SELECTION_CASE,col,row,btnTuile.indexOf(tuile)));
                             clearChanged();
                         }
                     });
@@ -93,6 +95,7 @@ public class VuePlateau extends Observable{
             }
 
         }
+        
         //A changer pour tout autre jpanel ou borderlayout ou autre !
         window.add(tuiles);
     }

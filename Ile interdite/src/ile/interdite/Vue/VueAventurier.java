@@ -1,5 +1,7 @@
 package ile.interdite.Vue;
 
+import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.Message;
 import aide.Utils.Pion;
 import ile.interdite.Modele.Couleur;
 import java.awt.BorderLayout;

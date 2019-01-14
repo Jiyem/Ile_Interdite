@@ -5,6 +5,8 @@
  */
 package ile.interdite.Vue;
 
+import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.MessageInscription;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
