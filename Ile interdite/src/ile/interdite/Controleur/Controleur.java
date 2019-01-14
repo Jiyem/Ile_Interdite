@@ -33,6 +33,7 @@ import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
 import static ile.interdite.Modele.Cartes.TypeCarte.SacDeSable;
 import ile.interdite.Modele.Tresor;
+import ile.interdite.Vue.VueMainTropGrande;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -62,6 +63,7 @@ public class Controleur implements Observer {
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
     private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
     private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
+    private VueMainTropGrande vueMuligan;
     
     public Controleur(){
         joueurs=new ArrayList<>();
@@ -75,7 +77,8 @@ public class Controleur implements Observer {
                 if (((ActionsType) arg1) == ActionsType.ANNULE) {
                     System.out.println("L'utilisateur a abandonné");
                 }
-            } else if (arg1 instanceof MessageInscription) {
+            } 
+            else if (arg1 instanceof MessageInscription) {
                 message = (MessageInscription) arg1 ;
                 //Si l'utilisateur clic sur validé
                 if (message.getAction() == ActionsType.VALIDE) {
@@ -148,9 +151,13 @@ public class Controleur implements Observer {
                     }
                     //Verification de fin de tour et changement tour
                     this.changementTour();  
+                    
+//                    if(joueurCourant.getCartes().size() == 9){
+//                        vueMuligan = new VueMainTropGrand(joueurCourant,nbCartesApriocher);
+//                    }
                 }
                 
-                
+
                   
     }
     
