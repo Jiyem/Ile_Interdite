@@ -20,7 +20,7 @@ public class CarteSacDeSable extends CarteTirage {
         super(TypeCarte.SacDeSable);
     }
     
-    //Méthode qui renvoie la liste des tuiles qui sont assèchable avec un sac de sable avec pour paramètre d'entrée une grille.
+    //Méthode qui renvoie la liste des tuiles qui sont assèchable avec un sac de sable avec pour paramètre d'entrée une grille..
     public ArrayList<Tuile> assechable(Grille grille){
         ArrayList<Tuile> tuilesAssechable = new ArrayList<>();
         Tuile[][] tuiles = grille.getTuile();

@@ -38,7 +38,7 @@ public class CarteHelicoptere extends CarteTirage{
     //Méthode qui demande la tuile de départ utilisé par la carte, la tuile d'arrivé et l'ArrayList des joueurs qui veulent être déplacé.
     //  /!\ on part du principe que la méthode deplacable à été utilisé au préalable et que tuileDep et tuileArr sont bien dans les tuiles possible.
     //La méthode vérifie que tout les joueurs sont sur la tuile de départ sinon lève une exception (a supprimer plus tard en fonction de comment on code dans le contrôleur)
-    //Une fois la vérification éffectuée la méthode déplace les joueurs sur la tuile d'arrivé.
+    //Une fois la vérification éffectuée la méthode déplace les joueurs sur la tuile d'arrivé..
     public void utiliserHelico(Tuile tuileDep,Tuile tuileArr,ArrayList<Aventurier> joueurs){
         boolean verifJoueursSurTuile = true;
         for(int i = 0;i<joueurs.size();i++){
