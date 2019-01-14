@@ -61,7 +61,7 @@ public class Controleur implements Observer {
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
     private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
-    private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>();
+    private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
     
     public Controleur(){
         joueurs=new ArrayList<>();
