@@ -9,16 +9,16 @@ package ile.interdite.Vue;
  *
  * @author anandanj
  */
-public class MessageInscription {
+public class MessageInscription extends Message {
     private String pseudo1;
     private String pseudo2;
     private String pseudo3;
     private String pseudo4;
 //    private String nbJoueurs;
-    private ActionsType action;
+
     
     MessageInscription(ActionsType action,String pseudo1,String pseudo2,String pseudo3,String pseudo4){
-        this.action = action;
+        super(action);
 //        this.nbJoueurs = nbJoueurs;
         this.pseudo1 = pseudo1;
         this.pseudo2 = pseudo2;
@@ -112,21 +112,7 @@ public class MessageInscription {
 //     */
 //    public void setNbJoueurs(String nbJoueurs) {
 //        this.nbJoueurs = nbJoueurs;
-//    }
-
-    /**
-     * @return the action
-     */
-    public ActionsType getAction() {
-        return action;
-    }
-
-    /**
-     * @param action the action to set
-     */
-    public void setAction(ActionsType action) {
-        this.action = action;
-    }
+//   
     
     
 }

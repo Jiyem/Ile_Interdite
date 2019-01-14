@@ -15,5 +15,6 @@ public enum ActionsType {
     DEPLACER,
     PASSERTOUR,
     AUTREACTION,
-    ANNULE
+    ANNULE,
+    SELECTION_CASE
 }

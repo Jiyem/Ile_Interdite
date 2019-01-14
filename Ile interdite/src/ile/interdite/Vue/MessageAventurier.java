@@ -9,15 +9,11 @@ package ile.interdite.Vue;
  *
  * @author anandanj
  */
-public class MessageAventurier {
-    private ActionsType action;
+public class MessageAventurier extends Message {
+    private int osef;
     
     public MessageAventurier(ActionsType action){
-        this.action = action;
-    }
-    
-    public ActionsType getAction(){
-        return this.action;
+        super(action);
     }
     
 }

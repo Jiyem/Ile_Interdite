@@ -66,6 +66,8 @@ public class VuePlateau extends Observable{
                     tuileVide.setFocusPainted(false);
                     tuiles.add(tuileVide);
                 } else {
+                    int col = y;
+                    int row = x;
                     nb = nb + 1;
                     JButton tuile = new JButton(g.getTuile()[y][x].getNomTuile());
 
@@ -82,7 +84,7 @@ public class VuePlateau extends Observable{
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
                             setChanged();
-//                            notifyObserver();
+                            notifyObservers(new MessagePlateau(ActionsType.SELECTION_CASE,col,row));
                             clearChanged();
                         }
                     });

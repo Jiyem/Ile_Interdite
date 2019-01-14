@@ -79,7 +79,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.DEPLACER));
+            notifyObservers(new Message(ActionsType.DEPLACER));
             clearChanged();
             }
         });
@@ -89,7 +89,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.ASSECHER));
+            notifyObservers(new Message(ActionsType.ASSECHER));
             clearChanged();
             }
         });
@@ -99,7 +99,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
+            notifyObservers(new Message(ActionsType.AUTREACTION));
             clearChanged();
             }
         });
@@ -109,7 +109,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.PASSERTOUR));
+            notifyObservers(new Message(ActionsType.PASSERTOUR));
             clearChanged();
             }
         });
