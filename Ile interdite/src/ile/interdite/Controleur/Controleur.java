@@ -30,6 +30,7 @@ import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
 import ile.interdite.Modele.Tresor;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -52,11 +53,11 @@ public class Controleur implements Observer {
     private Tuile[][] tuiles;
     private MessageInscription message;
     private MessageAventurier messageAventurier;
-    private Aventurier joueurCourant;
-    
+    private Aventurier joueurCourant; 
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
     private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
+    private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>();
     
     public Controleur(){
         joueurs=new ArrayList<>();
@@ -288,6 +289,7 @@ public class Controleur implements Observer {
                 pileCartesTirage.add(carte);
             }
         }
+        Collections.shuffle(pileCartesTirage);
     }
     
     //à supprimer, c'est pour la visibilité pdt les tests.
@@ -347,6 +349,9 @@ public class Controleur implements Observer {
             //don des 2 cartes tirages
             joueurCourant.ajouterCartes(pileCartesTirage.get(0));
             joueurCourant.ajouterCartes(pileCartesTirage.get(1));
+            //Ajout des 2 cartes dans la liste générale
+            listeCartesDesAventuriers.add(pileCartesTirage.get(0));
+            listeCartesDesAventuriers.add(pileCartesTirage.get(1));            
             
           
             //changement de joueur
