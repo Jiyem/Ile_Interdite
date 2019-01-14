@@ -6,11 +6,15 @@
 package ile.interdite.Vue;
 
 import ile.interdite.Modele.Grille;
+import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,14 +27,16 @@ import javax.swing.JPanel;
 public class VuePlateau {
     
     private JFrame window;
-    
+        private Color etat_normal = new Color(179, 229, 255);
+        private Color etat_innodé = new Color(255, 255, 100);
+        private Color etat_immergé = new Color(100,100,100);
     
     
     public VuePlateau(Grille g){
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
-        window.setSize(1000, 900);
+        window.setSize(1200, 1200);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
         window.setLocation(dim.width/2-window.getSize().width/4, dim.height/2-window.getSize().height/2);
@@ -61,13 +67,21 @@ public class VuePlateau {
                 } else {
                     nb = nb + 1;
                     JButton tuile = new JButton(g.getTuile()[y][x].getNomTuile());
-                    tuile.setBackground(new Color(130, 239, 255)); //BleuCYAN
+                    tuile.setBackground(this.etat_normal); //BleuCYAN
 
                     tuile.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 //                    tuile.setForeground(Color.GREEN);
 //                    tuile.setContentAreaFilled(false);
 //                    tuile.setBorderPainted(false);
 //                    tuile.setFocusPainted(false);
+                    tuile.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent arg0) {
+                            setChanged();
+                            notifyObserver();
+                            clearChanged();
+                        }
+                    });
                     tuiles.add(tuile);
                 }
             }
@@ -76,6 +90,16 @@ public class VuePlateau {
         //A changer pour tout autre jpanel ou borderlayout ou autre !
         window.add(tuiles);
     }
+    
+//    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){
+//        for (int x =0;x<6;x++){
+//            for (int y=0;y<6;y++){
+//                for (int z =0; z<tuilesA.size();z++){
+//                    if (tuilesA.get(z).getNumTuile()==)
+//                }
+//            }
+//        }    
+//    }
         
     public void afficher() {
         this.window.setVisible(true);
