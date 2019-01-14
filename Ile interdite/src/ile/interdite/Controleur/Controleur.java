@@ -14,6 +14,11 @@ import ile.interdite.Modele.Aventuriers.Messager;
 import ile.interdite.Modele.Aventuriers.Navigateur;
 import ile.interdite.Modele.Aventuriers.Pilote;
 import ile.interdite.Modele.Aventuriers.Plongeur;
+import ile.interdite.Modele.Cartes.CarteHelicoptere;
+import ile.interdite.Modele.Cartes.CarteMonteeDesEaux;
+import ile.interdite.Modele.Cartes.CarteSacDeSable;
+import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.Cartes.CarteTresor;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Vue.ActionsType;
@@ -23,6 +28,7 @@ import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
+import ile.interdite.Modele.Tresor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -50,6 +56,7 @@ public class Controleur implements Observer {
     
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
+    private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
     
     public Controleur(){
         joueurs=new ArrayList<>();
@@ -107,6 +114,9 @@ public class Controleur implements Observer {
                         inscri.erreurNbJoueurs();
                     }
                 }
+            //Initialisation du paquet de carte tirage.
+            this.initialisationPileCarteTirage();
+            
             //Tour de jeu:
             }
                 joueurCourant = joueurs.get(y);
@@ -249,6 +259,37 @@ public class Controleur implements Observer {
                             
                         }
     }
+    private void initialisationPileCarteTirage(){
+        for(int i = 1;i<29;i++){
+            //5 cartes de chaque tresor
+            if(i>=1 && i<=5){
+                CarteTresor tresor = new CarteTresor(Tresor.PIERRE);
+                pileCartesTirage.add(tresor);
+            }else if(i>=6 && i<=10){
+                CarteTresor tresor = new CarteTresor(Tresor.ZEPHYR);
+                pileCartesTirage.add(tresor);
+            }else if(i>=11 && i<= 15){
+                CarteTresor tresor = new CarteTresor(Tresor.CRISTAL);
+                pileCartesTirage.add(tresor);
+            }else if(i>=16 && i<= 20){
+                CarteTresor tresor = new CarteTresor(Tresor.CALICE);
+                pileCartesTirage.add(tresor);
+            //3 cartes montée des eaux
+            }else if(i>=21 && i<=23){
+                CarteMonteeDesEaux carte = new CarteMonteeDesEaux();
+                pileCartesTirage.add(carte);
+            //3 cartes hélico
+            }else if(i>=24 && i <=26){
+                CarteHelicoptere carte= new CarteHelicoptere();
+                pileCartesTirage.add(carte);
+            //2 cartes sac de sable
+            }else{
+                CarteSacDeSable carte = new CarteSacDeSable();
+                pileCartesTirage.add(carte);
+            }
+        }
+    }
+    
     //à supprimer, c'est pour la visibilité pdt les tests.
     private void afficheJoueursListe(){
             for(int i = 0; i < joueurs.size();i++){
@@ -302,6 +343,13 @@ public class Controleur implements Observer {
             }
             System.out.print(y);
             vueAventurier.fermer();
+            
+            //don des 2 cartes tirages
+            joueurCourant.ajouterCartes(pileCartesTirage.get(0));
+            joueurCourant.ajouterCartes(pileCartesTirage.get(1));
+            
+          
+            //changement de joueur
             joueurCourant = joueurs.get(y);
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
             vueAventurier.addObserver(this);

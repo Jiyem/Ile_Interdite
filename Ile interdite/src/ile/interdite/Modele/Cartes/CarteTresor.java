@@ -5,12 +5,16 @@
  */
 package ile.interdite.Modele.Cartes;
 
+import ile.interdite.Modele.Tresor;
+
 /**
  *
  * @author anandanj
  */
 public class CarteTresor extends CarteTirage {
-    public CarteTresor(){
+    private Tresor tresor;
+    public CarteTresor(Tresor tresor){
         super(TypeCarte.Tresor);
+        this.tresor = tresor;
     }
 }
