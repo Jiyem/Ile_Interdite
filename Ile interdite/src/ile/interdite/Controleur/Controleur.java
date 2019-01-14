@@ -29,6 +29,7 @@ import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
+import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
 import static ile.interdite.Modele.Cartes.TypeCarte.SacDeSable;
 import ile.interdite.Modele.Tresor;
@@ -142,7 +143,7 @@ public class Controleur implements Observer {
                         this.autreAction(); 
                     }
                     else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
-                        //faire la fin du tour.
+                        //faire la fin du tour.;
                         this.passerTour();
                     }
                     //Verification de fin de tour et changement tour
@@ -332,10 +333,52 @@ public class Controleur implements Observer {
                 nombreAction=nombreAction-1;              
             }
         }
-        else {    
-            System.out.println("Vous n'avez pas encore accès aux actions speciales.");}
-            //nombreAction=nombreAction-1; à ajouter plus tard
+        else {
+            //prendre un trésor :
+            if(joueurCourant.getPosition().possèdeTresor()){ //Si le joueur est sur une case de rendu de trésor
+                int nbCartesDuTresor = 0;
+                for(int i = 0; i<joueurCourant.getCartes().size();i++){
+                    if(joueurCourant.getCartes().get(i).getType() == TypeCarte.Tresor){
+                        if(joueurCourant.getCartes().get(i).getTresor() == joueurCourant.getPosition().getTresor()){
+                            nbCartesDuTresor = nbCartesDuTresor +1;
+                        }
+                    }
+                }
+                if(nbCartesDuTresor >= 4){
+                    System.out.println("Voulez vous récupérer le trésor"+joueurCourant.getPosition().getTresor().toString()+" ? (o/n)");
+                    Scanner sc=new Scanner(System.in);
+                    System.out.println("Voulez-vous effectuer un deuxième assèchement ? (o/n)");
+                    if(sc.nextLine().equals("o")){
+                        Tresor tresor = joueurCourant.getPosition().getTresor();
+                        joueurCourant.ajouterTresor(tresor); //don du trésor au joueur
+                        grille.retirerTresor(tresor); //retirer le trésor de la grille
+                        this.supprimerTresor(tresor); //Supprime la carte du trésor de la main des aventuriers + de la pioche.
+                        nombreAction = nombreAction -1;
+                    }    
+                }
+            }
+            else{
+                System.out.println("Vous n'avez pas encore accès aux actions speciales.");}
+                //nombreAction=nombreAction-1; à ajouter plus tard   
+            }
     }
+    //supprime le trésor de la pile et de la main de tout les aventuriers
+    private void supprimerTresor(Tresor tresor){
+        for(int i = 0;i<pileCartesTirage.size();i++){
+            if(pileCartesTirage.get(i).getTresor() == tresor){
+                pileCartesTirage.remove(i);
+            }
+        }
+        for(int i = 0;i<joueurs.size();i++){
+            ArrayList<CarteTirage> cartes = joueurs.get(i).getCartes();
+            for(y = 0;y<cartes.size();y++){
+                if(cartes.get(y).getTresor() == tresor){
+                    joueurs.get(i).enleverCarte(cartes.get(y));
+                }
+            }
+        }
+    }
+    
     private void passerTour(){
         nombreAction=0;
     }

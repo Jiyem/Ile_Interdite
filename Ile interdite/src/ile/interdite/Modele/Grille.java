@@ -65,6 +65,33 @@ public class Grille {
             tuile[y][x].setTresor(Tresor.CALICE);
         }
     }
+    
+    public void retirerTresor(Tresor tresor){
+        for (int y = 0; y < 6; y++) {
+            for (int x = 0; x < 6; x++) {
+                if((tuile[y][x].getNomTuile() == "Le Temple du Soleil" || tuile[y][x].getNomTuile() == "Le Temple de La Lune") && tresor == Tresor.PIERRE){
+                    this.tuile[y][x].setTresor(null);
+                } else if((tuile[y][x].getNomTuile() == "Le Jardin des Murmures" || tuile[y][x].getNomTuile() == "Le Jardin des Hurlements")&& tresor == Tresor.ZEPHYR){
+                    this.tuile[y][x].setTresor(null);        
+                } else if((tuile[y][x].getNomTuile() == "La Caverne des Ombres" || tuile[y][x].getNomTuile() == "La Caverne du Brasier") && tresor == Tresor.CRISTAL){
+                    this.tuile[y][x].setTresor(null);
+                } else if((tuile[y][x].getNomTuile() == "Le Palais des Marees" || tuile[y][x].getNomTuile() == "Le Palais de Corail")&& tresor == Tresor.CALICE){
+                    this.tuile[y][x].setTresor(null);
+                }  
+                
+            }
+        }    
+        
+        if(tresor == Tresor.PIERRE){
+            
+        }else if(tresor == Tresor.ZEPHYR){
+            
+        }else if(tresor == Tresor.CRISTAL){
+            
+        }else if(tresor == Tresor.CALICE){
+            
+        }
+    }
 
     public void melange() {
         Collections.shuffle(tuilesDispo);

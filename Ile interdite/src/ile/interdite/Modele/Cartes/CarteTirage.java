@@ -5,6 +5,8 @@
  */
 package ile.interdite.Modele.Cartes;
 
+import ile.interdite.Modele.Tresor;
+
 /**
  *
  * @author anandanj
@@ -31,5 +33,9 @@ public class CarteTirage {
         else if(this.type == TypeCarte.Tresor){
             //Ajouter la carte du trésor correspondant a la main du joueur courant
         }
+    }
+    
+    public Tresor getTresor(){
+        return null;
     }
 }

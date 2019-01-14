@@ -17,4 +17,9 @@ public class CarteTresor extends CarteTirage {
         super(TypeCarte.Tresor);
         this.tresor = tresor;
     }
+    
+    @Override
+    public Tresor getTresor(){
+        return tresor;
+    }
 }

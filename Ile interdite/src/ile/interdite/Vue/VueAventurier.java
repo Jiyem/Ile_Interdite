@@ -3,6 +3,7 @@ package ile.interdite.Vue;
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.Message;
 import aide.Utils.Pion;
+import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Modele.Couleur;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -81,7 +82,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new Message(ActionsType.DEPLACER));
+            notifyObservers(new MessageAventurier(ActionsType.DEPLACER));
             clearChanged();
             }
         });
@@ -91,7 +92,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new Message(ActionsType.ASSECHER));
+            notifyObservers(new MessageAventurier(ActionsType.ASSECHER));
             clearChanged();
             }
         });
@@ -101,7 +102,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new Message(ActionsType.AUTREACTION));
+            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
             clearChanged();
             }
         });
@@ -111,7 +112,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new Message(ActionsType.PASSERTOUR));
+            notifyObservers(new MessageAventurier(ActionsType.PASSERTOUR));
             clearChanged();
             }
         });

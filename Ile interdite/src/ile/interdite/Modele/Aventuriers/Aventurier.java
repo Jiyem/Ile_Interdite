@@ -6,9 +6,11 @@
 package ile.interdite.Modele.Aventuriers;
 import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Cartes.TypeCarte;
+import static ile.interdite.Modele.Cartes.TypeCarte.Tresor;
 import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Grille;
+import ile.interdite.Modele.Tresor;
 import ile.interdite.Modele.Tuile;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -53,6 +55,7 @@ public abstract class Aventurier {
     private Couleur couleur; // Faire setter
     protected String pseudo;
     private ArrayList<CarteTirage> cartes = new ArrayList<>();
+    private ArrayList<Tresor> tresors = new ArrayList<>();
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
         this.setPosition(position);
@@ -194,6 +197,10 @@ public abstract class Aventurier {
 }
     public boolean ouAllerSpe(Grille grille){
         return false;
+    }
+    
+    public void ajouterTresor(Tresor tresor){
+        tresors.add(tresor);
     }
 
 
