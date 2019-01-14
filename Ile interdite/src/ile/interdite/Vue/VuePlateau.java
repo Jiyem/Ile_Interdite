@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ import javax.swing.JPanel;
  *
  * @author rose
  */
-public class VuePlateau {
+public class VuePlateau extends Observable{
     
     private JFrame window;
         private Color etat_normal = new Color(179, 229, 255);
@@ -67,6 +68,7 @@ public class VuePlateau {
                 } else {
                     nb = nb + 1;
                     JButton tuile = new JButton(g.getTuile()[y][x].getNomTuile());
+
                     tuile.setBackground(this.etat_normal); //BleuCYAN
 
                     tuile.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
@@ -74,16 +76,18 @@ public class VuePlateau {
 //                    tuile.setContentAreaFilled(false);
 //                    tuile.setBorderPainted(false);
 //                    tuile.setFocusPainted(false);
-                    tuile.addActionListener(new ActionListener() {
+
+                    tuiles.add(tuile);
+                        tuile.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
                             setChanged();
-                            notifyObserver();
+//                            notifyObserver();
                             clearChanged();
                         }
                     });
-                    tuiles.add(tuile);
                 }
+
             }
 
         }
