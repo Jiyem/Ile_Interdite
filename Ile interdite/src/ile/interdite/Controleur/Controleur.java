@@ -29,6 +29,8 @@ import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
+import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
+import static ile.interdite.Modele.Cartes.TypeCarte.SacDeSable;
 import ile.interdite.Modele.Tresor;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -347,12 +349,17 @@ public class Controleur implements Observer {
             System.out.print(y);
             vueAventurier.fermer();
             
+            //DEEGUEU A CHANGER EN FONCTION !
             //don des 2 cartes tirages
             joueurCourant.ajouterCartes(pileCartesTirage.get(0));
             joueurCourant.ajouterCartes(pileCartesTirage.get(1));
-            //Ajout des 2 cartes dans la liste générale
-            listeCartesDesAventuriers.add(pileCartesTirage.get(0));
-            listeCartesDesAventuriers.add(pileCartesTirage.get(1));            
+            //Ajout des 2 cartes dans la liste générale si carte hélico ou sac de sable
+            if(pileCartesTirage.get(0).getType() == SacDeSable || pileCartesTirage.get(0).getType() == Helicoptere){
+                listeCartesDesAventuriers.add(pileCartesTirage.get(0));
+            }
+            if(pileCartesTirage.get(1).getType() == SacDeSable || pileCartesTirage.get(1).getType() == Helicoptere){
+                listeCartesDesAventuriers.add(pileCartesTirage.get(1));
+            }    
             
           
             //changement de joueur
