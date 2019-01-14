@@ -34,6 +34,9 @@ public class VuePlateau extends Observable{
         private Color etat_innodé = new Color(255, 255, 100);
         private Color etat_immergé = new Color(100,100,100);
     private ArrayList<JButton> btnTuile = new ArrayList<>();
+    private JPanel plateau;
+    private JPanel menu;
+    private VueAventurier1 aventurier;
     
     public VuePlateau(Grille g){
         window = new JFrame();
@@ -46,7 +49,23 @@ public class VuePlateau extends Observable{
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
+        plateau = new JPanel();
         this.initPlateau(g);
+        mainPanel.add(plateau,BorderLayout.CENTER);
+        
+//        menu = new JPanel(new GridLayout(1,3));
+        
+//        menu.add();
+        
+
+//        menu.add(aventurier);
+        
+        
+//        menu.add();
+        
+        
+        
+//        mainPanel.add(menu,BorderLayout.EAST);
         
         
         
@@ -97,7 +116,7 @@ public class VuePlateau extends Observable{
         }
         
         //A changer pour tout autre jpanel ou borderlayout ou autre !
-        window.add(tuiles);
+        plateau.add(tuiles);
     }
     
 //    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){

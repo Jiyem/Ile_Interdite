@@ -3,7 +3,6 @@ package ile.interdite.Vue;
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.Message;
 import aide.Utils.Pion;
-import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Modele.Couleur;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,11 +20,11 @@ import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
  
-public class VueAventurier extends Observable  {
+public class VueAventurier1 extends JPanel  {
      
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
-    private final JFrame window;
+//    private final JFrame window;
     private final JPanel panelAventurier;
     private final JPanel mainPanel;
     private final JButton btnBouger  ;
@@ -37,15 +36,15 @@ public class VueAventurier extends Observable  {
    
    
     
-    public VueAventurier(String nomJoueur, String nomAventurier, Color couleur){
+    public VueAventurier1(String nomJoueur, String nomAventurier, Color couleur){
 
-        this.window = new JFrame();
-        window.setSize(350, 200);
+//        this.window = new JFrame();
+//        window.setSize(350, 200);
         //le titre = nom du joueur 
-        window.setTitle(nomJoueur);
+//        window.setTitle(nomJoueur);
         mainPanel = new JPanel(new BorderLayout());
-        this.window.add(mainPanel);
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+//        this.window.add(mainPanel);
+//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
         mainPanel.setBackground(new Color(230, 230, 230));
         mainPanel.setBorder(BorderFactory.createLineBorder(couleur, 2)) ;
@@ -81,9 +80,9 @@ public class VueAventurier extends Observable  {
         btnBouger.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.DEPLACER));
-            clearChanged();
+//            setChanged();
+//            notifyObservers(new Message(ActionsType.DEPLACER));
+//            clearChanged();
             }
         });
         
@@ -91,9 +90,9 @@ public class VueAventurier extends Observable  {
         btnAssecher.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.ASSECHER));
-            clearChanged();
+//            setChanged();
+//            notifyObservers(new Message(ActionsType.ASSECHER));
+//            clearChanged();
             }
         });
         
@@ -101,9 +100,9 @@ public class VueAventurier extends Observable  {
         btnAutreAction.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
-            clearChanged();
+//            setChanged();
+//            notifyObservers(new Message(ActionsType.AUTREACTION));
+//            clearChanged();
             }
         });
         
@@ -111,9 +110,9 @@ public class VueAventurier extends Observable  {
         btnTerminerTour.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.PASSERTOUR));
-            clearChanged();
+//            setChanged();
+//            notifyObservers(new Message(ActionsType.PASSERTOUR));
+//            clearChanged();
             }
         });
         
@@ -122,7 +121,7 @@ public class VueAventurier extends Observable  {
         this.panelBoutons.add(btnAutreAction);
         this.panelBoutons.add(btnTerminerTour);
 
-        this.window.setVisible(true);
+//        this.window.setVisible(true);
     } 
     
     public void setPosition(String pos) {
@@ -149,13 +148,13 @@ public class VueAventurier extends Observable  {
         return btnTerminerTour;
     }
     
-    public void afficher() {
-        this.window.setVisible(true);
-    }
-    public void fermer(){
-        this.window.setVisible(false);
-    }
- 
+//    public void afficher() {
+//        this.window.setVisible(true);
+//    }
+//    public void fermer(){
+//        this.window.setVisible(false);
+//    }
+// 
 }
 
  

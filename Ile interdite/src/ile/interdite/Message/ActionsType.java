@@ -16,5 +16,7 @@ public enum ActionsType {
     PASSERTOUR,
     AUTREACTION,
     ANNULE,
-    SELECTION_CASE
+    SELECTION_CASE,
+    ECHANGER,
+    GET_TRESOR
 }
