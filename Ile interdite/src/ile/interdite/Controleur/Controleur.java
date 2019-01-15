@@ -121,7 +121,7 @@ public class Controleur implements Observer {
                         
                         /**************************très moche*****************************/
                         try {
-                            plateau = new VuePlateau(grille, joueurs);
+                            plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers);
                         } catch (IOException ex) {
                             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
                         }
