@@ -7,9 +7,11 @@ package ile.interdite.Vue;
 
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.MessageAventurier;
+import ile.interdite.Modele.Cartes.CarteInnondation;
 import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -17,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,10 +35,10 @@ public class VueFinDeTour extends Observable {
     private final JFrame window;
     
     //Constructeur:
-    public VueFinDeTour(String nomJoueur,CarteTirage carte1, CarteTirage carte2,int nivEau,ArrayList<Tuile> tuilesInnondé){
+    public VueFinDeTour(String nomJoueur,CarteTirage carte1, CarteTirage carte2,int nivEau,CarteInnondation[] tuilesInnondé){
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(500, 500);
+        window.setSize(1000, 250);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
         
@@ -43,23 +46,27 @@ public class VueFinDeTour extends Observable {
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
-        //Le panel de gauche
-        JPanel gauchePanel = new JPanel(new BorderLayout());
-        mainPanel.add(gauchePanel,BorderLayout.WEST);
+        //partie haute du mainPanel
+        JPanel hautMainPanel = new JPanel(new GridLayout(2,5));
+        for(int i=1; i<10 ;i++){
+            if(i==2){
+               hautMainPanel.add(new JLabel("Cartes obtenues par")); 
+            }else if(i==4){
+               hautMainPanel.add(new JLabel("niveau d'eau : 0"));
+            }else if(i==7){
+                hautMainPanel.add(new JLabel(nomJoueur)); 
+            }else if(i ==9){
+                hautMainPanel.add(new JLabel("cartes inondations piochés:"));
+            }
+            else{
+                hautMainPanel.add(new JLabel(""));
+            }
+        }
+        mainPanel.add(hautMainPanel,BorderLayout.NORTH);
+       
         
-        //partie haute du panel gauche
-        JPanel hautGauchePanel = new JPanel(new GridLayout(2,1));
-        hautGauchePanel.add(new JLabel("Cartes obtenues par :",SwingConstants.CENTER));
-        hautGauchePanel.add(new JLabel(nomJoueur,SwingConstants.CENTER));
-        gauchePanel.add(hautGauchePanel,BorderLayout.NORTH);
         
-        //partie centrale du panel de gauche
-        JPanel centreGauchePanel = new JPanel(new GridLayout(2,1));
-        centreGauchePanel.add(new JLabel(carte1.toString())); //A mettre ici l'affichage de la carte 1
-        centreGauchePanel.add(new JLabel(carte2.toString())); //A mettre ici l'affichage de la carte 2
-        gauchePanel.add(centreGauchePanel,BorderLayout.CENTER);
-        
-        //partie basse du main
+        //partie basse du mainPanel
         JPanel basGauchePanel = new JPanel(new GridLayout(1,3));
         basGauchePanel.add(new JLabel(""));
         basGauchePanel.add(new JLabel(""));
@@ -67,22 +74,32 @@ public class VueFinDeTour extends Observable {
         basGauchePanel.add(btnOk);
         mainPanel.add(basGauchePanel,BorderLayout.SOUTH);
         
-        //Le panel de droite
-        JPanel droitePanel = new JPanel(new BorderLayout());
-        mainPanel.add(droitePanel,BorderLayout.EAST);
-        
-        //Partie haute du panel de droite
-        JPanel hautDroitePanel = new JPanel(new GridLayout(2,1));
-        hautDroitePanel.add(new JLabel("Niveau d'eau :"+nivEau,SwingConstants.CENTER));
-        hautDroitePanel.add(new JLabel("Inondation de :",SwingConstants.CENTER));
-        droitePanel.add(hautDroitePanel,BorderLayout.NORTH);
-        
-        //Partie central du panel de droite
-        JPanel centreDroitePanel = new JPanel(new GridLayout(tuilesInnondé.size(),1));
-        for(int i =0;i<tuilesInnondé.size();i++){
-            centreDroitePanel.add(new JLabel(tuilesInnondé.get(i).getNomTuile()));
+        //partie central du mainPanel
+        JPanel centrePanel = new JPanel(new GridLayout(tuilesInnondé.length+2,5));
+        for(int i =1;i<(tuilesInnondé.length+2)*5;i++){
+            if(i ==2){
+                JLabel add = new JLabel(carte1.toString());
+                add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+                centrePanel.add(add);
+            }else if(i==7){
+                JLabel add = new JLabel(carte2.toString());
+                add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+                centrePanel.add(add);
+            }else if(i == 14){
+                centrePanel.add(new JLabel(tuilesInnondé[0].getNomcarte()));
+            }else if(i == 19){
+                centrePanel.add(new JLabel(tuilesInnondé[1].getNomcarte()));                
+            }else if(i == 24){
+                centrePanel.add(new JLabel(tuilesInnondé[2].getNomcarte()));                
+            }else if(i == 29){
+                centrePanel.add(new JLabel(tuilesInnondé[3].getNomcarte()));                
+            }else if(i == 34){
+                centrePanel.add(new JLabel(tuilesInnondé[4].getNomcarte()));                
+            }else{
+                centrePanel.add(new JLabel(""));
+            }
         }
-        droitePanel.add(centreDroitePanel,BorderLayout.CENTER);
+        mainPanel.add(centrePanel,BorderLayout.CENTER);
         
         //Traidement des boutons:
         btnOk.addActionListener(new ActionListener() {
@@ -93,6 +110,8 @@ public class VueFinDeTour extends Observable {
             clearChanged();
             }
         });
+        
+        
     }
     
     //Les méthodes: 

@@ -61,7 +61,7 @@ public class Controleur implements Observer {
     private int compteurCartesTirage=0;
     private int compteurInnondation=0;
     private int y=0; //une variable drapeau.
-    private int niveau=0;
+    private int niveau=1;
     private Tuile[][] tuiles;
     private MessageInscription message;
     private MessageAventurier messageAventurier;
@@ -69,8 +69,10 @@ public class Controleur implements Observer {
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
     private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
+    
     private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
     private VueMainTropGrande vueMuligan;
+    private CarteInnondation[] cartesTirées;
     
     public Controleur(){
         joueurs=new ArrayList<>();
@@ -173,7 +175,9 @@ public class Controleur implements Observer {
                 
                 //Fin du tour de jeu : 
                 if(arg1 instanceof String){    //Créer une action plutôt éventuellement..
-                    if(arg1.equals("FINDUTOUR")){
+                    String string = (String) arg1;
+                    if(string == "FINDUTOUR"){
+                        System.out.println("findutour");
                         this.changementJoueur();
                     }
                 }
@@ -433,12 +437,20 @@ public class Controleur implements Observer {
                 listeCartesDesAventuriers.add(pileCartesTirage.get(1));
             }
             // Ici à faire le tirage des innondation et mettre dans l'arraylist les tuiles innondés :
-            ArrayList<Tuile> innondé = new ArrayList<>();
+            System.out.println("testtttt");
+            this.tirerCartesInnondation();
             
+            System.out.println("Niveau de l'eau : "+niveau);
+            System.out.println("taille de cartesTirées : "+cartesTirées.length);
             
             //Afficher la vueFinDeTour :
-            vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),pileCartesTirage.get(0),pileCartesTirage.get(1),niveau,innondé);
+            vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),pileCartesTirage.get(0),pileCartesTirage.get(1),niveau,cartesTirées);
             vuefintour.afficher();
+            vuefintour.addObserver(this);
+            
+            //Les cartes sont retiré de la pile
+            pileCartesTirage.remove(0);
+            pileCartesTirage.remove(1);
           
             //changement de joueur
             joueurCourant = joueurs.get(y);
@@ -545,14 +557,17 @@ public class Controleur implements Observer {
     }
     
     private void tirageCartesInnondation(int n){
-        CarteInnondation[] cartesTirées = new CarteInnondation[n];
+        cartesTirées = new CarteInnondation[n];
         for(int i=0;i<n;i++){
             cartesTirées[i] = paquetInnondation.getPaquet().get(compteurInnondation+n);
         }
         compteurInnondation+=n;
         for(int i=0;i<n;i++){
+                                System.out.println("étage 3");
             for(int x=0;x<6;x++){
+                                    System.out.println("étage 2");
                 for(int y=0;y<6;y++){
+                    System.out.println("étage 1");
                     if(tuiles[x][y]!=null){
                         if(cartesTirées[i].getNomcarte() == tuiles[x][y].getNomTuile()){
                             if(tuiles[x][y].getEtatCase()==EtatCase.NORMAL){
@@ -566,6 +581,7 @@ public class Controleur implements Observer {
                 }
             }
         }
+                            System.out.println("sortie");
     }
     
 }
