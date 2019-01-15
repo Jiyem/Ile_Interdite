@@ -47,6 +47,7 @@ import ile.interdite.Vue.PartiePerdue;
 import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -544,12 +545,31 @@ public class Controleur implements Observer {
         return recup;
     }
     
+    private void retirerCarte(Aventurier joueur, CarteTirage carte){
+        joueur.enleverCarte(carte);
+        int i=0;
+        while(i<listeCartesDesAventuriers.size() && listeCartesDesAventuriers.get(i)!=carte){
+            if(listeCartesDesAventuriers.get(i)==carte){
+                listeCartesDesAventuriers.remove(carte);
+            }
+            i+=1;
+        }
+    }
+    
     private void tirerCartesTrésor(){
         int nbMontéeEaux;
         CarteTirage[] cartesTirées = new CarteTirage[2];
         cartesTirées[0] = pileCartesTirage.get(compteurCartesTirage);
+        if(compteurCartesTirage==26){
+            Collections.shuffle(pileCartesTirage);
+            compteurCartesTirage=0;
+        }
         cartesTirées[1] = pileCartesTirage.get(compteurCartesTirage+1);
         compteurCartesTirage += 2;
+        if(compteurCartesTirage==27){
+            Collections.shuffle(pileCartesTirage);
+            compteurCartesTirage=0;
+        }
         //partie vue à faire
         
         //fin partie vue
