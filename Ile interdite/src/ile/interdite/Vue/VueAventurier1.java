@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
  
-public class VueAventurier1 extends JPanel  {
+public class VueAventurier1 extends Observable  {
      
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
@@ -148,6 +148,9 @@ public class VueAventurier1 extends JPanel  {
         return btnTerminerTour;
     }
     
+    public JPanel getMainPanel(){
+        return mainPanel;
+    }
 //    public void afficher() {
 //        this.window.setVisible(true);
 //    }

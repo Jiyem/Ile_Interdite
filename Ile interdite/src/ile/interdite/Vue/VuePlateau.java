@@ -37,6 +37,7 @@ public class VuePlateau extends Observable{
     private JPanel plateau;
     private JPanel menu;
     private VueAventurier1 aventurier;
+    private JPanel mainPanel;
     
     public VuePlateau(Grille g){
         window = new JFrame();
@@ -46,26 +47,26 @@ public class VuePlateau extends Observable{
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
         window.setLocation(dim.width/2-window.getSize().width/4, dim.height/2-window.getSize().height/2);
-        JPanel mainPanel = new JPanel(new BorderLayout());
+         mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
         plateau = new JPanel();
         this.initPlateau(g);
-        mainPanel.add(plateau,BorderLayout.CENTER);
-        
-//        menu = new JPanel(new GridLayout(1,3));
-        
-//        menu.add();
-        
 
-//        menu.add(aventurier);
+        
+        menu = new JPanel(new GridLayout(1,3));
+        
+//        menu.add();
+        
+        aventurier = new VueAventurier1("thierry", "thierrry", etat_normal);
+        menu.add(aventurier.getMainPanel());
         
         
 //        menu.add();
         
         
         
-//        mainPanel.add(menu,BorderLayout.EAST);
+        mainPanel.add(menu,BorderLayout.EAST);
         
         
         
@@ -116,7 +117,7 @@ public class VuePlateau extends Observable{
         }
         
         //A changer pour tout autre jpanel ou borderlayout ou autre !
-        plateau.add(tuiles);
+        mainPanel.add(tuiles,BorderLayout.CENTER);
     }
     
 //    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){
