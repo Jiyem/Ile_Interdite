@@ -43,6 +43,7 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
+import ile.interdite.Vue.PartiePerdue;
 import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
 import java.io.IOException;
@@ -485,16 +486,62 @@ public class Controleur implements Observer {
 
     public void verifPartiePerdu(){
         if(grille.verifHelioportEstIlCoulé() == true){
-            //Faudra fermer les vues de jeu ici et peut etre ouvrir une vue de partie perdue
+            PartiePerdue partiePerdue = new PartiePerdue();
+            partiePerdue.heliportCoule();
+            partiePerdue.afficher();
+        }
+        if(niveau==10){
+            PartiePerdue partiePerdue = new PartiePerdue();
+            partiePerdue.marqueurMort();
+            partiePerdue.afficher();
         }
         for(int i =0; i < joueurs.size();i++){ //On regarde sur tous les joueurs s'il peuvent se deplacer
             if(joueurs.get(i).getPosition().getEtatCase() == EtatCase.IMMERGEE){
                 if(joueurs.get(i).déplacementPossible(grille).isEmpty()){
-                    //Faudra fermer les vues de jeu ici et peut etre ouvrir une vue de partie perdue
+                    PartiePerdue partiePerdue = new PartiePerdue();
+                    partiePerdue.joueurNoye(joueurs.get(i).getPseudo());
+                    partiePerdue.afficher();
                 }
             }
         }
-        
+        if(tresorRecupéré(Tresor.ZEPHYR)==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Jardin des Hurlements"))==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Jardin des Murmures"))==false){
+            PartiePerdue partiePerdue = new PartiePerdue();
+            partiePerdue.nonRecupTresor("Statue du zéphyr");
+            partiePerdue.afficher();
+        }
+        if(tresorRecupéré(Tresor.CRISTAL)==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("La Caverne du Brasier"))==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("La Caverne des Ombres"))==false){
+            PartiePerdue partiePerdue = new PartiePerdue();
+            partiePerdue.nonRecupTresor("Cristal ardent");
+            partiePerdue.afficher();
+        }
+        if(tresorRecupéré(Tresor.PIERRE)==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Temple de La Lune"))==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Temple du Soleil"))==false){
+            PartiePerdue partiePerdue = new PartiePerdue();
+            partiePerdue.nonRecupTresor("Pierre sacrée");
+            partiePerdue.afficher();
+        }
+        if(tresorRecupéré(Tresor.CALICE)==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Palais des Marees"))==false 
+        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Palais de Corail"))==false){
+            PartiePerdue partiePerdue = new PartiePerdue();
+            partiePerdue.nonRecupTresor("Calice de l'onde");
+            partiePerdue.afficher();
+        }
+    }
+    
+    private boolean tresorRecupéré(Tresor t){
+        boolean recup=false;
+        for (Aventurier joueur : joueurs) {
+            if(joueur.getTresors().contains(t)){
+                recup=true;
+            }
+        }
+        return recup;
     }
     
     private void tirerCartesTrésor(){

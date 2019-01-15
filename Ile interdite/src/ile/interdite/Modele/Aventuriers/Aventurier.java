@@ -200,7 +200,14 @@ public abstract class Aventurier {
     }
     
     public void ajouterTresor(Tresor tresor){
-        tresors.add(tresor);
+        getTresors().add(tresor);
+    }
+
+    /**
+     * @return the tresors
+     */
+    public ArrayList<Tresor> getTresors() {
+        return tresors;
     }
 
 

@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  *
  * @author chapellr
  */
-public class PartiPerdue extends Observable{
+public class PartiePerdue extends Observable{
     private JFrame window;
     private JPanel mainPanel;
     private JLabel finPartie;
@@ -33,7 +33,7 @@ public class PartiPerdue extends Observable{
     private JButton retourAcceuil;
     
     
-    public PartiPerdue(){
+    public PartiePerdue(){
         this.window = new JFrame("Game Over");
         window.setSize(600, 200);
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
