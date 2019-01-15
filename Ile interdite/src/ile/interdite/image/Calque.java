@@ -27,7 +27,8 @@ public class Calque extends JLayeredPane{
         
         
         public Calque(String nomImage){
-            fond = new ImageContainer(this.getPath(nomImage), 0, 0, 0, 0);
+            System.out.println("Bonjour");
+            fond = new ImageContainer(this.getPath(nomImage), 0, 0, 100, 100);
             this.add(fond, -10);
             
             // Repaint : déclenche la méthode paintComponent
@@ -50,7 +51,7 @@ public class Calque extends JLayeredPane{
          * images, à condition que le paintComponent de chaque objet soit appelé
         * avec le même contexte graphique (Graphics)
         */
-    public void paintComponents(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponents(g); //To change body of generated methods, choose Tools | Templates.
         if (this.fond != null) {
             this.fond.paintComponent(g);

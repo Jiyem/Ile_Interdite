@@ -14,11 +14,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,7 +45,7 @@ public class VuePlateau extends Observable{
     private VuePersonnages personnages;
     private JPanel mainPanel;
     
-    public VuePlateau(Grille g, ArrayList joueurs){
+    public VuePlateau(Grille g, ArrayList joueurs) throws IOException{
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -60,7 +64,8 @@ public class VuePlateau extends Observable{
         
         
         personnages = new VuePersonnages(joueurs);
-        menu.add(personnages.getMainPanel());
+        menu.add(personnages);
+
         
         aventurier = new VueAventurier1("thierry", "thierrry", etat_normal);
         menu.add(aventurier.getMainPanel());

@@ -45,6 +45,9 @@ import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
 import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -114,8 +117,13 @@ public class Controleur implements Observer {
                         joueurCourant = joueurs.get(y);                      
                         
                         
-                        /**************************très moche*****************************/          
-                        plateau = new VuePlateau(grille, joueurs);
+                        
+                        /**************************très moche*****************************/
+                        try {
+                            plateau = new VuePlateau(grille, joueurs);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         plateau.afficher();
                         
                         

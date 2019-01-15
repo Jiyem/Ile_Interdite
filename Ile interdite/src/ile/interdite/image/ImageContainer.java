@@ -5,11 +5,17 @@
  */
 package ile.interdite.image;
 
+import ile.interdite.Modele.Aventuriers.Aventurier;
+import ile.interdite.Modele.Aventuriers.Pilote;
+import ile.interdite.Vue.VuePersonnages;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -26,7 +32,9 @@ public class ImageContainer extends JPanel{
     public ImageContainer(String path, int x, int y, int width, int height){
         super();
         this.setOpaque(false);
-
+        System.out.println("Image container");
+        this.setBackground(Color.red);
+        
         this.x = x ;
         this.y = y ;
         this.width = width ;
@@ -38,14 +46,24 @@ public class ImageContainer extends JPanel{
         } catch (IOException ex) {
             System.err.println("Erreur en lecture de l'image " + path);
         }
+        repaint();
     }
-    @Override
-    /**
-     * Gère le dessin effectif de l'image
-     */
-    public void paintComponent(Graphics g) {
+        public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, x, y, width, height, null, this);
+//        g.drawImage(image, x, y, width, height, null, this);
+        g.drawImage(image, x, y, 100, 100, null, this);
+    }
+      public static void main(String[] args) {
+        JFrame window = new JFrame() ;
+        window.setSize(450, 300);
+        // Centrage de la fenêtre sur l'écran
+      
+
+        ImageContainer image = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/"+"personnages/"+"pilote"+".png",0, 0, 100, 100);
+        window.add(image) ;
+        window.setVisible(true);
+//        image.repaint();
+//        window.repaint();
     }
 }
     
