@@ -12,6 +12,7 @@ import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
 import ile.interdite.image.Calque;
+import ile.interdite.image.ImageContainer;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,14 +46,14 @@ private JFrame window;
     
     
     public VueCartesSpé(ArrayList<CarteTirage> cartesSpe){
-this.window = new JFrame();
-window.setSize(600, 200);
-window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-window.setLocationRelativeTo(null);
+//this.window = new JFrame();
+//window.setSize(600, 200);
+//window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+//window.setLocationRelativeTo(null);
 
         //titre
         mainPanel = new JPanel(new BorderLayout());
-window.add(mainPanel);
+//window.add(mainPanel);
         cartesspe = new JLabel("Cartes Spéciales", JLabel.CENTER);
         cartesspe.setFont(new Font("TimesRoman", Font.PLAIN, (cartesspe.getFont().getSize()*2)));
         mainPanel.add(cartesspe, BorderLayout.NORTH);
@@ -62,11 +64,13 @@ window.add(mainPanel);
         contientCartes = new JPanel(new GridLayout(1,4));
         marges.add(contientCartes, BorderLayout.CENTER);
         carteSable = new JButton();
-        Calque c = new Calque("SacsDeSable");
-        carteSable.setIcon(new ImageIcon(c.getPath("/cartes/"+"SacsDeSable")));
+//        Calque c = new Calque("SacsDeSable");
+        ImageContainer c = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/SacsDeSable.png",0,0,500,500);
+//        carteSable.setIcon(new ImageIcon(c.getPath("/cartes/"+"SacsDeSable")));
+        carteSable.add(c);//setIcon((Icon) c);
         contientCartes.add(carteSable);
         nbSable = new JLabel(" X " + nbCartesSable(cartesSpe));
-        nbSable.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()*2));
+        nbSable.setFont(new Font("TimesRoman", Font.PLAIN, (cartesspe.getFont().getSize())));
         contientCartes.add(nbSable);
         carteSable.addActionListener(new ActionListener() {
     @Override
@@ -79,11 +83,14 @@ window.add(mainPanel);
         
         //Cartes speciales - Helico
         carteHelico = new JButton();
-        Calque ca = new Calque("Helicoptere");
-        carteHelico.setIcon(new ImageIcon(c.getPath("/cartes/"+"Helicoptere")));
+//        Calque ca = new Calque("Helicoptere");
+        ImageContainer ca = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/Helicoptere.png",0,0,100,100);
+
+        carteHelico.add(ca);//setIcon((Icon) ca);
+//        carteHelico.setIcon(new ImageIcon(c.getPath("/cartes/"+"Helicoptere")));
         contientCartes.add(carteHelico);
         nbHelico = new JLabel(" X " + nbCartesHelico(cartesSpe));
-        nbHelico.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()*2));
+        nbHelico.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()));
         contientCartes.add(nbHelico);
         carteHelico.addActionListener(new ActionListener() {
     @Override
@@ -128,6 +135,9 @@ window.add(mainPanel);
     }
     public void fermer(){
         this.window.setVisible(false);
+    }
+    public JPanel getMainPanel(){
+        return mainPanel;
     }
     
 }

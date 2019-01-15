@@ -32,6 +32,7 @@ import javax.swing.JPanel;
  */
 public class VuePersonnages  extends JPanel  {
 //    private JPanel mainPanel;
+    private ArrayList<JButton> boutons = new ArrayList<>();
     private JButton btnPerso;
     private Calque imagePerso;
     private Image image ;
@@ -40,11 +41,12 @@ public class VuePersonnages  extends JPanel  {
     public VuePersonnages(ArrayList<Aventurier> joueurs) {
         super(new GridLayout(2, 2));
       
-        
+        // Cas unique où il y a qu'un joueur !
        
         for (int j=0; j<joueurs.size();j++){
             btnPerso = new JButton(joueurs.get(j).getRôle());
             add(btnPerso);
+            boutons.add(btnPerso);
 //            String path = System.getProperty("user.dir")+"/src/ile/interdite/image/images/"+"personnages/"+joueurs.get(j).getRôle()+".png";
 //            mainPanel.setOpaque(false);
 //
@@ -72,7 +74,9 @@ public class VuePersonnages  extends JPanel  {
 //        super.paintComponents(g); //To change body of generated methods, choose Tools | Templates.
 //        g.drawImage(image, 0,0,100,100, null, this);
 //    }
-    
+    public ArrayList<JButton> getButton(){
+        return boutons;
+    }
        
     public static void main(String[] args) {
         JFrame window = new JFrame() ;

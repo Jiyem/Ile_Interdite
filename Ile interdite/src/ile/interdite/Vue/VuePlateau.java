@@ -6,8 +6,10 @@
 package ile.interdite.Vue;
 
 import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.Message;
 import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Modele.Aventuriers.Aventurier;
+import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
@@ -43,9 +45,10 @@ public class VuePlateau extends Observable{
     private JPanel menu;
     private VueAventurier1 aventurier;
     private VuePersonnages personnages;
+    private VueCartesSpé cartesSpe;
     private JPanel mainPanel;
     
-    public VuePlateau(Grille g, ArrayList joueurs) throws IOException{
+    public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes) throws IOException{
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -53,7 +56,7 @@ public class VuePlateau extends Observable{
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
         window.setLocation(dim.width/2-window.getSize().width/4, dim.height/2-window.getSize().height/2);
-         mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
         plateau = new JPanel();
@@ -64,14 +67,25 @@ public class VuePlateau extends Observable{
         
         
         personnages = new VuePersonnages(joueurs);
+        for(int i = 0; i<personnages.getButton().size();i++){
+            personnages.getButton().get(i).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                    setChanged();
+                    notifyObservers(new Message(ActionsType.VALIDE,joueurs.get(i)));
+                    clearChanged();
+                }
+            });
+            
+        }
         menu.add(personnages);
 
         
         aventurier = new VueAventurier1("thierry", "thierrry", etat_normal);
         menu.add(aventurier.getMainPanel());
         
-        
-//        menu.add();
+        cartesSpe = new VueCartesSpé(cartes);
+        menu.add(cartesSpe.getMainPanel());
         
         
         
