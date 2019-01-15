@@ -9,9 +9,12 @@ import ile.interdite.Modele.Cartes.CarteHelicoptere;
 import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
+import ile.interdite.image.Calque;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,9 +30,10 @@ private JFrame window;
     private JLabel cartesspe;
     private JPanel marges;
     private JLabel nbHelico;
-    private JPanel nbSable;
+    private JLabel nbSable;
     private JButton carteSable;
     private JButton carteHelico;
+    private JPanel contientCartes;
     
     
     
@@ -39,14 +43,37 @@ this.window = new JFrame();
 window.setSize(600, 200);
 window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 window.setLocationRelativeTo(null);
-window.add(mainPanel);
-        
+
+        //titre
         mainPanel = new JPanel(new BorderLayout());
+window.add(mainPanel);
         cartesspe = new JLabel("Cartes Spéciales", JLabel.CENTER);
         cartesspe.setFont(new Font("TimesRoman", Font.PLAIN, (cartesspe.getFont().getSize()*2)));
         mainPanel.add(cartesspe, BorderLayout.NORTH);
         marges = new JPanel(new BorderLayout());
         mainPanel.add(marges, BorderLayout.CENTER);
+        
+        //Cartes Speciales - Sac de Sable
+        contientCartes = new JPanel(new GridLayout(1,4));
+        marges.add(contientCartes, BorderLayout.CENTER);
+        carteSable = new JButton();
+        Calque c = new Calque("SacsDeSable");
+        carteSable.setIcon(new ImageIcon(c.getPath("/cartes/"+"SacsDeSable")));
+        contientCartes.add(carteSable);
+        nbSable = new JLabel(" X " + nbCartesSable(cartesSpe));
+        nbSable.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()*2));
+        contientCartes.add(nbSable);
+        
+        //Cartes speciales - Helico
+        carteHelico = new JButton();
+        Calque ca = new Calque("Helicoptere");
+        carteHelico.setIcon(new ImageIcon(c.getPath("/cartes/"+"Helicoptere")));
+        contientCartes.add(carteHelico);
+        nbHelico = new JLabel(" X " + nbCartesHelico(cartesSpe));
+        nbHelico.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()*2));
+        contientCartes.add(nbHelico);
+
+        
         
         
         
@@ -74,4 +101,12 @@ window.add(mainPanel);
         return i;
         
     }
+    
+    public void afficher() {
+        this.window.setVisible(true);
+    }
+    public void fermer(){
+        this.window.setVisible(false);
+    }
+    
 }

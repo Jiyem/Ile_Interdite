@@ -43,6 +43,7 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
+import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
 
 
@@ -77,7 +78,7 @@ public class Controleur implements Observer {
     public Controleur(){
         joueurs=new ArrayList<>();
         inscri.addObserver(this);
-        inscri.afficher();   
+        inscri.afficher();
     }
     @Override
     public void update(Observable arg0, Object arg1) {
