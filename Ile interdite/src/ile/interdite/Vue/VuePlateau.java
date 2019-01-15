@@ -47,6 +47,7 @@ public class VuePlateau extends Observable{
     private VuePersonnages personnages;
     private VueCartesSpé cartesSpe;
     private JPanel mainPanel;
+    private Aventurier joueur;
     
     public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes) throws IOException{
         window = new JFrame();
@@ -68,11 +69,12 @@ public class VuePlateau extends Observable{
         
         personnages = new VuePersonnages(joueurs);
         for(int i = 0; i<personnages.getButton().size();i++){
+            joueur = joueurs.get(i);
             personnages.getButton().get(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                     setChanged();
-                    notifyObservers(new Message(ActionsType.VALIDE,joueurs.get(i)));
+                    notifyObservers(new MessagePlateau(ActionsType.VALIDE,joueur));
                     clearChanged();
                 }
             });
