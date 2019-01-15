@@ -564,11 +564,9 @@ public class Controleur implements Observer {
         }
         compteurInnondation+=n;
         for(int i=0;i<n;i++){
-                                System.out.println("étage 3");
+                                System.out.println("étage"+i);
             for(int x=0;x<6;x++){
-                                    System.out.println("étage 2");
                 for(int y=0;y<6;y++){
-                    System.out.println("étage 1");
                     if(tuiles[x][y]!=null){
                         if(cartesTirées[i].getNomcarte() == tuiles[x][y].getNomTuile()){
                             if(tuiles[x][y].getEtatCase()==EtatCase.NORMAL){
@@ -582,6 +580,9 @@ public class Controleur implements Observer {
                 }
             }
         }
+                            for(int i=0;i<cartesTirées.length;i++){
+                                System.out.println(cartesTirées[i].getNomcarte());
+                            }
                             System.out.println("sortie");
     }
     
