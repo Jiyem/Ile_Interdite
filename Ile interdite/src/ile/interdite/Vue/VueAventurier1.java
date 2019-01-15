@@ -24,7 +24,6 @@ public class VueAventurier1 extends Observable  {
      
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
-//    private final JFrame window;
     private final JPanel panelAventurier;
     private final JPanel mainPanel;
     private final JButton btnBouger  ;
@@ -38,14 +37,9 @@ public class VueAventurier1 extends Observable  {
     
     public VueAventurier1(String nomJoueur, String nomAventurier, Color couleur){
 
-//        this.window = new JFrame();
-//        window.setSize(350, 200);
-        //le titre = nom du joueur 
-//        window.setTitle(nomJoueur);
-        mainPanel = new JPanel(new BorderLayout());
-//        this.window.add(mainPanel);
-//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
+
+        mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(230, 230, 230));
         mainPanel.setBorder(BorderFactory.createLineBorder(couleur, 2)) ;
 

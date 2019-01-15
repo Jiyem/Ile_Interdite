@@ -5,6 +5,7 @@
  */
 package ile.interdite.image;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +38,14 @@ public class ImageContainer extends JPanel{
         } catch (IOException ex) {
             System.err.println("Erreur en lecture de l'image " + path);
         }
+    }
+    @Override
+    /**
+     * Gère le dessin effectif de l'image
+     */
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, x, y, width, height, null, this);
     }
 }
     
