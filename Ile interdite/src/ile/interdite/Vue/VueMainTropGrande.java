@@ -19,12 +19,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -36,30 +38,16 @@ public class VueMainTropGrande extends Observable{
     private  JFrame window;
     private  JPanel panelAventurier;
     private  JPanel mainPanel;
-    private  JButton carte1;
-    private  JButton carte2;
-    private  JButton carte3;
-    private  JButton carte4;
-    private  JButton carte5;
-    private  JButton carte6;
-    private  JButton carte7;
-    private  JButton carte8;
-    private  JButton carte9;
-    private Boolean c1 = false;
-    private Boolean c2 = false;
-    private Boolean c3 = false;
-    private Boolean c4 = false;
-    private Boolean c5 = false;
-    private Boolean c6 = false;
-    private Boolean c7 = false;
-    private Boolean c8 = false;
-    private Boolean c9 = false;
-    private  JButton btnValidation;
-    private JTextField position;
+    private JButton btnValidation = new JButton("Valider les cartes à retirer");
     private ArrayList<JButton> listeBouton;
-    private ArrayList<Boolean> listeBoutonValide;
+    private ArrayList<JButton> listeBoutonValide;
+    private Aventurier jCourant;
+    private JPanel contentPanel;
+    private int nbCartesARetirer;
     
-    public VueMainTropGrande(Aventurier jCourant,int nbCartesAPiocher){
+    public VueMainTropGrande(Aventurier jCourant,int nbCartesARetirer){
+        this.jCourant = jCourant;
+        this.nbCartesARetirer = nbCartesARetirer;
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -73,22 +61,43 @@ public class VueMainTropGrande extends Observable{
         JPanel topPanel = new JPanel(new GridLayout(3,1));
         mainPanel.add(topPanel,BorderLayout.NORTH);
         
-        JPanel contentPanel = new JPanel (new GridLayout(3, 3));
-        listeBouton = new ArrayList<>(Arrays.asList(carte1,carte2,carte3,carte4,carte5,carte6,carte7,carte8,carte9));
-        listeBoutonValide = new ArrayList<>(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9));
+        int nbligne = jCourant.getCartes().size();
+        if(nbligne % 3 != 0){
+            nbligne = 1+((int)nbligne/3);
+        }
+        contentPanel = new JPanel(new GridLayout(nbligne,3));  
+        listeBouton = new ArrayList<>();
+        
         
         for(int i = 0;i < jCourant.getCartes().size();i++){
             if(jCourant.getCartes().get(i) != null){
-                listeBouton.get(i).add(new JLabel(jCourant.getCartes().get(i).getType().name()));
-                contentPanel.add(listeBouton.get(i));
+                final JButton jb = new JButton(jCourant.getCartes().get(i).getType().name());
+                listeBouton.add(jb);
+                jb.setBackground(Color.white);
+                jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(!listeBoutonValide.contains(jb)){
+                        jb.setBackground(Color.gray);
+                        listeBoutonValide.add(jb);
+                        activerBtnValider();
+                    } 
+                    else {
+                        jb.setBackground(Color.white);
+                        listeBoutonValide.remove(jb);
+                        activerBtnValider();
+                    }
+                }
+                });
+                contentPanel.add(jb);
             }
         }
-        contentPanel.setSize(contentPanel.getPreferredSize());
+        
         mainPanel.add(contentPanel, BorderLayout.CENTER);
         
         JPanel downPanel = new JPanel (new GridLayout(3, 1));
         mainPanel.add(downPanel,BorderLayout.SOUTH);
-        downPanel.add(new JLabel(""));
+        downPanel.add(new JLabel("Vous allez devoir retirer au moins "+ nbCartesARetirer + " cartes",SwingConstants.CENTER));
         downPanel.add(btnValidation);
         downPanel.add(new JLabel(""));
         
@@ -96,180 +105,40 @@ public class VueMainTropGrande extends Observable{
         btnValidation.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ArrayList<CarteTirage> listeCartesASupprimer = new ArrayList<>();
-            for(int i =0;i < listeBoutonValide.size();i++){
-                if(listeBoutonValide.get(i) == true){
-                    listeCartesASupprimer.add(jCourant.getCartes().get(i));
-                }
-            }
             setChanged();
-            notifyObservers(new MessageMuligan(listeCartesASupprimer));
+            notifyObservers(new MessageMuligan(donnerArrayListCarteAEnlever()));
             clearChanged();
             }
         });
-        
-        carte1.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c1 == false){
-                    carte1.setBackground(Color.gray);
-                    activerBtnValider();
-                    c1 = true;
-                }
-                if(c1 == true){
-                    carte1.setBackground(Color.gray);
-                    activerBtnValider();
-                    c1 = false;
-                } 
-            }
-        });
-        
-        carte2.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c2 == false){
-                    carte2.setBackground(Color.gray);
-                    activerBtnValider();
-                    c2 = true;
-                }
-                if(c2 == true){
-                    carte2.setBackground(Color.gray);
-                    activerBtnValider();
-                    c2 = false;
-                
-            }
-            }
-        });
-                
-                
-        carte3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c3 == false){
-                    carte3.setBackground(Color.gray);
-                    activerBtnValider();
-                    c3 = true;
-                }
-                if(c3 == true){
-                    carte3.setBackground(Color.gray);
-                    activerBtnValider();
-                    c3 = false;
-                } 
-            }
-        });
-               
-        carte4.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c4 == false){
-                    carte4.setBackground(Color.gray);
-                    activerBtnValider();
-                    c4 = true;
-                }
-                if(c4 == true){
-                    carte4.setBackground(Color.gray);
-                    activerBtnValider();
-                    c4 = false;
-                
-            }
-            }
-        });
-        
-        carte5.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c5 == false){
-                    carte5.setBackground(Color.gray);
-                    activerBtnValider();
-                    c5 = true;
-                }
-                if(c5 == true){
-                    carte5.setBackground(Color.gray);
-                    activerBtnValider();
-                    c5 = false;
-                } 
-            }
-        });
-        
-        carte6.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c6 == false){
-                    carte6.setBackground(Color.gray);
-                    activerBtnValider();
-                    c6 = true;
-                }
-                if(c6 == true){
-                    carte6.setBackground(Color.gray);
-                    activerBtnValider();
-                    c6 = false;
-                } 
-            }
-            
-        });
-        
-        carte7.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c7 == false){
-                    carte7.setBackground(Color.gray);
-                    activerBtnValider();
-                    c7 = true;
-                }
-                if(c7 == true){
-                    carte7.setBackground(Color.gray);
-                    activerBtnValider();
-                    c7 = false;
-                } 
-            }
-            
-        });
-        
-        carte8.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                if(c8 == false){
-                    carte8.setBackground(Color.gray);
-                    activerBtnValider();
-                    c8 = true;
-                }
-                if(c8 == true){
-                    carte8.setBackground(Color.gray);
-                    activerBtnValider();
-                    c8 = false;
-                } 
-            }
-        });
-        
-        carte9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(c9 == false){
-                    carte9.setBackground(Color.gray);
-                    activerBtnValider();
-                    c9 = true;
-                }
-                if(c9 == true){
-                    carte9.setBackground(Color.gray);
-                    activerBtnValider();
-                    c9 = false;
-                } 
-            }
-        });
+        listeBoutonValide = new ArrayList<>();
+       
     }
     
     public void activerBtnValider(){
-        int cartevalide =0;
-        for(int i = 0;i < listeBoutonValide.size();i++){
-            if(listeBoutonValide.get(i) == true){
-                cartevalide = cartevalide +1;
-            }
-        }
-        if(cartevalide >= 2){
+        if(listeBoutonValide.size() >= nbCartesARetirer){
             btnValidation.setEnabled(true);
         }
-        else if(cartevalide < 2){
+        else{
             btnValidation.setEnabled(false);
         }
     }
+
+    public void afficher() {
+        this.window.setVisible(true);
+    }
+    
+    public void fermer(){
+        this.window.setVisible(false);
+    }
+    
+    public ArrayList<CarteTirage> donnerArrayListCarteAEnlever(){
+        ArrayList<CarteTirage> cartes = new ArrayList<CarteTirage>();
+        for(int i = 0;i<jCourant.getCartes().size();i++){
+            if(listeBoutonValide.contains(jCourant.getCartes().get(i).getType().name())){
+                cartes.add(jCourant.getCartes().get(i));
+            } 
+        }
+        return cartes;
+    }
+    
 }
