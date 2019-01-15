@@ -41,7 +41,7 @@ public class VuePlateau extends Observable{
     private VuePersonnages personnages;
     private JPanel mainPanel;
     
-    public VuePlateau(Grille g){
+    public VuePlateau(Grille g, ArrayList joueurs){
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels

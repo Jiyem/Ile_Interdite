@@ -96,9 +96,7 @@ public class Controleur implements Observer {
                         this.initialisationGrille();
                         
                         
-                        /**************************très moche*****************************/          
-                        plateau = new VuePlateau(grille);
-                        plateau.afficher();
+                        
                         
                         
                         //mise de la grille dans la liste tuiles
@@ -111,6 +109,15 @@ public class Controleur implements Observer {
                         System.out.println("La grille est initialisée");
                         // mise en place du joueur courant.
                         joueurCourant = joueurs.get(y);                      
+                        
+                        
+                        /**************************très moche*****************************/          
+                        plateau = new VuePlateau(grille, joueurs);
+                        plateau.afficher();
+                        
+                        
+                        
+                        
                         //mise ne place du nombre d'action pour le 1er joueur
                         if(joueurCourant.getClass() == Navigateur.class){
                             nombreAction = 4;
