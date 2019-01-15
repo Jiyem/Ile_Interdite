@@ -5,6 +5,8 @@
  */
 package ile.interdite.Vue;
 
+import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.Message;
 import ile.interdite.Modele.Cartes.CarteHelicoptere;
 import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Cartes.TypeCarte;
@@ -13,7 +15,10 @@ import ile.interdite.image.Calque;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +29,7 @@ import javax.swing.JPanel;
  *
  * @author chapellr
  */
-public class VueCartesSpé {
+public class VueCartesSpé extends Observable{
 private JFrame window;
     private JPanel mainPanel;
     private JLabel cartesspe;
@@ -63,6 +68,14 @@ window.add(mainPanel);
         nbSable = new JLabel(" X " + nbCartesSable(cartesSpe));
         nbSable.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()*2));
         contientCartes.add(nbSable);
+        carteSable.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        setChanged();
+        notifyObservers(new Message(ActionsType.UTILISATION_CARTE_SABLE));
+        clearChanged();
+    }
+        });
         
         //Cartes speciales - Helico
         carteHelico = new JButton();
@@ -72,6 +85,14 @@ window.add(mainPanel);
         nbHelico = new JLabel(" X " + nbCartesHelico(cartesSpe));
         nbHelico.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()*2));
         contientCartes.add(nbHelico);
+        carteHelico.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        setChanged();
+        notifyObservers(new Message(ActionsType.UTILISATION_CARTE_HELICO));
+        clearChanged();
+    }
+        });
 
         
         

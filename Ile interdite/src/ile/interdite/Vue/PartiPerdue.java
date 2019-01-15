@@ -5,10 +5,15 @@
  */
 package ile.interdite.Vue;
 
+import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.Message;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +29,8 @@ public class PartiPerdue extends Observable{
     private JPanel marges;
     private JLabel cause;
     private JPanel contientCause;
-    
+    private JPanel panelFooter;
+    private JButton retourAcceuil;
     
     
     public PartiPerdue(){
@@ -40,6 +46,21 @@ public class PartiPerdue extends Observable{
         marges = new JPanel(new BorderLayout());
         mainPanel.add(marges, BorderLayout.CENTER);
         
+        panelFooter = new JPanel(new GridLayout(3,1));
+        mainPanel.add(panelFooter, BorderLayout.SOUTH);
+        retourAcceuil = new JButton("Retour page d'acceuil");
+        panelFooter.add(new JLabel(""));
+        panelFooter.add(retourAcceuil);
+        panelFooter.add(new JLabel(""));
+        
+        retourAcceuil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                setChanged();
+                notifyObservers(new Message(ActionsType.PAGE_ACCUEIL));
+                clearChanged();
+            }
+        });
         
     }
     
