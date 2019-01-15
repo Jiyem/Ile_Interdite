@@ -29,6 +29,7 @@ import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
+import ile.interdite.Modele.Cartes.CarteInnondation;
 import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
 import static ile.interdite.Modele.Cartes.TypeCarte.SacDeSable;
@@ -519,6 +520,45 @@ public class Controleur implements Observer {
         //
         paquetInnondation.melangeMonteeEaux(compteurInnondation);
         compteurInnondation=0;
+    }
+    
+    private void tirerCartesInnondation(){
+        if(niveau == 1 ||niveau == 2){
+            tirageCartesInnondation(2);
+        }
+        if(niveau == 3 ||niveau == 4||niveau==5){
+            tirageCartesInnondation(3);
+        }
+        if(niveau == 6 ||niveau == 7){
+            tirageCartesInnondation(4);
+        }
+        if(niveau == 8 ||niveau == 9){
+            tirageCartesInnondation(5);
+        }
+    }
+    
+    private void tirageCartesInnondation(int n){
+        CarteInnondation[] cartesTirées = new CarteInnondation[n];
+        for(int i=0;i<n;i++){
+            cartesTirées[i] = paquetInnondation.getPaquet().get(compteurInnondation+n);
+        }
+        compteurInnondation+=n;
+        for(int i=0;i<n;i++){
+            for(int x=0;x<6;x++){
+                for(int y=0;y<6;y++){
+                    if(tuiles[x][y]!=null){
+                        if(cartesTirées[i].getNomcarte() == tuiles[x][y].getNomTuile()){
+                            if(tuiles[x][y].getEtatCase()==EtatCase.NORMAL){
+                                tuiles[x][y].setEtatCase(EtatCase.INNONDEE);
+                            }else if(tuiles[x][y].getEtatCase()==EtatCase.INNONDEE){
+                                tuiles[x][y].setEtatCase(EtatCase.IMMERGEE);
+                                paquetInnondation.retirer(cartesTirées[i].getNomcarte());
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }
