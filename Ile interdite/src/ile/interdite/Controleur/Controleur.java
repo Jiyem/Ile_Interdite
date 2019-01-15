@@ -559,14 +559,16 @@ public class Controleur implements Observer {
     
     private void tirageCartesInnondation(int n){
         cartesTirées = new CarteInnondation[n];
+        int x,y;
         for(int i=0;i<n;i++){
-            cartesTirées[i] = paquetInnondation.getPaquet().get(compteurInnondation+n);
+            cartesTirées[i] = paquetInnondation.getPaquet().get(compteurInnondation+i);
         }
         compteurInnondation+=n;
         for(int i=0;i<n;i++){
-                                System.out.println("étage"+i);
-            for(int x=0;x<6;x++){
-                for(int y=0;y<6;y++){
+            x=0;
+            y=0;
+            while(x<6 && (tuiles[x][y]==null ||(cartesTirées[i].getNomcarte() != tuiles[x][y].getNomTuile()))){
+                while(y<6 && (tuiles[x][y]==null ||(cartesTirées[i].getNomcarte() != tuiles[x][y].getNomTuile()))){
                     if(tuiles[x][y]!=null){
                         if(cartesTirées[i].getNomcarte() == tuiles[x][y].getNomTuile()){
                             if(tuiles[x][y].getEtatCase()==EtatCase.NORMAL){
@@ -577,14 +579,13 @@ public class Controleur implements Observer {
                             }
                         }
                     }
+                    y+=1;
                 }
+                x+=1;
+                y=0;
             }
         }
-                            for(int i=0;i<cartesTirées.length;i++){
-                                System.out.println(cartesTirées[i].getNomcarte());
-                            }
-                            System.out.println("sortie");
     }
-    
 }
+
 

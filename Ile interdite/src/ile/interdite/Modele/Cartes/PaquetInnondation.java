@@ -48,6 +48,7 @@ public class PaquetInnondation {
             if(paquet.get(i).getNomcarte()==nom){
                 paquet.remove(i);
             }
+            i+=1;
         }
     }
     
