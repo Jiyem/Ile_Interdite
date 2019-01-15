@@ -42,6 +42,7 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
+import ile.interdite.Vue.VueFinDeTour;
 
 
 /**
@@ -52,6 +53,7 @@ public class Controleur implements Observer {
     private ArrayList<Aventurier>joueurs;
     private VueInscription inscri = new VueInscription();
     private VueAventurier vueAventurier;
+    private VueFinDeTour vuefintour;
     private HashMap<Couleur, String> depart = new HashMap<>();
     private Grille grille;
     private int nombreAction;
@@ -131,35 +133,43 @@ public class Controleur implements Observer {
             
             //Tour de jeu:
             }
-                joueurCourant = joueurs.get(y);
-                //Tour n°1 : 
-                if(arg1 instanceof MessageAventurier){
-                    messageAventurier = (MessageAventurier) arg1 ;
-                    if(messageAventurier.getAction()==ActionsType.DEPLACER){
-                        //faire le déplacement
-                        if(joueurCourant.ouAller(grille)==true){
-                            this.déplacer();
-                        };  
-                    }
-                    else if(messageAventurier.getAction()==ActionsType.ASSECHER){
-                        //faire l'assecheemnt
-                        this.assécher();  
-                    }
-                    else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
-                        //faire autre action
-                        this.autreAction(); 
-                    }
-                    else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
-                        //faire la fin du tour.;
-                        this.passerTour();
-                    }
-                    //Verification de fin de tour et changement tour
-                    this.changementTour();  
-                    
-//                    if(joueurCourant.getCartes().size() == 9){
-//                        vueMuligan = new VueMainTropGrand(joueurCourant,nbCartesApriocher);
-//                    }
+            joueurCourant = joueurs.get(y);
+            //Tour n°1 : 
+            if(arg1 instanceof MessageAventurier){
+                messageAventurier = (MessageAventurier) arg1 ;
+                if(messageAventurier.getAction()==ActionsType.DEPLACER){
+                    //faire le déplacement
+                    if(joueurCourant.ouAller(grille)==true){
+                        this.déplacer();
+                    };  
                 }
+                else if(messageAventurier.getAction()==ActionsType.ASSECHER){
+                    //faire l'assecheemnt
+                    this.assécher();  
+                }
+                else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
+                    //faire autre action
+                    this.autreAction(); 
+                }
+                else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
+                    //faire la fin du tour.;
+                this.passerTour();
+                }
+                //Verification de fin de tour et changement tour
+                this.changementTour();  
+                    
+//              if(joueurCourant.getCartes().size() == 9){
+//              vueMuligan = new VueMainTropGrand(joueurCourant,nbCartesApriocher);
+//              }
+                }
+                
+                //Fin du tour de jeu : 
+                if(arg1 instanceof String){    //Créer une action plutôt éventuellement..
+                    if(arg1.equals("FINDUTOUR")){
+                        this.changementJoueur();
+                    }
+                }
+                
                 
 
                   
@@ -413,23 +423,36 @@ public class Controleur implements Observer {
             }
             if(pileCartesTirage.get(1).getType() == SacDeSable || pileCartesTirage.get(1).getType() == Helicoptere){
                 listeCartesDesAventuriers.add(pileCartesTirage.get(1));
-            }    
+            }
+            // Ici à faire le tirage des innondation et mettre dans l'arraylist les tuiles innondés :
+            ArrayList<Tuile> innondé = new ArrayList<>();
             
+            
+            //Afficher la vueFinDeTour :
+            vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),pileCartesTirage.get(0),pileCartesTirage.get(1),niveau,innondé);
+            vuefintour.afficher();
           
             //changement de joueur
             joueurCourant = joueurs.get(y);
-            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
-            vueAventurier.addObserver(this);
-            vueAventurier.afficher();
-            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
-            if(joueurCourant.getClass() == Navigateur.class){
-                nombreAction = 4;
-            }else{
-                nombreAction=3;                                
-            }
-            System.out.println("Changement de joueur");
-            }
+        }
     }
+    
+    private void changementJoueur(){
+        vuefintour.close();
+        
+        
+        vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
+        vueAventurier.addObserver(this);
+        vueAventurier.afficher();
+        vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
+        if(joueurCourant.getClass() == Navigateur.class){
+            nombreAction = 4;
+        }else{
+            nombreAction=3;                                
+        }
+       System.out.println("Changement de joueur");
+       }
+ 
 
     public void verifPartiePerdu(){
         if(grille.verifHelioportEstIlCoulé() == true){

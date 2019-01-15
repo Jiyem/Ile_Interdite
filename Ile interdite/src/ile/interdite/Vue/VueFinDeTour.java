@@ -47,7 +47,7 @@ public class VueFinDeTour extends Observable {
         mainPanel.add(gauchePanel,BorderLayout.WEST);
         
         //partie haute du panel gauche
-        JPanel hautGauchePanel = new JPanel(new GridLayout(1,2));
+        JPanel hautGauchePanel = new JPanel(new GridLayout(2,1));
         hautGauchePanel.add(new JLabel("Cartes obtenues par :"));
         hautGauchePanel.add(new JLabel(nomJoueur));
         gauchePanel.add(hautGauchePanel,BorderLayout.NORTH);
@@ -71,13 +71,13 @@ public class VueFinDeTour extends Observable {
         mainPanel.add(droitePanel,BorderLayout.EAST);
         
         //Partie haute du panel de droite
-        JPanel hautDroitePanel = new JPanel(new GridLayout(1,2));
+        JPanel hautDroitePanel = new JPanel(new GridLayout(2,1));
         hautDroitePanel.add(new JLabel("Niveau d'eau :"+nivEau));
         hautDroitePanel.add(new JLabel("Inondation de :"));
         droitePanel.add(hautDroitePanel,BorderLayout.NORTH);
         
         //Partie central du panel de droite
-        JPanel centreDroitePanel = new JPanel(new GridLayout(1,tuilesInnondé.size()));
+        JPanel centreDroitePanel = new JPanel(new GridLayout(tuilesInnondé.size(),1));
         for(int i =0;i<tuilesInnondé.size();i++){
             centreDroitePanel.add(new JLabel(tuilesInnondé.get(i).getNomTuile()));
         }
@@ -88,7 +88,7 @@ public class VueFinDeTour extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers();
+            notifyObservers("FINDUTOUR");
             clearChanged();
             }
         });
