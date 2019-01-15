@@ -13,4 +13,9 @@ public class CarteMonteeDesEaux extends CarteTirage{
     public CarteMonteeDesEaux(){
         super(TypeCarte.MonteeDesEaux);
     }
+    
+    public String toString(){
+        return "Montée des eaux";
+    }
+    
 }

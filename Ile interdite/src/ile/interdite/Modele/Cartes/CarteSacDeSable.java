@@ -40,6 +40,9 @@ public class CarteSacDeSable extends CarteTirage {
         tuile.setEtatCase(NORMAL);
     }
     
+    public String toString(){
+        return "Sac de sable";
+    }
     
     
 }

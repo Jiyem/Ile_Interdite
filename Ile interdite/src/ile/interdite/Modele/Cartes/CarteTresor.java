@@ -22,4 +22,8 @@ public class CarteTresor extends CarteTirage {
     public Tresor getTresor(){
         return tresor;
     }
+    
+    public String toString(){
+        return tresor.toString();
+    }
 }

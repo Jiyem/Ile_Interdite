@@ -55,4 +55,8 @@ public class CarteHelicoptere extends CarteTirage{
         }
     }
     
+    public String toString(){
+        return "Helicoptere";
+    }
+    
 }

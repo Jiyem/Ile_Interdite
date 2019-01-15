@@ -35,6 +35,12 @@ public class CarteTirage {
         }
     }
     
+    @Override
+    public String toString(){
+        return null;
+    }
+    
+    
     public Tresor getTresor(){
         return null;
     }

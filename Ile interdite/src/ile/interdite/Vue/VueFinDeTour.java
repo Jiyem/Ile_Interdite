@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -48,23 +49,23 @@ public class VueFinDeTour extends Observable {
         
         //partie haute du panel gauche
         JPanel hautGauchePanel = new JPanel(new GridLayout(2,1));
-        hautGauchePanel.add(new JLabel("Cartes obtenues par :"));
-        hautGauchePanel.add(new JLabel(nomJoueur));
+        hautGauchePanel.add(new JLabel("Cartes obtenues par :",SwingConstants.CENTER));
+        hautGauchePanel.add(new JLabel(nomJoueur,SwingConstants.CENTER));
         gauchePanel.add(hautGauchePanel,BorderLayout.NORTH);
         
         //partie centrale du panel de gauche
-        JPanel centreGauchePanel = new JPanel();
+        JPanel centreGauchePanel = new JPanel(new GridLayout(2,1));
         centreGauchePanel.add(new JLabel(carte1.toString())); //A mettre ici l'affichage de la carte 1
         centreGauchePanel.add(new JLabel(carte2.toString())); //A mettre ici l'affichage de la carte 2
         gauchePanel.add(centreGauchePanel,BorderLayout.CENTER);
         
-        //partie basse du panel de gauche
-        JPanel basGauchePanel = new JPanel(new GridLayout(3,1));
+        //partie basse du main
+        JPanel basGauchePanel = new JPanel(new GridLayout(1,3));
         basGauchePanel.add(new JLabel(""));
         basGauchePanel.add(new JLabel(""));
         JButton btnOk = new JButton("OK");
         basGauchePanel.add(btnOk);
-        gauchePanel.add(basGauchePanel,BorderLayout.SOUTH);
+        mainPanel.add(basGauchePanel,BorderLayout.SOUTH);
         
         //Le panel de droite
         JPanel droitePanel = new JPanel(new BorderLayout());
@@ -72,8 +73,8 @@ public class VueFinDeTour extends Observable {
         
         //Partie haute du panel de droite
         JPanel hautDroitePanel = new JPanel(new GridLayout(2,1));
-        hautDroitePanel.add(new JLabel("Niveau d'eau :"+nivEau));
-        hautDroitePanel.add(new JLabel("Inondation de :"));
+        hautDroitePanel.add(new JLabel("Niveau d'eau :"+nivEau,SwingConstants.CENTER));
+        hautDroitePanel.add(new JLabel("Inondation de :",SwingConstants.CENTER));
         droitePanel.add(hautDroitePanel,BorderLayout.NORTH);
         
         //Partie central du panel de droite
