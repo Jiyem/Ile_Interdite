@@ -30,7 +30,7 @@ public class Ingenieur extends Aventurier{
 
     @Override
     public String getRôle() {
-        return "Ingenieur";
+        return "ingenieur";
     }
 
 }

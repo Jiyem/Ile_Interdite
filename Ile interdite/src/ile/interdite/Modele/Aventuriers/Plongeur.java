@@ -40,7 +40,7 @@ public class Plongeur extends Aventurier{
 
     @Override
     public String getRôle() {
-        return "Plongeur";
+        return "plongeur";
     }
 
 }

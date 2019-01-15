@@ -69,7 +69,7 @@ public class Explorateur extends Aventurier{
 
     @Override
     public String getRôle() {
-        return "Explorateur";
+        return "explorateur";
     }
 
     

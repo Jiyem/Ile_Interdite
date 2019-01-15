@@ -38,7 +38,7 @@ public class Pilote extends Aventurier{
     //Comme les assechements du pilote sont basiques pas besoin de redefinir les fonctions
     @Override
     public String getRôle() {
-        return "Pilote";
+        return "pilote";
     }
     
     @Override

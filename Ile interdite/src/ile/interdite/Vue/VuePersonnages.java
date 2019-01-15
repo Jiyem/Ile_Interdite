@@ -34,4 +34,7 @@ public class VuePersonnages  {
         }
         
     }
+    public JPanel getMainPanel(){
+        return mainPanel;
+    }
 }

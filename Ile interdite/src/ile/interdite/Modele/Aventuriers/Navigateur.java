@@ -29,7 +29,7 @@ public class Navigateur extends Aventurier{
     
     @Override
     public String getRôle() {
-        return "Navigateur";
+        return "navigateur";
     }
 
 }

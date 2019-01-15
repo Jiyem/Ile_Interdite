@@ -7,6 +7,7 @@ package ile.interdite.Vue;
 
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.MessagePlateau;
+import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
@@ -37,6 +38,7 @@ public class VuePlateau extends Observable{
     private JPanel plateau;
     private JPanel menu;
     private VueAventurier1 aventurier;
+    private VuePersonnages personnages;
     private JPanel mainPanel;
     
     public VuePlateau(Grille g){
@@ -56,7 +58,9 @@ public class VuePlateau extends Observable{
         
         menu = new JPanel(new GridLayout(1,3));
         
-//        menu.add();
+        
+        personnages = new VuePersonnages(joueurs);
+        menu.add(personnages.getMainPanel());
         
         aventurier = new VueAventurier1("thierry", "thierrry", etat_normal);
         menu.add(aventurier.getMainPanel());

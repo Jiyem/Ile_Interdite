@@ -32,7 +32,7 @@ public class Messager extends Aventurier{
 
     @Override
     public String getRôle() {
-        return "Messager";
+        return "messager";
     }
     
     @Override
