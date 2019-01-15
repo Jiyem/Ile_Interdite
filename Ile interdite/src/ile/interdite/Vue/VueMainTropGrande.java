@@ -106,7 +106,7 @@ public class VueMainTropGrande extends Observable{
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageMuligan(donnerArrayListCarteAEnlever()));
+            notifyObservers(new MessageMuligan(ActionsType.RETIRER_CARTE,donnerArrayListCarteAEnlever()));
             clearChanged();
             }
         });
