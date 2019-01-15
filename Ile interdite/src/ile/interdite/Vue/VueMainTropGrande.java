@@ -136,7 +136,7 @@ public class VueMainTropGrande extends Observable{
         for(int i = 0;i<jCourant.getCartes().size();i++){
             if(listeBoutonValide.contains(jCourant.getCartes().get(i).getType().name())){
                 cartes.add(jCourant.getCartes().get(i));
-            } 
+            }
         }
         return cartes;
     }
