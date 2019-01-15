@@ -27,16 +27,16 @@ public class Calque extends JLayeredPane{
         
         
         public Calque(String nomImage){
-            fond = new ImageContainer(this.getPath(nomImage)+".png", 0, 0, 0, 0);
+            fond = new ImageContainer(this.getPath(nomImage), 0, 0, 0, 0);
             this.add(fond, -10);
             
             // Repaint : déclenche la méthode paintComponent
             this.repaint();
         }
         
-        //nomRepertoire doit être écrit comme ça : "/nomRepertoire/"
+        //nomRepertoire doit être écrit comme ça : "nomRepertoire"
         public Calque(String nomRepertoire, String nomImage){
-            fond = new ImageContainer(this.getPath(nomRepertoire,nomImage)+".png", 0, 0, 0, 0);
+            fond = new ImageContainer(this.getPath(nomRepertoire,nomImage), 0, 0, 0, 0);
             this.add(fond, -10);
             
             // Repaint : déclenche la méthode paintComponent
@@ -65,7 +65,7 @@ public class Calque extends JLayeredPane{
         
         /* Procedure pour avoir l'image dans le repertoire choisi */
         public String getPath(String repertoire, String nomImage){
-        String imgFolder = System.getProperty("user.dir") + "/src/ile/interdite/image/images/" + repertoire + nomImage +".png";
+        String imgFolder = System.getProperty("user.dir") + "/src/ile/interdite/image/images/" + repertoire +"/"+ nomImage +".png";
         return imgFolder;
         }
         

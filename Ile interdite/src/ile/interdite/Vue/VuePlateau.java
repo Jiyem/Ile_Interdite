@@ -56,7 +56,7 @@ public class VuePlateau extends Observable{
         this.initPlateau(g);
 
         
-        menu = new JPanel(new GridLayout(1,3));
+        menu = new JPanel(new GridLayout(3,1));
         
         
         personnages = new VuePersonnages(joueurs);

@@ -25,14 +25,15 @@ public class VuePersonnages  {
     public VuePersonnages(ArrayList<Aventurier> joueurs){
         mainPanel = new JPanel();
         if (joueurs.size()==2){
-        personnage = new JPanel(new GridLayout(1, 2));
+        personnage = new JPanel(new GridLayout(2, 1));
         }
         else personnage = new JPanel(new GridLayout(2, 2));
         
         for (int j=0; j<joueurs.size();j++){
-            personnage.add(new Calque("/personnages/", joueurs.get(j).getRôle()));
+            
+            personnage.add(new Calque("personnages", joueurs.get(j).getRôle()));
         }
-        
+        mainPanel.add(personnage);
     }
     public JPanel getMainPanel(){
         return mainPanel;
