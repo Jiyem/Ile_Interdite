@@ -75,8 +75,8 @@ public class VueFinDeTour extends Observable {
         mainPanel.add(basGauchePanel,BorderLayout.SOUTH);
         
         //partie central du mainPanel
-        JPanel centrePanel = new JPanel(new GridLayout(tuilesInnondé.length+2,5));
-        for(int i =1;i<(tuilesInnondé.length+2)*5;i++){
+        JPanel centrePanel = new JPanel(new GridLayout(tuilesInnondé.length,5));
+        for(int i =1;i<(tuilesInnondé.length)*5;i++){
             if(i ==2){
                 JLabel add = new JLabel(carte1.toString());
                 add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
@@ -85,15 +85,15 @@ public class VueFinDeTour extends Observable {
                 JLabel add = new JLabel(carte2.toString());
                 add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
                 centrePanel.add(add);
-            }else if(i == 14){
+            }else if(i == 4){
                 centrePanel.add(new JLabel(tuilesInnondé[0].getNomcarte()));
-            }else if(i == 19){
+            }else if(i == 9){
                 centrePanel.add(new JLabel(tuilesInnondé[1].getNomcarte()));                
-            }else if(i == 24){
+            }else if(i == 14){
                 centrePanel.add(new JLabel(tuilesInnondé[2].getNomcarte()));                
-            }else if(i == 29){
+            }else if(i == 19){
                 centrePanel.add(new JLabel(tuilesInnondé[3].getNomcarte()));                
-            }else if(i == 34){
+            }else if(i == 24){
                 centrePanel.add(new JLabel(tuilesInnondé[4].getNomcarte()));                
             }else{
                 centrePanel.add(new JLabel(""));
