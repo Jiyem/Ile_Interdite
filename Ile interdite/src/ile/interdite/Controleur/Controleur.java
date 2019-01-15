@@ -41,6 +41,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
+import ile.interdite.Modele.Cartes.TypeCarte;
 
 
 /**
@@ -54,7 +55,10 @@ public class Controleur implements Observer {
     private HashMap<Couleur, String> depart = new HashMap<>();
     private Grille grille;
     private int nombreAction;
+    private int compteurCartesTirage=0;
+    private int compteurInnondation=0;
     private int y=0; //une variable drapeau.
+    private int niveau=0;
     private Tuile[][] tuiles;
     private MessageInscription message;
     private MessageAventurier messageAventurier;
@@ -439,6 +443,59 @@ public class Controleur implements Observer {
             }
         }
         
+    }
+    
+    private void tirerCartesTrésor(){
+        int nbMontéeEaux;
+        CarteTirage[] cartesTirées = new CarteTirage[2];
+        cartesTirées[0] = pileCartesTirage.get(compteurCartesTirage);
+        cartesTirées[1] = pileCartesTirage.get(compteurCartesTirage+1);
+        compteurCartesTirage += 2;
+        //partie vue à faire
+        
+        //fin partie vue
+        nbMontéeEaux = NbCartesMontéeEaux(cartesTirées);
+        retirerMonteeDesEaux(cartesTirées, nbMontéeEaux);
+        //envoyer cartesTirées à la vue aventurier -> les ajouter au tas de cartes des aventuriers
+        
+        //
+        for(int i=0;i<2-nbMontéeEaux;i++){
+            joueurCourant.ajouterCartes(cartesTirées[i]);
+        }
+        monteesDesEauxPiochees(nbMontéeEaux);
+    }
+    
+    private int NbCartesMontéeEaux(CarteTirage[] cartes){
+        int compteur=0;
+        if(cartes[0].getType()==TypeCarte.MonteeDesEaux){
+            compteur+=1;
+        }
+        if(cartes[1].getType()==TypeCarte.MonteeDesEaux){
+            compteur+=1;
+        }
+        return compteur;
+    }
+    
+    private void retirerMonteeDesEaux(CarteTirage[] cartes, int n){
+        CarteTirage[] nouvellesCartes = new CarteTirage[2-n];
+        int compteur=0;
+        if(cartes[0].getType()!=TypeCarte.MonteeDesEaux){
+            nouvellesCartes[compteur]=cartes[0];
+            compteur+=1;     
+        }
+        if(cartes[1].getType()!=TypeCarte.MonteeDesEaux){
+            nouvellesCartes[compteur]=cartes[1];
+        }
+        cartes = nouvellesCartes;
+    }
+    
+    private void monteesDesEauxPiochees(int n){
+        niveau+=n;
+        //partie vue, juste monter le curseur de VueNiveau
+        
+        //
+        paquetInnondation.melangeMonteeEaux(compteurInnondation);
+        compteurInnondation=0;
     }
     
 }
