@@ -51,7 +51,7 @@ public enum Tresor {
         public static Tresor getFromName(String name) {
             if (name.equals(PIERRE.name())) return PIERRE ;
             if (name.equals(ZEPHYR.name())) return ZEPHYR ;
-            if (name.equals(CRISTAL.name())) return PIERRE ;
+            if (name.equals(CRISTAL.name())) return CRISTAL ;
             if (name.equals(CALICE.name())) return CALICE ;
             return null ;
         }

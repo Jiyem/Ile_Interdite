@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class CarteHelicoptere extends CarteTirage{
     public CarteHelicoptere(){
         super(TypeCarte.Helicoptere);
+        super.setImage("Helicoptere");
     }
     
     //Méthode qui renvoie toutes les tuiles (ArrayList) sur lesquels les joueurs peuvent s'héliporter.

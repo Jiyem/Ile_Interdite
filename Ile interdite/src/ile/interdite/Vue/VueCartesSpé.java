@@ -13,6 +13,7 @@ import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
 import ile.interdite.image.Calque;
 import ile.interdite.image.ImageContainer;
+import ile.interdite.image.StretchIcon;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -46,14 +47,14 @@ private JFrame window;
     
     
     public VueCartesSpé(ArrayList<CarteTirage> cartesSpe){
-//this.window = new JFrame();
-//window.setSize(600, 200);
-//window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-//window.setLocationRelativeTo(null);
-//
-//        //titre
+        this.window = new JFrame();
+        window.setSize(600, 200);
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setLocationRelativeTo(null);
+
+
         mainPanel = new JPanel(new BorderLayout());
-//window.add(mainPanel);
+        window.add(mainPanel);
         cartesspe = new JLabel("Cartes Spéciales", JLabel.CENTER);
         cartesspe.setFont(new Font("TimesRoman", Font.PLAIN, (cartesspe.getFont().getSize()*2)));
         mainPanel.add(cartesspe, BorderLayout.NORTH);
@@ -71,9 +72,12 @@ private JFrame window;
         carteSable.setFocusPainted(false);
         carteSable.setContentAreaFilled(false);
 //        Calque c = new Calque("SacsDeSable");
-        ImageContainer c = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/SacsDeSable.png",0,0,500,500);
 //        carteSable.setIcon(new ImageIcon(c.getPath("/cartes/"+"SacsDeSable")));
-        carteSable.add(c);//setIcon((Icon) c);
+        ImageContainer c = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/SacsDeSable.png",0,0,0,0);
+
+        StretchIcon c1 = new StretchIcon(c.getImage());
+        carteSable.setIcon(c1);
+        
         contientCartes.add(carteSable);
         nbSable = new JLabel(" X " + nbCartesSable(cartesSpe));
         nbSable.setFont(new Font("TimesRoman", Font.PLAIN, (cartesspe.getFont().getSize())));
@@ -90,9 +94,9 @@ private JFrame window;
         //Cartes speciales - Helico
         carteHelico = new JButton();
 //        Calque ca = new Calque("Helicoptere");
-        ImageContainer ca = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/Helicoptere.png",0,0,100,300);
-
-        carteHelico.add(ca);//setIcon((Icon) ca);
+        ImageContainer d = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/Helicoptere.png",0,0,0,0);
+        StretchIcon d1 = new StretchIcon(d.getImage());
+        carteHelico.setIcon(d1);//setIcon((Icon) ca);
 //        carteHelico.setIcon(new ImageIcon(c.getPath("/cartes/"+"Helicoptere")));
         carteHelico.setBorderPainted(false);
         carteHelico.setFocusPainted(false);
@@ -110,9 +114,6 @@ private JFrame window;
     }
         });
 
-        
-        
-        contientCartes.add(new JLabel(""));
         
         
     }

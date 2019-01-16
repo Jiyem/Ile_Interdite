@@ -23,11 +23,12 @@ import javax.swing.JPanel;
  * @author mirasl
  */
 public class ImageContainer extends JPanel{
-    protected Image image = null;  // Image à afficher
+    private Image image = null;  // Image à afficher
+    private StretchIcon imageAAfficher;
     protected final int x, // Position de l'image sur l'horizontale avec 0 à gauche
-                        y, // Position de l'image sur la verticale avec 0 en haut
-                        width, // Largeur de l'image
-                        height ; // Hauteur de l'image
+                        y; // Hauteur de l'image
+    private int width;
+    private int height;
     
     public ImageContainer(String path, int x, int y, int width, int height){
         super();
@@ -46,12 +47,13 @@ public class ImageContainer extends JPanel{
         } catch (IOException ex) {
             System.err.println("Erreur en lecture de l'image " + path);
         }
+        imageAAfficher = new StretchIcon(image);
         repaint();
     }
         public void paintComponent(Graphics g) {
         super.paintComponent(g);
 //        g.drawImage(image, x, y, width, height, null, this);
-        g.drawImage(image, x, y, 100, 100, null, this);
+        g.drawImage(getImage(), x, y, width, height, null, this);
     }
       public static void main(String[] args) {
         JFrame window = new JFrame() ;
@@ -64,6 +66,27 @@ public class ImageContainer extends JPanel{
         window.setVisible(true);
 //        image.repaint();
 //        window.repaint();
+    }
+
+    /**
+     * @param width the width to set
+     */
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    /**
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
     }
 }
     

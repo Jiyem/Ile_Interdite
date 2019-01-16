@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class CarteSacDeSable extends CarteTirage {
     public CarteSacDeSable(){
         super(TypeCarte.SacDeSable);
+        super.setImage("SacsDeSable");
     }
     
     //Méthode qui renvoie la liste des tuiles qui sont assèchable avec un sac de sable avec pour paramètre d'entrée une grille..

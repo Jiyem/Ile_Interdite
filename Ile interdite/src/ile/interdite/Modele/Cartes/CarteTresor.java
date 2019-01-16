@@ -16,6 +16,18 @@ public class CarteTresor extends CarteTirage {
     public CarteTresor(Tresor tresor){
         super(TypeCarte.Tresor);
         this.tresor = tresor;
+        if(tresor == Tresor.ZEPHYR){
+            super.setImage("Zephyr");
+        }
+        else if(tresor == Tresor.PIERRE){
+            super.setImage("Pierre");
+        }
+        else if(tresor == Tresor.CALICE){
+            super.setImage("Calice");
+        }
+        else if(tresor == Tresor.CRISTAL){
+            super.setImage("Cristal");
+        }
     }
     
     @Override

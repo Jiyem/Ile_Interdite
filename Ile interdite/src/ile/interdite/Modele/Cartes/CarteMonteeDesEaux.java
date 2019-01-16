@@ -12,6 +12,7 @@ package ile.interdite.Modele.Cartes;
 public class CarteMonteeDesEaux extends CarteTirage{
     public CarteMonteeDesEaux(){
         super(TypeCarte.MonteeDesEaux);
+        super.setImage("MonteeDesEaux");
     }
     
     public String toString(){
