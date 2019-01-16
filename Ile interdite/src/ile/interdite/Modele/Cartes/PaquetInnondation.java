@@ -52,22 +52,21 @@ public class PaquetInnondation {
         }
     }
     
-    public ArrayList<CarteInnondation> melangeMonteeEaux(int i){
+    public void melangeMonteeEaux(int i){
         ArrayList<CarteInnondation> paquet2 = new ArrayList<>();
         ArrayList<CarteInnondation> paquet3 = new ArrayList<>();
-        for(int j=0;j<=i;j++){
-            paquet2.add(paquet.get(j));
-            paquet.remove(j);
+        for(int j=0;j<paquet.size();j++){
+            if(j<i){
+                paquet2.add(paquet.get(j));
+            }else{
+                paquet3.add(paquet.get(j));
+            }
         }
         Collections.shuffle(paquet2);
-        for(int j=0;j<=i;j++){
-            paquet3.add(paquet2.get(j));
+        for(int j=0;j<paquet3.size();j++){
+            paquet2.add(paquet3.get(j));
         }
-        for(int j=0;j<paquet.size();j++){
-            paquet3.add(paquet.get(j));
-        }
-        return paquet3;
-        
+        paquet=paquet2;
     }
     
 }

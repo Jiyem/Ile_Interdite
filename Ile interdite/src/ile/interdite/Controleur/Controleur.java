@@ -74,6 +74,7 @@ public class Controleur implements Observer {
     private Aventurier joueurCourant; 
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
+    private ArrayList<CarteInnondation> defausseCartesInnondation = new ArrayList<>();
     private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
     private ArrayList<CarteTirage> defausseCartesTirage = new ArrayList<>();
     private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
@@ -431,6 +432,7 @@ public class Controleur implements Observer {
         nombreAction=0;
     }
     private void changementTour(){
+        CarteTirage[] cartes = new CarteTirage[2];
         if(nombreAction == 0){
             if(y<joueurs.size()-1){
                 y=y+1;                            
@@ -441,30 +443,28 @@ public class Controleur implements Observer {
             
             //DEEGUEU A CHANGER EN FONCTION !
             //don des 2 cartes tirages
-            joueurCourant.ajouterCartes(pileCartesTirage.get(0));
-            joueurCourant.ajouterCartes(pileCartesTirage.get(1));
+
             //Ajout des 2 cartes dans la liste générale si carte hélico ou sac de sable
-            if(pileCartesTirage.get(0).getType() == SacDeSable || pileCartesTirage.get(0).getType() == Helicoptere){
-                listeCartesDesAventuriers.add(pileCartesTirage.get(0));
-            }
-            if(pileCartesTirage.get(1).getType() == SacDeSable || pileCartesTirage.get(1).getType() == Helicoptere){
-                listeCartesDesAventuriers.add(pileCartesTirage.get(1));
-            }
+
             // Ici à faire le tirage des innondation et mettre dans l'arraylist les tuiles innondés :
+            // Mise des deux cartes Innondation dans la defausse inondation.
             this.tirerCartesInnondation();
+            cartes = this.tirerCartesTrésor();
             
             System.out.println("Niveau de l'eau : "+niveau);
             System.out.println("taille de cartesTirées : "+cartesTirées.length);
+            System.out.println(compteurInnondation);
+            System.out.println(paquetInnondation.getPaquet().size());
             
+            System.out.println("get 0"+ cartes[0].toString());
+            System.out.println("get 1"+ cartes[1].toString());
             //Afficher la vueFinDeTour :
-            vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),pileCartesTirage.get(0),pileCartesTirage.get(1),niveau,cartesTirées);
+            vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),cartes[0],cartes[1],niveau,cartesTirées);
             vuefintour.afficher();
             vuefintour.addObserver(this);
             
             //Les cartes sont retiré de la pile
-            pileCartesTirage.remove(0);
-            pileCartesTirage.remove(1);
-            this.retirerCarte(joueurCourant, pileCartesTirage.get(0));
+
           
             //changement de joueur
             joueurCourant = joueurs.get(y);
@@ -564,19 +564,21 @@ public class Controleur implements Observer {
         }
     }
     
-    private void tirerCartesTrésor(){
+    private CarteTirage[] tirerCartesTrésor(){
         int nbMontéeEaux;
+        CarteTirage[] cartesRetourn = new CarteTirage[2];
         CarteTirage[] cartesTirées = new CarteTirage[2];
         cartesTirées[0] = pileCartesTirage.get(0);
         pileCartesTirage.remove(0);
         if(pileCartesTirage.isEmpty()){
             melangeTirage();
         }
-        cartesTirées[0] = pileCartesTirage.get(0);
+        cartesTirées[1] = pileCartesTirage.get(0);
         pileCartesTirage.remove(0);
         if(pileCartesTirage.isEmpty()){
             melangeTirage();
         }
+        cartesRetourn = cartesTirées;
         //partie vue à faire
         
         //fin partie vue
@@ -596,7 +598,11 @@ public class Controleur implements Observer {
                 listeCartesDesAventuriers.add(cartesTirées[i]);
             }
         }
-        monteesDesEauxPiochees(nbMontéeEaux);
+        if(nbMontéeEaux!=0){
+            monteesDesEauxPiochees(nbMontéeEaux);
+        }
+        return cartesRetourn;
+
     }
     
     private void melangeTirage(){
@@ -655,13 +661,23 @@ public class Controleur implements Observer {
     }
     
     private void tirageCartesInnondation(int n){
-        cartesTirées = new CarteInnondation[n];
+        int k;
+        if(n>paquetInnondation.getPaquet().size()){
+            k=paquetInnondation.getPaquet().size();
+        }else{
+            k=n;
+        }
+        cartesTirées = new CarteInnondation[k];
         int x,y;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<k;i++){
+            if(compteurInnondation+i>=paquetInnondation.getPaquet().size()){
+                compteurInnondation=0;
+                paquetInnondation.melanger();
+            }
             cartesTirées[i] = paquetInnondation.getPaquet().get(compteurInnondation+i);
         }
-        compteurInnondation+=n;
-        for(int i=0;i<n;i++){
+        compteurInnondation=compteurInnondation+k;
+        for(int i=0;i<k;i++){
             x=0;
             y=0;
             while(x<6 && (tuiles[x][y]==null ||(cartesTirées[i].getNomcarte() != tuiles[x][y].getNomTuile()))){
@@ -689,6 +705,7 @@ public class Controleur implements Observer {
                                 grille.getTuile()[x][y].setEtatCase(EtatCase.IMMERGEE);
                                 tuiles[x][y].setEtatCase(EtatCase.IMMERGEE);
                                 paquetInnondation.retirer(cartesTirées[i].getNomcarte());
+                                System.out.println("carte "+cartesTirées[i].getNomcarte()+" retirée du jeu");
                             }
                         }
                         
@@ -698,6 +715,9 @@ public class Controleur implements Observer {
                 }        
                 
             }
+        //on ajoute les deux cartes dans la defausse
+        
+        
         
     }
 }
