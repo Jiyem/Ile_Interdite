@@ -29,6 +29,8 @@ public class VueCartesAventurier {
     private JButton ok;
     private JPanel panelFooter;
     private JPanel panelDroite;
+    private JPanel panelTresor;
+    private JButton buttTresor;
     
     public VueCartesAventurier(Aventurier j){
         this.window = new JFrame("Carte de l'aventurier");
@@ -57,10 +59,26 @@ public class VueCartesAventurier {
         }
         mainPanel.add(panelCartes, BorderLayout.CENTER);
         
-        
-        //JButton carteAv = new JButton(new ImageIcon());   AJOUTER L'IMAGE DE L'AVENTURIER
-        panelDroite = new JPanel();
+        panelDroite = new JPanel(new BorderLayout());
         mainPanel.add(panelDroite, BorderLayout.EAST);
+        //JButton carteAv = new JButton();  AJOUTER L'IMAGE DE L'AVENTURIER
+        //panelDroite.add(carteAv, BorderLayout.NORTH);
+        
+        int nbtresor = j.getTresors().size();
+        if(nbtresor % 2 != 0){
+            nbtresor = 1+((int)nbligne/2);
+        }
+        panelTresor = new JPanel(new GridLayout(2, nbtresor));
+        panelDroite.add(panelTresor, BorderLayout.CENTER);
+        
+        for(int i=0; i < j.getTresors().size(); i++){
+            JButton buttTresor = new JButton(new ImageIcon(j.getTresors().get(i).getPathPicture()));
+            buttTresor.setFocusPainted(false);
+            buttTresor.setContentAreaFilled(false);
+            buttTresor.setBorderPainted(false);
+            panelTresor.add(buttTresor);
+        }
+        
         
         panelFooter = new JPanel(new GridLayout(3, 1));
         panelFooter.add(new JLabel(""));

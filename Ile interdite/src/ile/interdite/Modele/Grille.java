@@ -58,13 +58,13 @@ public class Grille {
     }
     
     public void setTresor(int y, int x){
-        if(tuile[y][x].getNomTuile() == "Le Temple du Soleil" || tuile[y][x].getNomTuile() == "Le Temple de La Lune"){
+        if(tuile[y][x].getNomTuile().equals("Le Temple du Soleil") || tuile[y][x].getNomTuile().equals("Le Temple de La Lune")){
             this.tuile[y][x].setTresor(Tresor.PIERRE);
-        } else if(tuile[y][x].getNomTuile() == "Le Jardin des Murmures" || tuile[y][x].getNomTuile() == "Le Jardin des Hurlements"){
+        } else if(tuile[y][x].getNomTuile().equals("Le Jardin des Murmures") || tuile[y][x].getNomTuile().equals("Le Jardin des Hurlements")){
             tuile[y][x].setTresor(Tresor.ZEPHYR);        
-        } else if(tuile[y][x].getNomTuile() == "La Caverne des Ombres" || tuile[y][x].getNomTuile() == "La Caverne du Brasier"){
+        } else if(tuile[y][x].getNomTuile().equals("La Caverne des Ombres") || tuile[y][x].getNomTuile().equals("La Caverne du Brasier")){
             tuile[y][x].setTresor(Tresor.CRISTAL);
-        } else if(tuile[y][x].getNomTuile() == "Le Palais des Marees" || tuile[y][x].getNomTuile() == "Le Palais de Corail"){
+        } else if(tuile[y][x].getNomTuile().equals("Le Palais des Marees") || tuile[y][x].getNomTuile().equals("Le Palais de Corail")){
             tuile[y][x].setTresor(Tresor.CALICE);
         }
     }
@@ -72,13 +72,13 @@ public class Grille {
     public void retirerTresor(Tresor tresor){
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
-                if((tuile[y][x].getNomTuile() == "Le Temple du Soleil" || tuile[y][x].getNomTuile() == "Le Temple de La Lune") && tresor == Tresor.PIERRE){
+                if((tuile[y][x].getNomTuile().equals("Le Temple du Soleil") || tuile[y][x].getNomTuile().equals("Le Temple de La Lune")) && tresor == Tresor.PIERRE){
                     this.tuile[y][x].setTresor(null);
-                } else if((tuile[y][x].getNomTuile() == "Le Jardin des Murmures" || tuile[y][x].getNomTuile() == "Le Jardin des Hurlements")&& tresor == Tresor.ZEPHYR){
+                } else if((tuile[y][x].getNomTuile().equals("Le Jardin des Murmures") || tuile[y][x].getNomTuile().equals("Le Jardin des Hurlements"))&& tresor == Tresor.ZEPHYR){
                     this.tuile[y][x].setTresor(null);        
-                } else if((tuile[y][x].getNomTuile() == "La Caverne des Ombres" || tuile[y][x].getNomTuile() == "La Caverne du Brasier") && tresor == Tresor.CRISTAL){
+                } else if((tuile[y][x].getNomTuile().equals("La Caverne des Ombres") || tuile[y][x].getNomTuile().equals("La Caverne du Brasier")) && tresor == Tresor.CRISTAL){
                     this.tuile[y][x].setTresor(null);
-                } else if((tuile[y][x].getNomTuile() == "Le Palais des Marees" || tuile[y][x].getNomTuile() == "Le Palais de Corail")&& tresor == Tresor.CALICE){
+                } else if((tuile[y][x].getNomTuile().equals("Le Palais des Marees") || tuile[y][x].getNomTuile().equals("Le Palais de Corail"))&& tresor == Tresor.CALICE){
                     this.tuile[y][x].setTresor(null);
                 }  
                 
