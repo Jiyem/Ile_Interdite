@@ -654,6 +654,7 @@ public class Controleur implements Observer {
     }
     
     private void tirageCartesInnondation(int n){
+        System.out.println("entrée dans la fonction");
         cartesTirées = new CarteInnondation[n];
         int x,y;
         for(int i=0;i<n;i++){
@@ -664,23 +665,40 @@ public class Controleur implements Observer {
             x=0;
             y=0;
             while(x<6 && (tuiles[x][y]==null ||(cartesTirées[i].getNomcarte() != tuiles[x][y].getNomTuile()))){
-                while(y<6 && (tuiles[x][y]==null ||(cartesTirées[i].getNomcarte() != tuiles[x][y].getNomTuile()))){
-                    if(tuiles[x][y]!=null){
-                        if(cartesTirées[i].getNomcarte() == tuiles[x][y].getNomTuile()){
+                if(y!=5){    
+                    y+=1;   
+                }else{
+                    y=0;
+                    x+=1;
+                }
+            }   
+            
+                if(x!=6){
+                    
+                        
+                System.out.println("la carte : "+tuiles[x][y].getNomTuile()+" et "+cartesTirées[i].getNomcarte());
+
+                        if(cartesTirées[i].getNomcarte().equals(tuiles[x][y].getNomTuile())){
+                            System.out.println("tamere");
                             if(tuiles[x][y].getEtatCase()==EtatCase.NORMAL){
+                                System.out.println("La tuile normal :"+tuiles[x][y].getNomTuile()+" est maintenant innondée");
+                                grille.getTuile()[x][y].setEtatCase(EtatCase.INNONDEE);
                                 tuiles[x][y].setEtatCase(EtatCase.INNONDEE);
                             }else if(tuiles[x][y].getEtatCase()==EtatCase.INNONDEE){
+                                System.out.println("La tuile innondée :"+tuiles[x][y].getNomTuile()+" est maintenant immergée");
+                                grille.getTuile()[x][y].setEtatCase(EtatCase.IMMERGEE);
                                 tuiles[x][y].setEtatCase(EtatCase.IMMERGEE);
                                 paquetInnondation.retirer(cartesTirées[i].getNomcarte());
                             }
                         }
-                    }
-                    y+=1;
-                }
-                x+=1;
-                y=0;
+                        
+                    
+                    
+                    
+                }        
+                
             }
-        }
+        
     }
 }
 

@@ -10,6 +10,7 @@ import ile.interdite.Message.Message;
 import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
@@ -38,7 +39,7 @@ public class VuePlateau extends Observable{
     
     private JFrame window;
         private Color etat_normal = new Color(179, 229, 255);
-        private Color etat_innodé = new Color(255, 255, 100);
+        private Color etat_innondé = new Color(255, 255, 100);
         private Color etat_immergé = new Color(100,100,100);
     private ArrayList<JButton> btnTuile = new ArrayList<>();
     private JPanel plateau;
@@ -117,9 +118,8 @@ public class VuePlateau extends Observable{
                     int row = x;
                     nb = nb + 1;
                     JButton tuile = new JButton(g.getTuile()[y][x].getNomTuile());
-
-                    tuile.setBackground(this.etat_normal); //BleuCYAN
-
+                    this.majCouleur(tuile,g.getTuile()[y][x] );
+//                    tuile.setBackground(this.etat_normal); //BleuCYAN
                     tuile.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 //                    tuile.setForeground(Color.GREEN);
 //                    tuile.setContentAreaFilled(false);
@@ -162,7 +162,14 @@ public class VuePlateau extends Observable{
         this.window.setVisible(false);
     }
     
-    public void majCouleur(){
+    public void majCouleur(JButton bouton,Tuile tuile){
+        if(tuile.getEtatCase() == EtatCase.NORMAL){
+            bouton.setBackground(etat_normal);
+        }else if(tuile.getEtatCase()==EtatCase.INNONDEE){
+            bouton.setBackground(etat_innondé);
+        }else{
+            bouton.setBackground(etat_immergé);
+        }
         
     }
     /*autre couleur 
