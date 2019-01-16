@@ -17,17 +17,17 @@ public class ListeTuiles {
     private ArrayList<ImageContainer> image=  new ArrayList<>();
     
     public ListeTuiles(){
-        String s = System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/";
+        String s = System.getProperty("user.dir")+"/src/ile/interdite/image/images/tuiles/";
         this.nom.add("Le Pont des Abimes");
         this.image.add(new ImageContainer(s +"LePontDesAbimes.png",0,0,0,0));
         this.nom.add("La Porte de Bronze");
         this.image.add(new ImageContainer(s +"LaPorteDeBronze.png",0,0,0,0));
         this.nom.add("La Caverne des Ombres");
-        this.image.add(new ImageContainer(s +"LaCaverneDesOmbres.png",0,0,0,0)); 
+        this.image.add(new ImageContainer(s +"LaCarverneDesOmbres.png",0,0,0,0)); 
         this.nom.add("La Porte de Fer");
         this.image.add(new ImageContainer(s +"LaPorteDeFer.png",0,0,0,0));
         this.nom.add("La Porte d’Or");
-        this.image.add(new ImageContainer(s+"LaPorteDOr.png",0,0,0,0));
+        this.image.add(new ImageContainer(s+"LaPortedOr.png",0,0,0,0));
         this.nom.add("Les Falaises de l’Oubli");
         this.image.add(new ImageContainer(s+"LesFalaisesDeLOubli.png",0,0,0,0));
         this.nom.add("Le Palais de Corail");
@@ -43,7 +43,7 @@ public class ListeTuiles {
         this.nom.add("Le Jardin des Hurlements");
         this.image.add(new ImageContainer(s+"LeJardinDesHurlements.png",0,0,0,0));
         this.nom.add("La Foret Pourpre");
-        this.image.add(new ImageContainer(s+"LaForetPoupre.png",0,0,0,0));
+        this.image.add(new ImageContainer(s+"LaForetPourpre.png",0,0,0,0));
         this.nom.add("Le Lagon Perdu");
         this.image.add(new ImageContainer(s+"LeLagonPerdu.png",0,0,0,0));
         this.nom.add("Le Marais Brumeux");
@@ -53,7 +53,7 @@ public class ListeTuiles {
         this.nom.add("Le Rocher Fantome");
         this.image.add(new ImageContainer(s+"LeRocherFantome.png",0,0,0,0));
         this.nom.add("La Caverne du Brasier");
-        this.image.add(new ImageContainer(s+"CaverneDuBrasier.png",0,0,0,0));
+        this.image.add(new ImageContainer(s+"LaCarverneDuBrasier.png",0,0,0,0));
         this.nom.add("Le Temple du Soleil");
         this.image.add(new ImageContainer(s+"LeTempleDuSoleil.png",0,0,0,0));
         this.nom.add("Le Temple de La Lune");
@@ -61,9 +61,9 @@ public class ListeTuiles {
         this.nom.add("Le Palais des Marees");
         this.image.add(new ImageContainer(s+"LePalaisDesMarees.png",0,0,0,0));
         this.nom.add("Le Val du Crepuscule");
-        this.image.add(new ImageContainer(s+"LeValDuCrecupuscule.png",0,0,0,0));
+        this.image.add(new ImageContainer(s+"LeValDuCrepuscule.png",0,0,0,0));
         this.nom.add("La Tour du Guet");
-        this.image.add(new ImageContainer(s+"LaTourDeGuet.png",0,0,0,0));
+        this.image.add(new ImageContainer(s+"LaTourDuGuet.png",0,0,0,0));
         this.nom.add("Le Jardin des Murmures");
         this.image.add(new ImageContainer(s+"LeJardinDesMurmures.png",0,0,0,0));
         
