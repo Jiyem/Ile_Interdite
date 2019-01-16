@@ -29,6 +29,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -50,6 +51,7 @@ public class VuePlateau extends Observable{
     private JPanel mainPanel;
     private Aventurier joueur;
     private VueNiveau niveau;
+    private JPanel margeplateau;
     
     public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier, VueNiveau vueNiveau) throws IOException{
         window = new JFrame();
@@ -62,9 +64,12 @@ public class VuePlateau extends Observable{
         mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
+        margeplateau = new JPanel(new BorderLayout());
+        margeplateau.add(new JLabel("     "), BorderLayout.EAST);
+        margeplateau.add(new JLabel("     "), BorderLayout.WEST);
         plateau = new JPanel();
         this.initPlateau(g);
-
+        mainPanel.add(margeplateau);
         
         menu = new JPanel(new GridLayout(3,1));
         
@@ -145,7 +150,7 @@ public class VuePlateau extends Observable{
         }
         
         //A changer pour tout autre jpanel ou borderlayout ou autre !
-        mainPanel.add(tuiles,BorderLayout.CENTER);
+        margeplateau.add(tuiles,BorderLayout.CENTER);
     }
     
 //    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){

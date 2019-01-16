@@ -47,6 +47,7 @@ public class VuePersonnages  extends JPanel  {
             btnPerso = new JButton(joueurs.get(j).getImage().getImageAAfficher());
             add(btnPerso);
             boutons.add(btnPerso);
+            btnPerso.setContentAreaFilled(false);
 //            String path = System.getProperty("user.dir")+"/src/ile/interdite/image/images/"+"personnages/"+joueurs.get(j).getRôle()+".png";
 //            mainPanel.setOpaque(false);
 //

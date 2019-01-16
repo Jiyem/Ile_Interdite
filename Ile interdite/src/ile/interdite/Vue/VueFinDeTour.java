@@ -13,6 +13,7 @@ import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,7 @@ public class VueFinDeTour extends Observable {
     public VueFinDeTour(String nomJoueur,CarteTirage carte1, CarteTirage carte2,int nivEau,CarteInnondation[] tuilesInnondé){
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(1000, 250);
+        window.setSize(1200, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
         
@@ -50,13 +51,21 @@ public class VueFinDeTour extends Observable {
         JPanel hautMainPanel = new JPanel(new GridLayout(2,5));
         for(int i=1; i<10 ;i++){
             if(i==2){
-               hautMainPanel.add(new JLabel("Cartes obtenues par")); 
+               JLabel carteObtenues = new JLabel("Cartes obtenues par");
+               hautMainPanel.add(carteObtenues);
+               carteObtenues.setFont(new Font(carteObtenues.getName(), Font.PLAIN, (carteObtenues.getFont().getSize())*2));
             }else if(i==4){
-               hautMainPanel.add(new JLabel("niveau d'eau : "+nivEau));
+                JLabel niveau = new JLabel("Niveau d'eau : "+nivEau);
+               hautMainPanel.add(niveau);
+               niveau.setFont(new Font(niveau.getName(), Font.PLAIN, (niveau.getFont().getSize())*2));
             }else if(i==7){
-                hautMainPanel.add(new JLabel(nomJoueur)); 
+                JLabel jou = new JLabel(nomJoueur);
+                hautMainPanel.add(jou);
+                jou.setFont(new Font(jou.getName(), Font.PLAIN, (jou.getFont().getSize())*2));
             }else if(i ==9){
-                hautMainPanel.add(new JLabel("cartes inondations piochés:"));
+                JLabel cartesPiochées = new JLabel("Cartes inondations piochés: ");
+                hautMainPanel.add(cartesPiochées);
+                cartesPiochées.setFont(new Font(cartesPiochées.getName(), Font.PLAIN, (cartesPiochées.getFont().getSize())));
             }
             else{
                 hautMainPanel.add(new JLabel(""));
@@ -67,11 +76,13 @@ public class VueFinDeTour extends Observable {
         
         
         //partie basse du mainPanel
-        JPanel basGauchePanel = new JPanel(new GridLayout(1,3));
+        JPanel basGauchePanel = new JPanel(new GridLayout(1,5));
         basGauchePanel.add(new JLabel(""));
         basGauchePanel.add(new JLabel(""));
         JButton btnOk = new JButton("OK");
         basGauchePanel.add(btnOk);
+        basGauchePanel.add(new JLabel(""));
+        basGauchePanel.add(new JLabel(""));
         mainPanel.add(basGauchePanel,BorderLayout.SOUTH);
         
         //partie central du mainPanel
@@ -79,11 +90,11 @@ public class VueFinDeTour extends Observable {
         for(int i =1;i<(tuilesInnondé.length)*5;i++){
             if(i ==2){
                 JLabel add = new JLabel(carte1.getImage().getImageAAfficher());
-                add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+                //add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
                 centrePanel.add(add);
             }else if(i==7){
                 JLabel add = new JLabel(carte2.getImage().getImageAAfficher());
-                add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+             //   add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
                 centrePanel.add(add);
             }else if(i == 4){
                 centrePanel.add(new JLabel(tuilesInnondé[0].getNomcarte()));

@@ -49,7 +49,7 @@ public class VueInscription extends Observable {
 //    private final JRadioButton radioHomme;
 //    private final JRadioButton radioFemme;
     private final JButton btnValider ;
-    private final JButton btnAnnuler ;
+//    private final JButton btnAnnuler ;
     private JLabel erreur = new JLabel("");
 //    private String erreurNbJoueurs = "";
 //    private String nom;
@@ -131,20 +131,23 @@ public class VueInscription extends Observable {
                 clearChanged();
             }
         });
+        
+        bottomPanel.add(new JLabel(""));
+        
         bottomPanel.add(btnValider);
 
         bottomPanel.add(new JLabel(""));
 
-        btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setChanged();
-                notifyObservers(ActionsType.ANNULE);
-                clearChanged();
-            }
-        });
-        bottomPanel.add(btnAnnuler);
+//        btnAnnuler = new JButton("Annuler");
+//        btnAnnuler.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                setChanged();
+//                notifyObservers(ActionsType.ANNULE);
+//                clearChanged();
+//            }
+//        });
+//        bottomPanel.add(btnAnnuler);
     }
     
     public void afficher() {
