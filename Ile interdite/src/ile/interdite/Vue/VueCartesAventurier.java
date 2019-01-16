@@ -8,6 +8,9 @@ package ile.interdite.Vue;
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -64,8 +67,22 @@ public class VueCartesAventurier {
         ok = new JButton("OK");
         panelFooter.add(ok);
         panelFooter.add(new JLabel(""));
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+              fermer();
+            }
+        });
         
         
+    }
+    
+        public void afficher() {
+        this.window.setVisible(true);
+    }
+    
+         public void fermer(){
+        this.window.setVisible(false);
     }
 
 }
