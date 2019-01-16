@@ -196,6 +196,26 @@ public class Controleur implements Observer {
 
                   
     }
+    private boolean verifVictoire(){
+        boolean victoire=false;
+        if(this.tresorRecupéré(Tresor.PIERRE) && this.tresorRecupéré(Tresor.CALICE) && this.tresorRecupéré(Tresor.CRISTAL) && this.tresorRecupéré(Tresor.ZEPHYR)){
+            boolean verifHeliJoueurs = true;
+            for(int i = 0;i <joueurs.size();i++){
+                if(!joueurs.get(i).getPosition().getNomTuile().equals("Heliport")){
+                    verifHeliJoueurs = false;
+                }
+            }
+            if(verifHeliJoueurs){
+               for(int i=0;i<listeCartesDesAventuriers.size();i++){
+                   if(listeCartesDesAventuriers.get(i).getType()==TypeCarte.Helicoptere){
+                       victoire=true;
+                   }
+               }
+            }
+   
+        }
+        return victoire;
+    }
     
     //Les méthodes utilisés pour le contrôleur :
     private void initialisationGrille(){
@@ -441,13 +461,6 @@ public class Controleur implements Observer {
             }
             System.out.print(y);
             
-            //DEEGUEU A CHANGER EN FONCTION !
-            //don des 2 cartes tirages
-
-            //Ajout des 2 cartes dans la liste générale si carte hélico ou sac de sable
-
-            // Ici à faire le tirage des innondation et mettre dans l'arraylist les tuiles innondés :
-            // Mise des deux cartes Innondation dans la defausse inondation.
             this.tirerCartesInnondation();
             cartes = this.tirerCartesTrésor();
             
@@ -456,18 +469,19 @@ public class Controleur implements Observer {
             System.out.println(compteurInnondation);
             System.out.println(paquetInnondation.getPaquet().size());
             
-            System.out.println("get 0"+ cartes[0].toString());
-            System.out.println("get 1"+ cartes[1].toString());
             //Afficher la vueFinDeTour :
             vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),cartes[0],cartes[1],niveau,cartesTirées);
             vuefintour.afficher();
             vuefintour.addObserver(this);
             
-            //Les cartes sont retiré de la pile
-
-          
-            //changement de joueur
-            joueurCourant = joueurs.get(y);
+            //verif victoire et defaite
+            if(this.verifVictoire()){
+                //faire le traitement en cas de victoire
+            }else{
+                this.verifPartiePerdu();
+                //changement de joueur
+                joueurCourant = joueurs.get(y);
+            }
         }
     }
     
@@ -513,33 +527,43 @@ public class Controleur implements Observer {
             }
         }
         if(tresorRecupéré(Tresor.ZEPHYR)==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Jardin des Hurlements"))==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Jardin des Murmures"))==false){
+        && estCoulé("Le Jardin des Hurlements") 
+        && estCoulé("Le Jardin des Murmures")){
             PartiePerdue partiePerdue = new PartiePerdue();
             partiePerdue.nonRecupTresor("Statue du zéphyr");
             partiePerdue.afficher();
         }
         if(tresorRecupéré(Tresor.CRISTAL)==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("La Caverne du Brasier"))==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("La Caverne des Ombres"))==false){
+        && estCoulé("La Caverne du Brasier") 
+        && estCoulé("La Caverne des Ombres")){
             PartiePerdue partiePerdue = new PartiePerdue();
             partiePerdue.nonRecupTresor("Cristal ardent");
             partiePerdue.afficher();
         }
         if(tresorRecupéré(Tresor.PIERRE)==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Temple de La Lune"))==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Temple du Soleil"))==false){
+        && estCoulé("Le Temple de La Lune") 
+        && estCoulé("Le Temple du Soleil")){
             PartiePerdue partiePerdue = new PartiePerdue();
             partiePerdue.nonRecupTresor("Pierre sacrée");
             partiePerdue.afficher();
         }
         if(tresorRecupéré(Tresor.CALICE)==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Palais des Marees"))==false 
-        && paquetInnondation.getPaquet().contains(new CarteInnondation("Le Palais de Corail"))==false){
+        && estCoulé("Le Palais des Marees")
+        && estCoulé("Le Palais de Corail")){
             PartiePerdue partiePerdue = new PartiePerdue();
             partiePerdue.nonRecupTresor("Calice de l'onde");
             partiePerdue.afficher();
         }
+    }
+    
+    private boolean estCoulé(String nom){
+        boolean coulé=true;
+        for(int i=0;i<paquetInnondation.getPaquet().size();i++){
+            if(paquetInnondation.getPaquet().get(i).getNomcarte().equals(nom)){
+                coulé=false;
+            }
+        }
+        return coulé;
     }
     
     private boolean tresorRecupéré(Tresor t){

@@ -287,9 +287,9 @@ public class Grille {
     public boolean verifHelioportEstIlCoulé(){
         boolean c = false;
         for(int i =0;i<6;i++ ){
-            for(int y =0;i<6;y++ ){
+            for(int y =0;y<6;y++ ){
                 if(tuile[i][y] != null){
-                    if(tuile[i][y].getNomTuile() == "Heliport" && tuile[i][y].getEtatCase() == EtatCase.IMMERGEE){
+                    if(tuile[i][y].getNomTuile().equals("Heliport") && tuile[i][y].getEtatCase() == EtatCase.IMMERGEE){
                         System.out.println(i + y);
                         c = true;
                     }
