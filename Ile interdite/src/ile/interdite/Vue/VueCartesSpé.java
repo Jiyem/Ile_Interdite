@@ -61,12 +61,12 @@ private JFrame window;
         marges = new JPanel(new BorderLayout());
         mainPanel.add(marges, BorderLayout.CENTER);
         
-        centrage = new JPanel(new GridLayout(3, 1));
-        centrage.add(new JLabel(""));
+//        centrage = new JPanel(new GridLayout(2, 1));
+//        centrage.add(new JLabel(""));
         //Cartes Speciales - Sac de Sable
-        contientCartes = new JPanel(new GridLayout(1,4));
-        centrage.add(contientCartes);
-        marges.add(centrage, BorderLayout.CENTER);
+        contientCartes = new JPanel(new GridLayout(2,2));
+//        centrage.add(contientCartes);
+        marges.add(contientCartes, BorderLayout.CENTER);
         carteSable = new JButton();
         carteSable.setBorderPainted(false);
         carteSable.setFocusPainted(false);
