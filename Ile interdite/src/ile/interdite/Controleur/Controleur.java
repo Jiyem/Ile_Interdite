@@ -65,7 +65,6 @@ public class Controleur implements Observer {
     private HashMap<Couleur, String> depart = new HashMap<>();
     private Grille grille;
     private int nombreAction;
-    private int compteurCartesTirage=0;
     private int compteurInnondation=0;
     private int y=0; //une variable drapeau.
     private int niveau=1;
@@ -76,7 +75,7 @@ public class Controleur implements Observer {
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
     private ArrayList<CarteTirage> pileCartesTirage = new ArrayList<>();
-    
+    private ArrayList<CarteTirage> defausseCartesTirage = new ArrayList<>();
     private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
     private VueMainTropGrande vueMuligan;
     private CarteInnondation[] cartesTirées;
@@ -558,6 +557,7 @@ public class Controleur implements Observer {
         while(i<listeCartesDesAventuriers.size() && listeCartesDesAventuriers.get(i)!=carte){
             if(listeCartesDesAventuriers.get(i)==carte){
                 listeCartesDesAventuriers.remove(carte);
+                defausseCartesTirage.add(carte);
             }
             i+=1;
         }
@@ -566,29 +566,43 @@ public class Controleur implements Observer {
     private void tirerCartesTrésor(){
         int nbMontéeEaux;
         CarteTirage[] cartesTirées = new CarteTirage[2];
-        cartesTirées[0] = pileCartesTirage.get(compteurCartesTirage);
-        if(compteurCartesTirage==26){
-            Collections.shuffle(pileCartesTirage);
-            compteurCartesTirage=0;
+        cartesTirées[0] = pileCartesTirage.get(0);
+        pileCartesTirage.remove(0);
+        if(pileCartesTirage.isEmpty()){
+            melangeTirage();
         }
-        cartesTirées[1] = pileCartesTirage.get(compteurCartesTirage+1);
-        compteurCartesTirage += 2;
-        if(compteurCartesTirage==27){
-            Collections.shuffle(pileCartesTirage);
-            compteurCartesTirage=0;
+        cartesTirées[0] = pileCartesTirage.get(0);
+        pileCartesTirage.remove(0);
+        if(pileCartesTirage.isEmpty()){
+            melangeTirage();
         }
         //partie vue à faire
         
         //fin partie vue
         nbMontéeEaux = NbCartesMontéeEaux(cartesTirées);
+        for(int i=0;i<2;i++){
+            if(cartesTirées[i].getType()==TypeCarte.MonteeDesEaux){
+                defausseCartesTirage.add(cartesTirées[i]);
+            }
+        }
         retirerMonteeDesEaux(cartesTirées, nbMontéeEaux);
         //envoyer cartesTirées à la vue aventurier -> les ajouter au tas de cartes des aventuriers
         
         //
         for(int i=0;i<2-nbMontéeEaux;i++){
             joueurCourant.ajouterCartes(cartesTirées[i]);
+            if(cartesTirées[i].getType()==SacDeSable || cartesTirées[i].getType()==Helicoptere){
+                listeCartesDesAventuriers.add(cartesTirées[i]);
+            }
         }
         monteesDesEauxPiochees(nbMontéeEaux);
+    }
+    
+    private void melangeTirage(){
+        for(int i=0;i<defausseCartesTirage.size();i++){
+                pileCartesTirage.add(defausseCartesTirage.get(i));
+            }
+        Collections.shuffle(pileCartesTirage);
     }
     
     private int NbCartesMontéeEaux(CarteTirage[] cartes){
