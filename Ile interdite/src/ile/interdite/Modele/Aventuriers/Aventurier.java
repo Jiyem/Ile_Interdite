@@ -155,6 +155,7 @@ public abstract class Aventurier {
     }else{
     for (int i =0; i < deplacementPossible.size();i++){
         System.out.println(i + " : " + deplacementPossible.get(i).getNomTuile());
+        
     }
     System.out.println("Entrez le numéro de la tuile où vous souhaitez aller");
     Scanner scanner = new Scanner(System.in);
