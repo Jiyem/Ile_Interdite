@@ -49,15 +49,16 @@ public class VuePlateau extends Observable{
     private VueCartesSpé cartesSpe;
     private JPanel mainPanel;
     private Aventurier joueur;
+    private VueNiveau niveau;
     
-    public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier) throws IOException{
+    public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier, VueNiveau vueNiveau) throws IOException{
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
-        window.setSize(1200, 1200);
+        window.setSize(2000, 1200);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
-        window.setLocation(dim.width/2-window.getSize().width/4, dim.height/2-window.getSize().height/2);
+        window.setLocationRelativeTo(null);
         mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
@@ -94,6 +95,8 @@ public class VuePlateau extends Observable{
         
         mainPanel.add(menu,BorderLayout.EAST);
         
+        niveau = vueNiveau;
+        mainPanel.add(niveau.getMainPanel(), BorderLayout.WEST);
         
         
         

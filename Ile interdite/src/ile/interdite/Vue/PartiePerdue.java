@@ -67,7 +67,6 @@ public class PartiePerdue extends Observable{
     
     public void nonRecupTresor(String nomTresor){
         cause = new JLabel("Deux tuiles contenant le trésor " +nomTresor +" on étés détruites, vous ne pouvez plus récupérer le trésor.", JLabel.CENTER);
-        cause.setFont(new Font(cause.getName(), cause.getFont().getStyle(), cause.getFont().getSize()*2));
         contientCause = new JPanel(new GridLayout(3,1));
         marges.add(contientCause, BorderLayout.CENTER);
         JLabel a = new JLabel("");

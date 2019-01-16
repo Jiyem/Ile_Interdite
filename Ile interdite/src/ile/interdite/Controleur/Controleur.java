@@ -47,6 +47,7 @@ import ile.interdite.Vue.PartiePerdue;
 import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
+import ile.interdite.Vue.VueNiveau;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -80,6 +81,7 @@ public class Controleur implements Observer {
     private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
     private VueMainTropGrande vueMuligan;
     private CarteInnondation[] cartesTirées;
+    private VueNiveau vueNiveau;
     
     public Controleur(){
         joueurs=new ArrayList<>();
@@ -369,8 +371,10 @@ public class Controleur implements Observer {
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());
             vueAventurier.addObserver(this);
             vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+            
+            vueNiveau = new VueNiveau(niveau);
             try {
-                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier);
+                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier, vueNiveau);
             } catch (IOException ex) {
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -490,8 +494,11 @@ public class Controleur implements Observer {
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());
             vueAventurier.addObserver(this);
             vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+            
+            vueNiveau = new VueNiveau(niveau);
+            
             try {
-                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier);
+                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier, vueNiveau);
             } catch (IOException ex) {
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }
