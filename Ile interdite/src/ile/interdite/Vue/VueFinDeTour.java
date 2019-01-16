@@ -52,7 +52,7 @@ public class VueFinDeTour extends Observable {
             if(i==2){
                hautMainPanel.add(new JLabel("Cartes obtenues par")); 
             }else if(i==4){
-               hautMainPanel.add(new JLabel("niveau d'eau : 0"));
+               hautMainPanel.add(new JLabel("niveau d'eau : "+nivEau));
             }else if(i==7){
                 hautMainPanel.add(new JLabel(nomJoueur)); 
             }else if(i ==9){

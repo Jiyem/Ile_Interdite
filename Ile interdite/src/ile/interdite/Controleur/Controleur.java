@@ -451,7 +451,6 @@ public class Controleur implements Observer {
                 listeCartesDesAventuriers.add(pileCartesTirage.get(1));
             }
             // Ici à faire le tirage des innondation et mettre dans l'arraylist les tuiles innondés :
-            System.out.println("testtttt");
             this.tirerCartesInnondation();
             
             System.out.println("Niveau de l'eau : "+niveau);
@@ -465,6 +464,7 @@ public class Controleur implements Observer {
             //Les cartes sont retiré de la pile
             pileCartesTirage.remove(0);
             pileCartesTirage.remove(1);
+            this.retirerCarte(joueurCourant, pileCartesTirage.get(0));
           
             //changement de joueur
             joueurCourant = joueurs.get(y);
