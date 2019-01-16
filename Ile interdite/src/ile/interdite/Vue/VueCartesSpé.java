@@ -50,8 +50,8 @@ private JFrame window;
 //window.setSize(600, 200);
 //window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 //window.setLocationRelativeTo(null);
-
-        //titre
+//
+//        //titre
         mainPanel = new JPanel(new BorderLayout());
 //window.add(mainPanel);
         cartesspe = new JLabel("Cartes Spéciales", JLabel.CENTER);
@@ -90,7 +90,7 @@ private JFrame window;
         //Cartes speciales - Helico
         carteHelico = new JButton();
 //        Calque ca = new Calque("Helicoptere");
-        ImageContainer ca = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/Helicoptere.png",0,0,100,100);
+        ImageContainer ca = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/Helicoptere.png",0,0,100,300);
 
         carteHelico.add(ca);//setIcon((Icon) ca);
 //        carteHelico.setIcon(new ImageIcon(c.getPath("/cartes/"+"Helicoptere")));
