@@ -27,7 +27,7 @@ public class Calque extends JLayeredPane{
         
         
         public Calque(String nomImage){
-            System.out.println("Bonjour");
+            
             fond = new ImageContainer(this.getPath(nomImage), 0, 0, 100, 100);
             this.add(fond, -10);
             
