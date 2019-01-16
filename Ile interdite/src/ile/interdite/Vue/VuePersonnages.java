@@ -44,7 +44,7 @@ public class VuePersonnages  extends JPanel  {
         // Cas unique où il y a qu'un joueur !
        
         for (int j=0; j<joueurs.size();j++){
-            btnPerso = new JButton(joueurs.get(j).getRôle());
+            btnPerso = new JButton(joueurs.get(j).getImage().getImageAAfficher());
             add(btnPerso);
             boutons.add(btnPerso);
 //            String path = System.getProperty("user.dir")+"/src/ile/interdite/image/images/"+"personnages/"+joueurs.get(j).getRôle()+".png";

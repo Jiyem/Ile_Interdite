@@ -20,12 +20,14 @@ public class Ingenieur extends Aventurier{
     public Ingenieur(Tuile position,String pseudo){
         super(position,pseudo);
         this.setCouleur(Couleur.ROUGE);
+        this.setImage("ingenieur");
 
     }
     
     public Ingenieur(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.ROUGE);
+        this.setImage("ingenieur");
     }
 
     @Override

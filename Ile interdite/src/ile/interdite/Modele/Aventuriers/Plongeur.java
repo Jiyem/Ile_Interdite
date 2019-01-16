@@ -19,11 +19,13 @@ public class Plongeur extends Aventurier{
     public Plongeur(Tuile position,String pseudo){
         super(position,pseudo);
         this.setCouleur(Couleur.VIOLET);
+        this.setImage("plongeur");
     }
 
     public Plongeur(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.VIOLET);
+        this.setImage("plongeur");
 
     }
         @Override

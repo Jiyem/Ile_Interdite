@@ -12,6 +12,7 @@ import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tresor;
 import ile.interdite.Modele.Tuile;
+import ile.interdite.image.ImageContainer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -56,11 +57,14 @@ public abstract class Aventurier {
     protected String pseudo;
     private ArrayList<CarteTirage> cartes = new ArrayList<>();
     private ArrayList<Tresor> tresors = new ArrayList<>();
+    private ImageContainer image;
+    
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
         this.setPosition(position);
         this.setPseudo(pseudo);
         this.setCouleur(null);
+        
     }
     public Aventurier(String pseudo){
         this.setPseudo(pseudo);
@@ -210,7 +214,16 @@ public abstract class Aventurier {
         return tresors;
     }
 
+    public void setImage(String nomFichierImage) {
+        this.image = new ImageContainer("src/ile/interdite/image/images/personnages/"+nomFichierImage+".png",0,0,0,0);
+    }
 
+    /**
+     * @return the image
+     */
+    public ImageContainer getImage() {
+        return image;
+    }
     
 
 }

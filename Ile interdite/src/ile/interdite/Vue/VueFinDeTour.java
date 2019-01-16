@@ -78,11 +78,11 @@ public class VueFinDeTour extends Observable {
         JPanel centrePanel = new JPanel(new GridLayout(tuilesInnondé.length,5));
         for(int i =1;i<(tuilesInnondé.length)*5;i++){
             if(i ==2){
-                JLabel add = new JLabel(carte1.toString());
+                JLabel add = new JLabel(carte1.getImage().getImageAAfficher());
                 add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
                 centrePanel.add(add);
             }else if(i==7){
-                JLabel add = new JLabel(carte2.toString());
+                JLabel add = new JLabel(carte2.getImage().getImageAAfficher());
                 add.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
                 centrePanel.add(add);
             }else if(i == 4){

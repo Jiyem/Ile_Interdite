@@ -21,11 +21,13 @@ public class Pilote extends Aventurier{
     public Pilote(Tuile position,String pseudo){
         super(position,pseudo);
         this.setCouleur(Couleur.BLEU);
+        this.setImage("pilote");
         
     }
     public Pilote(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.BLEU);
+        this.setImage("pilote");
         
     }
 

@@ -48,7 +48,7 @@ public class Grille {
             }
 
         }
-        this.melange();
+        //this.melange();
         this.setInnondationGrille();
 
     }

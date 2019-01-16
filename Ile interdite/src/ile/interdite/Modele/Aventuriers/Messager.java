@@ -22,11 +22,13 @@ public class Messager extends Aventurier{
     public Messager(Tuile position,String pseudo){
         super(position,pseudo);
         this.setCouleur(Couleur.ORANGE);
+        this.setImage("messager");
     }
 
     public Messager(String pseudo){
         super(pseudo);
-        this.setCouleur(Couleur.ORANGE);    }
+        this.setCouleur(Couleur.ORANGE);
+        this.setImage("messager");    }
     
     //Comme les deplacements et les assechements du messager sont basique pas besoin de redefinir les fonctions
 
