@@ -41,7 +41,7 @@ private JFrame window;
     private JButton carteSable;
     private JButton carteHelico;
     private JPanel contientCartes;
-    
+    private JPanel centrage;
     
     
     
@@ -60,10 +60,16 @@ private JFrame window;
         marges = new JPanel(new BorderLayout());
         mainPanel.add(marges, BorderLayout.CENTER);
         
+        centrage = new JPanel(new GridLayout(3, 1));
+        centrage.add(new JLabel(""));
         //Cartes Speciales - Sac de Sable
         contientCartes = new JPanel(new GridLayout(1,4));
-        marges.add(contientCartes, BorderLayout.CENTER);
+        centrage.add(contientCartes);
+        marges.add(centrage, BorderLayout.CENTER);
         carteSable = new JButton();
+        carteSable.setBorderPainted(false);
+        carteSable.setFocusPainted(false);
+        carteSable.setContentAreaFilled(false);
 //        Calque c = new Calque("SacsDeSable");
         ImageContainer c = new ImageContainer(System.getProperty("user.dir")+"/src/ile/interdite/image/images/cartes/SacsDeSable.png",0,0,500,500);
 //        carteSable.setIcon(new ImageIcon(c.getPath("/cartes/"+"SacsDeSable")));
@@ -88,6 +94,9 @@ private JFrame window;
 
         carteHelico.add(ca);//setIcon((Icon) ca);
 //        carteHelico.setIcon(new ImageIcon(c.getPath("/cartes/"+"Helicoptere")));
+        carteHelico.setBorderPainted(false);
+        carteHelico.setFocusPainted(false);
+        carteHelico.setContentAreaFilled(false);
         contientCartes.add(carteHelico);
         nbHelico = new JLabel(" X " + nbCartesHelico(cartesSpe));
         nbHelico.setFont(new Font("TimesRoman", Font.PLAIN, cartesspe.getFont().getSize()));
@@ -103,7 +112,7 @@ private JFrame window;
 
         
         
-        
+        contientCartes.add(new JLabel(""));
         
         
     }
