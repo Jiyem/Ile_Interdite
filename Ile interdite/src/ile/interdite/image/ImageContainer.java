@@ -25,8 +25,8 @@ import javax.swing.JPanel;
 public class ImageContainer extends JPanel{
     private Image image = null;  // Image à afficher
     private StretchIcon imageAAfficher;
-    protected final int x, // Position de l'image sur l'horizontale avec 0 à gauche
-                        y; // Hauteur de l'image
+    private final int x; // Hauteur de l'image
+    protected final int y; // Hauteur de l'image
     private int width;
     private int height;
     
@@ -53,7 +53,7 @@ public class ImageContainer extends JPanel{
         public void paintComponent(Graphics g) {
         super.paintComponent(g);
 //        g.drawImage(image, x, y, width, height, null, this);
-        g.drawImage(getImage(), x, y, width, height, null, this);
+        g.drawImage(getImage(), getX(), y, width, height, null, this);
     }
       public static void main(String[] args) {
         JFrame window = new JFrame() ;
@@ -87,6 +87,20 @@ public class ImageContainer extends JPanel{
      */
     public Image getImage() {
         return image;
+    }
+
+    /**
+     * @return the imageAAfficher
+     */
+    public StretchIcon getImageAAfficher() {
+        return imageAAfficher;
+    }
+
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
     }
 }
     

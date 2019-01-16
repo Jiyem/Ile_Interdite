@@ -5,6 +5,8 @@
  */
 package ile.interdite.Modele;
 
+import ile.interdite.image.ImageContainer;
+
 /**
  *
  * @author rose
@@ -15,14 +17,16 @@ public class Tuile {
     private EtatCase etatCase;
     private int X,Y;
     private Tresor tresor;
+    private ImageContainer image;
     
     
-    public Tuile(int numTuile,String nomTuile,int X, int Y){
+    public Tuile(int numTuile,String nomTuile,int X, int Y,ImageContainer sourceImage){
         this.setNumTuile(numTuile);
         this.setNomTuile(nomTuile);
         this.etatCase = EtatCase.NORMAL;
         this.X=X;
         this.Y=Y;
+        this.image = sourceImage;
     }
     
 
@@ -92,6 +96,13 @@ public class Tuile {
      */
     public void setEtatCase(EtatCase etatCase) {
         this.etatCase = etatCase;
+    }
+
+    /**
+     * @return the image
+     */
+    public ImageContainer getImage() {
+        return image;
     }
     
 }

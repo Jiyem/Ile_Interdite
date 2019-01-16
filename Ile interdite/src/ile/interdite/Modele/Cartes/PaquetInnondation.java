@@ -19,7 +19,7 @@ public class PaquetInnondation {
     //constructeurs
     public PaquetInnondation(){
         for(int i=0;i<24;i++){
-            paquet.add(new CarteInnondation(liste.get(i)));
+            paquet.add(new CarteInnondation(liste.getNom(i)));
         }
         this.melanger();
     }

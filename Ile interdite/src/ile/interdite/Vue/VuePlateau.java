@@ -38,9 +38,9 @@ import javax.swing.JPanel;
 public class VuePlateau extends Observable{
     
     private JFrame window;
-        private Color etat_normal = new Color(179, 229, 255);
-        private Color etat_innondé = new Color(255, 255, 100);
-        private Color etat_immergé = new Color(100,100,100);
+    private Color etat_normal = new Color(179, 229, 255);
+    private Color etat_innondé = new Color(255, 255, 100);
+    private Color etat_immergé = new Color(100,100,100);
     private ArrayList<JButton> btnTuile = new ArrayList<>();
     private JPanel plateau;
     private JPanel menu;
@@ -117,7 +117,7 @@ public class VuePlateau extends Observable{
                     int col = y;
                     int row = x;
                     nb = nb + 1;
-                    JButton tuile = new JButton(g.getTuile()[y][x].getNomTuile());
+                    JButton tuile = new JButton(g.getTuile()[y][x].getImage().getImageAAfficher());
                     this.majCouleur(tuile,g.getTuile()[y][x] );
 //                    tuile.setBackground(this.etat_normal); //BleuCYAN
                     tuile.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));

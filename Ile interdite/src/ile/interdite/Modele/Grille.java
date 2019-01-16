@@ -6,6 +6,7 @@
 package ile.interdite.Modele;
 
 import ile.interdite.Modele.Aventuriers.Pilote;
+import ile.interdite.image.ImageContainer;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,21 +18,22 @@ public class Grille {
 
     //chercher quel type de colection pour les 36 tuiles de la grille
     private final Tuile tuile[][] = new Tuile[6][6];
-    private ArrayList<String> tuilesDispo = new ArrayList();
+    private ArrayList<String> tuilesDispoNom = new ArrayList();
+    private ArrayList<ImageContainer> tuilesDispoImage = new ArrayList();
     private ListeTuiles liste = new ListeTuiles();
-
+    
 
 
     public void initialiseArray() {
         for (int i = 0; i < 24; i++) {
-            this.tuilesDispo.add(i, liste.get(i));
+            this.tuilesDispoNom.add(i, liste.getNom(i));
+            this.tuilesDispoImage.add(i, liste.getImage(i));
         }
 
     }
 
     public Grille() {
         this.initialiseArray();
-        this.melange();
         int nb = 0;
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
@@ -40,12 +42,13 @@ public class Grille {
 
                 } else {
                     nb = nb + 1;
-                    this.tuile[y][x] = new Tuile(nb, tuilesDispo.get(nb-1),y,x);
+                    this.tuile[y][x] = new Tuile(nb, tuilesDispoNom.get(nb-1),y,x,tuilesDispoImage.get(nb-1));
                     this.setTresor(y, x);
                 }
             }
 
         }
+        this.melange();
         this.setInnondationGrille();
 
     }
@@ -94,7 +97,8 @@ public class Grille {
     }
 
     public void melange() {
-        Collections.shuffle(tuilesDispo);
+        Collections.shuffle(tuilesDispoNom);
+        
     }
     
     public Tuile[][] getTuile(){
