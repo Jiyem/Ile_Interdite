@@ -43,13 +43,13 @@ public class VuePlateau extends Observable{
     private ArrayList<JButton> btnTuile = new ArrayList<>();
     private JPanel plateau;
     private JPanel menu;
-    private VueAventurier1 aventurier;
+    private VueAventurier aventurier;
     private VuePersonnages personnages;
     private VueCartesSpé cartesSpe;
     private JPanel mainPanel;
     private Aventurier joueur;
     
-    public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes) throws IOException{
+    public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier) throws IOException{
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -83,7 +83,7 @@ public class VuePlateau extends Observable{
         menu.add(personnages);
 
         
-        aventurier = new VueAventurier1("thierry", "thierrry", etat_normal);
+        aventurier = vueAventurier;
         menu.add(aventurier.getMainPanel());
         
         cartesSpe = new VueCartesSpé(cartes);
@@ -160,6 +160,10 @@ public class VuePlateau extends Observable{
     }
     public void fermer(){
         this.window.setVisible(false);
+    }
+    
+    public void majCouleur(){
+        
     }
     /*autre couleur 
     innondé     tuile.setBackground(new Color(255, 255, 100));//Orange

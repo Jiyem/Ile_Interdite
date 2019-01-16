@@ -25,7 +25,7 @@ import ile.interdite.Modele.Tuile;
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Message.MessageInscription;
-import ile.interdite.Vue.VueAventurier;
+import ile.interdite.Vue.VueAventurier3;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
@@ -44,6 +44,7 @@ import java.util.Random;
 import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
 import ile.interdite.Vue.PartiePerdue;
+import ile.interdite.Vue.VueAventurier;
 import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
 import java.io.IOException;
@@ -121,13 +122,11 @@ public class Controleur implements Observer {
                         
                         
                         /**************************très moche*****************************/
-                        try {
-                            plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers);
-                        } catch (IOException ex) {
-                            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        plateau.afficher();
-                        
+//                        try {
+//                            plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers);
+//                        } catch (IOException ex) {
+//                            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
                         
                         
                         
@@ -309,7 +308,7 @@ public class Controleur implements Observer {
                         }
     }
     private void initialisationPileCarteTirage(){
-        for(int i = 1;i<29;i++){
+        for(int i = 1;i<28;i++){
             //5 cartes de chaque tresor
             if(i>=1 && i<=5){
                 CarteTresor tresor = new CarteTresor(Tresor.PIERRE);
@@ -324,11 +323,11 @@ public class Controleur implements Observer {
                 CarteTresor tresor = new CarteTresor(Tresor.CALICE);
                 pileCartesTirage.add(tresor);
             //3 cartes montée des eaux
-            }else if(i>=21 && i<=23){
+            }else if(i>=21 && i<=22){
                 CarteMonteeDesEaux carte = new CarteMonteeDesEaux();
                 pileCartesTirage.add(carte);
             //3 cartes hélico
-            }else if(i>=24 && i <=26){
+            }else if(i>=23 && i <=25){
                 CarteHelicoptere carte= new CarteHelicoptere();
                 pileCartesTirage.add(carte);
             //2 cartes sac de sable
@@ -347,10 +346,16 @@ public class Controleur implements Observer {
                         }
     }
     private void tour1(){
-            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
+            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());
             vueAventurier.addObserver(this);
-            vueAventurier.afficher();
-            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
+            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+            try {
+                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier);
+            } catch (IOException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            plateau.afficher();
+            plateau.addObserver(this);
             inscri.close();
     }
     private void déplacer(){
@@ -434,7 +439,6 @@ public class Controleur implements Observer {
                 y = 0;
             }
             System.out.print(y);
-            vueAventurier.fermer();
             
             //DEEGUEU A CHANGER EN FONCTION !
             //don des 2 cartes tirages
@@ -470,12 +474,15 @@ public class Controleur implements Observer {
     
     private void changementJoueur(){
         vuefintour.close();
-        
-        
-        vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur() );
-        vueAventurier.addObserver(this);
-        vueAventurier.afficher();
-        vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile()); // possibilité de le changer en while
+            vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());
+            vueAventurier.addObserver(this);
+            try {
+                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier);
+            } catch (IOException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            plateau.afficher();
+            plateau.addObserver(this);
         if(joueurCourant.getClass() == Navigateur.class){
             nombreAction = 4;
         }else{
