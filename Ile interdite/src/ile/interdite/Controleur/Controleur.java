@@ -475,6 +475,7 @@ public class Controleur implements Observer {
         vuefintour.close();
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());
             vueAventurier.addObserver(this);
+            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
             try {
                 plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier);
             } catch (IOException ex) {
@@ -654,7 +655,6 @@ public class Controleur implements Observer {
     }
     
     private void tirageCartesInnondation(int n){
-        System.out.println("entrée dans la fonction");
         cartesTirées = new CarteInnondation[n];
         int x,y;
         for(int i=0;i<n;i++){
