@@ -102,7 +102,7 @@ public class VueAventurier3 extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
+//            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
             clearChanged();
             }
         });

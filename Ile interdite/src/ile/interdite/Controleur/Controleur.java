@@ -169,7 +169,7 @@ public class Controleur implements Observer {
                     //faire l'assecheemnt
                     this.assécher();  
                 }
-                else if(messageAventurier.getAction()==ActionsType.AUTREACTION){ // Ne fait rien du tout pour l'instant
+                else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){ // Ne fait rien du tout pour l'instant
                     //faire autre action
                     this.autreAction(); 
                 }
@@ -488,7 +488,7 @@ public class Controleur implements Observer {
             }
         }
     }
-    
+        
     private void changementJoueur(){
         vuefintour.close();
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());

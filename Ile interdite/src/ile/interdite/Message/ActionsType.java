@@ -14,7 +14,7 @@ public enum ActionsType {
     ASSECHER,
     DEPLACER,
     PASSERTOUR,
-    AUTREACTION,
+    DONNERCARTE,
     ANNULE,
     SELECTION_CASE,
     ECHANGER,

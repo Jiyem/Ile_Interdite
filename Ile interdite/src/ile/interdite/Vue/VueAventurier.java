@@ -5,6 +5,7 @@ import ile.interdite.Message.Message;
 import aide.Utils.Pion;
 import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Modele.Couleur;
+import ile.interdite.image.ImageContainer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -29,15 +30,20 @@ public class VueAventurier extends Observable  {
     private final JPanel mainPanel;
     private final JButton btnBouger  ;
     private final JButton btnAssecher;
-    private final JButton btnAutreAction;
+    private final JButton btnDonnerCarte;
     private final JButton btnTerminerTour;
     private JTextField position;
+    private JPanel panelBouger;
+    private JPanel panelAssecher;
+    private JPanel panelDonner;
+    private JPanel panelTerminerTour;
 
    
    
     
     public VueAventurier(String nomJoueur, String nomAventurier, Color couleur){
-
+        
+        String s = System.getProperty("user.dir")+"/src/ile/interdite/image/images/icones/";
 
 
         mainPanel = new JPanel(new BorderLayout());
@@ -59,7 +65,7 @@ public class VueAventurier extends Observable  {
         this.panelCentre.setBorder(new MatteBorder(0, 0, 2, 0, couleur));
         mainPanel.add(this.panelCentre, BorderLayout.CENTER);
         
-        panelCentre.add(new JLabel ("Position", SwingConstants.CENTER));
+        panelCentre.add(new JLabel ("Position : ", SwingConstants.CENTER));
         position = new  JTextField(30); 
         position.setHorizontalAlignment(CENTER);
         panelCentre.add(position);
@@ -70,8 +76,10 @@ public class VueAventurier extends Observable  {
         this.panelBoutons = new JPanel(new GridLayout(2,2));
         this.panelBoutons.setOpaque(false);
         mainPanel.add(this.panelBoutons, BorderLayout.SOUTH);
-
+        
+        panelBouger = new JPanel(new BorderLayout());
         this.btnBouger = new JButton("Bouger") ;
+        btnBouger.setContentAreaFilled(false);
         btnBouger.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -80,8 +88,14 @@ public class VueAventurier extends Observable  {
             clearChanged();
             }
         });
+        panelBouger.add(btnBouger, BorderLayout.CENTER);
+//        ImageContainer im = new ImageContainer(s +"iconMove.png",0,0,200,200);
+//        panelBouger.add(im, BorderLayout.EAST);
         
+        
+        panelAssecher = new JPanel(new BorderLayout());
         this.btnAssecher = new JButton( "Assecher");
+        btnAssecher.setContentAreaFilled(false);
         btnAssecher.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -90,18 +104,32 @@ public class VueAventurier extends Observable  {
             clearChanged();
             }
         });
+        panelAssecher.add(btnAssecher, BorderLayout.CENTER);
+//        ImageContainer im2 = new ImageContainer(s +"iconDry.png",0,0,200,200);
+//        panelAssecher.add(im2, BorderLayout.EAST);
+
+
         
-        this.btnAutreAction = new JButton("Echanger") ;
-        btnAutreAction.addActionListener(new ActionListener() {
+        panelDonner = new JPanel(new BorderLayout());
+        this.btnDonnerCarte = new JButton("Donner une carte");
+        btnDonnerCarte.setContentAreaFilled(false);
+        btnDonnerCarte.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
+            notifyObservers(new MessageAventurier(ActionsType.DONNERCARTE));
             clearChanged();
             }
         });
+        panelDonner.add(btnDonnerCarte, BorderLayout.CENTER);
+//        ImageContainer im3 = new ImageContainer(s +"iconGive.png",0,0,200,200);
+//        panelDonner.add(im3, BorderLayout.EAST);
+
+
         
-        this.btnTerminerTour = new JButton("Terminer Tour") ;
+        panelTerminerTour = new JPanel(new BorderLayout());
+        this.btnTerminerTour = new JButton("Terminer Tour");
+        btnTerminerTour.setContentAreaFilled(false);
         btnTerminerTour.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -110,11 +138,16 @@ public class VueAventurier extends Observable  {
             clearChanged();
             }
         });
+        panelTerminerTour.add(btnTerminerTour, BorderLayout.CENTER);
+//        ImageContainer im4 = new ImageContainer(s +"iconShift.png",0,0,200,200);
+//        panelTerminerTour.add(im4, BorderLayout.EAST);
+
+
         
-        this.panelBoutons.add(btnBouger);
-        this.panelBoutons.add(btnAssecher);
-        this.panelBoutons.add(btnAutreAction);
-        this.panelBoutons.add(btnTerminerTour);
+        this.panelBoutons.add(panelBouger);
+        this.panelBoutons.add(panelAssecher);
+        this.panelBoutons.add(panelDonner);
+        this.panelBoutons.add(panelTerminerTour);
 
 //        this.window.setVisible(true);
     } 
@@ -124,7 +157,7 @@ public class VueAventurier extends Observable  {
     }
     
      public JButton getBtnAutreAction() {
-        return btnAutreAction;
+        return btnDonnerCarte;
     }
     
     public String getPosition() {
