@@ -54,6 +54,7 @@ public class VuePlateau extends Observable{
     private Aventurier joueur;
     private VueNiveau niveau;
     private JPanel margeplateau;
+    private ArrayList<CarteTirage> cartes;
     
     public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier, VueNiveau vueNiveau) throws IOException{
         window = new JFrame();
@@ -72,8 +73,9 @@ public class VuePlateau extends Observable{
         plateau = new JPanel();
         this.initPlateau(g);
         mainPanel.add(margeplateau);
+        this.cartes = cartes;
         
-        menu = new JPanel(new GridLayout(3,1));
+        
         
         
         personnages = new VuePersonnages_1(joueurs);
@@ -121,7 +123,7 @@ public class VuePlateau extends Observable{
                     clearChanged();            }
         });
         
-        
+        menu = new JPanel(new GridLayout(3,1));
         menu.add(personnages);
 
         
@@ -143,17 +145,19 @@ public class VuePlateau extends Observable{
         
 
     }
-    public void majVueNiveau(VueNiveau vueNiveau){
-        mainPanel.remove(niveau.getMainPanel());
-        niveau = vueNiveau;
-        mainPanel.add(niveau.getMainPanel(), BorderLayout.WEST);
-    }
-    
-    public void majVueAventurier(VueAventurier vueAventurier){
-        menu.remove(aventurier.getMainPanel());
-        aventurier = vueAventurier;
-        menu.add(aventurier.getMainPanel());
-    }
+//    public void majVueNiveau(VueNiveau vueNiveau){
+//        mainPanel.remove(menu);
+//        
+//        niveau = vueNiveau;
+//        mainPanel.add(niveau.getMainPanel(), BorderLayout.WEST);
+//    }
+//    
+//    public void majVueAventurier(VueAventurier vueAventurier){
+//        menu.remove(aventurier.getMainPanel());
+//        aventurier = vueAventurier;
+//        menu.add(aventurier.getMainPanel());
+//        
+//    }
     
     
     public void initPlateau(Grille g){
@@ -310,7 +314,22 @@ public class VuePlateau extends Observable{
         
     }
     
-    
+//    public void creationMenu(VueAventurier vueAventurier,ArrayList<CarteTirage> cartes){
+//        mainPanel.remove(menu);
+//        menu = new JPanel(new GridLayout(3,1));
+//        menu.add(personnages);
+//
+//        
+//        aventurier = vueAventurier;
+//        menu.add(aventurier.getMainPanel());
+//        
+//        cartesSpe = new VueCartesSpé(cartes);
+//        menu.add(cartesSpe.getMainPanel());
+//        
+//        
+//        
+//        mainPanel.add(menu,BorderLayout.EAST);
+//    }
     
     
     /*autre couleur 
