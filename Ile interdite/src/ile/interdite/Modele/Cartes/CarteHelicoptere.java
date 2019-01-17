@@ -29,7 +29,7 @@ public class CarteHelicoptere extends CarteTirage{
         Tuile[][] tuiles = grille.getTuile();
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
-                if(tuiles[y][x]!=null && tuiles[y][x].getEtatCase()== EtatCase.INNONDEE ||tuiles[y][x].getEtatCase() == EtatCase.NORMAL){
+                if(tuiles[y][x]!=null && (tuiles[y][x].getEtatCase()==EtatCase.INNONDEE ||tuiles[y][x].getEtatCase()==EtatCase.NORMAL)){
                     tuilesDeplacable.add(tuiles[y][x]);
                 }
             }

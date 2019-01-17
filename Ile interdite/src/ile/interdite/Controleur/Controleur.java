@@ -124,7 +124,7 @@ public class Controleur implements Observer {
                 if (messageCarteSpe.getAction()==ActionsType.UTILISATION_CARTE_HELICO){
                     if (messageCarteSpe.getNbCarteSpe()!=0){    
                         if (carteHelico.deplacable(grille)!=null){
-                            plateau.afficherAction(carteSacDeSable.assechable(grille), grille, joueurCourant, ActionsType.DEPLACER);
+                            plateau.afficherAction(carteHelico.deplacable(grille), grille, joueurCourant, ActionsType.DEPLACER);
                             int x = 0;
                             while (listeCartesDesAventuriers.get(x).equals(carteSacDeSable)){
                                 x+=1;
@@ -623,7 +623,7 @@ public class Controleur implements Observer {
             }
             plateau.afficher();
             plateau.addObserver(this);
-            
+            plateau.getVueCartesSpé().addObserver(this);
             
         if(joueurCourant.getClass() == Navigateur.class){
             nombreAction = 4;
