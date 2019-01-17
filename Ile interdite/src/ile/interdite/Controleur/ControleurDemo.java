@@ -311,52 +311,6 @@ public class ControleurDemo implements Observer {
         grille = new Grille();
     }
     private void initialisationJoueurs(){
-//                        Aventurier joueur1 = new Ingenieur(message.getPseudo2());
-//                                for (int y = 0; y < 6; y++) {
-//                                    for (int x = 0; x < 6; x++) {
-//                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Bronze")){
-//                                            joueur1.setPosition(tuiles[y][x]);
-//                                            System.out.println("La position du ingénieur est initialisé");
-//                                        }
-//                                    }      
-//                                }
-//                        joueurs.add(joueur1);
-//                        Aventurier joueur2 = new Pilote(message.getPseudo4());
-//                                for (int y = 0; y < 6; y++) {
-//                                    for (int x = 0; x < 6; x++) {
-//                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("Heliport")){
-//                                            joueur2.setPosition(tuiles[y][x]);
-//                                            System.out.println("La position du pilote est initialisé");
-//                                        }
-//                                    }
-//                                } 
-//                        joueurs.add(joueur2);
-//                        if(message.getNbJoueurs() == 3 || message.getNbJoueurs() == 4){
-//                            Aventurier joueur3 = new Plongeur(message.getPseudo3());
-//                                for (int y = 0; y < 6; y++) {
-//                                    for (int x = 0; x < 6; x++) {
-//                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Fer")){
-//                                            joueur3.setPosition(tuiles[y][x]);
-//                                            System.out.println("La position du plongeur est initialisé");
-//                                        }
-//                                    }
-//                                }
-//                        joueurs.add(joueur3);
-//                        }
-//
-//                        if(message.getNbJoueurs() == 4){
-//                                Aventurier joueur4 = new Explorateur(message.getPseudo1());
-//                                for (int y = 0; y < 6; y++) {
-//                                    for (int x = 0; x < 6; x++) {
-//                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Cuivre")){
-//                                            joueur4.setPosition(tuiles[y][x]);
-//                                            System.out.println("La position de l'explorateur est initialisée");
-//                                        }
-//                                    }
-//                                }
-//                        joueurs.add(joueur4);
-//                        }
-//                        
                         Aventurier joueur1 = new Ingenieur(messageInscription.getPseudo2());
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
