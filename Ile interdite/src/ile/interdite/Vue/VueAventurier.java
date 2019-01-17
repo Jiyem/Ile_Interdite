@@ -155,7 +155,7 @@ public class VueAventurier extends Observable  {
         @Override
         public void actionPerformed(ActionEvent e) {
             setChanged();
-            notifyObservers(new MessageAventurier(ActionsType.GET_TRESOR));
+            notifyObservers(new MessageAventurier(ActionsType.RECUP_TRESOR));
             clearChanged();
             }
         });

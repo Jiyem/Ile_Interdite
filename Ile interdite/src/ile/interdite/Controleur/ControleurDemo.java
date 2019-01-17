@@ -482,6 +482,7 @@ public class ControleurDemo implements Observer {
     }
     
     private void recupererTresor(){
+        System.out.println("test");
         if(joueurCourant.getPosition().possèdeTresor()){ //Si le joueur est sur une case de rendu de trésor
                 int nbCartesDuTresor = 0;
                 for(int i = 0; i<joueurCourant.getCartes().size();i++){
@@ -504,6 +505,9 @@ public class ControleurDemo implements Observer {
                     }    
                 }
             }
+        else{
+            System.out.println("Il n'y à pas de trésor ici !");
+        }
     }
     //supprime le trésor de la pile et de la main de tout les aventuriers
     private void supprimerTresor(Tresor tresor){
