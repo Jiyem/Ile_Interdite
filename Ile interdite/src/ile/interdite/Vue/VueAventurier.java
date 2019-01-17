@@ -37,6 +37,8 @@ public class VueAventurier extends Observable  {
     private JPanel panelAssecher;
     private JPanel panelDonner;
     private JPanel panelTerminerTour;
+    private JPanel panelRecupererTresor;
+    private JButton btnRecupTresor;
 
    
    
@@ -73,7 +75,7 @@ public class VueAventurier extends Observable  {
 
         // =================================================================================
         // SUD : les boutons
-        this.panelBoutons = new JPanel(new GridLayout(2,2));
+        this.panelBoutons = new JPanel(new GridLayout(3,2));
         this.panelBoutons.setOpaque(false);
         mainPanel.add(this.panelBoutons, BorderLayout.SOUTH);
         
@@ -138,7 +140,24 @@ public class VueAventurier extends Observable  {
             clearChanged();
             }
         });
+        
+        
         panelTerminerTour.add(btnTerminerTour, BorderLayout.CENTER);
+//        ImageContainer im4 = new ImageContainer(s +"iconShift.png",0,0,200,200);
+//        panelTerminerTour.add(im4, BorderLayout.EAST);
+
+        panelRecupererTresor = new JPanel(new BorderLayout());
+        this.btnRecupTresor = new JButton("Récuperer Tresor");
+        btnRecupTresor.setContentAreaFilled(false);
+        btnRecupTresor.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setChanged();
+            notifyObservers(new MessageAventurier(ActionsType.GET_TRESOR));
+            clearChanged();
+            }
+        });
+        panelRecupererTresor.add(btnRecupTresor, BorderLayout.CENTER);
 //        ImageContainer im4 = new ImageContainer(s +"iconShift.png",0,0,200,200);
 //        panelTerminerTour.add(im4, BorderLayout.EAST);
 
@@ -148,6 +167,8 @@ public class VueAventurier extends Observable  {
         this.panelBoutons.add(panelAssecher);
         this.panelBoutons.add(panelDonner);
         this.panelBoutons.add(panelTerminerTour);
+        this.panelBoutons.add(panelRecupererTresor);
+        this.panelBoutons.add(new JLabel(""));
 
 //        this.window.setVisible(true);
     } 
