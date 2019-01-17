@@ -38,6 +38,8 @@ public class VueAventurier extends Observable  {
     private JPanel panelDonner;
     private JPanel panelTerminerTour;
     private JPanel panelRecupererTresor;
+    private JPanel panelAutreAction;
+    private JButton btnAutreAction;
     private JButton btnRecupTresor;
 
    
@@ -161,14 +163,26 @@ public class VueAventurier extends Observable  {
 //        ImageContainer im4 = new ImageContainer(s +"iconShift.png",0,0,200,200);
 //        panelTerminerTour.add(im4, BorderLayout.EAST);
 
+        panelAutreAction = new JPanel(new BorderLayout());
+        this.btnAutreAction = new JButton("Autre action") ;
+        btnAutreAction.setContentAreaFilled(false);
+        btnAutreAction.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setChanged();
+            notifyObservers(new MessageAventurier(ActionsType.AUTREACTION));
+            clearChanged();
+            }
+        });
 
         
         this.panelBoutons.add(panelBouger);
         this.panelBoutons.add(panelAssecher);
         this.panelBoutons.add(panelDonner);
-        this.panelBoutons.add(panelTerminerTour);
+        this.panelBoutons.add(btnAutreAction);
         this.panelBoutons.add(panelRecupererTresor);
-        this.panelBoutons.add(new JLabel(""));
+        this.panelBoutons.add(panelTerminerTour);
+        
 
 //        this.window.setVisible(true);
     } 

@@ -24,5 +24,6 @@ public enum ActionsType {
     RETIRER_CARTE,
     PAGE_PERSONNAGE,
     RECUP_TRESOR,
-    PAGE_ACCUEIL;
+    PAGE_ACCUEIL,
+    AUTREACTION;
 }
