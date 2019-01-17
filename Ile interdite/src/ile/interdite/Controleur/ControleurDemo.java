@@ -319,7 +319,7 @@ public class ControleurDemo implements Observer {
         grille = new Grille();
     }
     private void initialisationJoueurs(){
-                        Aventurier joueur1 = new Ingenieur(messageInscription.getPseudo2());
+                        Aventurier joueur1 = new Ingenieur(messageInscription.getPseudo1());
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
                                         if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Bronze")){
@@ -329,7 +329,7 @@ public class ControleurDemo implements Observer {
                                     }      
                                 }
                         joueurs.add(joueur1);
-                        Aventurier joueur2 = new Pilote(messageInscription.getPseudo4());
+                        Aventurier joueur2 = new Pilote(messageInscription.getPseudo2());
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
                                         if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("Heliport")){
@@ -351,7 +351,7 @@ public class ControleurDemo implements Observer {
                         joueurs.add(joueur3);
                         
 
-                        Aventurier joueur4 = new Explorateur(messageInscription.getPseudo1());
+                        Aventurier joueur4 = new Explorateur(messageInscription.getPseudo4());
                             for(int y = 0; y < 6; y++) {
                                 for (int x = 0; x < 6; x++) {
                                     if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Cuivre")){
