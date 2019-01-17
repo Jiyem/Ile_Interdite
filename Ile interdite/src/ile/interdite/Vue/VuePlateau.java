@@ -7,6 +7,7 @@ package ile.interdite.Vue;
 
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.Message;
+import ile.interdite.Message.MessageAction;
 import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Cartes.CarteTirage;
@@ -222,6 +223,7 @@ public class VuePlateau extends Observable{
                         if(g.getTuile()[y][x] != null){
                             JButton tuile = btnTuile.get(cpt);
                             this.majCouleur(tuile,g.getTuile()[y][x] );
+                            btnTuile.get(cpt).setEnabled(true);
                             cpt +=1;
                         } 
                     
@@ -256,20 +258,26 @@ public class VuePlateau extends Observable{
     
     public void clicAction(ArrayList<JButton> cliquables,ActionsType action){
         for(int i = 0;i<cliquables.size();i++){
-            cliquables.get(i).addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                setChanged();
-                if(action == ActionsType.DEPLACER){
-                    notifyObservers();
-                
-                }else if(action == ActionsType.ASSECHER){
-                    notifyObservers();
+            for(int y = 0;y<btnTuile.size();y++){
+                if(cliquables.get(i) == btnTuile.get(y)){
+                    int num = y +1 ;
+                    cliquables.get(i).addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        setChanged();
+                        if(action == ActionsType.DEPLACER){
+                            notifyObservers(new MessageAction(ActionsType.DEPLACER,num));
+
+                        }else if(action == ActionsType.ASSECHER){
+                            notifyObservers(new MessageAction(ActionsType.ASSECHER,num));
+                        }
+
+                        clearChanged();
+                        }
+                    });
                 }
-                
-                clearChanged();
-                }
-            });
+            }
+
         }
     }
 
