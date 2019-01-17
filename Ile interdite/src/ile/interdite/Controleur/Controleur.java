@@ -23,6 +23,7 @@ import ile.interdite.Modele.Cartes.CarteTresor;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.Message;
 import ile.interdite.Message.MessageAction;
 import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Message.MessageInscription;
@@ -78,7 +79,8 @@ public class Controleur implements Observer {
     private int y=0; //une variable drapeau.
     private int niveau=1;
     private Tuile[][] tuiles;
-    private MessageInscription message;
+    private Message message;
+    private MessageInscription messageInscription;
     private MessageAventurier messageAventurier;
     private MessagePlateau messagePlateau;
     private Aventurier joueurCourant; 
@@ -90,6 +92,8 @@ public class Controleur implements Observer {
     private ArrayList<CarteTirage> listeCartesDesAventuriers = new ArrayList<>(); //Liste des cartes spéciales qu'on les aventuriers pour pouvoir les utiliser n'importe quand...
     private VueMainTropGrande vueMuligan;
     private CarteInnondation[] cartesTirées;
+    private CarteHelicoptere carteHelico =new CarteHelicoptere();
+    private CarteSacDeSable carteSacDeSable = new CarteSacDeSable();
     private VueNiveau vueNiveau;
     private VueMainTropGrande vueMainTropGrande;
     private MessageMuligan messageMuligan;
@@ -102,13 +106,31 @@ public class Controleur implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
                 
+            if (arg1 instanceof Message){
+                message = (Message) arg1;
+                if (message.getAction()==ActionsType.UTILISATION_CARTE_SABLE){
+                    if (carteSacDeSable.assechable(grille)!=null){ // afficher les cases possible puis choisir case et changer l'état en normal
+
+                    
+                    }
+                }        
+                if (message.getAction()==ActionsType.UTILISATION_CARTE_HELICO){
+                    if (carteHelico.deplacable(grille)!=null){
+
+                    
+                    
+                    }
+                }
+            }
+        
+        
                 if (arg1 instanceof MessageInscription) {
-                message = (MessageInscription) arg1 ;
+                messageInscription = (MessageInscription) arg1 ;
                 //Si l'utilisateur clic sur validé
-                if (message.getAction() == ActionsType.VALIDE) {
+                if (messageInscription.getAction() == ActionsType.VALIDE) {
                     System.out.println("L'utilisateur a validé");                 
                     //Si le nombre de joueur est bien compris entre 2 et 4 (inclu)
-                    if (message.getNbJoueurs() > 1 && message.getNbJoueurs() < 5) {
+                    if (messageInscription.getNbJoueurs() > 1 && messageInscription.getNbJoueurs() < 5) {
                         //Initialisation de la grille.
                         this.initialisationGrille();
                         
@@ -143,7 +165,7 @@ public class Controleur implements Observer {
                         this.tour1();
                     };
                     // Si l'utilisateur à demander plus de 4 joueurs ou moins de 2 joueurs.
-                    if (message.getNbJoueurs() == 0){
+                    if (messageInscription.getNbJoueurs() == 0){
                         inscri.erreurNbJoueurs0();
                     }
                     //Si l'utilisateur entre le joueur 3 sans le joueur 4
@@ -275,13 +297,13 @@ public class Controleur implements Observer {
     private void initialisationJoueurs(){
                         Random r = new Random();
                         ArrayList<String> s = new ArrayList<>();
-                        s.add(message.getPseudo1());s.add(message.getPseudo2());s.add(message.getPseudo3());s.add(message.getPseudo4());
+                        s.add(messageInscription.getPseudo1());s.add(messageInscription.getPseudo2());s.add(messageInscription.getPseudo3());s.add(messageInscription.getPseudo4());
                         ArrayList<String> l = new ArrayList<>();
                         l.add("Explorateur");l.add("Ingenieur");l.add("Messager");l.add("Navigateur");l.add("Pilote");l.add("Plongeur");
                         int nb = 0;
                         int aléa1 = 10;
         //                        0 = Explorateur, 1= Ingénieur, 2= Messager, 3=Navigateur, 4= Pilote, 5=Plongeur
-                        while(nb<message.getNbJoueurs()){
+                        while(nb<messageInscription.getNbJoueurs()){
                             //Tirage d'un nombre aléatoire entre 0 et 5 (inclu)
                             aléa1 = r.nextInt(l.size());
                             //Vérifié que la valeur est toujours présente dans la liste des rôles dispo, sinon refaire un tirage.
