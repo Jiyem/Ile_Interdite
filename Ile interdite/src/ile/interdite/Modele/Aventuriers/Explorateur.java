@@ -21,13 +21,14 @@ public class Explorateur extends Aventurier{
         super(position,pseudo);
         this.setCouleur(Couleur.VERT);
         this.setImage("explorateur");
-
+        this.setPion("pionVert");
     }
     
     public Explorateur(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.VERT);
         this.setImage("explorateur");
+        this.setPion("pionVert");
 
     }
 

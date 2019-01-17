@@ -20,12 +20,13 @@ public class Navigateur extends Aventurier{
         super(position,pseudo);
         this.setCouleur(Couleur.JAUNE);
         this.setImage("navigateur");
+        this.setPion("pionJaune");
     }
     public Navigateur(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.JAUNE);
         this.setImage("navigateur");
-        
+        this.setPion("pionJaune");
     }
     //Comme les deplacements et les assechements du navigateur sont basiques pas besoin de redefinir les fonctions
     

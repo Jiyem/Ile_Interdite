@@ -22,13 +22,14 @@ public class Pilote extends Aventurier{
         super(position,pseudo);
         this.setCouleur(Couleur.BLEU);
         this.setImage("pilote");
+        this.setPion("pionBleu");
         
     }
     public Pilote(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.BLEU);
         this.setImage("pilote");
-        
+        this.setPion("pionBleu");
     }
 
 

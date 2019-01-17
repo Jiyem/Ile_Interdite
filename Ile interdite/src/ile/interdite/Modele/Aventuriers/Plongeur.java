@@ -20,12 +20,14 @@ public class Plongeur extends Aventurier{
         super(position,pseudo);
         this.setCouleur(Couleur.VIOLET);
         this.setImage("plongeur");
+        this.setPion("pionViolet");
     }
 
     public Plongeur(String pseudo){
         super(pseudo);
         this.setCouleur(Couleur.VIOLET);
         this.setImage("plongeur");
+        this.setPion("pionViolet");
 
     }
         @Override

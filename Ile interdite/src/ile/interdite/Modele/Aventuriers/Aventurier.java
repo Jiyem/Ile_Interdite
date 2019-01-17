@@ -58,6 +58,7 @@ public abstract class Aventurier {
     private ArrayList<CarteTirage> cartes = new ArrayList<>();
     private ArrayList<Tresor> tresors = new ArrayList<>();
     private ImageContainer image;
+    private ImageContainer pion;
     
     //constructeurs
     public Aventurier(Tuile position,String pseudo){
@@ -213,6 +214,10 @@ public abstract class Aventurier {
     public void setImage(String nomFichierImage) {
         this.image = new ImageContainer("src/ile/interdite/image/images/personnages/"+nomFichierImage+".png",0,0,0,0);
     }
+    
+    public void setPion(String nomFichierImage) {
+        this.pion = new ImageContainer("src/ile/interdite/image/images/pions/"+nomFichierImage+".png",0,0,0,0);
+    }
 
     /**
      * @return the image
@@ -224,4 +229,14 @@ public abstract class Aventurier {
     public int getnbCartes(){
         return cartes.size();
     }
+
+    /**
+     * @return the pion
+     */
+    public ImageContainer getPion() {
+        return pion;
+    }
+
+    
+    
 }
