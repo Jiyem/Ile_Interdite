@@ -23,6 +23,7 @@ import ile.interdite.Modele.Cartes.CarteTresor;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Message.ActionsType;
+import ile.interdite.Message.MessageAction;
 import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Message.MessageInscription;
 import ile.interdite.Message.MessageMuligan;
@@ -189,6 +190,24 @@ public class Controleur implements Observer {
 //              vueMuligan = new VueMainTropGrand(joueurCourant,nbCartesApriocher);
 //              }
                 }
+                
+                if(arg1 instanceof MessageAction){
+                    MessageAction messageAction = (MessageAction) arg1;
+                    if(messageAction.getAction()== ActionsType.DEPLACER){
+                        for (int y = 0; y < 6; y++) {
+                            for (int x = 0; x < 6; x++) {
+                                if(grille.getTuile()[y][x] != null && grille.getTuile()[y][x].getNumTuile() == messageAction.getNumTuile()){
+                                    this.déplacer(grille.getTuile()[y][x]);
+                                }
+                            }
+                        }
+                    }
+                    plateau.majPlateau(grille);
+                    
+                }
+            
+            
+            
             
                 /************ Message Provenant du plateau ************/
                 if(arg1 instanceof MessagePlateau){
@@ -402,8 +421,9 @@ public class Controleur implements Observer {
 
             inscri.close();
     }
-    private void déplacer(){
-            vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
+    private void déplacer(Tuile tuile){
+            vueAventurier.setPosition(tuile.getNomTuile());
+            joueurCourant.setPosition(tuile);
             nombreAction=nombreAction-1;
     }
     private void assécher(){
@@ -540,7 +560,7 @@ public class Controleur implements Observer {
     }
         
     private void changementJoueur(){
-        vuefintour.close();
+            vuefintour.close();
             vueAventurier = new VueAventurier(joueurCourant.getPseudo(), joueurCourant.getRôle(),joueurCourant.getCouleur().getCouleur());
             vueAventurier.addObserver(this);
             vueAventurier.setPosition(joueurCourant.getPosition().getNomTuile());
@@ -802,27 +822,8 @@ public class Controleur implements Observer {
         if(deplacementPossible.size()==0){
             System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
         }else{
-            plateau.afficherDeplacements(deplacementPossible,grille,joueurCourant);
-        }
-//            for (int i =0; i < deplacementPossible.size();i++){
-//                System.out.println(i + " : " + deplacementPossible.get(i).getNomTuile());
-//
-//            }
-//            System.out.println("cliquer sur la tuile pour vous déplacer");
-//            Scanner scanner = new Scanner(System.in);
-//            String numeroTuile = scanner.nextLine();
-//
-//
-//            for(int j =0; j < deplacementPossible.size();j++){
-//                        if (numeroTuile.equals(Integer.toString(j))) {
-//                        joueurCourant.deplacement(deplacementPossible.get(j));
-//                        System.out.println("Vous venez d'être déplacé sur la tuile : " + deplacementPossible.get(j).getNomTuile());
-//                        }
-//
-//
-//
-//            }
-//        }   
+            plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
+        } 
     }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
