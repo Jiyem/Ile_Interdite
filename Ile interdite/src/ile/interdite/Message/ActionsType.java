@@ -23,5 +23,6 @@ public enum ActionsType {
     UTILISATION_CARTE_HELICO,
     RETIRER_CARTE,
     PAGE_PERSONNAGE,
+    RECUP_TRESOR,
     PAGE_ACCUEIL;
 }

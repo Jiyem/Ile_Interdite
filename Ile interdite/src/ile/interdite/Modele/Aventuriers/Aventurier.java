@@ -127,13 +127,8 @@ public abstract class Aventurier {
     public void donnerCarte(Aventurier a, CarteTirage carte){
         if(carte.getType() == TypeCarte.Tresor){
             if (this.getPosition() == a.getPosition()){
-                if(a.getCartes().size() < 10) {
                     a.ajouterCartes(carte);
                     this.enleverCarte(carte);
-                }
-                else{
-                    System.out.print("Le joueur à qui vous voulez donner cette carte en possède trop");
-                }
             }
             else{
                 System.out.print("Vous n'êtes pas sur la même case vous ne pouvez donc pas échanger de carte avec cet Aventurier");

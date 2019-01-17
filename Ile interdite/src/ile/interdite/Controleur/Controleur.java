@@ -128,12 +128,7 @@ public class Controleur implements Observer {
                         
                         
                         
-                        /**************************très moche*****************************/
-//                        try {
-//                            plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers);
-//                        } catch (IOException ex) {
-//                            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
+
                         
                         
                         
@@ -175,9 +170,13 @@ public class Controleur implements Observer {
                     //faire l'assecheemnt
                     this.assécher();  
                 }
+                else if(messageAventurier.getAction()==ActionsType.RECUP_TRESOR){
+                    //faire l'assecheemnt
+                    this.recupererTresor();  
+                }
                 else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){ // Ne fait rien du tout pour l'instant
                     //faire autre action
-                    this.autreAction(); 
+                    
                 }
                 else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
                     //faire la fin du tour.;
@@ -454,6 +453,31 @@ public class Controleur implements Observer {
             else{
                 System.out.println("Vous n'avez pas encore accès aux actions speciales.");}
                 //nombreAction=nombreAction-1; à ajouter plus tard   
+            }
+    }
+    
+    private void recupererTresor(){
+        if(joueurCourant.getPosition().possèdeTresor()){ //Si le joueur est sur une case de rendu de trésor
+                int nbCartesDuTresor = 0;
+                for(int i = 0; i<joueurCourant.getCartes().size();i++){
+                    if(joueurCourant.getCartes().get(i).getType() == TypeCarte.Tresor){
+                        if(joueurCourant.getCartes().get(i).getTresor() == joueurCourant.getPosition().getTresor()){
+                            nbCartesDuTresor = nbCartesDuTresor +1;
+                        }
+                    }
+                }
+                if(nbCartesDuTresor >= 4){
+                    System.out.println("Voulez vous récupérer le trésor"+joueurCourant.getPosition().getTresor().toString()+" ? (o/n)");
+                    Scanner sc=new Scanner(System.in);
+                    System.out.println("Voulez-vous effectuer un deuxième assèchement ? (o/n)");
+                    if(sc.nextLine().equals("o")){
+                        Tresor tresor = joueurCourant.getPosition().getTresor();
+                        joueurCourant.ajouterTresor(tresor); //don du trésor au joueur
+                        grille.retirerTresor(tresor); //retirer le trésor de la grille
+                        this.supprimerTresor(tresor); //Supprime la carte du trésor de la main des aventuriers + de la pioche.
+                        nombreAction = nombreAction -1;
+                    }    
+                }
             }
     }
     //supprime le trésor de la pile et de la main de tout les aventuriers
