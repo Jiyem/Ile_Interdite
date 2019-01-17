@@ -189,7 +189,7 @@ public class VuePlateau extends Observable{
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
                             setChanged();
-                            notifyObservers(new MessagePlateau(ActionsType.SELECTION_CASE,col,row,btnTuile.indexOf(tuile)));
+                            notifyObservers(new MessagePlateau(ActionsType.SELECTION_CASE,col,row,btnTuile.indexOf(tuile)+1));
                             clearChanged();
                         }
                     });
@@ -205,7 +205,6 @@ public class VuePlateau extends Observable{
     
     public void majPlateau(Grille g){
         int cpt = 0;
-        while(cpt < btnTuile.size()){
             for (int y = 0; y < 6; y++) {
                 for (int x = 0; x < 6; x++) {
                         if(g.getTuile()[y][x] != null){
@@ -218,8 +217,43 @@ public class VuePlateau extends Observable{
 
             }  
         }
-    }
+   
     
+    public void afficherDeplacements(ArrayList<Tuile> tuiles,Grille g,Aventurier joueurCourant){
+        ArrayList<JButton> cliquables = new ArrayList<>();
+            for (int y = 0; y < 6; y++) {
+                for (int x = 0; x < 6; x++) {
+                    boolean verif = true;
+                    for(int i = 0;i<tuiles.size();i++){
+                        if(g.getTuile()[y][x] == null || g.getTuile()[y][x].getNumTuile() == tuiles.get(i).getNumTuile()){
+                            verif = false;
+                        }
+                    }
+                    if(verif){
+                        btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setEnabled(false);
+                    }
+                    else{
+                        cliquables.add(btnTuile.get(g.getTuile()[y][x].getNumTuile()-1));
+                    }
+                }
+            }
+            btnTuile.get(joueurCourant.getPosition().getNumTuile()-1).setBackground(joueurCourant.getCouleur().getCouleur());
+            this.clicDeplacement(cliquables);
+            
+        }
+    
+    public void clicDeplacement(ArrayList<JButton> cliquables){
+        for(int i = 0;i<cliquables.size();i++){
+            cliquables.get(i).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                setChanged();
+                notifyObservers();
+                clearChanged();
+                }
+            });
+        }
+    }
 
     
 //    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){
@@ -249,6 +283,10 @@ public class VuePlateau extends Observable{
         }
         
     }
+    
+    
+    
+    
     /*autre couleur 
     innondé     tuile.setBackground(new Color(255, 255, 100));//Orange
     coulé       tuile.setBackground(new Color(100,100,100));//gris

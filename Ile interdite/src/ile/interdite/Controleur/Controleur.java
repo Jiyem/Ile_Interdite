@@ -167,9 +167,10 @@ public class Controleur implements Observer {
                 messageAventurier = (MessageAventurier) arg1 ;
                 if(messageAventurier.getAction()==ActionsType.DEPLACER){
                     //faire le déplacement
-                    if(joueurCourant.ouAller(grille)==true){
-                        this.déplacer();
-                    };  
+                    this.ouAller();
+//                    if(joueurCourant.ouAller(grille)==true){
+//                        this.déplacer();
+//                    };  
                 }
                 else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                     //faire l'assecheemnt
@@ -762,13 +763,13 @@ public class Controleur implements Observer {
         
     }
     
-    private void ouAller(Grille grille){
+    private void ouAller(){
         ArrayList<Tuile> deplacementPossible = new ArrayList();
         deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
         if(deplacementPossible.size()==0){
             System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
         }else{
-            
+            plateau.afficherDeplacements(deplacementPossible,grille,joueurCourant);
         }
 //            for (int i =0; i < deplacementPossible.size();i++){
 //                System.out.println(i + " : " + deplacementPossible.get(i).getNomTuile());
