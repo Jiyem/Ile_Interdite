@@ -293,6 +293,7 @@ public class Controleur implements Observer {
                 if(arg1 instanceof MessageMuligan){
                     messageMuligan = (MessageMuligan) arg1;
                     this.muliganCartes(messageMuligan.getListecartes());
+
                     vueMainTropGrande.fermer();
                 }
               
@@ -618,11 +619,13 @@ public class Controleur implements Observer {
                 //changement de joueur
                 joueurCourant = joueurs.get(y);
             }
+            
             //Verif si la main du joueur est trop grande
-            if(joueurCourant.getnbCartes() > 9){
+            if(joueurCourant.getnbCartes() > 9 ){
                     vueMainTropGrande = new VueMainTropGrande(joueurCourant,joueurCourant.getnbCartes()-9);
+                    vueMainTropGrande.addObserver(this);
                     vueMainTropGrande.afficher();
-                }
+            }
         }
     }
         
@@ -914,16 +917,12 @@ public class Controleur implements Observer {
     }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
-        for(int  i=0; i <joueurCourant.getCartes().size();i++){
+            this.retirerCarte(joueurCourant, carteHelico);
             for(int y=0;y<listeBoutonValide.size();y++){
-                if(listeBoutonValide.get(y) == joueurCourant.getCartes().get(i)){
-                    CarteTirage t = joueurCourant.getCartes().get(i);
-                    joueurCourant.enleverCarte(t);
-                }    
+                    this.retirerCarte(joueurCourant,listeBoutonValide.get(y));
             }
-        }
-            
+        }    
     }
-}
+
 
 
