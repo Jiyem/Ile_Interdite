@@ -209,7 +209,10 @@ public class Controleur implements Observer {
                     this.recupererTresor();  
                 }
                 else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){ // Ne fait rien du tout pour l'instant
-                    //faire autre action
+                    //faire autre action)
+                            //joueurCourant.donnerCarte(joueurs.get(i), );
+                        
+                    
                     
                 }
                 else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){

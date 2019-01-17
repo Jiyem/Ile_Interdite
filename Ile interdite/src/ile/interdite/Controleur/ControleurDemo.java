@@ -11,7 +11,6 @@ import ile.interdite.Modele.Couleur;
 import ile.interdite.Modele.Aventuriers.Explorateur;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Aventuriers.Ingenieur;
-import ile.interdite.Modele.Aventuriers.Messager;
 import ile.interdite.Modele.Aventuriers.Navigateur;
 import ile.interdite.Modele.Aventuriers.Pilote;
 import ile.interdite.Modele.Aventuriers.Plongeur;
@@ -23,19 +22,17 @@ import ile.interdite.Modele.Cartes.CarteTresor;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Tuile;
 import ile.interdite.Message.ActionsType;
-import ile.interdite.Message.Message;
 import ile.interdite.Message.MessageAction;
 import ile.interdite.Message.MessageAventurier;
+import ile.interdite.Message.MessageCarte;
 import ile.interdite.Message.MessageCarteSpe;
 import ile.interdite.Message.MessageInscription;
 import ile.interdite.Message.MessageMuligan;
 import ile.interdite.Message.MessagePlateau;
-import ile.interdite.Vue.VueAventurier3;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
 import ile.interdite.Modele.Cartes.PaquetInnondation;
 import ile.interdite.Modele.Cartes.CarteInnondation;
-import ile.interdite.Modele.Cartes.TypeCarte;
 import static ile.interdite.Modele.Cartes.TypeCarte.Helicoptere;
 import static ile.interdite.Modele.Cartes.TypeCarte.SacDeSable;
 import ile.interdite.Modele.Tresor;
@@ -45,21 +42,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
-import ile.interdite.Vue.PartiePerdue;
-import ile.interdite.Vue.VueAventurier;
-import ile.interdite.Vue.VueCartesAventurier;
-import ile.interdite.Vue.VueCartesSpé;
-import ile.interdite.Vue.VueFinDeTour;
-import ile.interdite.Vue.VueNiveau;
-import ile.interdite.Vue.VuePersonnages;
+import ile.interdite.Vue.*;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 
 
 /**
@@ -98,6 +86,8 @@ public class ControleurDemo implements Observer {
     private VueNiveau vueNiveau;
     private VueMainTropGrande vueMainTropGrande;
     private MessageMuligan messageMuligan;
+    private VueCarteADonner vueDonnerCarte;
+    
     
     public ControleurDemo(){
         joueurs=new ArrayList<>();
@@ -210,6 +200,17 @@ public class ControleurDemo implements Observer {
                 }
                 else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){ // Ne fait rien du tout pour l'instant
                     //faire autre action
+                    Aventurier aventurier = null;
+                    for(Aventurier av : joueurs){
+                        if (av.getPosition().equals(joueurCourant.getPosition())){
+                            aventurier=av;
+                        }
+                    }
+                    vueDonnerCarte = new VueCarteADonner(aventurier,joueurCourant);
+                    vueDonnerCarte.addObserver(this);
+                    vueDonnerCarte.afficher();
+                    //this.muliganCartes(messageMuligan.getListecartes());
+                    
                     
                 }
                 else if(messageAventurier.getAction()==ActionsType.PASSERTOUR){
@@ -252,6 +253,13 @@ public class ControleurDemo implements Observer {
                     }
                     plateau.majPlateau(grille); 
                     }
+                
+                if(arg1 instanceof MessageCarte){
+                    MessageCarte messageCarte = (MessageCarte) arg1;
+                    if (messageCarte.getAction()==ActionsType.DONNERCARTE){
+                        joueurCourant.donnerCarte(messageCarte.getAv(), stringToCarte(messageCarte.getCarte()));
+                    }
+                }
                     
                     
                 
@@ -370,11 +378,15 @@ public class ControleurDemo implements Observer {
                 CarteSacDeSable carte = new CarteSacDeSable();
                 pileCartesTirage.add(carte);
             }
+           // ======================================================================
+           // Cartes données aux aventurier pour la démo
+           
             
             
             
         }
-        
+        CarteTresor tresor = new CarteTresor(Tresor.CALICE);
+        joueurs.get(0).ajouterCartes(tresor);
         
         Collections.shuffle(pileCartesTirage);
     }
@@ -829,6 +841,18 @@ public class ControleurDemo implements Observer {
             
     }
     
+//    public void CartesADonner(ArrayList<CarteTirage> listeBoutonValide, Aventurier a){
+//        for(int  i=0; i <joueurCourant.getCartes().size();i++){
+//            for(int y=0;y<listeBoutonValide.size();y++){
+//                if(listeBoutonValide.get(y) == joueurCourant.getCartes().get(i)){
+//                    CarteTirage t = joueurCourant.getCartes().get(i);
+//                    joueurCourant.donnerCarte(listeBoutonValide.get(i),a);
+//                }    
+//            }
+//        }
+            
+//    }
+    
     private void ouAssecher(){
         ArrayList<Tuile> assechementPossible = new ArrayList();
         assechementPossible = joueurCourant.assèchementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
@@ -837,6 +861,16 @@ public class ControleurDemo implements Observer {
         }else{
             plateau.afficherAction(assechementPossible,grille,joueurCourant,ActionsType.ASSECHER);
         } 
+    }
+
+    private CarteTirage stringToCarte(String carte) {
+        CarteTirage carteARendre = null;
+        for (CarteTirage carteT : joueurCourant.getCartes()){
+         if(carteT.getType().name().equals(carte)){
+            carteARendre=carteT;
+         }    
+        }
+        return carteARendre;
     }
     
 }

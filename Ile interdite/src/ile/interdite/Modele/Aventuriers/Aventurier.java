@@ -126,20 +126,8 @@ public abstract class Aventurier {
     }
     
     public void donnerCarte(Aventurier a, CarteTirage carte){
-        if(carte.getType() == TypeCarte.Tresor){
-            if (this.getPosition() == a.getPosition()){
                     a.ajouterCartes(carte);
                     this.enleverCarte(carte);
-            }
-            else{
-                System.out.print("Vous n'êtes pas sur la même case vous ne pouvez donc pas échanger de carte avec cet Aventurier");
-            }   
-        }
-        else{
-            System.out.println("La carte que vous souhaitez donner n'est pas une carte trésor");
-        }
-        
-
     }
     
     public boolean ouAller(Grille grille){
