@@ -25,6 +25,7 @@ import ile.interdite.Modele.Tuile;
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Message.MessageInscription;
+import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Vue.VueAventurier3;
 import ile.interdite.Vue.VueInscription;
 import ile.interdite.Vue.VuePlateau;
@@ -72,6 +73,7 @@ public class Controleur implements Observer {
     private Tuile[][] tuiles;
     private MessageInscription message;
     private MessageAventurier messageAventurier;
+    private MessagePlateau messagePlateau;
     private Aventurier joueurCourant; 
     private VuePlateau plateau;
     private PaquetInnondation paquetInnondation = new PaquetInnondation();
@@ -184,7 +186,11 @@ public class Controleur implements Observer {
 //              vueMuligan = new VueMainTropGrand(joueurCourant,nbCartesApriocher);
 //              }
                 }
-                
+            
+                /************ Message Provenant du plateau ************/
+                if(arg1 instanceof MessagePlateau){
+                    messagePlateau = (MessagePlateau) arg1;
+                }
                 //Fin du tour de jeu : 
                 if(arg1 instanceof String){    //Créer une action plutôt éventuellement..
                     String string = (String) arg1;
@@ -498,7 +504,9 @@ public class Controleur implements Observer {
             vueNiveau = new VueNiveau(niveau);
             
             try {
+                plateau.fermer();
                 plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier, vueNiveau);
+                
             } catch (IOException ex) {
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }

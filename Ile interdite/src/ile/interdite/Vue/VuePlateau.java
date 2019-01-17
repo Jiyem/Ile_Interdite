@@ -81,7 +81,7 @@ public class VuePlateau extends Observable{
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                     setChanged();
-                    notifyObservers(new MessagePlateau(ActionsType.VALIDE,joueur));
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
                     clearChanged();
                 }
             });
@@ -183,7 +183,7 @@ public class VuePlateau extends Observable{
         this.window.setVisible(true);
     }
     public void fermer(){
-        this.window.setVisible(false);
+        this.window.dispose();
     }
     
     public void majCouleur(JButton bouton,Tuile tuile){
@@ -201,4 +201,5 @@ public class VuePlateau extends Observable{
     coulé       tuile.setBackground(new Color(100,100,100));//gris
     */
  
+    
 }

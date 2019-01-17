@@ -42,26 +42,26 @@ public class TuileCalque extends Calque {
     
     public void ajouterPion(Aventurier A, int numeroJ){
         
-        if (numeroJ ==0){
-        joueur1 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 0, 0, 100, 100);
-        this.add(joueur1,0);
-        repaint();
-        }
-        else if (numeroJ ==1){
-        joueur2 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 100, 0, 100, 100);
-        this.add(joueur2,1);
-        repaint();
-        }
-        else if (numeroJ ==2){
-        joueur3 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 0, 100, 100, 100); 
-        this.add(joueur3,2);
-        repaint();
-        }
-        else if (numeroJ ==3){
-        joueur4 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 100, 100, 100, 100);
-        this.add(joueur4,3);
-        repaint();
-        }
+//        if (numeroJ ==0){
+//        joueur1 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 0, 0, 100, 100);
+//        this.add(joueur1,0);
+//        repaint();
+//        }
+//        else if (numeroJ ==1){
+//        joueur2 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 100, 0, 100, 100);
+//        this.add(joueur2,1);
+//        repaint();
+//        }
+//        else if (numeroJ ==2){
+//        joueur3 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 0, 100, 100, 100); 
+//        this.add(joueur3,2);
+//        repaint();
+//        }
+//        else if (numeroJ ==3){
+//        joueur4 = new ImageContainer(this.getPath(A.getCouleur().getlibelle()), 100, 100, 100, 100);
+//        this.add(joueur4,3);
+//        repaint();
+//        }
     }
 
     @Override
