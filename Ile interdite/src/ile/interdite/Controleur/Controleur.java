@@ -96,13 +96,8 @@ public class Controleur implements Observer {
     }
     @Override
     public void update(Observable arg0, Object arg1) {
-            if (arg1 instanceof ActionsType) {
-                //Si l'utilisateur clic sur annulé
-                if (((ActionsType) arg1) == ActionsType.ANNULE) {
-                    System.out.println("L'utilisateur a abandonné");
-                }
-            } 
-            else if (arg1 instanceof MessageInscription) {
+                
+                if (arg1 instanceof MessageInscription) {
                 message = (MessageInscription) arg1 ;
                 //Si l'utilisateur clic sur validé
                 if (message.getAction() == ActionsType.VALIDE) {
