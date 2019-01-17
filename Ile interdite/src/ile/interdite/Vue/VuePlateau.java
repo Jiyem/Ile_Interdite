@@ -142,6 +142,18 @@ public class VuePlateau extends Observable{
         
 
     }
+    public void majVueNiveau(VueNiveau vueNiveau){
+        mainPanel.remove(niveau.getMainPanel());
+        niveau = vueNiveau;
+        mainPanel.add(niveau.getMainPanel(), BorderLayout.WEST);
+    }
+    
+    public void majVueAventurier(VueAventurier vueAventurier){
+        menu.remove(aventurier.getMainPanel());
+        aventurier = vueAventurier;
+        menu.add(aventurier.getMainPanel());
+    }
+    
     
     public void initPlateau(Grille g){
         JPanel tuiles = new JPanel(new GridLayout(6, 6));
@@ -219,7 +231,7 @@ public class VuePlateau extends Observable{
         }
    
     
-    public void afficherDeplacements(ArrayList<Tuile> tuiles,Grille g,Aventurier joueurCourant){
+    public void afficherAction(ArrayList<Tuile> tuiles,Grille g,Aventurier joueurCourant,ActionsType action){
         ArrayList<JButton> cliquables = new ArrayList<>();
             for (int y = 0; y < 6; y++) {
                 for (int x = 0; x < 6; x++) {
@@ -238,17 +250,22 @@ public class VuePlateau extends Observable{
                 }
             }
             btnTuile.get(joueurCourant.getPosition().getNumTuile()-1).setBackground(joueurCourant.getCouleur().getCouleur());
-            this.clicDeplacement(cliquables);
+            this.clicAction(cliquables,action);
             
         }
     
-    public void clicDeplacement(ArrayList<JButton> cliquables){
+    public void clicAction(ArrayList<JButton> cliquables,ActionsType action){
         for(int i = 0;i<cliquables.size();i++){
             cliquables.get(i).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 setChanged();
-                notifyObservers();
+                if(action == ActionsType.DEPLACER){
+                    notifyObservers();
+                }else if(action == ActionsType.ASSECHER){
+                    notifyObservers();
+                }
+                
                 clearChanged();
                 }
             });
