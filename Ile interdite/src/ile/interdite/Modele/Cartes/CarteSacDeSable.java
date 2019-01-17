@@ -5,6 +5,7 @@
  */
 package ile.interdite.Modele.Cartes;
 
+import ile.interdite.Modele.EtatCase;
 import static ile.interdite.Modele.EtatCase.INNONDEE;
 import static ile.interdite.Modele.EtatCase.NORMAL;
 import ile.interdite.Modele.Grille;
@@ -27,7 +28,7 @@ public class CarteSacDeSable extends CarteTirage {
         Tuile[][] tuiles = grille.getTuile();
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
-                if(tuiles[y][x].getEtatCase()==INNONDEE){
+                if(tuiles[y][x] != null && tuiles[y][x].getEtatCase()==EtatCase.INNONDEE){
                     tuilesAssechable.add(tuiles[y][x]);
                 }
             }

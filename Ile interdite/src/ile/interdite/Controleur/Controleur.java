@@ -26,6 +26,7 @@ import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.Message;
 import ile.interdite.Message.MessageAction;
 import ile.interdite.Message.MessageAventurier;
+import ile.interdite.Message.MessageCarteSpe;
 import ile.interdite.Message.MessageInscription;
 import ile.interdite.Message.MessageMuligan;
 import ile.interdite.Message.MessagePlateau;
@@ -79,7 +80,7 @@ public class Controleur implements Observer {
     private int y=0; //une variable drapeau.
     private int niveau=1;
     private Tuile[][] tuiles;
-    private Message message;
+    private MessageCarteSpe messageCarteSpe;
     private MessageInscription messageInscription;
     private MessageAventurier messageAventurier;
     private MessagePlateau messagePlateau;
@@ -106,17 +107,23 @@ public class Controleur implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
                 
-            if (arg1 instanceof Message){
-                message = (Message) arg1;
-                if (message.getAction()==ActionsType.UTILISATION_CARTE_SABLE){
-                    if (carteSacDeSable.assechable(grille)!=null){ // afficher les cases possible puis choisir case et changer l'état en normal
-
-                    
-                    }
+            if (arg1 instanceof MessageCarteSpe){
+                messageCarteSpe = (MessageCarteSpe) arg1;
+                if (messageCarteSpe.getAction()==ActionsType.UTILISATION_CARTE_SABLE){
+                    if (messageCarteSpe.getNbCarteSpe()!=0){
+                        if (carteSacDeSable.assechable(grille)!=null){ // afficher les cases possible puis choisir case et changer l'état en normal
+                            plateau.afficherAction(carteSacDeSable.assechable(grille), grille, joueurCourant, ActionsType.ASSECHER);
+                            int x = 0;
+                            while (listeCartesDesAventuriers.get(x).equals(carteHelico)){
+                                x+=1;
+                            }
+                            listeCartesDesAventuriers.remove(x);
+                        }
+                    }    
                 }        
-                if (message.getAction()==ActionsType.UTILISATION_CARTE_HELICO){
+                if (messageCarteSpe.getAction()==ActionsType.UTILISATION_CARTE_HELICO){
                     if (carteHelico.deplacable(grille)!=null){
-
+                        plateau.afficherAction(carteSacDeSable.assechable(grille), grille, joueurCourant, ActionsType.DEPLACER);
                     
                     
                     }
@@ -452,6 +459,7 @@ public class Controleur implements Observer {
             }
             plateau.afficher();
             plateau.addObserver(this);
+            plateau.getVueCartesSpé().addObserver(this);
 
             inscri.close();
     }

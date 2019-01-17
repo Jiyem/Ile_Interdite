@@ -314,22 +314,10 @@ public class VuePlateau extends Observable{
         
     }
     
-//    public void creationMenu(VueAventurier vueAventurier,ArrayList<CarteTirage> cartes){
-//        mainPanel.remove(menu);
-//        menu = new JPanel(new GridLayout(3,1));
-//        menu.add(personnages);
-//
-//        
-//        aventurier = vueAventurier;
-//        menu.add(aventurier.getMainPanel());
-//        
-//        cartesSpe = new VueCartesSpé(cartes);
-//        menu.add(cartesSpe.getMainPanel());
-//        
-//        
-//        
-//        mainPanel.add(menu,BorderLayout.EAST);
-//    }
+    public VueCartesSpé getVueCartesSpé(){
+        return cartesSpe;
+    }
+    
     
     
     /*autre couleur 

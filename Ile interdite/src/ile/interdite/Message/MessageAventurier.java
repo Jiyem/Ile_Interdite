@@ -12,7 +12,7 @@ import ile.interdite.Message.Message;
  * @author anandanj
  */
 public class MessageAventurier extends Message {
-    private int osef;
+    
     
     public MessageAventurier(ActionsType action){
         super(action);

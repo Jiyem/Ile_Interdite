@@ -7,6 +7,7 @@ package ile.interdite.Vue;
 
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.Message;
+import ile.interdite.Message.MessageCarteSpe;
 import ile.interdite.Modele.Cartes.CarteHelicoptere;
 import ile.interdite.Modele.Cartes.CarteTirage;
 import ile.interdite.Modele.Cartes.TypeCarte;
@@ -84,7 +85,7 @@ private JFrame window;
     @Override
     public void actionPerformed(ActionEvent arg0) {
         setChanged();
-        notifyObservers(new Message(ActionsType.UTILISATION_CARTE_SABLE));
+        notifyObservers(new MessageCarteSpe(ActionsType.UTILISATION_CARTE_SABLE,nbCartesSable(cartesSpe)));
         clearChanged();
     }
         });
@@ -105,7 +106,7 @@ private JFrame window;
     @Override
     public void actionPerformed(ActionEvent arg0) {
         setChanged();
-        notifyObservers(new Message(ActionsType.UTILISATION_CARTE_HELICO));
+        notifyObservers(new MessageCarteSpe(ActionsType.UTILISATION_CARTE_HELICO,nbCartesHelico(cartesSpe)));
         clearChanged();
     }
         });
