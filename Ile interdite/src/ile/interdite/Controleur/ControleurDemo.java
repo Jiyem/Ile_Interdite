@@ -400,6 +400,13 @@ public class ControleurDemo implements Observer {
         CarteTresor tresor = new CarteTresor(Tresor.CALICE);
         joueurs.get(0).ajouterCartes(tresor);
         
+        CarteTresor tresor2 = new CarteTresor(Tresor.CALICE);
+        CarteTresor tresor3 = new CarteTresor(Tresor.CALICE);
+        CarteTresor tresor4 = new CarteTresor(Tresor.CALICE);
+        joueurs.get(1).ajouterCartes(tresor2);
+        joueurs.get(1).ajouterCartes(tresor3);
+        joueurs.get(1).ajouterCartes(tresor4);
+
         Collections.shuffle(pileCartesTirage);
     }
     
