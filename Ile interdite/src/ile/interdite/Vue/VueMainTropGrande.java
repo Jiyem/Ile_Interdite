@@ -45,6 +45,7 @@ public class VueMainTropGrande extends Observable{
     private JPanel contentPanel;
     private int nbCartesARetirer;
     
+    
     public VueMainTropGrande(Aventurier jCourant,int nbCartesARetirer){
         this.jCourant = jCourant;
         this.nbCartesARetirer = nbCartesARetirer;
@@ -140,5 +141,6 @@ public class VueMainTropGrande extends Observable{
         }
         return cartes;
     }
+    
     
 }

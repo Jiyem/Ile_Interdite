@@ -19,4 +19,13 @@ public class MessageMuligan extends Message {
         super(action);
         this.listecartes = listecartes;
     }
+
+    /**
+     * @return the listecartes
+     */
+    public ArrayList<CarteTirage> getListecartes() {
+        return listecartes;
+    }
+    
+    
 }

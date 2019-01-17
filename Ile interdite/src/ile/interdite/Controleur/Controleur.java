@@ -278,12 +278,13 @@ public class Controleur implements Observer {
                         this.changementJoueur();
                     }
                 }
-//                
-//                if(arg1 instanceof MessageMuligan){
-//                    messageMuligan = (MessageMuligan) arg1;
-//                    this.muliganCartes(messageMuligan.getListecartes());
-//                }
-//                
+                
+                if(arg1 instanceof MessageMuligan){
+                    messageMuligan = (MessageMuligan) arg1;
+                    this.muliganCartes(messageMuligan.getListecartes());
+                    vueMainTropGrande.fermer();
+                }
+              
                 
 
                   
@@ -596,6 +597,8 @@ public class Controleur implements Observer {
             vuefintour.afficher();
             vuefintour.addObserver(this);
             
+
+            
             //verif victoire et defaite
             if(this.verifVictoire()){
                 //faire le traitement en cas de victoire
@@ -888,6 +891,16 @@ public class Controleur implements Observer {
             plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
         } 
     }
+
+    private void ouAssecher(){
+        ArrayList<Tuile> assechementPossible = new ArrayList();
+        assechementPossible = joueurCourant.assèchementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+        if(assechementPossible.size()==0){
+            System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+        }else{
+            plateau.afficherAction(assechementPossible,grille,joueurCourant,ActionsType.ASSECHER);
+        } 
+    }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
         for(int  i=0; i <joueurCourant.getCartes().size();i++){
@@ -900,17 +913,6 @@ public class Controleur implements Observer {
         }
             
     }
-    
-    private void ouAssecher(){
-        ArrayList<Tuile> assechementPossible = new ArrayList();
-        assechementPossible = joueurCourant.assèchementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
-        if(assechementPossible.size()==0){
-            System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
-        }else{
-            plateau.afficherAction(assechementPossible,grille,joueurCourant,ActionsType.ASSECHER);
-        } 
-    }
-    
 }
 
 
