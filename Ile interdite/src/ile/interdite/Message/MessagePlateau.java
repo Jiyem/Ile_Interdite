@@ -13,6 +13,13 @@ import ile.interdite.Modele.Aventuriers.Aventurier;
  * @author mirasl
  */
 public class MessagePlateau extends Message{
+
+    /**
+     * @return the joueur
+     */
+    public Aventurier getJoueur() {
+        return joueur;
+    }
     private int x;
     private int y;
     private int numBouton;
