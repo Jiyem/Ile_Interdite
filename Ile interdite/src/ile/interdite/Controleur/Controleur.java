@@ -503,15 +503,7 @@ public class Controleur implements Observer {
             
             vueNiveau = new VueNiveau(niveau);
             
-            try {
-                plateau.fermer();
-                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier, vueNiveau);
-                
-            } catch (IOException ex) {
-                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            plateau.afficher();
-            plateau.addObserver(this);
+            plateau.majPlateau(grille);
         if(joueurCourant.getClass() == Navigateur.class){
             nombreAction = 4;
         }else{
@@ -758,6 +750,36 @@ public class Controleur implements Observer {
         
         
         
+    }
+    
+    private void ouAller(Grille grille){
+        ArrayList<Tuile> deplacementPossible = new ArrayList();
+        deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+        if(deplacementPossible.size()==0){
+            System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+        }else{
+            
+        }
+//            for (int i =0; i < deplacementPossible.size();i++){
+//                System.out.println(i + " : " + deplacementPossible.get(i).getNomTuile());
+//
+//            }
+//            System.out.println("cliquer sur la tuile pour vous déplacer");
+//            Scanner scanner = new Scanner(System.in);
+//            String numeroTuile = scanner.nextLine();
+//
+//
+//            for(int j =0; j < deplacementPossible.size();j++){
+//                        if (numeroTuile.equals(Integer.toString(j))) {
+//                        joueurCourant.deplacement(deplacementPossible.get(j));
+//                        System.out.println("Vous venez d'être déplacé sur la tuile : " + deplacementPossible.get(j).getNomTuile());
+//                        }
+//
+//
+//
+//            }
+//        }   
+
     }
 }
 

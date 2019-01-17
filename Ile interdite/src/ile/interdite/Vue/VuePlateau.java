@@ -123,7 +123,7 @@ public class VuePlateau extends Observable{
 //                    tuiles.add(tuileVide);
 
                 if ((y == 0 && x == 0) || (y == 0 && x == 5) || (y == 5 && x == 0) || (y == 5 && x == 5)) {
-                       JButton tuileVide = new JButton();
+                    JButton tuileVide = new JButton();
                     tuileVide.setContentAreaFilled(false);
                     tuileVide.setBorderPainted(false);
                     tuileVide.setFocusPainted(false);
@@ -168,6 +168,25 @@ public class VuePlateau extends Observable{
         //A changer pour tout autre jpanel ou borderlayout ou autre !
         margeplateau.add(tuiles,BorderLayout.CENTER);
     }
+    
+    public void majPlateau(Grille g){
+        int cpt = 0;
+        while(cpt < btnTuile.size()){
+            for (int y = 0; y < 6; y++) {
+                for (int x = 0; x < 6; x++) {
+                        if(g.getTuile()[y][x] != null){
+                            JButton tuile = btnTuile.get(cpt);
+                            this.majCouleur(tuile,g.getTuile()[y][x] );
+                            cpt +=1;
+                        } 
+                    
+                }
+
+            }  
+        }
+    }
+    
+
     
 //    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){
 //        for (int x =0;x<6;x++){
