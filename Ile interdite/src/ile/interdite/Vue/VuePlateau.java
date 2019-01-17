@@ -25,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -40,10 +42,12 @@ import javax.swing.JPanel;
 public class VuePlateau extends Observable{
     
     private JFrame window;
-    private Color etat_normal = new Color(179, 229, 255);
-    private Color etat_innondé = new Color(255, 255, 100);
+    private Color etat_normal = new Color(255, 255, 100);
+    private Color etat_innondé = new Color(179, 229, 255);
     private Color etat_immergé = new Color(100,100,100);
     private ArrayList<JButton> btnTuile = new ArrayList<>();
+    private HashMap<Aventurier,JLabel> labelPion = new HashMap<>();
+    
     private JPanel plateau;
     private JPanel menu;
     private VueAventurier aventurier;
@@ -56,13 +60,16 @@ public class VuePlateau extends Observable{
     private JPanel margeplateau;
     private ArrayList<CarteTirage> cartes;
     private ArrayList<JButton> btnListé = new ArrayList<>();
-
+    private ArrayList<Aventurier> joueurs; 
+    private boolean test;
+    private  JPanel basTuile;
     
     public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier, VueNiveau vueNiveau) throws IOException{
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
         window.setSize(2000, 1200);
+        this.joueurs = joueurs;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
         window.setLocationRelativeTo(null);
@@ -167,7 +174,12 @@ public class VuePlateau extends Observable{
         int nb=0;
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
-
+                JPanel tuilespecifique = new JPanel(new BorderLayout());
+                basTuile = new JPanel(new GridLayout(1,4));
+                
+                tuiles.add(tuilespecifique);
+                tuilespecifique.add(basTuile,BorderLayout.SOUTH);   
+                
 //                if ((y == 0 && x == 0) || (y == 0 && x == 1) || (y == 0 && x == 4) || (y == 0 && x == 5) || (y == 1 && x == 0) || (y == 1 && x == 5) || (y == 4 && x == 0) || (y == 4 && x == 5) || (y == 5 && x == 0) || (y == 5 && x == 1) || (y == 5 && x == 4) || (y == 5 && x == 5)) {
 //                    JButton tuileVide = new JButton();
 //                    tuileVide.setContentAreaFilled(false);
@@ -180,30 +192,47 @@ public class VuePlateau extends Observable{
                     tuileVide.setContentAreaFilled(false);
                     tuileVide.setBorderPainted(false);
                     tuileVide.setFocusPainted(false);
-                    tuiles.add(tuileVide);
+                    tuilespecifique.add(tuileVide,BorderLayout.CENTER);
                 }
                 else if((y == 0 && x == 1) || (y == 0 && x == 4) || (y == 1 && x == 0) || (y == 1 && x == 5) || (y == 4 && x == 0) || (y == 4 && x == 5) || (y == 5 && x == 1) || (y == 5 && x == 4)){
                     JButton tuileVide = new JButton();
                     tuileVide.setContentAreaFilled(false);
                     tuileVide.setBorderPainted(false);
                     tuileVide.setFocusPainted(false);
-                    tuiles.add(tuileVide);
+                    tuilespecifique.add(tuileVide,BorderLayout.CENTER);
                 }
                 
                 else {
                     int col = y;
                     int row = x;
                     nb = nb + 1;
-                    JButton tuile = new JButton(g.getTuile()[y][x].getImage().getImageAAfficher());
+                    JButton tuile = new JButton();
+                    
+                    
                     this.majCouleur(tuile,g.getTuile()[y][x] );
-//                    tuile.setBackground(this.etat_normal); //BleuCYAN
+                    
+                    
+                        
+                        for(int u=0 ;u<joueurs.size();u++){
+                          JLabel pion = new JLabel(" ");
+                          
+                          pion.setBorder(BorderFactory.createLineBorder(Color.black));
+                            labelPion.put(joueurs.get(u),pion);
+                            basTuile.add(pion);
+                            
+                        }
+                        
+                    for(int p=0 ;p<joueurs.size();p++){    
+                        this.majCouleurPionPlateau(g.getTuile()[y][x]);
+                        
+                    }
+                    
+                        
+                    
                     tuile.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
-//                    tuile.setForeground(Color.GREEN);
-//                    tuile.setContentAreaFilled(false);
-//                    tuile.setBorderPainted(false);
-//                    tuile.setFocusPainted(false);
+                    
                     btnTuile.add(tuile);
-                    tuiles.add(tuile);
+                    tuilespecifique.add(tuile,BorderLayout.CENTER);
                         tuile.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
@@ -231,6 +260,7 @@ public class VuePlateau extends Observable{
                             this.majCouleur(tuile,g.getTuile()[y][x] );
                             btnTuile.get(cpt).setEnabled(true);
                             cpt +=1;
+                            
                         } 
                     
                 }
@@ -250,11 +280,21 @@ public class VuePlateau extends Observable{
                         }
                     }
                     if(verif){
+                        Tuile tuileAModifier = g.getTuile()[y][x];
+                        if(tuileAModifier.getEtatCase() == EtatCase.NORMAL){
+                            btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setDisabledIcon(tuileAModifier.getImage().getImageAAfficher());
+                            btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setBackground(Color.DARK_GRAY);
+                        }
+                        else if(tuileAModifier.getEtatCase() == EtatCase.INNONDEE){
+                            btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setDisabledIcon(tuileAModifier.getImageInnondée().getImageAAfficher());
+                            btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setBackground(Color.DARK_GRAY);
+                        }
                         btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setEnabled(false);
                     }
                     else if(g.getTuile()[y][x] != null){
                         cliquables.add(btnTuile.get(g.getTuile()[y][x].getNumTuile()-1)); //puisque le pilote peut aller partout l'arrayList est vide donc ça fais null pointeur exception
                     }
+                    
                 }
             }
             btnTuile.get(joueurCourant.getPosition().getNumTuile()-1).setBackground(joueurCourant.getCouleur().getCouleur());
@@ -296,6 +336,7 @@ public class VuePlateau extends Observable{
                     if(dansliste == false){
                         cliquables.get(i).addActionListener(probTest);
                         btnListé.add(cliquables.get(i));
+                        
                     }
 
                     
@@ -306,6 +347,26 @@ public class VuePlateau extends Observable{
 
         }
     }
+        public void majCouleurPionPlateau(Tuile tuile){
+            for (Map.Entry<Aventurier, JLabel> entry : labelPion.entrySet()) {
+                Aventurier key = entry.getKey();
+                JLabel value = entry.getValue();
+                if(key.getPosition() == tuile){
+                   value.setIcon(key.getPion().getImageAAfficher());
+                   value.setVisible(true);
+                   value.setBackground(key.getCouleur().getCouleur());
+                   value.setOpaque(true);
+                }
+                else{
+                    value.setIcon(null);
+                    value.setVisible(false);
+                }
+        }
+            basTuile.revalidate();
+            basTuile.repaint();
+        
+        }
+    
 
     
 //    public void afficherTuilesDispo(ArrayList<Tuile> tuilesA){
@@ -328,10 +389,14 @@ public class VuePlateau extends Observable{
     public void majCouleur(JButton bouton,Tuile tuile){
         if(tuile.getEtatCase() == EtatCase.NORMAL){
             bouton.setBackground(etat_normal);
+            bouton.setIcon(tuile.getImage().getImageAAfficher());
         }else if(tuile.getEtatCase()==EtatCase.INNONDEE){
             bouton.setBackground(etat_innondé);
+            bouton.setIcon(tuile.getImageInnondée().getImageAAfficher());
         }else{
-            bouton.setBackground(etat_immergé);
+            bouton.setBackground(Color.DARK_GRAY);
+            bouton.setIcon(null);
+            bouton.setEnabled(false);
         }
         
     }
