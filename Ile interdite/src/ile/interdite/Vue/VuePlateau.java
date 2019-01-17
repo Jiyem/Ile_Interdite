@@ -11,6 +11,7 @@ import ile.interdite.Message.MessageAction;
 import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.Cartes.TypeCarte;
 import ile.interdite.Modele.EtatCase;
 import ile.interdite.Modele.Grille;
 import ile.interdite.Modele.Tuile;
@@ -405,7 +406,72 @@ public class VuePlateau extends Observable{
         return cartesSpe;
     }
     
+    public  ArrayList<Integer> possedeCarteHelicoSac(CarteTirage carteSpe, ArrayList<Aventurier> joueurs){
+         ArrayList<Integer> jPossèdeCarte = new ArrayList<>();
+        if (carteSpe.getType()==TypeCarte.Helicoptere){
+            for (int i =0;i<joueurs.size();i++){
+                if (joueurs.get(i).getCartes()!=null){
+                    int x =0;
+                    while (x<joueurs.get(i).getCartes().size() && joueurs.get(i).getCartes().get(x).getType()== TypeCarte.SacDeSable ){
+                        x+=1;
+                    }
+                    if (x<joueurs.get(i).getCartes().size() || (x==joueurs.get(i).getCartes().size() && joueurs.get(i).getCartes().get(x).getType()==TypeCarte.Helicoptere )){
+                        jPossèdeCarte.add(i);
+                    }
+                }
+            }
+        }
+        else if (carteSpe.getType()==TypeCarte.SacDeSable){
+            for (int i =0;i<joueurs.size();i++){
+                if (joueurs.get(i).getCartes().size()!=0){
+                    System.out.println("ile.interdite.Vue.VuePlateau.possedeCarteHelicoSac()");
+                    int x =0;
+                    while (x<joueurs.get(i).getCartes().size() && joueurs.get(i).getCartes().get(x).getType()== TypeCarte.Helicoptere ){
+                        x+=1;
+                    }
+                    if (x<joueurs.get(i).getCartes().size() || (x==joueurs.get(i).getCartes().size() && joueurs.get(i).getCartes().get(x).getType()==TypeCarte.SacDeSable )){
+                        jPossèdeCarte.add(i);
+                    }
+                }
+            }
+        }
+        return jPossèdeCarte;
+    }
     
+    public void afficheJoueurPossèdeCarte(ArrayList<Aventurier> joueurs,ArrayList<Integer> indexJoueurs, TypeCarte type){
+        for (int i=0;i<joueurs.size();i++){
+                int num = i; 
+                if (indexJoueurs.contains(i)){
+                getPersonnages().getButton().get(indexJoueurs.get(i)).addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        setChanged();
+                        notifyObservers(new MessagePlateau(ActionsType.VALIDE, num,type));
+                        clearChanged();
+                        getPersonnages().getButton().get(indexJoueurs.get(num)).removeActionListener(this);
+                    }
+                });
+                }else{
+                    System.out.println("ile.interdite.Vue.VuePlateau.afficheJoueurPossèdeCarte()");
+                    getPersonnages().getButton().get(i).setEnabled(false);
+                }
+        }
+    }
+    
+    public void actionneBouton(ArrayList<JButton> boutons){
+        for (int i = 0;i<boutons.size();i++){
+            boutons.get(i).setEnabled(true);
+        }
+    }
+
+    /**
+     * @return the personnages
+     */
+    public VuePersonnages_1 getPersonnages() {
+        return personnages;
+    }
+        
+}
     
     /*autre couleur 
     innondé     tuile.setBackground(new Color(255, 255, 100));//Orange
@@ -413,4 +479,4 @@ public class VuePlateau extends Observable{
     */
  
     
-}
+

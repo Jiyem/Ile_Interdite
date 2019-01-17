@@ -7,6 +7,8 @@ package ile.interdite.Message;
 
 import ile.interdite.Message.Message;
 import ile.interdite.Modele.Aventuriers.Aventurier;
+import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.Cartes.TypeCarte;
 
 /**
  *
@@ -24,7 +26,7 @@ public class MessagePlateau extends Message{
     private int y;
     private int numBouton;
     
-    
+    private TypeCarte typeCarte =TypeCarte.Tresor;
     private Aventurier joueur;
     
     public MessagePlateau(ActionsType action, int y, int x, int num){
@@ -42,6 +44,16 @@ public class MessagePlateau extends Message{
         setY(100);
         setNumBouton(100);
         
+        
+        this.joueur =joueur;
+    }
+    public MessagePlateau(ActionsType action, int num, TypeCarte type){
+        super(action);
+        setX(100);
+        setY(100);
+        
+        setNumBouton(num);
+        typeCarte =type;
         
         this.joueur =joueur;
     }
@@ -86,6 +98,13 @@ public class MessagePlateau extends Message{
      */
     public void setNumBouton(int numBouton) {
         this.numBouton = numBouton;
+    }
+
+    /**
+     * @return the typeCarte
+     */
+    public TypeCarte getTypeCarte() {
+        return typeCarte;
     }
     
 }

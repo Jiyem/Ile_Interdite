@@ -36,7 +36,6 @@ public class VueCartesAventurier {
     public VueCartesAventurier(Aventurier j){
         this.window = new JFrame("Carte de l'aventurier");
         window.setSize(600, 600);
-//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
 
                 //titre

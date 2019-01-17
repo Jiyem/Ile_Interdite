@@ -118,6 +118,7 @@ public class Controleur implements Observer {
                                 x+=1;
                             }
                             listeCartesDesAventuriers.remove(x);
+                            plateau.afficheJoueurPossèdeCarte(joueurs,plateau.possedeCarteHelicoSac(carteSacDeSable, joueurs),TypeCarte.SacDeSable);
                         }
                     }    
                 }        
@@ -268,6 +269,16 @@ public class Controleur implements Observer {
                     if (messagePlateau.getAction()==ActionsType.PAGE_PERSONNAGE){
                         vueCarteAventurier= new VueCartesAventurier(messagePlateau.getJoueur());
                         vueCarteAventurier.afficher();
+                    }
+                    else if (messagePlateau.getAction()==ActionsType.VALIDE){
+                        if (messagePlateau.getTypeCarte()==TypeCarte.Helicoptere){
+                            joueurs.get(messagePlateau.getNumBouton()).enleverCarte(carteHelico);
+                            plateau.actionneBouton(plateau.getPersonnages().getButton());
+                        }
+                        else if (messagePlateau.getTypeCarte()==TypeCarte.SacDeSable){
+                            joueurs.get(messagePlateau.getNumBouton()).enleverCarte(carteSacDeSable);
+                            plateau.actionneBouton(plateau.getPersonnages().getButton());
+                        }
                     }
                 }
                 //Fin du tour de jeu : 
