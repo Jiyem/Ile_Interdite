@@ -163,13 +163,11 @@ public class Controleur implements Observer {
                 if(messageAventurier.getAction()==ActionsType.DEPLACER){
                     //faire le déplacement
                     this.ouAller();
-//                    if(joueurCourant.ouAller(grille)==true){
-//                        this.déplacer();
-//                    };  
+
                 }
                 else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                     //faire l'assecheemnt
-                    this.assécher();  
+                    this.ouAssecher();
                 }
                 else if(messageAventurier.getAction()==ActionsType.RECUP_TRESOR){
                     //faire l'assecheemnt
@@ -193,7 +191,10 @@ public class Controleur implements Observer {
                 
                 if(arg1 instanceof MessageAction){
                     MessageAction messageAction = (MessageAction) arg1;
-                    if(messageAction.getAction()== ActionsType.DEPLACER){
+                    if(nombreAction == 0){
+                        this.changementTour();
+                    }else{
+                       if(messageAction.getAction()== ActionsType.DEPLACER){
                         for (int y = 0; y < 6; y++) {
                             for (int x = 0; x < 6; x++) {
                                 if(grille.getTuile()[y][x] != null && grille.getTuile()[y][x].getNumTuile() == messageAction.getNumTuile()){
@@ -202,7 +203,18 @@ public class Controleur implements Observer {
                             }
                         }
                     }
-                    plateau.majPlateau(grille);
+                    else if(messageAction.getAction()== ActionsType.ASSECHER){
+                        for (int y = 0; y < 6; y++) {
+                            for (int x = 0; x < 6; x++) {
+                                if(grille.getTuile()[y][x] != null && grille.getTuile()[y][x].getNumTuile() == messageAction.getNumTuile()){
+                                    this.assécher(grille.getTuile()[y][x]);
+                                }
+                            }
+                        }    
+                    }
+                    plateau.majPlateau(grille); 
+                    }
+                    
                     
                 }
             
@@ -426,10 +438,8 @@ public class Controleur implements Observer {
             joueurCourant.setPosition(tuile);
             nombreAction=nombreAction-1;
     }
-    private void assécher(){
-        if(joueurCourant.ouAssecher(grille)==true){
-            nombreAction=nombreAction-1;
-        };
+    private void assécher(Tuile tuile){
+        tuile.setEtatCase(EtatCase.NORMAL);
         if(joueurCourant.getRôle()=="Ingenieur" && joueurCourant.assèchementPossible(grille).size()!=0){
             Scanner sc=new Scanner(System.in);
             System.out.println("Voulez-vous effectuer un deuxième assèchement ? (o/n)");
@@ -438,6 +448,7 @@ public class Controleur implements Observer {
                                 
             }
         }
+        nombreAction = nombreAction -1;
     }
     private void autreAction(){
         if(joueurCourant.getCouleur().equals(Couleur.BLEU)){ // modifier pour pouvoir utiliser son pouvoir qu'une fois
@@ -567,7 +578,17 @@ public class Controleur implements Observer {
             
             vueNiveau = new VueNiveau(niveau);
             
-            plateau.majPlateau(grille);
+            plateau.fermer();
+            try {
+                plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier, vueNiveau);
+//                
+            } catch (IOException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            plateau.afficher();
+            plateau.addObserver(this);
+            
+            
         if(joueurCourant.getClass() == Navigateur.class){
             nombreAction = 4;
         }else{
@@ -836,6 +857,16 @@ public class Controleur implements Observer {
             }
         }
             
+    }
+    
+    private void ouAssecher(){
+        ArrayList<Tuile> assechementPossible = new ArrayList();
+        assechementPossible = joueurCourant.assèchementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+        if(assechementPossible.size()==0){
+            System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+        }else{
+            plateau.afficherAction(assechementPossible,grille,joueurCourant,ActionsType.ASSECHER);
+        } 
     }
     
 }
