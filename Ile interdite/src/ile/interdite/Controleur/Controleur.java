@@ -226,14 +226,14 @@ public class Controleur implements Observer {
                 
                 if(arg1 instanceof MessageAction){
                     MessageAction messageAction = (MessageAction) arg1;
-                    if(nombreAction == 0){
-                        this.changementTour();
-                    }else{
+                    
                        if(messageAction.getAction()== ActionsType.DEPLACER){
+
                         for (int y = 0; y < 6; y++) {
                             for (int x = 0; x < 6; x++) {
                                 if(grille.getTuile()[y][x] != null && grille.getTuile()[y][x].getNumTuile() == messageAction.getNumTuile()){
                                     this.déplacer(grille.getTuile()[y][x]);
+//                                    plateau.clearAction(messageAction.getCliquables());
                                 }
                             }
                         }
@@ -247,11 +247,14 @@ public class Controleur implements Observer {
                             }
                         }    
                     }
+                    if(nombreAction == 0){
+                        this.changementTour();
+                    }
                     plateau.majPlateau(grille); 
                     }
                     
                     
-                }
+                
             
             
             
@@ -740,7 +743,7 @@ public class Controleur implements Observer {
                 defausseCartesTirage.add(cartesTirées[i]);
             }
         }
-        retirerMonteeDesEaux(cartesTirées, nbMontéeEaux);
+        cartesTirées = retirerMonteeDesEaux(cartesTirées, nbMontéeEaux);
         //envoyer cartesTirées à la vue aventurier -> les ajouter au tas de cartes des aventuriers
         
         //
@@ -775,7 +778,7 @@ public class Controleur implements Observer {
         return compteur;
     }
     
-    private void retirerMonteeDesEaux(CarteTirage[] cartes, int n){
+    private CarteTirage[] retirerMonteeDesEaux(CarteTirage[] cartes, int n){
         CarteTirage[] nouvellesCartes = new CarteTirage[2-n];
         int compteur=0;
         if(cartes[0].getType()!=TypeCarte.MonteeDesEaux){
@@ -785,7 +788,7 @@ public class Controleur implements Observer {
         if(cartes[1].getType()!=TypeCarte.MonteeDesEaux){
             nouvellesCartes[compteur]=cartes[1];
         }
-        cartes = nouvellesCartes;
+        return nouvellesCartes;
     }
     
     private void monteesDesEauxPiochees(int n){
