@@ -190,6 +190,12 @@ public class ControleurDemo implements Observer {
                     this.ouAller();
 
                 }
+                else if(messageAventurier.getAction()==ActionsType.AUTREACTION){
+                    if(joueurCourant.getRôle().equals("pilote")){
+                        //faire le déplacement spécial du pilote:
+                        this.ouAllerPilote();
+                    }
+                }
                 else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                     //faire l'assecheemnt
                     this.ouAssecher();
@@ -541,6 +547,11 @@ public class ControleurDemo implements Observer {
             vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),cartes[0],cartes[1],niveau,cartesTirées);
             vuefintour.afficher();
             vuefintour.addObserver(this);
+            //on reset l'action spé du pilote a un si c'est un pilote
+            if(joueurCourant.getRôle().equals("pilote")){
+                Pilote pilote = (Pilote) joueurCourant;
+                pilote.setActionSpe(1);
+            }
             
             //verif victoire et defaite
             if(this.verifVictoire()){
@@ -833,6 +844,22 @@ public class ControleurDemo implements Observer {
         }else{
             plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
         } 
+    }
+    private void ouAllerPilote(){
+        Pilote pilote = (Pilote) joueurCourant;
+        if(pilote.getActionSpe()>0){
+            ArrayList<Tuile> deplacementPossible = new ArrayList();
+            deplacementPossible = grille.déplacementPossiblePilote(pilote);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
+            if(deplacementPossible.size()==0){
+                System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+            }else{
+                plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
+                pilote.setActionSpe(0);
+            }   
+        }else{
+            System.out.println("Vous avez déjà utilisé votre action spéciale.");
+        }
+
     }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){

@@ -13,6 +13,7 @@ public enum ActionsType {
     VALIDE,
     ASSECHER,
     DEPLACER,
+    DEPLACERPILOTE,
     PASSERTOUR,
     DONNERCARTE,
     ANNULE,

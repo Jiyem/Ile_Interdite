@@ -314,12 +314,7 @@ public class VuePlateau extends Observable{
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
                         setChanged();
-                        if(action == ActionsType.DEPLACER){
-                            notifyObservers(new MessageAction(ActionsType.DEPLACER,num));
-
-                        }else if(action == ActionsType.ASSECHER){
-                            notifyObservers(new MessageAction(ActionsType.ASSECHER,num));
-                        }
+                        notifyObservers(new MessageAction(action,num));
 
                         clearChanged();
                         }
