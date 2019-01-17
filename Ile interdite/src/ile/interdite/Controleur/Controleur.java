@@ -395,7 +395,7 @@ public class Controleur implements Observer {
             }
             plateau.afficher();
             plateau.addObserver(this);
-            plateau.getVuePersonnages().addObserver(this);
+
             inscri.close();
     }
     private void déplacer(){

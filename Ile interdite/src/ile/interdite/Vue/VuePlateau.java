@@ -46,6 +46,7 @@ public class VuePlateau extends Observable{
     private JPanel plateau;
     private JPanel menu;
     private VueAventurier aventurier;
+//    private VuePersonnages_1 personnages;
     private VuePersonnages personnages;
     private VueCartesSpé cartesSpe;
     private JPanel mainPanel;
@@ -75,18 +76,50 @@ public class VuePlateau extends Observable{
         
         
         personnages = new VuePersonnages(joueurs);
-        for(int i = 0; i<personnages.getButton().size();i++){
-            joueur = joueurs.get(i);
-            personnages.getButton().get(i).addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent arg0) {
+//        for(int i = 0; i<personnages.getButton().size();i++){
+//            joueur = joueurs.get(i);
+//            personnages.getButton().get(i).addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent arg0) {
+//                    setChanged();
+//                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+//                    clearChanged();
+//                }
+//            });
+//            
+//        }
+        joueur = joueurs.get(0);
+        personnages.getBtnPerso(0).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
                     setChanged();
                     notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
-                    clearChanged();
-                }
-            });
-            
-        }
+                    clearChanged();            }
+        });
+        joueur = joueurs.get(1);
+        personnages.getBtnPerso(1).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    setChanged();
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    clearChanged();            }
+        });
+        joueur = joueurs.get(2);
+        personnages.getBtnPerso(2).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    setChanged();
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    clearChanged();            }
+        });
+        joueur = joueurs.get(3);
+        personnages.getBtnPerso(3).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    setChanged();
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    clearChanged();            }
+        });
         menu.add(personnages);
 
         

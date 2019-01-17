@@ -30,42 +30,24 @@ import javax.swing.JPanel;
  *
  * @author mirasl
  */
-public class VuePersonnages  extends JPanel  {
+public class VuePersonnages_1  extends JPanel  {
 //    private JPanel mainPanel;
-//    private ArrayList<JButton> boutons = new ArrayList<>();
-    private JButton btnPerso1;
-    private JButton btnPerso2;
-    private JButton btnPerso3;
-    private JButton btnPerso4;
+    private ArrayList<JButton> boutons = new ArrayList<>();
+    private JButton btnPerso;
     private Calque imagePerso;
     private Image image ;
     
     
-    public VuePersonnages(ArrayList<Aventurier> joueurs) {
+    public VuePersonnages_1(ArrayList<Aventurier> joueurs) {
         super(new GridLayout(2, 2));
       
         // Cas unique où il y a qu'un joueur !
        
-        
-            btnPerso1 = new JButton(joueurs.get(0).getImage().getImageAAfficher());
-            add(btnPerso1);
-//            boutons.add(btnPerso1);
-            btnPerso1.setContentAreaFilled(false);
-            
-            btnPerso2 = new JButton(joueurs.get(1).getImage().getImageAAfficher());
-            add(btnPerso2);
-//            boutons.add(btnPerso2);
-            btnPerso2.setContentAreaFilled(false);
-            
-            btnPerso3 = new JButton(joueurs.get(2).getImage().getImageAAfficher());
-            add(btnPerso3);
-//            boutons.add(btnPerso3);
-            btnPerso3.setContentAreaFilled(false);
-            
-            btnPerso4 = new JButton(joueurs.get(3).getImage().getImageAAfficher());
-            add(btnPerso4);
-//            boutons.add(btnPerso4);
-            btnPerso4.setContentAreaFilled(false);
+        for (int j=0; j<joueurs.size();j++){
+            btnPerso = new JButton(joueurs.get(j).getImage().getImageAAfficher());
+            add(btnPerso);
+            boutons.add(btnPerso);
+            btnPerso.setContentAreaFilled(false);
 //            String path = System.getProperty("user.dir")+"/src/ile/interdite/image/images/"+"personnages/"+joueurs.get(j).getRôle()+".png";
 //            mainPanel.setOpaque(false);
 //
@@ -79,7 +61,7 @@ public class VuePersonnages  extends JPanel  {
 //        } catch (IOException ex) {
 //           System.err.println("ImageIO plante");
 //        }
-        
+        }
         
         
     }
@@ -93,9 +75,9 @@ public class VuePersonnages  extends JPanel  {
 //        super.paintComponents(g); //To change body of generated methods, choose Tools | Templates.
 //        g.drawImage(image, 0,0,100,100, null, this);
 //    }
-//    public ArrayList<JButton> getButton(){
-//        return boutons;
-//    }
+    public ArrayList<JButton> getButton(){
+        return boutons;
+    }
        
     public static void main(String[] args) {
         JFrame window = new JFrame() ;
@@ -111,25 +93,5 @@ public class VuePersonnages  extends JPanel  {
         vue.repaint();
         window.repaint();
     }
-
-    /**
-     * @return the btnPerso1
-     */
-    public JButton getBtnPerso(int numeroBouton) {
-        if (numeroBouton==0){
-        return btnPerso1;
-        }
-        else if (numeroBouton==1){
-        return btnPerso2;
-        }
-        else if (numeroBouton==2){
-        return btnPerso3;
-        }
-        else if (numeroBouton==3){
-        return btnPerso4;
-        }
-        return null;
-    }
-
 
 }
