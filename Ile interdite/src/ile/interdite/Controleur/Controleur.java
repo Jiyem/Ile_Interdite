@@ -46,9 +46,11 @@ import java.util.Scanner;
 import ile.interdite.Modele.Cartes.TypeCarte;
 import ile.interdite.Vue.PartiePerdue;
 import ile.interdite.Vue.VueAventurier;
+import ile.interdite.Vue.VueCartesAventurier;
 import ile.interdite.Vue.VueCartesSpé;
 import ile.interdite.Vue.VueFinDeTour;
 import ile.interdite.Vue.VueNiveau;
+import ile.interdite.Vue.VuePersonnages;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -63,6 +65,8 @@ public class Controleur implements Observer {
     private ArrayList<Aventurier>joueurs;
     private VueInscription inscri = new VueInscription();
     private VueAventurier vueAventurier;
+    private VuePersonnages vuePersonnage;
+    private VueCartesAventurier vueCarteAventurier;
     private VueFinDeTour vuefintour;
     private HashMap<Couleur, String> depart = new HashMap<>();
     private Grille grille;
@@ -190,6 +194,10 @@ public class Controleur implements Observer {
                 /************ Message Provenant du plateau ************/
                 if(arg1 instanceof MessagePlateau){
                     messagePlateau = (MessagePlateau) arg1;
+                    if (messagePlateau.getAction()==ActionsType.PAGE_PERSONNAGE){
+                        vueCarteAventurier= new VueCartesAventurier(messagePlateau.getJoueur());
+                        vueCarteAventurier.afficher();
+                    }
                 }
                 //Fin du tour de jeu : 
                 if(arg1 instanceof String){    //Créer une action plutôt éventuellement..
@@ -381,11 +389,13 @@ public class Controleur implements Observer {
             vueNiveau = new VueNiveau(niveau);
             try {
                 plateau = new VuePlateau(grille, joueurs, listeCartesDesAventuriers,vueAventurier, vueNiveau);
+//                
             } catch (IOException ex) {
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }
             plateau.afficher();
             plateau.addObserver(this);
+            plateau.getVuePersonnages().addObserver(this);
             inscri.close();
     }
     private void déplacer(){
