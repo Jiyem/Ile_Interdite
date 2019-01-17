@@ -25,6 +25,7 @@ import ile.interdite.Modele.Tuile;
 import ile.interdite.Message.ActionsType;
 import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Message.MessageInscription;
+import ile.interdite.Message.MessageMuligan;
 import ile.interdite.Message.MessagePlateau;
 import ile.interdite.Vue.VueAventurier3;
 import ile.interdite.Vue.VueInscription;
@@ -55,6 +56,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 
 
 /**
@@ -88,6 +90,8 @@ public class Controleur implements Observer {
     private VueMainTropGrande vueMuligan;
     private CarteInnondation[] cartesTirées;
     private VueNiveau vueNiveau;
+    private VueMainTropGrande vueMainTropGrande;
+    private MessageMuligan messageMuligan;
     
     public Controleur(){
         joueurs=new ArrayList<>();
@@ -202,6 +206,11 @@ public class Controleur implements Observer {
                         System.out.println("findutour");
                         this.changementJoueur();
                     }
+                }
+                
+                if(arg1 instanceof MessageMuligan){
+                    messageMuligan = (MessageMuligan) arg1;
+                    this.muliganCartes(messageMuligan.getListecartes());
                 }
                 
                 
@@ -498,6 +507,11 @@ public class Controleur implements Observer {
                 //changement de joueur
                 joueurCourant = joueurs.get(y);
             }
+            //Verif si la main du joueur est trop grande
+            if(joueurCourant.nbCartes() > 9){
+                    vueMainTropGrande = new VueMainTropGrande(joueurCourant,joueurCourant.nbCartes()-9);
+                    vueMainTropGrande.afficher();
+                }
         }
     }
         
@@ -785,8 +799,20 @@ public class Controleur implements Observer {
 //
 //            }
 //        }   
-
     }
+    
+    public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
+        for(int  i=0; i <joueurCourant.getCartes().size();i++){
+            for(int y=0;y<listeBoutonValide.size();y++){
+                if(listeBoutonValide.get(y) == joueurCourant.getCartes().get(i)){
+                    CarteTirage t = joueurCourant.getCartes().get(i);
+                    joueurCourant.enleverCarte(t);
+                }    
+            }
+        }
+            
+    }
+    
 }
 
 
