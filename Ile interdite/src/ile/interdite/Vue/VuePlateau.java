@@ -380,7 +380,7 @@ public class VuePlateau extends Observable{
 //    }
         
     public void afficher() {
-        this.window.setVisible(true);
+        this.window.setVisible(true );
     }
     public void fermer(){
         this.window.dispose();
