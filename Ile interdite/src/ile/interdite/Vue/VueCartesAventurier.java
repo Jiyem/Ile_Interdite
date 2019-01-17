@@ -35,7 +35,7 @@ public class VueCartesAventurier {
     public VueCartesAventurier(Aventurier j){
         this.window = new JFrame("Carte de l'aventurier");
         window.setSize(600, 200);
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
 
                 //titre
@@ -49,7 +49,7 @@ public class VueCartesAventurier {
         }
         
         panelCartes = new JPanel (new GridLayout(3,nbligne));
-        
+        panelCartes.setOpaque(false);
         for(int i=0; i < j.getCartes().size(); i++){
             JButton jb = new JButton(new ImageIcon(j.getCartes().get(i).getImage().getImage()));
             jb.setFocusPainted(false);
@@ -100,7 +100,7 @@ public class VueCartesAventurier {
     }
     
          public void fermer(){
-        this.window.setVisible(false);
+        this.window.dispose();
     }
 
 }
