@@ -233,7 +233,7 @@ public class VuePlateau extends Observable{
                         btnTuile.get(g.getTuile()[y][x].getNumTuile()-1).setEnabled(false);
                     }
                     else{
-                        cliquables.add(btnTuile.get(g.getTuile()[y][x].getNumTuile()-1));
+                        cliquables.add(btnTuile.get(g.getTuile()[y][x].getNumTuile()-1)); //puisque le pilote peut aller partout l'arrayList est vide donc ça fais null pointeur exception
                     }
                 }
             }

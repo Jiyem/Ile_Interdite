@@ -57,7 +57,7 @@ public class VueAventurier extends Observable  {
 
         this.panelAventurier = new JPanel();
         panelAventurier.setBackground(couleur);
-        panelAventurier.add(new JLabel(nomAventurier,SwingConstants.CENTER ));
+        panelAventurier.add(new JLabel(nomAventurier+" - "+ nomJoueur,SwingConstants.CENTER ));
         mainPanel.add(panelAventurier, BorderLayout.NORTH);
    
         // =================================================================================

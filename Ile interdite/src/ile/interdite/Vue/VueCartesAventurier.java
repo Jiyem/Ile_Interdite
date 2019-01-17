@@ -7,6 +7,7 @@ package ile.interdite.Vue;
 
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +42,8 @@ public class VueCartesAventurier {
                 //titre
         mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel);
-        labelTitre = new JLabel("Les cartes de " + j.getPseudo() + " - " + j.getRôle());
+        labelTitre = new JLabel("Les cartes de " + j.getPseudo() + " - " + j.getRôle(), JLabel.CENTER);
+        labelTitre.setFont(new Font("TimesRoman", Font.PLAIN, (labelTitre.getFont().getSize()*2)));
         mainPanel.add(labelTitre, BorderLayout.NORTH);
         int nbligne = j.getCartes().size();
         if(nbligne % 3 != 0){
@@ -91,7 +93,7 @@ public class VueCartesAventurier {
               fermer();
             }
         });
-        
+        mainPanel.add(panelFooter, BorderLayout.SOUTH);
         
     }
     
