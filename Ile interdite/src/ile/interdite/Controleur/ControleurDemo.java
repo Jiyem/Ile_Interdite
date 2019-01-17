@@ -357,111 +357,50 @@ public class ControleurDemo implements Observer {
 //                        joueurs.add(joueur4);
 //                        }
 //                        
-                        Random r = new Random();
-                        ArrayList<String> s = new ArrayList<>();
-                        s.add(messageInscription.getPseudo1());s.add(messageInscription.getPseudo2());s.add(messageInscription.getPseudo3());s.add(messageInscription.getPseudo4());
-                        ArrayList<String> l = new ArrayList<>();
-                        l.add("Explorateur");l.add("Ingenieur");l.add("Messager");l.add("Navigateur");l.add("Pilote");l.add("Plongeur");
-                        int nb = 0;
-                        int aléa1 = 10;
-        //                        0 = Explorateur, 1= Ingénieur, 2= Messager, 3=Navigateur, 4= Pilote, 5=Plongeur
-                        while(nb<messageInscription.getNbJoueurs()){
-                            //Tirage d'un nombre aléatoire entre 0 et 5 (inclu)
-                            aléa1 = r.nextInt(l.size());
-                            //Vérifié que la valeur est toujours présente dans la liste des rôles dispo, sinon refaire un tirage.
-                            while(aléa1 > l.size()){
-                                aléa1 = r.nextInt(l.size());
-                            }
-                            //Attribution du rôle au nom de joueur -> Instanciation des aventuriers
-                            //intialisation des explorateurs
-                            if(l.get(aléa1) == "Explorateur"){
-                                Aventurier joueur = new Explorateur(s.get(nb));
-                                for (int y = 0; y < 6; y++) {
-                                    for (int x = 0; x < 6; x++) {
-                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Cuivre")){
-                                            joueur.setPosition(tuiles[y][x]);
-                                            System.out.println("La position de l'explorateur est initialisée");
-                                        }
-                                    }
-                                }
-                                joueurs.add(joueur);
-                                l.remove("Explorateur");
-                            //intialisation des inénieurs
-                            } else if(l.get(aléa1) == "Ingenieur"){
-                                Aventurier joueur = new Ingenieur(s.get(nb));
+                        Aventurier joueur1 = new Ingenieur(messageInscription.getPseudo2());
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
                                         if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Bronze")){
-                                            joueur.setPosition(tuiles[y][x]);
+                                            joueur1.setPosition(tuiles[y][x]);
                                             System.out.println("La position du ingénieur est initialisé");
                                         }
                                     }      
                                 }
-                                joueurs.add(joueur);
-                                l.remove("Ingenieur");
-                            //initalisation des messagers    
-                            } else if(l.get(aléa1) == "Messager"){
-                                Aventurier joueur = new Messager(s.get(nb));
-                                for (int y = 0; y < 6; y++) {
-                                    for (int x = 0; x < 6; x++) {
-                                        if(tuiles[y][x] != null &&  tuiles[y][x].getNomTuile().equals("La Porte d’Argent")){
-                                            joueur.setPosition(tuiles[y][x]);
-                                            System.out.println("La position du messager est initialisé");
-                                        }
-                                    }
-                                }
-                                joueurs.add(joueur);
-                                l.remove("Messager");
-                            //initialisation des navigateurs
-                            } else if(l.get(aléa1) == "Navigateur"){
-                                Aventurier joueur = new Navigateur(s.get(nb));
-                                for (int y = 0; y < 6; y++) {
-                                    for (int x = 0; x < 6; x++) {
-                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte d’Or")){
-                                            joueur.setPosition(tuiles[y][x]);
-                                            System.out.println("La position du navigateur est initialisé");
-                                        }
-                                    }
-                                }
-                                joueurs.add(joueur);
-                                l.remove("Navigateur");
-                                
-                            //initialisation des pilotes
-                            } else if(l.get(aléa1) == "Pilote"){
-                                Aventurier joueur = new Pilote(s.get(nb));
+                        joueurs.add(joueur1);
+                        Aventurier joueur2 = new Pilote(messageInscription.getPseudo4());
                                 for (int y = 0; y < 6; y++) {
                                     for (int x = 0; x < 6; x++) {
                                         if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("Heliport")){
-                                            joueur.setPosition(tuiles[y][x]);
+                                            joueur2.setPosition(tuiles[y][x]);
                                             System.out.println("La position du pilote est initialisé");
                                         }
                                     }
+                                } 
+                        joueurs.add(joueur2);
+                        Aventurier joueur3 = new Plongeur(messageInscription.getPseudo3());
+                            for (int y = 0; y < 6; y++) {
+                                for (int x = 0; x < 6; x++) {
+                                    if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Fer")){
+                                        joueur3.setPosition(tuiles[y][x]);
+                                        System.out.println("La position du plongeur est initialisé");
+                                    }
                                 }
-                                l.remove("Pilote");
-                                joueurs.add(joueur);
-                                
-                            //initialisation des plongeurs
-                            } else if( l.get(aléa1) == "Plongeur"){
-                                Aventurier joueur = new Plongeur(s.get(nb));
-                                for (int y = 0; y < 6; y++) {
-                                    for (int x = 0; x < 6; x++) {
-                                        if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Fer")){
-                                            joueur.setPosition(tuiles[y][x]);
-                                            System.out.println("La position du plongeur est initialisé");
+                            }
+                        joueurs.add(joueur3);
+                        
+
+                        Aventurier joueur4 = new Explorateur(messageInscription.getPseudo1());
+                            for(int y = 0; y < 6; y++) {
+                                for (int x = 0; x < 6; x++) {
+                                    if(tuiles[y][x] != null && tuiles[y][x].getNomTuile().equals("La Porte de Cuivre")){
+                                        joueur4.setPosition(tuiles[y][x]);
+                                        System.out.println("La position de l'explorateur est initialisée");
                                         }
                                     }
                                 }
-                                l.remove("Plongeur");
-                                joueurs.add(joueur);
-                                
-                            }
-                            //Suppression de l'aventurier dans la liste des rôles dispo.
-                            
-                            
-                            nb = nb +1;
-                            
+                        joueurs.add(joueur4);
                         }
-    }
+    
     private void initialisationPileCarteTirage(){
         for(int i = 1;i<8;i++){
             //5 cartes de chaque tresor
