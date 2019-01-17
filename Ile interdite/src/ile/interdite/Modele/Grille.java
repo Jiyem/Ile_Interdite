@@ -273,6 +273,8 @@ public class Grille {
         return assechPossible;
     
 }
+    
+    //POUR LA DEMO
     public void setInnondationGrille(){
         tuile[0][3].setEtatCase(EtatCase.INNONDEE);
         tuile[2][2].setEtatCase(EtatCase.IMMERGEE);
