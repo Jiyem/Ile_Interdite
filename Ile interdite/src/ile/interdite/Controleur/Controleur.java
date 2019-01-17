@@ -122,13 +122,19 @@ public class Controleur implements Observer {
                     }    
                 }        
                 if (messageCarteSpe.getAction()==ActionsType.UTILISATION_CARTE_HELICO){
-                    if (carteHelico.deplacable(grille)!=null){
-                        plateau.afficherAction(carteSacDeSable.assechable(grille), grille, joueurCourant, ActionsType.DEPLACER);
+                    if (messageCarteSpe.getNbCarteSpe()!=0){    
+                        if (carteHelico.deplacable(grille)!=null){
+                            plateau.afficherAction(carteSacDeSable.assechable(grille), grille, joueurCourant, ActionsType.DEPLACER);
+                            int x = 0;
+                            while (listeCartesDesAventuriers.get(x).equals(carteSacDeSable)){
+                                x+=1;
+                            }
+                            listeCartesDesAventuriers.remove(x);
                     
-                    
+                        }
                     }
                 }
-            }
+            }    
         
         
                 if (arg1 instanceof MessageInscription) {

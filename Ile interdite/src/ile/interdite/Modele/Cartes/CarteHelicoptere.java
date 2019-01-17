@@ -6,6 +6,7 @@
 package ile.interdite.Modele.Cartes;
 
 import ile.interdite.Modele.Aventuriers.Aventurier;
+import ile.interdite.Modele.EtatCase;
 import static ile.interdite.Modele.EtatCase.INNONDEE;
 import static ile.interdite.Modele.EtatCase.NORMAL;
 import ile.interdite.Modele.Grille;
@@ -28,7 +29,7 @@ public class CarteHelicoptere extends CarteTirage{
         Tuile[][] tuiles = grille.getTuile();
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
-                if(tuiles[y][x].getEtatCase()== INNONDEE ||tuiles[y][x].getEtatCase() == NORMAL){
+                if(tuiles[y][x]!=null && tuiles[y][x].getEtatCase()== EtatCase.INNONDEE ||tuiles[y][x].getEtatCase() == EtatCase.NORMAL){
                     tuilesDeplacable.add(tuiles[y][x]);
                 }
             }
