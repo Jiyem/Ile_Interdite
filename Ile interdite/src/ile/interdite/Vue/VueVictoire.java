@@ -7,6 +7,8 @@ package ile.interdite.Vue;
 
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -49,6 +51,12 @@ public class VueVictoire {
         mainPanel.add(ontgagnés, BorderLayout.CENTER);
             //Bas de la vue
         retourPageAccueil = new JButton("Retour page d'accueil");
+        retourPageAccueil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+            }
+        });
         
         mainPanel.add(retourPageAccueil, BorderLayout.SOUTH);
         
