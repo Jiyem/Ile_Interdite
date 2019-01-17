@@ -20,6 +20,7 @@ public class Grille {
     private final Tuile tuile[][] = new Tuile[6][6];
     private ArrayList<String> tuilesDispoNom = new ArrayList();
     private ArrayList<ImageContainer> tuilesDispoImage = new ArrayList();
+    private ArrayList<ImageContainer> tuilesDispoImageInnondée = new ArrayList();
     private ListeTuiles liste = new ListeTuiles();
     
 
@@ -28,6 +29,7 @@ public class Grille {
         for (int i = 0; i < 24; i++) {
             this.tuilesDispoNom.add(i, liste.getNom(i));
             this.tuilesDispoImage.add(i, liste.getImage(i));
+            this.tuilesDispoImageInnondée.add(i, liste.getImagesInondes(i));
         }
 
     }
@@ -42,7 +44,7 @@ public class Grille {
 
                 } else {
                     nb = nb + 1;
-                    this.tuile[y][x] = new Tuile(nb, tuilesDispoNom.get(nb-1),y,x,tuilesDispoImage.get(nb-1));
+                    this.tuile[y][x] = new Tuile(nb, tuilesDispoNom.get(nb-1),y,x,tuilesDispoImage.get(nb-1),tuilesDispoImageInnondée.get(nb-1));
                     this.setTresor(y, x);
                 }
             }

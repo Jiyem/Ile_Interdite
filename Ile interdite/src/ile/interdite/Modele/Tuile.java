@@ -18,15 +18,17 @@ public class Tuile {
     private int X,Y;
     private Tresor tresor;
     private ImageContainer image;
+    private ImageContainer imageInnondée;
     
     
-    public Tuile(int numTuile,String nomTuile,int X, int Y,ImageContainer sourceImage){
+    public Tuile(int numTuile,String nomTuile,int X, int Y,ImageContainer sourceImage,ImageContainer imageInnondée){
         this.setNumTuile(numTuile);
         this.setNomTuile(nomTuile);
         this.etatCase = EtatCase.NORMAL;
         this.X=X;
         this.Y=Y;
         this.image = sourceImage;
+        this.imageInnondée = imageInnondée;
     }
     
 
@@ -103,6 +105,20 @@ public class Tuile {
      */
     public ImageContainer getImage() {
         return image;
+    }
+
+    /**
+     * @return the imageInnondée
+     */
+    public ImageContainer getImageInnondée() {
+        return imageInnondée;
+    }
+
+    /**
+     * @param imageInnondée the imageInnondée to set
+     */
+    public void setImageInnondée(ImageContainer imageInnondée) {
+        this.imageInnondée = imageInnondée;
     }
     
 }
