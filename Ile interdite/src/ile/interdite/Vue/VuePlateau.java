@@ -115,13 +115,29 @@ public class VuePlateau extends Observable{
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
 
-                if ((y == 0 && x == 0) || (y == 0 && x == 1) || (y == 0 && x == 4) || (y == 0 && x == 5) || (y == 1 && x == 0) || (y == 1 && x == 5) || (y == 4 && x == 0) || (y == 4 && x == 5) || (y == 5 && x == 0) || (y == 5 && x == 1) || (y == 5 && x == 4) || (y == 5 && x == 5)) {
+//                if ((y == 0 && x == 0) || (y == 0 && x == 1) || (y == 0 && x == 4) || (y == 0 && x == 5) || (y == 1 && x == 0) || (y == 1 && x == 5) || (y == 4 && x == 0) || (y == 4 && x == 5) || (y == 5 && x == 0) || (y == 5 && x == 1) || (y == 5 && x == 4) || (y == 5 && x == 5)) {
+//                    JButton tuileVide = new JButton();
+//                    tuileVide.setContentAreaFilled(false);
+//                    tuileVide.setBorderPainted(false);
+//                    tuileVide.setFocusPainted(false);
+//                    tuiles.add(tuileVide);
+
+                if ((y == 0 && x == 0) || (y == 0 && x == 5) || (y == 5 && x == 0) || (y == 5 && x == 5)) {
+                       JButton tuileVide = new JButton();
+                    tuileVide.setContentAreaFilled(false);
+                    tuileVide.setBorderPainted(false);
+                    tuileVide.setFocusPainted(false);
+                    tuiles.add(tuileVide);
+                }
+                else if((y == 0 && x == 1) || (y == 0 && x == 4) || (y == 1 && x == 0) || (y == 1 && x == 5) || (y == 4 && x == 0) || (y == 4 && x == 5) || (y == 5 && x == 1) || (y == 5 && x == 4)){
                     JButton tuileVide = new JButton();
                     tuileVide.setContentAreaFilled(false);
                     tuileVide.setBorderPainted(false);
                     tuileVide.setFocusPainted(false);
                     tuiles.add(tuileVide);
-                } else {
+                }
+                
+                else {
                     int col = y;
                     int row = x;
                     nb = nb + 1;
