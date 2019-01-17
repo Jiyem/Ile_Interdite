@@ -38,7 +38,7 @@ public class VueFinDeTour extends Observable {
     //Constructeur:
     public VueFinDeTour(String nomJoueur,CarteTirage carte1, CarteTirage carte2,int nivEau,CarteInnondation[] tuilesInnondé){
         window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         window.setSize(1200, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);

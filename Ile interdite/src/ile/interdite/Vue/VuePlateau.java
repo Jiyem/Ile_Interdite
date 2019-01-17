@@ -46,8 +46,8 @@ public class VuePlateau extends Observable{
     private JPanel plateau;
     private JPanel menu;
     private VueAventurier aventurier;
-//    private VuePersonnages_1 personnages;
-    private VuePersonnages personnages;
+    private VuePersonnages_1 personnages;
+//    private VuePersonnages personnages;
     private VueCartesSpé cartesSpe;
     private JPanel mainPanel;
     private Aventurier joueur;
@@ -75,7 +75,7 @@ public class VuePlateau extends Observable{
         menu = new JPanel(new GridLayout(3,1));
         
         
-        personnages = new VuePersonnages(joueurs);
+        personnages = new VuePersonnages_1(joueurs);
 //        for(int i = 0; i<personnages.getButton().size();i++){
 //            joueur = joueurs.get(i);
 //            personnages.getButton().get(i).addActionListener(new ActionListener() {
@@ -88,38 +88,39 @@ public class VuePlateau extends Observable{
 //            });
 //            
 //        }
-        joueur = joueurs.get(0);
-        personnages.getBtnPerso(0).addActionListener(new ActionListener() {
+        personnages.getButton().get(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                     setChanged();
-                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueurs.get(0)));
                     clearChanged();            }
         });
-        joueur = joueurs.get(1);
-        personnages.getBtnPerso(1).addActionListener(new ActionListener() {
+
+        personnages.getButton().get(1).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                     setChanged();
-                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueurs.get(1)));
                     clearChanged();            }
         });
-        joueur = joueurs.get(2);
-        personnages.getBtnPerso(2).addActionListener(new ActionListener() {
+
+        personnages.getButton().get(2).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                     setChanged();
-                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueurs.get(2)));
                     clearChanged();            }
         });
-        joueur = joueurs.get(3);
-        personnages.getBtnPerso(3).addActionListener(new ActionListener() {
+
+        personnages.getButton().get(3).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                     setChanged();
-                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueur));
+                    notifyObservers(new MessagePlateau(ActionsType.PAGE_PERSONNAGE,joueurs.get(3)));
                     clearChanged();            }
         });
+        
+        
         menu.add(personnages);
 
         

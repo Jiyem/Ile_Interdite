@@ -48,33 +48,13 @@ public class VuePersonnages_1  extends JPanel  {
             add(btnPerso);
             boutons.add(btnPerso);
             btnPerso.setContentAreaFilled(false);
-//            String path = System.getProperty("user.dir")+"/src/ile/interdite/image/images/"+"personnages/"+joueurs.get(j).getRôle()+".png";
-//            mainPanel.setOpaque(false);
-//
-//            repaint();
-//            try {
-//            System.out.println("creation de ImageIO");
-//            this.image = ImageIO.read(new File(path));
-//
-//            repaint();
-//            
-//        } catch (IOException ex) {
-//           System.err.println("ImageIO plante");
-//        }
+            btnPerso.setBorderPainted(false);
+         
         }
         
         
     }
-//    public JPanel getMainPanel(){
-//        return mainPanel;
-//    }
-    
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        System.out.println("VuePersonnage.paintComponent");
-//        super.paintComponents(g); //To change body of generated methods, choose Tools | Templates.
-//        g.drawImage(image, 0,0,100,100, null, this);
-//    }
+
     public ArrayList<JButton> getButton(){
         return boutons;
     }
