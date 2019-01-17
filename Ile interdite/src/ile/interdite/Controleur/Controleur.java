@@ -207,12 +207,12 @@ public class Controleur implements Observer {
                         this.changementJoueur();
                     }
                 }
-                
-                if(arg1 instanceof MessageMuligan){
-                    messageMuligan = (MessageMuligan) arg1;
-                    this.muliganCartes(messageMuligan.getListecartes());
-                }
-                
+//                
+//                if(arg1 instanceof MessageMuligan){
+//                    messageMuligan = (MessageMuligan) arg1;
+//                    this.muliganCartes(messageMuligan.getListecartes());
+//                }
+//                
                 
 
                   
@@ -508,8 +508,8 @@ public class Controleur implements Observer {
                 joueurCourant = joueurs.get(y);
             }
             //Verif si la main du joueur est trop grande
-            if(joueurCourant.nbCartes() > 9){
-                    vueMainTropGrande = new VueMainTropGrande(joueurCourant,joueurCourant.nbCartes()-9);
+            if(joueurCourant.getnbCartes() > 9){
+                    vueMainTropGrande = new VueMainTropGrande(joueurCourant,joueurCourant.getnbCartes()-9);
                     vueMainTropGrande.afficher();
                 }
         }

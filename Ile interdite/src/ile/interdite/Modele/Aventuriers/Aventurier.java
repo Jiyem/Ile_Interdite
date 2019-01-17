@@ -226,5 +226,7 @@ public abstract class Aventurier {
         return image;
     }
     
-
+    public int getnbCartes(){
+        return cartes.size();
+    }
 }
