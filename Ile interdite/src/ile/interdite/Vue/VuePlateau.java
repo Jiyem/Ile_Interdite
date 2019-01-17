@@ -56,7 +56,7 @@ public class VuePlateau extends Observable{
     private JPanel margeplateau;
     private ArrayList<CarteTirage> cartes;
     private ArrayList<JButton> btnListé = new ArrayList<>();
-    private boolean dansliste = false;
+
     
     public VuePlateau(Grille g, ArrayList<Aventurier> joueurs,ArrayList<CarteTirage> cartes,VueAventurier vueAventurier, VueNiveau vueNiveau) throws IOException{
         window = new JFrame();
@@ -263,6 +263,7 @@ public class VuePlateau extends Observable{
         }
     
     public void clicAction(ArrayList<JButton> cliquables,ActionsType action){
+        boolean dansliste;
         for(int i = 0;i<cliquables.size();i++){
             for(int y = 0;y<btnTuile.size();y++){
                 
@@ -283,13 +284,15 @@ public class VuePlateau extends Observable{
                         }
                     };
                     dansliste = false;
-                    for(int z = 0;z<btnListé.size();z++){
+                    
+                    int z = 0;
+                    while(z < btnListé.size() && !dansliste){
                         if(cliquables.get(i) == btnListé.get(z)){
                             dansliste = true;
                         }
+                        z += 1;
                     }
                     
-                    System.out.println(dansliste);
                     if(dansliste == false){
                         cliquables.get(i).addActionListener(probTest);
                         btnListé.add(cliquables.get(i));
