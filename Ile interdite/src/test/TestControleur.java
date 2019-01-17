@@ -7,6 +7,7 @@ package test;
 
 import aide.Utils;
 import ile.interdite.Controleur.Controleur;
+import ile.interdite.Controleur.ControleurDemo;
 import ile.interdite.Vue.VueInscription;
 
 /**
@@ -16,7 +17,7 @@ import ile.interdite.Vue.VueInscription;
 public class TestControleur {
          public static void main(String [] args) {
              
-            Controleur c = new Controleur();
+            ControleurDemo c = new ControleurDemo();
     }
     
 }

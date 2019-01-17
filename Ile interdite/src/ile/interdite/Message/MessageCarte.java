@@ -6,6 +6,7 @@
 package ile.interdite.Message;
 
 import ile.interdite.Modele.Aventuriers.Aventurier;
+import ile.interdite.Modele.Cartes.CarteTirage;
 
 /**
  *
@@ -13,28 +14,28 @@ import ile.interdite.Modele.Aventuriers.Aventurier;
  */
 public class MessageCarte extends Message{
     
-    private String carte;
-    private Aventurier av;
+    private CarteTirage carte;
+    private String joueurGagnant;
     
-    public MessageCarte(Aventurier av,ActionsType action,String carte) {
+    public MessageCarte(String joueurGagnant,ActionsType action,CarteTirage carte) {
         super(action);
         this.carte=carte;
-        this.av=av;
+        this.joueurGagnant=joueurGagnant;
                
     }
 
     /**
      * @return the carte
      */
-    public String getCarte() {
+    public CarteTirage getCarte() {
         return carte;
     }
 
     /**
      * @return the av
      */
-    public Aventurier getAv() {
-        return av;
+    public String getAv() {
+        return joueurGagnant;
     }
     
 }

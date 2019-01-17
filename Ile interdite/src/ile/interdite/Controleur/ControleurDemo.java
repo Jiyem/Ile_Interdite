@@ -206,7 +206,7 @@ public class ControleurDemo implements Observer {
                             aventurier=av;
                         }
                     }
-                    vueDonnerCarte = new VueCarteADonner(aventurier,joueurCourant);
+                    vueDonnerCarte = new VueCarteADonner(joueurs,joueurCourant);
                     vueDonnerCarte.addObserver(this);
                     vueDonnerCarte.afficher();
                     //this.muliganCartes(messageMuligan.getListecartes());
@@ -257,7 +257,13 @@ public class ControleurDemo implements Observer {
                 if(arg1 instanceof MessageCarte){
                     MessageCarte messageCarte = (MessageCarte) arg1;
                     if (messageCarte.getAction()==ActionsType.DONNERCARTE){
-                        joueurCourant.donnerCarte(messageCarte.getAv(), stringToCarte(messageCarte.getCarte()));
+                        int i = 0;
+                        while(i < joueurs.size() && !joueurs.get(i).getPseudo().equals(messageCarte.getAv())){
+                            i +=1;
+                        }
+                        joueurCourant.donnerCarte(joueurs.get(i),messageCarte.getCarte());
+                        nombreAction = nombreAction -1;
+                        vueDonnerCarte.fermer();
                     }
                 }
                     

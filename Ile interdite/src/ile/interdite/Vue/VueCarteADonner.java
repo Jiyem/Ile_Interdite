@@ -12,6 +12,7 @@ import ile.interdite.Modele.Cartes.CarteTirage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,9 +40,13 @@ public class VueCarteADonner extends Observable{
     private JButton BoutonValide;
     private Aventurier jCourant;
     private JPanel contentPanel;
+    private JComboBox listeAv;
     
-    public VueCarteADonner(Aventurier av,Aventurier jCourant){
+    public VueCarteADonner(ArrayList<Aventurier> joueurs,Aventurier jCourant){
         this.jCourant = jCourant;
+        String[] aventuriers = this.listJoueursSurCase(jCourant, joueurs);
+        
+        
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -51,8 +57,25 @@ public class VueCarteADonner extends Observable{
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel) ;
         
-        JPanel topPanel = new JPanel(new GridLayout(3,1));
+        JPanel topPanel = new JPanel(new GridLayout(2,3));
         mainPanel.add(topPanel,BorderLayout.NORTH);
+        for(int i = 1; i<7;i++){
+            if(i == 2){
+                JLabel pseudojoueur = new JLabel(jCourant.getPseudo());
+                topPanel.add(pseudojoueur);
+                pseudojoueur.setFont(new Font(pseudojoueur.getName(), Font.PLAIN, (pseudojoueur.getFont().getSize())*2));
+            }else if(i==5){
+                JLabel donnerA = new JLabel("Donner à : ");
+                topPanel.add(donnerA);
+                donnerA.setFont(new Font(donnerA.getName(), Font.PLAIN, (donnerA.getFont().getSize())));
+            }else if(i ==6){
+                listeAv = new JComboBox(aventuriers);
+                topPanel.add(listeAv);
+                
+            }else{
+                topPanel.add(new JLabel(""));
+            }
+        }
         
         int nbligne = jCourant.getCartes().size();
         if(nbligne % 3 != 0){
@@ -72,7 +95,7 @@ public class VueCarteADonner extends Observable{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     setChanged();
-                    notifyObservers(new MessageCarte(av,ActionsType.DONNERCARTE,jb.getText()));
+                    notifyObservers(new MessageCarte((String) listeAv.getSelectedItem(),ActionsType.DONNERCARTE,carte));
                     clearChanged();
                 }
                 });
@@ -102,5 +125,26 @@ public class VueCarteADonner extends Observable{
         this.window.dispose();
     }
     
+    private int nbJoueursSurMemeCase(Aventurier joueurCourant, ArrayList<Aventurier> joueurs){
+        int nbJoueurs = 0;
+        for(int i = 0; i<joueurs.size();i++){
+            if(joueurs.get(i) != joueurCourant && joueurs.get(i).getPosition() == joueurCourant.getPosition()){
+                nbJoueurs += 1;
+            }
+        }
+        return nbJoueurs;
+    }
+    
+    private String[] listJoueursSurCase(Aventurier joueurCourant, ArrayList<Aventurier> joueurs){
+        String[] liste = new String[this.nbJoueursSurMemeCase(joueurCourant, joueurs)];
+        int nbJoueurs = 0;
+        for(int i = 0; i<joueurs.size();i++){
+            if(joueurs.get(i) != joueurCourant && joueurs.get(i).getPosition() == joueurCourant.getPosition()){
+                liste[nbJoueurs] = joueurs.get(i).getPseudo();
+                nbJoueurs += 1;
+            }
+        }
+        return liste;
+    }
 
 }
