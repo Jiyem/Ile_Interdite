@@ -18,7 +18,7 @@ public class TestControleur {
          public static void main(String [] args) {
              
 //            ControleurDemo c = new ControleurDemo();
-            Controleur c = new Controleur();
+            ControleurDemo c = new ControleurDemo();
     }
     
 }

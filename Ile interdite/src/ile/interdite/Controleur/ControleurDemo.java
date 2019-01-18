@@ -188,21 +188,25 @@ public class ControleurDemo implements Observer {
                 if(messageAventurier.getAction()==ActionsType.DEPLACER){
                     //faire le déplacement
                     this.ouAller();
+                    vueAventurier.griserBoutons(true);
 
                 }
                 else if(messageAventurier.getAction()==ActionsType.AUTREACTION){
                     if(joueurCourant.getRôle().equals("pilote")){
                         //faire le déplacement spécial du pilote:
                         this.ouAllerPilote();
+                        vueAventurier.griserBoutons(true);
                     }
                 }
                 else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                     //faire l'assecheemnt
                     this.ouAssecher();
+                    vueAventurier.griserBoutons(true);
                 }
                 else if(messageAventurier.getAction()==ActionsType.RECUP_TRESOR){
                     //faire l'assecheemnt
-                    this.recupererTresor();  
+                    this.recupererTresor();
+                    vueAventurier.griserBoutons(true);
                 }
                 else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){ // Ne fait rien du tout pour l'instant
                     //faire autre action
@@ -212,6 +216,7 @@ public class ControleurDemo implements Observer {
                             aventurier=av;
                         }
                     }
+                    vueAventurier.griserBoutons(true);
                     vueDonnerCarte = new VueCarteADonner(joueurs,joueurCourant);
                     vueDonnerCarte.addObserver(this);
                     vueDonnerCarte.afficher();
@@ -268,6 +273,7 @@ public class ControleurDemo implements Observer {
                             i +=1;
                         }
                         joueurCourant.donnerCarte(joueurs.get(i),messageCarte.getCarte());
+                        vueAventurier.griserBoutons(true);
                         nombreAction = nombreAction -1;
                         vueDonnerCarte.fermer();
                     }
@@ -437,6 +443,7 @@ public class ControleurDemo implements Observer {
     private void déplacer(Tuile tuile){
             vueAventurier.setPosition(tuile.getNomTuile());
             joueurCourant.setPosition(tuile);
+            vueAventurier.griserBoutons(false);
             nombreAction=nombreAction-1;
     }
     private void assécher(Tuile tuile){
@@ -449,6 +456,7 @@ public class ControleurDemo implements Observer {
                                 
             }
         }
+        vueAventurier.griserBoutons(false);
         nombreAction = nombreAction -1;
     }
     private void autreAction(){

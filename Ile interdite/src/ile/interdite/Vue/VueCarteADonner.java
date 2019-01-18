@@ -48,7 +48,6 @@ public class VueCarteADonner extends Observable{
         
         
         window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
         window.setSize(500, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
