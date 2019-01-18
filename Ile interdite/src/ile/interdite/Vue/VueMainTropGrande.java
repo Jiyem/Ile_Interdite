@@ -72,7 +72,7 @@ public class VueMainTropGrande extends Observable{
         
         for(int i = 0;i < jCourant.getCartes().size();i++){
             if(jCourant.getCartes().get(i) != null){
-                final JButton jb = new JButton(jCourant.getCartes().get(i).getType().name());
+                final JButton jb = new JButton(jCourant.getCartes().get(i).getImage().getImageAAfficher());
                 listeBouton.add(jb);
                 jb.setBackground(Color.white);
                 jb.addActionListener(new ActionListener() {
