@@ -287,7 +287,7 @@ public class Grille {
         tuile[3][4].setEtatCase(EtatCase.IMMERGEE);
         tuile[3][5].setEtatCase(EtatCase.INNONDEE);
         tuile[4][2].setEtatCase(EtatCase.IMMERGEE);
-        tuile[5][3].setEtatCase(EtatCase.INNONDEE);
+        //tuile[5][3].setEtatCase(EtatCase.INNONDEE);
     }
     
         

@@ -405,13 +405,26 @@ public class ControleurDemo implements Observer {
                         }
     
     private void initialisationPileCarteTirage(){
-        for(int i = 1;i<8;i++){
+         for(int i = 1;i<28;i++){
             //5 cartes de chaque tresor
-            if(i>=1 && i<2){
+            if(i>=1 && i<=5){
+                CarteTresor tresor = new CarteTresor(Tresor.PIERRE);
+                pileCartesTirage.add(tresor);
+            }else if(i>=6 && i<=10){
+                CarteTresor tresor = new CarteTresor(Tresor.ZEPHYR);
+                pileCartesTirage.add(tresor);
+            }else if(i>=11 && i<= 15){
+                CarteTresor tresor = new CarteTresor(Tresor.CRISTAL);
+                pileCartesTirage.add(tresor);
+            }else if(i>=16 && i<= 20){
+                CarteTresor tresor = new CarteTresor(Tresor.CALICE);
+                pileCartesTirage.add(tresor);
+            //3 cartes montée des eaux
+            }else if(i>=21 && i<=22){
                 CarteMonteeDesEaux carte = new CarteMonteeDesEaux();
                 pileCartesTirage.add(carte);
             //3 cartes hélico
-            }else if(i>=3 && i <=5){
+            }else if(i>=23 && i <=25){
                 CarteHelicoptere carte= new CarteHelicoptere();
                 pileCartesTirage.add(carte);
             //2 cartes sac de sable
@@ -419,13 +432,16 @@ public class ControleurDemo implements Observer {
                 CarteSacDeSable carte = new CarteSacDeSable();
                 pileCartesTirage.add(carte);
             }
+        }
+            
            // ======================================================================
            // Cartes données aux aventurier pour la démo
            
             
             
             
-        }
+        
+        
         CarteTresor tresor = new CarteTresor(Tresor.CALICE);
         joueurs.get(0).ajouterCartes(tresor);
         
@@ -435,6 +451,7 @@ public class ControleurDemo implements Observer {
         joueurs.get(1).ajouterCartes(tresor2);
         joueurs.get(1).ajouterCartes(tresor3);
         joueurs.get(1).ajouterCartes(tresor4);
+        joueurs.get(1).ajouterCartes(new CarteHelicoptere());
 
         Collections.shuffle(pileCartesTirage);
         joueurs.get(2).ajouterTresor(Tresor.PIERRE);
@@ -801,7 +818,7 @@ public class ControleurDemo implements Observer {
         //partie vue, juste monter le curseur de VueNiveau
         
         //
-        paquetInnondation.melangeMonteeEaux(compteurInnondation);
+       // paquetInnondation.melangeMonteeEaux(compteurInnondation);
         compteurInnondation=0;
     }
     

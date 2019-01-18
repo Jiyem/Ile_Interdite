@@ -21,7 +21,7 @@ public class PaquetInnondation {
         for(int i=0;i<24;i++){
             paquet.add(new CarteInnondation(liste.getNom(i)));
         }
-        this.melanger();
+//        this.melanger();
     }
 
     /**
