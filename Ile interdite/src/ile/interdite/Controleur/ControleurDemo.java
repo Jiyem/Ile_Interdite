@@ -187,26 +187,30 @@ public class ControleurDemo implements Observer {
                 messageAventurier = (MessageAventurier) arg1 ;
                 if(messageAventurier.getAction()==ActionsType.DEPLACER){
                     //faire le déplacement
-                    this.ouAller();
                     vueAventurier.griserBoutons(true);
+                    this.ouAller();
+                    
 
                 }
                 else if(messageAventurier.getAction()==ActionsType.AUTREACTION){
                     if(joueurCourant.getRôle().equals("pilote")){
                         //faire le déplacement spécial du pilote:
-                        this.ouAllerPilote();
                         vueAventurier.griserBoutons(true);
+                        this.ouAllerPilote();
+                        
                     }
                 }
                 else if(messageAventurier.getAction()==ActionsType.ASSECHER){
                     //faire l'assecheemnt
-                    this.ouAssecher();
                     vueAventurier.griserBoutons(true);
+                    this.ouAssecher();
+                    
                 }
                 else if(messageAventurier.getAction()==ActionsType.RECUP_TRESOR){
                     //faire l'assecheemnt
-                    this.recupererTresor();
                     vueAventurier.griserBoutons(true);
+                    this.recupererTresor();
+                    
                 }
                 else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){
                     Aventurier aventurier = null;
@@ -870,8 +874,10 @@ public class ControleurDemo implements Observer {
     private void ouAller(){
         ArrayList<Tuile> deplacementPossible = new ArrayList();
         deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
-        if(deplacementPossible.size()==0){
-            System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+        if(deplacementPossible.isEmpty()){
+            VueErreur erreur = new VueErreur("Vous n'avez nul part ou aller !");
+            vueAventurier.griserBoutons(false);
+            erreur.afficher();
         }else{
             plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
         } 
@@ -881,14 +887,18 @@ public class ControleurDemo implements Observer {
         if(pilote.getActionSpe()>0){
             ArrayList<Tuile> deplacementPossible = new ArrayList();
             deplacementPossible = grille.déplacementPossiblePilote(pilote);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
-            if(deplacementPossible.size()==0){
-                System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+            if(deplacementPossible.isEmpty()){
+                VueErreur erreur = new VueErreur("Vous n'avez nul part ou aller !"); //remplacé par un message sur le plateau
+                vueAventurier.griserBoutons(false);
+                erreur.afficher();
             }else{
                 plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
                 pilote.setActionSpe(0);
             }   
         }else{
-            System.out.println("Vous avez déjà utilisé votre action spéciale.");
+            VueErreur erreur = new VueErreur("Vous avez déjà utilisé votre action spéciale");
+            vueAventurier.griserBoutons(false);
+            erreur.afficher();
         }
 
     }
@@ -919,9 +929,12 @@ public class ControleurDemo implements Observer {
     
     private void ouAssecher(){
         ArrayList<Tuile> assechementPossible = new ArrayList();
-        assechementPossible = joueurCourant.assèchementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
-        if(assechementPossible.size()==0){
-            System.out.println("Il n'y a aucune tuile sur laquelle se déplacer"); //remplacé par un message sur le plateau
+        assechementPossible = joueurCourant.assèchementPossible(grille);
+        if(assechementPossible.isEmpty()){
+            VueErreur erreur = new VueErreur("Vous n'avez aucune tuile à assecher.");
+            vueAventurier.griserBoutons(false);
+            erreur.afficher();
+            
         }else{
             plateau.afficherAction(assechementPossible,grille,joueurCourant,ActionsType.ASSECHER);
         } 
