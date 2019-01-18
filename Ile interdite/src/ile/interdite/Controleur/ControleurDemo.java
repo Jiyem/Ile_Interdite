@@ -341,6 +341,7 @@ public class ControleurDemo implements Observer {
                     verifHeliJoueurs = false;
                 }
             }
+            System.out.println(verifHeliJoueurs);
             if(verifHeliJoueurs){
                for(int i=0;i<listeCartesDesAventuriers.size();i++){
                    if(listeCartesDesAventuriers.get(i).getType()==TypeCarte.Helicoptere){
@@ -350,6 +351,7 @@ public class ControleurDemo implements Observer {
             }
    
         }
+        System.out.println(victoire);
         return victoire;
     }
     
@@ -435,6 +437,12 @@ public class ControleurDemo implements Observer {
         joueurs.get(1).ajouterCartes(tresor4);
 
         Collections.shuffle(pileCartesTirage);
+        joueurs.get(2).ajouterTresor(Tresor.PIERRE);
+        joueurs.get(2).ajouterTresor(Tresor.ZEPHYR);
+        joueurs.get(0).ajouterTresor(Tresor.CRISTAL);
+        supprimerTresor(Tresor.PIERRE);
+        supprimerTresor(Tresor.ZEPHYR);
+        supprimerTresor(Tresor.CRISTAL);
     }
     
     //à supprimer, c'est pour la visibilité pdt les tests.
@@ -590,7 +598,8 @@ public class ControleurDemo implements Observer {
             
             //verif victoire et defaite
             if(this.verifVictoire()){
-                //faire le traitement en cas de victoire
+                VueVictoire vueVictoire = new VueVictoire(joueurs);
+                vueVictoire.afficher();
             }else{
                 this.verifPartiePerdu();
                 //changement de joueur

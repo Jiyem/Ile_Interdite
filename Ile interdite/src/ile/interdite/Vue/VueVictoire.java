@@ -64,4 +64,10 @@ public class VueVictoire {
         
         
     }
+        public void afficher() {
+        this.window.setVisible(true );
+    }
+    public void fermer(){
+        this.window.dispose();
+    }
 }
