@@ -232,6 +232,24 @@ public class VueAventurier extends Observable  {
             btnAutreAction.setEnabled(true);            
         }
     }
+    
+    public void griserBoutonsIngé(boolean bool){
+        if(bool){
+            btnBouger.setEnabled(false);
+            btnTerminerTour.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnDonnerCarte.setEnabled(false);
+            btnRecupTresor.setEnabled(false);
+            btnAutreAction.setEnabled(false);
+        }else{
+            btnBouger.setEnabled(true);
+            btnTerminerTour.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnDonnerCarte.setEnabled(true);
+            btnRecupTresor.setEnabled(true);
+            btnAutreAction.setEnabled(true);            
+        }
+    }
 //    public void afficher() {
 //        this.window.setVisible(true);
 //    }

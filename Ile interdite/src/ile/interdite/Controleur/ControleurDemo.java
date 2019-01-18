@@ -63,7 +63,7 @@ public class ControleurDemo implements Observer {
     private VueFinDeTour vuefintour;
     private HashMap<Couleur, String> depart = new HashMap<>();
     private Grille grille;
-    private int nombreAction;
+    private double nombreAction;
     private int compteurInnondation=0;
     private int y=0; //une variable drapeau.
     private int niveau=1;
@@ -265,7 +265,12 @@ public class ControleurDemo implements Observer {
                             }
                         }    
                     }
-                    if(nombreAction == 0){
+                    System.out.println("Nb Actions: "+nombreAction);
+                    if(!joueurCourant.getRôle().equals("ingenieur")  && nombreAction == 0){
+                        this.changementTour();
+                    }else if(joueurCourant.getRôle().equals("ingenieur") && nombreAction == 0.5){
+                        vueAventurier.griserBoutonsIngé(true);
+                    }else if(joueurCourant.getRôle().equals("ingenieur") && nombreAction < 0.5){
                         this.changementTour();
                     }
                     plateau.majPlateau(grille); 
@@ -454,16 +459,14 @@ public class ControleurDemo implements Observer {
     }
     private void assécher(Tuile tuile){
         tuile.setEtatCase(EtatCase.NORMAL);
-        if(joueurCourant.getRôle()=="Ingenieur" && joueurCourant.assèchementPossible(grille).size()!=0){
-            Scanner sc=new Scanner(System.in);
-            System.out.println("Voulez-vous effectuer un deuxième assèchement ? (o/n)");
-            if(sc.nextLine().equals("o")){
-                joueurCourant.ouAssecher(grille);
-                                
-            }
+        if(joueurCourant.getRôle().equals("ingenieur")){
+                vueAventurier.griserBoutons(false);
+                nombreAction = nombreAction -0.5;                       
+        }else{
+            vueAventurier.griserBoutons(false);
+            nombreAction = nombreAction -1;           
         }
-        vueAventurier.griserBoutons(false);
-        nombreAction = nombreAction -1;
+
     }
     private void autreAction(){
         if(joueurCourant.getCouleur().equals(Couleur.BLEU)){ // modifier pour pouvoir utiliser son pouvoir qu'une fois
