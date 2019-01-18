@@ -510,7 +510,6 @@ public class ControleurDemo implements Observer {
     }
     
     private void recupererTresor(){
-        System.out.println("test");
         if(joueurCourant.getPosition().possèdeTresor()){ //Si le joueur est sur une case de rendu de trésor
                 int nbCartesDuTresor = 0;
                 for(int i = 0; i<joueurCourant.getCartes().size();i++){
@@ -573,11 +572,6 @@ public class ControleurDemo implements Observer {
             this.tirerCartesInnondation();
             cartes = this.tirerCartesTrésor();
             
-            System.out.println("Niveau de l'eau : "+niveau);
-            System.out.println("taille de cartesTirées : "+cartesTirées.length);
-            System.out.println(compteurInnondation);
-            System.out.println(paquetInnondation.getPaquet().size());
-            
             //Afficher la vueFinDeTour :
             vuefintour = new VueFinDeTour(joueurCourant.getPseudo(),cartes[0],cartes[1],niveau,cartesTirées);
             vuefintour.afficher();
@@ -628,7 +622,6 @@ public class ControleurDemo implements Observer {
         }else{
             nombreAction=3;                                
         }
-       System.out.println("Changement de joueur");
        }
  
 
@@ -904,7 +897,6 @@ public class ControleurDemo implements Observer {
     }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
-            this.retirerCarte(joueurCourant, carteHelico);
             for(int y=0;y<listeBoutonValide.size();y++){
                     joueurCourant.enleverCarte(listeBoutonValide.get(y));
             }

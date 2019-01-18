@@ -74,11 +74,7 @@ public abstract class Aventurier {
     //méthode
     
     public void ajouterCartes(CarteTirage carte){
-        if(getCartes().size() < 9){
             getCartes().add(carte);   
-        }else{
-            System.out.println("Erreur joueur a 9 cartes");
-        }
     }
     
         public void enleverCarte(CarteTirage carte){
