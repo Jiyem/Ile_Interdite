@@ -872,7 +872,7 @@ public class ControleurDemo implements Observer {
         deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
         if(deplacementPossible.isEmpty()){
             VueErreur erreur = new VueErreur("Vous n'avez nul part ou aller !");
-            vueAventurier.griserBoutons(false);
+            vueAventurier.griserBoutons(true);
             erreur.afficher();
         }else{
             plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
@@ -885,7 +885,7 @@ public class ControleurDemo implements Observer {
             deplacementPossible = grille.déplacementPossiblePilote(pilote);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
             if(deplacementPossible.isEmpty()){
                 VueErreur erreur = new VueErreur("Vous n'avez nul part ou aller !"); //remplacé par un message sur le plateau
-                vueAventurier.griserBoutons(false);
+                vueAventurier.griserBoutons(true);
                 erreur.afficher();
             }else{
                 plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
@@ -893,7 +893,7 @@ public class ControleurDemo implements Observer {
             }   
         }else{
             VueErreur erreur = new VueErreur("Vous avez déjà utilisé votre action spéciale");
-            vueAventurier.griserBoutons(false);
+            vueAventurier.griserBoutons(true);
             erreur.afficher();
         }
 
@@ -923,7 +923,7 @@ public class ControleurDemo implements Observer {
         assechementPossible = joueurCourant.assèchementPossible(grille);
         if(assechementPossible.isEmpty()){
             VueErreur erreur = new VueErreur("Vous n'avez aucune tuile à assecher.");
-            vueAventurier.griserBoutons(false);
+            vueAventurier.griserBoutons(true);
             erreur.afficher();
             
         }else{

@@ -7,7 +7,10 @@ package ile.interdite.Vue;
 
 import java.awt.BorderLayout;
 import static java.awt.SystemColor.window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +22,7 @@ import javax.swing.JPanel;
 public class VueErreur extends Observable {
     private JFrame window;
     private JPanel mainPanel;
+    private JButton valider;
     public VueErreur(String texte){
         window = new JFrame();
         window.setSize(600, 200);
@@ -28,6 +32,16 @@ public class VueErreur extends Observable {
         window.add(mainPanel);
         JLabel textAffiche = new JLabel(texte);
         mainPanel.add(textAffiche);
+        
+        valider = new JButton("Ok !");
+        valider.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setChanged();
+            notifyObservers("VALIDERERREUR");
+            clearChanged();
+            }
+        });
         
     }
     public void afficher() {
