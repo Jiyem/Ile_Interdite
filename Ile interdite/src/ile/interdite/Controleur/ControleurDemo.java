@@ -208,19 +208,25 @@ public class ControleurDemo implements Observer {
                     this.recupererTresor();
                     vueAventurier.griserBoutons(true);
                 }
-                else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){ // Ne fait rien du tout pour l'instant
-                    //faire autre action
+                else if(messageAventurier.getAction()==ActionsType.DONNERCARTE){
                     Aventurier aventurier = null;
                     for(Aventurier av : joueurs){
-                        if (av.getPosition().equals(joueurCourant.getPosition())){
+                        if (av.getPosition().equals(joueurCourant.getPosition()) && av != joueurCourant){
                             aventurier=av;
                         }
                     }
-                    vueAventurier.griserBoutons(true);
-                    vueDonnerCarte = new VueCarteADonner(joueurs,joueurCourant);
-                    vueDonnerCarte.addObserver(this);
-                    vueDonnerCarte.afficher();
-                    //this.muliganCartes(messageMuligan.getListecartes());
+                    System.out.println("Av: "+aventurier);
+                    if(aventurier == null){
+                        VueErreur erreur = new VueErreur("Il n'y a pas d'autre joueurs sur votre tuile.");
+                        erreur.afficher();
+                    }else{
+                        vueAventurier.griserBoutons(true);
+                        vueDonnerCarte = new VueCarteADonner(joueurs,joueurCourant);
+                        vueDonnerCarte.addObserver(this);
+                        vueDonnerCarte.afficher();
+                        //this.muliganCartes(messageMuligan.getListecartes());                        
+                    }
+
                     
                     
                 }
@@ -273,7 +279,7 @@ public class ControleurDemo implements Observer {
                             i +=1;
                         }
                         joueurCourant.donnerCarte(joueurs.get(i),messageCarte.getCarte());
-                        vueAventurier.griserBoutons(true);
+                        vueAventurier.griserBoutons(false);
                         nombreAction = nombreAction -1;
                         vueDonnerCarte.fermer();
                     }
