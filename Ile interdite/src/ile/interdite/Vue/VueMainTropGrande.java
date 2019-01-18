@@ -10,6 +10,7 @@ import ile.interdite.Message.MessageAventurier;
 import ile.interdite.Message.MessageMuligan;
 import ile.interdite.Modele.Aventuriers.Aventurier;
 import ile.interdite.Modele.Cartes.CarteTirage;
+import ile.interdite.Modele.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,8 +40,10 @@ public class VueMainTropGrande extends Observable{
     private  JPanel panelAventurier;
     private  JPanel mainPanel;
     private JButton btnValidation = new JButton("Valider les cartes à retirer");
-    private ArrayList<JButton> listeBouton;
-    private ArrayList<JButton> listeBoutonValide;
+//    private ArrayList<JButton> listeBouton;
+//    private ArrayList<JButton> listeBoutonValide;
+    private HashMap<JButton,CarteTirage> listeBouton = new HashMap<>();
+    private HashMap<JButton,CarteTirage> listeBoutonValide = new HashMap<>();
     private Aventurier jCourant;
     private JPanel contentPanel;
     private int nbCartesARetirer;
@@ -67,20 +70,20 @@ public class VueMainTropGrande extends Observable{
             nbligne = 1+((int)nbligne/3);
         }
         contentPanel = new JPanel(new GridLayout(nbligne,3));  
-        listeBouton = new ArrayList<>();
+       // listeBouton = new ArrayList<>();
         
         
         for(int i = 0;i < jCourant.getCartes().size();i++){
             if(jCourant.getCartes().get(i) != null){
                 final JButton jb = new JButton(jCourant.getCartes().get(i).getImage().getImageAAfficher());
-                listeBouton.add(jb);
+                listeBouton.put(jb,jCourant.getCartes().get(i));
                 jb.setBackground(Color.white);
                 jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(!listeBoutonValide.contains(jb)){
+                    if(!listeBoutonValide.containsKey(jb)){
                         jb.setBackground(Color.gray);
-                        listeBoutonValide.add(jb);
+                        listeBoutonValide.put(jb,listeBouton.get(jb));
                         activerBtnValider();
                     } 
                     else {
@@ -111,7 +114,6 @@ public class VueMainTropGrande extends Observable{
             clearChanged();
             }
         });
-        listeBoutonValide = new ArrayList<>();
        
     }
     
@@ -134,10 +136,8 @@ public class VueMainTropGrande extends Observable{
     
     public ArrayList<CarteTirage> donnerArrayListCarteAEnlever(){
         ArrayList<CarteTirage> cartes = new ArrayList<CarteTirage>();
-        for(int i = 0;i<jCourant.getCartes().size();i++){
-            if(listeBoutonValide.contains(jCourant.getCartes().get(i).getType().name())){
-                cartes.add(jCourant.getCartes().get(i));
-            }
+        for (CarteTirage value : listeBoutonValide.values()) {
+           cartes.add(value);
         }
         return cartes;
     }
