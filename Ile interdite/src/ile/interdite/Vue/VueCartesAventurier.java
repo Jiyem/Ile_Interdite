@@ -76,10 +76,11 @@ public class VueCartesAventurier {
         panelDroite.add(panelTresor, BorderLayout.CENTER);
         
         for(int i=0; i < j.getTresors().size(); i++){
-            JButton buttTresor = new JButton(new ImageIcon(j.getTresors().get(i).getPathPicture()));
-            buttTresor.setFocusPainted(false);
-            buttTresor.setContentAreaFilled(false);
-            buttTresor.setBorderPainted(false);
+            JLabel buttTresor = new JLabel();
+            buttTresor.setIcon(j.getTresors().get(i).getImage().getImageAAfficher());
+//            buttTresor.setFocusPainted(false);
+//            buttTresor.setContentAreaFilled(false);
+//            buttTresor.setBorderPainted(false);
             panelTresor.add(buttTresor);
         }
         
