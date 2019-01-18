@@ -904,16 +904,11 @@ public class ControleurDemo implements Observer {
     }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
-        for(int  i=0; i <joueurCourant.getCartes().size();i++){
+            this.retirerCarte(joueurCourant, carteHelico);
             for(int y=0;y<listeBoutonValide.size();y++){
-                if(listeBoutonValide.get(y) == joueurCourant.getCartes().get(i)){
-                    CarteTirage t = joueurCourant.getCartes().get(i);
-                    joueurCourant.enleverCarte(t);
-                }    
+                    joueurCourant.enleverCarte(listeBoutonValide.get(y));
             }
-        }
-            
-    }
+        }    
     
 //    public void CartesADonner(ArrayList<CarteTirage> listeBoutonValide, Aventurier a){
 //        for(int  i=0; i <joueurCourant.getCartes().size();i++){
