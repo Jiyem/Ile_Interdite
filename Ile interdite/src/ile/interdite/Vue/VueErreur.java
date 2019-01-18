@@ -42,6 +42,7 @@ public class VueErreur extends Observable {
             clearChanged();
             }
         });
+        mainPanel.add(valider);
         
     }
     public void afficher() {

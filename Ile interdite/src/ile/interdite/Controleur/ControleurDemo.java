@@ -87,6 +87,7 @@ public class ControleurDemo implements Observer {
     private VueMainTropGrande vueMainTropGrande;
     private MessageMuligan messageMuligan;
     private VueCarteADonner vueDonnerCarte;
+    private VueErreur erreur;
     
     
     public ControleurDemo(){
@@ -221,8 +222,9 @@ public class ControleurDemo implements Observer {
                     }
                     System.out.println("Av: "+aventurier);
                     if(aventurier == null){
-                        VueErreur erreur = new VueErreur("Il n'y a pas d'autre joueurs sur votre tuile.");
+                        erreur = new VueErreur("Il n'y a pas d'autre joueurs sur votre tuile.");
                         erreur.afficher();
+                        erreur.addObserver(this);
                     }else{
                         vueAventurier.griserBoutons(true);
                         vueDonnerCarte = new VueCarteADonner(joueurs,joueurCourant);
@@ -311,9 +313,12 @@ public class ControleurDemo implements Observer {
                 //Fin du tour de jeu : 
                 if(arg1 instanceof String){    //Créer une action plutôt éventuellement..
                     String string = (String) arg1;
-                    if(string == "FINDUTOUR"){
-                        System.out.println("findutour");
+                    if(string.equals("FINDUTOUR")){
                         this.changementJoueur();
+                    }
+                    if(string.equals("VALIDERERREUR")){
+                        erreur.close();
+                        vueAventurier.griserBoutons(false);
                     }
                 }
                 
@@ -871,9 +876,10 @@ public class ControleurDemo implements Observer {
         ArrayList<Tuile> deplacementPossible = new ArrayList();
         deplacementPossible = joueurCourant.déplacementPossible(grille);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
         if(deplacementPossible.isEmpty()){
-            VueErreur erreur = new VueErreur("Vous n'avez nul part ou aller !");
+            erreur = new VueErreur("Vous n'avez nul part ou aller !");
             vueAventurier.griserBoutons(true);
             erreur.afficher();
+            erreur.addObserver(this);
         }else{
             plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
         } 
@@ -884,17 +890,19 @@ public class ControleurDemo implements Observer {
             ArrayList<Tuile> deplacementPossible = new ArrayList();
             deplacementPossible = grille.déplacementPossiblePilote(pilote);// faire en sorte que l'on calcule ses mouvement possible puis qu'on l'affiche sur la grille/consonle
             if(deplacementPossible.isEmpty()){
-                VueErreur erreur = new VueErreur("Vous n'avez nul part ou aller !"); //remplacé par un message sur le plateau
+                erreur = new VueErreur("Vous n'avez nul part ou aller !"); //remplacé par un message sur le plateau
                 vueAventurier.griserBoutons(true);
                 erreur.afficher();
+                erreur.addObserver(this);
             }else{
                 plateau.afficherAction(deplacementPossible,grille,joueurCourant,ActionsType.DEPLACER);
                 pilote.setActionSpe(0);
             }   
         }else{
-            VueErreur erreur = new VueErreur("Vous avez déjà utilisé votre action spéciale");
+            erreur = new VueErreur("Vous avez déjà utilisé votre action spéciale");
             vueAventurier.griserBoutons(true);
             erreur.afficher();
+            erreur.addObserver(this);
         }
 
     }
@@ -922,9 +930,10 @@ public class ControleurDemo implements Observer {
         ArrayList<Tuile> assechementPossible = new ArrayList();
         assechementPossible = joueurCourant.assèchementPossible(grille);
         if(assechementPossible.isEmpty()){
-            VueErreur erreur = new VueErreur("Vous n'avez aucune tuile à assecher.");
+            erreur = new VueErreur("Vous n'avez aucune tuile à assecher.");
             vueAventurier.griserBoutons(true);
             erreur.afficher();
+            erreur.addObserver(this);
             
         }else{
             plateau.afficherAction(assechementPossible,grille,joueurCourant,ActionsType.ASSECHER);
