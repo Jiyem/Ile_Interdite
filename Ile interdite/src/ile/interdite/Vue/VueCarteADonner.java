@@ -88,7 +88,7 @@ public class VueCarteADonner extends Observable{
         for(CarteTirage carte : jCourant.getCartes()){
             if(carte!= null){
                 JButton jb = new JButton();
-                jb.setText(carte.getType().name());
+                jb.setIcon(carte.getImage().getImageAAfficher());
                 listeBouton.add(jb);
                 jb.setBackground(Color.white);
                 jb.addActionListener(new ActionListener() {
