@@ -931,7 +931,6 @@ public class Controleur implements Observer {
     }
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
-            this.retirerCarte(joueurCourant, carteHelico);
             for(int y=0;y<listeBoutonValide.size();y++){
                     this.retirerCarte(joueurCourant,listeBoutonValide.get(y));
             }

@@ -316,12 +316,13 @@ public class ControleurDemo implements Observer {
                         this.changementJoueur();
                     }
                 }
-//                
-//                if(arg1 instanceof MessageMuligan){
-//                    messageMuligan = (MessageMuligan) arg1;
-//                    this.muliganCartes(messageMuligan.getListecartes());
-//                }
-//                
+                
+                if(arg1 instanceof MessageMuligan){
+                    messageMuligan = (MessageMuligan) arg1;
+                    this.muliganCartes(messageMuligan.getListecartes());
+
+                    vueMainTropGrande.fermer();
+                }
                 
 
                   
@@ -590,11 +591,13 @@ public class ControleurDemo implements Observer {
                 //changement de joueur
                 joueurCourant = joueurs.get(y);
             }
+            
             //Verif si la main du joueur est trop grande
-            if(joueurCourant.getnbCartes() > 9){
+            if(joueurCourant.getnbCartes() > 9 ){
                     vueMainTropGrande = new VueMainTropGrande(joueurCourant,joueurCourant.getnbCartes()-9);
+                    vueMainTropGrande.addObserver(this);
                     vueMainTropGrande.afficher();
-                }
+            }
         }
     }
         
@@ -898,9 +901,10 @@ public class ControleurDemo implements Observer {
     
     public void muliganCartes(ArrayList<CarteTirage> listeBoutonValide){
             for(int y=0;y<listeBoutonValide.size();y++){
-                    joueurCourant.enleverCarte(listeBoutonValide.get(y));
+                    this.retirerCarte(joueurCourant,listeBoutonValide.get(y));
             }
         }    
+    
     
 //    public void CartesADonner(ArrayList<CarteTirage> listeBoutonValide, Aventurier a){
 //        for(int  i=0; i <joueurCourant.getCartes().size();i++){
