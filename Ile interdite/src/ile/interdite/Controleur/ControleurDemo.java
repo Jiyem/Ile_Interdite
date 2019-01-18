@@ -516,7 +516,6 @@ public class ControleurDemo implements Observer {
                 if(nbCartesDuTresor >= 4){
                     System.out.println("Voulez vous récupérer le trésor"+joueurCourant.getPosition().getTresor().toString()+" ? (o/n)");
                     Scanner sc=new Scanner(System.in);
-                    System.out.println("Voulez-vous effectuer un deuxième assèchement ? (o/n)");
                     if(sc.nextLine().equals("o")){
                         Tresor tresor = joueurCourant.getPosition().getTresor();
                         joueurCourant.ajouterTresor(tresor); //don du trésor au joueur
@@ -538,11 +537,15 @@ public class ControleurDemo implements Observer {
             }
         }
         for(int i = 0;i<joueurs.size();i++){
+            int y=0;
             ArrayList<CarteTirage> cartes = joueurs.get(i).getCartes();
-            for(y = 0;y<cartes.size();y++){
-                if(cartes.get(y).getTresor() == tresor){
-                    joueurs.get(i).enleverCarte(cartes.get(y));
+            while(y<cartes.size()){
+                System.out.println(joueurs.get(i).getCartes().size());
+                if(joueurs.get(i).getCartes().get(y).getTresor() == tresor){
+                    joueurs.get(i).enleverCarte(joueurs.get(i).getCartes().get(y));
+                    y-=1;
                 }
+                y+=1;
             }
         }
     }

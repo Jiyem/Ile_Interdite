@@ -74,15 +74,18 @@ public class Grille {
     public void retirerTresor(Tresor tresor){
         for (int y = 0; y < 6; y++) {
             for (int x = 0; x < 6; x++) {
-                if((tuile[y][x].getNomTuile().equals("Le Temple du Soleil") || tuile[y][x].getNomTuile().equals("Le Temple de La Lune")) && tresor == Tresor.PIERRE){
-                    this.tuile[y][x].setTresor(null);
-                } else if((tuile[y][x].getNomTuile().equals("Le Jardin des Murmures") || tuile[y][x].getNomTuile().equals("Le Jardin des Hurlements"))&& tresor == Tresor.ZEPHYR){
-                    this.tuile[y][x].setTresor(null);        
-                } else if((tuile[y][x].getNomTuile().equals("La Caverne des Ombres") || tuile[y][x].getNomTuile().equals("La Caverne du Brasier")) && tresor == Tresor.CRISTAL){
-                    this.tuile[y][x].setTresor(null);
-                } else if((tuile[y][x].getNomTuile().equals("Le Palais des Marees") || tuile[y][x].getNomTuile().equals("Le Palais de Corail"))&& tresor == Tresor.CALICE){
-                    this.tuile[y][x].setTresor(null);
-                }  
+                if(tuile[y][x]!=null){
+                   if((tuile[y][x].getNomTuile().equals("Le Temple du Soleil") || tuile[y][x].getNomTuile().equals("Le Temple de La Lune")) && tresor == Tresor.PIERRE){
+                        this.tuile[y][x].setTresor(null);
+                   } else if((tuile[y][x].getNomTuile().equals("Le Jardin des Murmures") || tuile[y][x].getNomTuile().equals("Le Jardin des Hurlements"))&& tresor == Tresor.ZEPHYR){
+                        this.tuile[y][x].setTresor(null);        
+                   } else if((tuile[y][x].getNomTuile().equals("La Caverne des Ombres") || tuile[y][x].getNomTuile().equals("La Caverne du Brasier")) && tresor == Tresor.CRISTAL){
+                        this.tuile[y][x].setTresor(null);
+                   } else if((tuile[y][x].getNomTuile().equals("Le Palais des Marees") || tuile[y][x].getNomTuile().equals("Le Palais de Corail"))&& tresor == Tresor.CALICE){
+                        this.tuile[y][x].setTresor(null);
+                } 
+                }
+                  
                 
             }
         }    
