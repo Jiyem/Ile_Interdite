@@ -465,7 +465,58 @@ public class VuePlateau extends Observable{
     public VuePersonnages_1 getPersonnages() {
         return personnages;
     }
+    
+    // Surement à mettre dans le controleur
+    
+    //récupère position de tout les joueurs
+    public ArrayList<Tuile> getPosiotionJoueurs(ArrayList<Aventurier> joueurs){
+        ArrayList<Tuile> positionJs = new ArrayList<>();
+        for (int i =0;i<joueurs.size();i++){
+            positionJs.add(joueurs.get(i).getPosition());
+        }
+        return positionJs;
+    }
+    
+    //Récupère l'endroit d'où l'on veut partir
+    public void déplacementGroupeHelico(ArrayList<Tuile> positionJs){
+        for (int t=0;t<btnTuile.size();t++){
+            for (int i =0;i< positionJs.size();i++){
+                int numTuile =t+1;
+               if (positionJs.get(i).getNumTuile()==t+1){
+                   btnTuile.get(t).addActionListener(new ActionListener() {
+                       @Override
+                       public void actionPerformed(ActionEvent ae) {
+                           setChanged();
+                           notifyObservers(new MessagePlateau(ActionsType.DEPLACER,numTuile , null));
+                           clearChanged();
+                       }
+                   });
+               } else btnTuile.get(t).setEnabled(false);
+            }
+        }
         
+    }
+    
+    //récupère le nombre de personne et qui veut être déplacé
+    public void tailleGroupeHelico(int numTuile,ArrayList<Tuile> positionsJs){
+        for(int i=0;i<positionsJs.size();i++){
+            if(positionsJs.get(i).getNumTuile()==numTuile){
+                int numJ=i;
+                personnages.getButton().get(i).addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        setChanged();
+                        notifyObservers(new MessagePlateau(ActionsType.AUTREACTION, numJ,null));
+                        clearChanged();
+                    }
+                });
+            } else {
+                personnages.getButton().get(i).setEnabled(false);
+            }
+                
+        }
+        
+    }
 }
     
     /*autre couleur 

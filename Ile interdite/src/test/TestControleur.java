@@ -17,7 +17,8 @@ import ile.interdite.Vue.VueInscription;
 public class TestControleur {
          public static void main(String [] args) {
              
-            ControleurDemo c = new ControleurDemo();
+//            ControleurDemo c = new ControleurDemo();
+            Controleur c = new Controleur();
     }
     
 }

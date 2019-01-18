@@ -99,6 +99,9 @@ public class Controleur implements Observer {
     private VueMainTropGrande vueMainTropGrande;
     private MessageMuligan messageMuligan;
     
+    //bouger à plusieurs hélico
+    private ArrayList<Aventurier> JABouger = new ArrayList<>();
+    
     public Controleur(){
         joueurs=new ArrayList<>();
         inscri.addObserver(this);
@@ -125,12 +128,14 @@ public class Controleur implements Observer {
                 if (messageCarteSpe.getAction()==ActionsType.UTILISATION_CARTE_HELICO){
                     if (messageCarteSpe.getNbCarteSpe()!=0){    
                         if (carteHelico.deplacable(grille)!=null){
-                            plateau.afficherAction(carteHelico.deplacable(grille), grille, joueurCourant, ActionsType.DEPLACER);
-                            int x = 0;
-                            while (listeCartesDesAventuriers.get(x).equals(carteSacDeSable)){
-                                x+=1;
-                            }
-                            listeCartesDesAventuriers.remove(x);
+                            plateau.afficheJoueurPossèdeCarte(joueurs,plateau.possedeCarteHelicoSac(carteSacDeSable, joueurs),TypeCarte.SacDeSable);
+                            plateau.déplacementGroupeHelico(plateau.getPosiotionJoueurs(joueurs));
+//                            plateau.afficherAction(carteHelico.deplacable(grille), grille, joueurCourant, ActionsType.DEPLACER);
+//                            int x = 0;
+//                            while (listeCartesDesAventuriers.get(x).equals(carteSacDeSable)){
+//                                x+=1;
+//                            }
+//                            listeCartesDesAventuriers.remove(x);
                     
                         }
                     }
@@ -274,12 +279,21 @@ public class Controleur implements Observer {
                         if (messagePlateau.getTypeCarte()==TypeCarte.Helicoptere){
                             joueurs.get(messagePlateau.getNumBouton()).enleverCarte(carteHelico);
                             plateau.actionneBouton(plateau.getPersonnages().getButton());
+                            
                         }
                         else if (messagePlateau.getTypeCarte()==TypeCarte.SacDeSable){
                             joueurs.get(messagePlateau.getNumBouton()).enleverCarte(carteSacDeSable);
                             plateau.actionneBouton(plateau.getPersonnages().getButton());
                         }
                     }
+                     else if (messagePlateau.getAction()==ActionsType.DEPLACER){
+                        plateau.tailleGroupeHelico(messagePlateau.getNumBouton(), plateau.getPosiotionJoueurs(joueurs));
+                        //Procedure de d'affichage des tuile dispo pour le voyage puis dans le nouveau message, tous les deplacer
+                     }
+                     //Rajoute dans une ArrayList Tout les joueurs qui doivent voir le position déplacé
+                     else if (messagePlateau.getAction()==ActionsType.AUTREACTION){
+                         JABouger.add(joueurs.get(messagePlateau.getNumBouton()));
+                     }
                 }
                 //Fin du tour de jeu : 
                 if(arg1 instanceof String){    //Créer une action plutôt éventuellement..
