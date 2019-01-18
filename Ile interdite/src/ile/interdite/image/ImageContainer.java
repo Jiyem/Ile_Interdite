@@ -33,7 +33,6 @@ public class ImageContainer extends JPanel{
     public ImageContainer(String path, int x, int y, int width, int height){
         super();
         this.setOpaque(false);
-        System.out.println("Image container");
         this.setBackground(Color.red);
         
         this.x = x ;
